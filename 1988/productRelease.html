@@ -1,0 +1,269 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+  	<title>商品发布--选择类目</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="商品发布-选择类目">
+    <link rel="stylesheet" href="./plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="./plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="./build/css/main.css">
+
+</head>
+<body>
+	<div class="seller-header">
+    <span class="layui-breadcrumb">
+      <a href="javascript:;">你当前所在的位置</a>
+      <a href="javascript:;">商品管理</a>
+      <a><cite>商品发布</cite></a>
+    </span>
+	</div>
+	<div class="main">
+		<div class="operateSteps">
+			<span class="stepsList firstStep activeStep rightPoint1">
+				<i>1</i>
+				<em>选择商品类目</em>
+			</span>
+			<span class="stepsList secondStep rightPoint2">
+				<i>2</i>
+				<em>填写商品信息详情</em>
+			</span>
+			<span class="stepsList thirdStep rightPoint3">
+				<i>3</i>
+				<em>提交申请</em>
+			</span>
+		</div>
+		<div class="ibox content">
+			<h1>为你的产品信息选择适合的类目</h1>
+			<div class="layui-row" style="margin-bottom: 20px;">
+				<input type="text" placeholder="请输入关键字即可，不可为空" id="prSearchInput" class="serach-input" />
+				<button class="layui-btn layui-btn-mini search-btn" id="prSearchBtn"><i class="fa fa-search"></i>&nbsp;查找类目</button>
+				&nbsp;或
+				<label class="myselfcheck" id="myselfcheck">自选类目 <i class="fa fa-hand-o-down"></i></label>
+			</div>
+			
+			<div class="layui-row CategoryStep">
+				<!--1,2,3级分类容器 start-->
+        <div class="layui-col-sm12" id="category-body">
+        		<!--一级分类 start-->
+            <div class="layui-col-sm4 category1">
+                <div class="ibox ibox-border">
+                    <div class="ibox-title">
+                        <h5>一级分类</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="treeview">
+                            <ul id="category1" class="list-group"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--一级分类 end-->
+            
+            <!--2级分类 start-->
+            <div class="layui-col-sm4 category2 categoryHidden">
+                <div class="ibox ibox-border">
+                    <div class="ibox-title">
+                        <h5>二级分类</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="treeview">
+                            <ul id="category2" class="list-group"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--2级分类 end-->
+            
+            <!--3级分类  start-->
+            <div class="layui-col-sm4 category3 categoryHidden">
+                <div class="ibox ibox-border">
+                    <div class="ibox-title">
+                        <h5>三级分类</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="treeview">
+                            <ul id="category3" class="list-group"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--3级分类  end-->
+            
+						<!--搜索结果 start-->
+            <div class="selfCategory categoryHidden">
+                <div class="ibox ibox-border">
+                    <div class="ibox-title">
+                        <h5>您当前搜索的结果如下：</h5>
+                    </div>
+                    <div class="ibox-content">
+                        <div class="treeview">
+                            <ul id="selfCategory" class="list-group"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--搜索结果 end-->
+        </div>
+        <!--1,2,3级分类容器 end-->
+        
+        <!--当前选择的类目 start-->
+        <div class="layui-col-sm12 left">
+            <div class="alert alert-info">
+                <b>您当前选择的类目：</b>
+                <i id="selectedSort"></i>
+            </div>
+        </div>
+        <!--当前选择的类目 end-->
+        
+        <!--下一步 start-->
+        <div class="layui-col-sm12 text-center">
+            <button id="publishBtn" type="submit" class="layui-btn layui-btn-normal disabled" disabled="disabled">下一步，填写信息详情</button>
+        </div>
+        <input id="category1input" name="category1input" type="hidden">
+        <input id="category2input" name="category3input" type="hidden">
+        <input id="category3input" name="category3input" type="hidden">
+        <input data-val="true"  id="IsPresale" name="IsPresale" type="hidden">
+        <!--下一步 end-->
+        
+    	</div>
+		</div>
+	</div>
+	<!--1级分类模板 -->
+	<script type="text/html" id="category1Template">
+		{{# layui.each(d, function(index, item){  }}
+		<li id="{{ item.id }}" path="{{ item.path }}" class="list-group-item">{{ item.name }}</li>
+  	{{# })  }}
+	</script>
+	<!--2级分类模板 -->
+	<script type="text/html" id="category2Template">
+		{{# layui.each(d, function(index, item){  }}
+		<li id="{{ item.id }}" path="{{ item.path }}" class="list-group-item">{{ item.name }}</li>
+  	{{# })  }}
+	</script>
+	<!--3级分类模板 -->
+	<script type="text/html" id="category3Template">
+		{{# layui.each(d, function(index, item){  }}
+		<li id="{{ item.id }}" path="{{ item.path }}" class="list-group-item">{{ item.name }}</li>
+  	{{# })  }}
+	</script>
+	<!--搜索结果模板 -->
+	<script type="text/html" id="selfCategoryTemplate">
+		{{# layui.each(d, function(index, item){  }}
+		<li id="{{ item.id }}" path="{{ item.path }}" class="list-group-item">{{ item.path }}</li>
+  	{{# })  }}
+  	
+  	{{#  if(d.length === 0){ }}
+  	<div class="noitem">找不到符合条件的类目,请修改关键字重新进行查找！</div>
+  	{{#  } }}
+	</script>
+	
+
+
+
+
+<script src="./plugins/layui/layui.js"></script>
+<script src="./build/js/wolianwComponent/config.js"></script>
+<script>
+    layui.use(['element','form','laydate','laytpl', 'layer', "woLianw"],function () {
+        var element=layui.element;
+        var form = layui.form;
+        var laytpl = layui.laytpl;
+        var $ = layui.jquery;
+        var woLianw = layui.woLianw;
+        
+		woLianw.getCategoryList(renderDataHtml, "category1Template", "category1");
+		//发布类型：1 直接发布， 2 预售发布
+		var releaseType = 1;
+		if(window.location.href.split('?release=')[1]){
+			releaseType = window.location.href.split('?release=')[1];
+		}
+				
+       /*通过laytpl模板引擎将数据渲染到页面*/
+        function renderDataHtml(data, templateID, wrapID) {
+          var template = document.getElementById(templateID).innerHTML;
+          var wrap = document.getElementById(wrapID);
+          laytpl(template).render(data, function (html){
+              wrap.innerHTML = html;
+          });
+        }
+        //点击 自选类目
+        $("#myselfcheck").click(function(){
+        	$("#category-body div.selfCategory").addClass("categoryHidden");
+        	$("#category-body div.category1").removeClass("categoryHidden");
+        });
+        //点击  查找类目
+        $("#prSearchBtn").click(function(){
+        	var prSearchInput = $("#prSearchInput").val();
+        	if(prSearchInput){
+        		$("#category-body div.selfCategory").removeClass("categoryHidden");
+        		woLianw.getCategoryList(renderDataHtml, "selfCategoryTemplate", "selfCategory", {"name": prSearchInput}, "nameUrl");
+						$("#category-body div.category1, #category-body div.category2, #category-body div.category3").addClass("categoryHidden");
+        	}else{
+        		return false;
+        	}
+        });
+        
+        
+        
+				//一级类目 点击目标
+				$("#category1").on("click", "li", function(){
+					$("#selectedSort").html( $(this).attr("path") );  //获取当前选择的类目
+					$(this).addClass("categoryActive").siblings().removeClass("categoryActive"); //当前点击的目标加选定状态，兄弟级都去掉选定状态
+					woLianw.getCategoryList(renderDataHtml, "category2Template", "category2", {"cid": this.id});// 获取2级分类数据并渲染页面
+					$("#category-body div.category2").removeClass("categoryHidden");
+					$("#category-body div.category3").addClass("categoryHidden");
+					$("#publishBtn").addClass("disabled").attr("disabled", "disabled");
+				});
+				
+				//二级类目 点击目标
+				$("#category2").on("click", "li", function(){
+					var that = this;
+					$("#selectedSort").html($(this).attr("path"));  //获取当前选择的类目
+					woLianw.getProductInfoList({"cid": this.id}, function(code){
+						if(code == 0){
+							$("#publishBtn").addClass("disabled").attr("disabled", "disabled");
+							$("#category-body .category3").removeClass("categoryHidden");
+						}else{
+							$("#publishBtn").removeClass("disabled").removeAttr("disabled");
+							$("#category-body .category3").addClass("categoryHidden");
+							$("#IsPresale").val(that.id);
+						}
+					});
+					$(this).addClass("categoryActive").siblings().removeClass("categoryActive");//当前点击的目标加选定状态，兄弟级都去掉选定状态
+					woLianw.getCategoryList(renderDataHtml, "category3Template", "category3", {"cid": this.id});// 获取3级分类数据并渲染页面
+				});
+				
+				//三级类目 点击目标  和 查找类目 点击目标
+				$("#category3, #selfCategory").on("click", "li", function(){
+					var that = this;
+					$("#selectedSort").html($(this).attr("path"));  //获取当前选择的类目
+					woLianw.getProductInfoList({"cid": this.id}, function(code){
+						if(code == 0){
+							$("#publishBtn").addClass("disabled").attr("disabled", "disabled");
+						}else{
+							$("#publishBtn").removeClass("disabled").removeAttr("disabled");
+							$("#IsPresale").val(that.id);
+						}
+					});
+					$(this).addClass("categoryActive").siblings().removeClass("categoryActive");//当前点击的目标加选定状态，兄弟级都去掉选定状态
+					var selectedSortHtml = $("#selectedSort").html();
+				});
+				
+				$("#publishBtn").click(function(){
+					var IsPresale = $("#IsPresale").val();
+					woLianw.getProductInfoList({"cid": IsPresale}, function(){}, releaseType);
+				});
+				
+
+
+
+
+
+
+    })
+</script>
+</body>
+</html>
+

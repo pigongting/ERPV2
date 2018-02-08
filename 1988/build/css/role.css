@@ -1,0 +1,49 @@
+.pi-TableButton { min-width: 80px; height: 26px; line-height: 26px; font-size: 12px; padding-left: 10px; padding-right: 10px; }
+.pi-TableButtonGreen { background-color: #39cb88; color: #fff; }
+.pi-TableButtonBlue { background-color: #438bfd; color: #fff; }
+.pi-TableButtonRed { background-color: #ff4e3e; color: #fff; }
+.pi-TableButtonWhite { background-color: #fff; color: #000; border: 1px solid #d9d9d9; }
+.pi-TableButtonWhite:hover { color: #000; }
+.pi-TableButtonGray { background-color: #f7f7f7; color: #000; border: 1px solid #d9d9d9; }
+.pi-TableButtonGray:hover { color: #000; }
+
+#detailContent ul {
+    padding: 40px 50px;
+}
+
+#detailContent ul .item {
+    padding: 10px 0;
+}
+
+#addEditContent .layui-form {
+    padding: 0 50px;
+}
+
+#modifyPassword .layui-form {
+    padding: 0 50px;
+}
+
+.mylaybox button{
+    padding: 0 15px;
+    height: 26px;
+    line-height: 26px;
+    font-size: 12px;
+}
+
+.container:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+#addRoleForm {
+  padding: 30px 30px 0 0;
+}
+
+#addRoleForm .layui-form-label {
+  width: 120px;
+}
+
+#addRoleForm .layui-input-block {
+  margin-left: 120px;
+}

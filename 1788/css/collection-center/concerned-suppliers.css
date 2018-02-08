@@ -1,0 +1,116 @@
+.concerned-suppliers{
+    width: 1060px;
+}
+.concerned-suppliers ul.suppliers-list>li{
+    height: 220px;
+    width: 1060px;
+    border-bottom: 1px solid #e4e4e4;
+}
+.concerned-suppliers ul.unactive{
+    display: none;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-info{
+    width: 200px;
+    height: 220px;
+    float: left;
+    text-align: center;
+    padding: 38px 0;
+}
+.concerned-suppliers ul.suppliers-list li .delete-supplier{
+    width: 40px;
+    height: 220px;
+    float: left;
+    padding-top: 18px;
+}
+.concerned-suppliers ul.suppliers-list li .delete-supplier button.delete-btn{
+    background-color: #ffffff;
+    width: 20px;
+    height: 20px;
+}
+.concerned-suppliers ul.suppliers-list li .delete-supplier button.delete-btn i{
+    font-size: 20px !important;
+    color: #999999;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-products-list{
+    width: 820px;
+    height: 220px;
+    float: right;
+    overflow: hidden;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-info .supplier-pic{
+    height: 50px;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-info .supplier-pic img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0 auto;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-info .supplier-name{
+    font-size: 14px;
+    font-weight: bold;
+    color: #323232;
+    padding: 10px 0;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-info .supplier-phone,
+.concerned-suppliers ul.suppliers-list li .supplier-info .supplier-address{
+    font-size: 12px;
+    color: #666666;
+    padding: 5px 0;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-product-operate{
+    height: 60px;
+    padding: 18px 0;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-product-operate button{
+    width: 50px;
+    height: 24px;
+    border: 1px solid #e4e4e4;
+    float: left;
+    color: #666666;
+    background-color: #FFFFFF;
+    margin: 0;
+    border-radius: 0;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-product-operate button.isActive{
+    border: 0;
+    background-color: #1cc8c6;
+    color: #ffffff;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-product-operate a.link-more{
+    float: right;
+    font-size: 12px;
+    color: #666666;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-product{
+    height: 160px;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-product ul.supplier-product-list li{
+    width: 120px;
+    height: 160px;
+    float: left;
+    margin-right: 20px;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-product ul.supplier-product-list li:nth-of-type(6){
+    margin-right: 0px;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-product ul.supplier-product-list li a{
+    display: block;
+    width: 120px;
+    height: 120px;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-product ul.supplier-product-list li a img{
+    width: 120px;
+    height: 120px;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-product ul.supplier-product-list li p.product-tag {
+    padding: 5px 0;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-product ul.supplier-product-list li p.product-tag .product-price{
+    font-size: 14px;
+    color: #ff3c29;
+}
+.concerned-suppliers ul.suppliers-list li .supplier-product
+.concerned-suppliers ul.suppliers-list li .supplier-product
+.concerned-suppliers ul.suppliers-list li .supplier-product
+

@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta type="description" content="总代理-我的订单">
+    <title>我的订单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../plugs/layui/css/layui.css">
+    <link rel="stylesheet" href="../../font/font_399822_dtv8v5xokcfvfgvi/iconfont.css">
+    <link rel="stylesheet" href="../../plugs/font-awesome/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../../css/background-style/background-common.css">
+    <link rel="stylesheet" href="../../css/background-style/background-option.css">
+    <link rel="stylesheet" href="../../css/background-style/main.css">
+    <link rel="stylesheet" href="../../css/background-style/aside.css">
+    <link rel="stylesheet" href="../../css/order-center/myOrder.css">
+    <link rel="stylesheet" href="../../css/order-center/appraise-form.css">
+    <link rel="stylesheet" href="../../css/qrcode/qrcode.css">
+</head>
+<body>
+<!--顶部导航开始-->
+<header>
+    <ul class="layui-nav container" id="commonHeader">
+        <li class="layui-nav-item user-name" id="userCenter">
+        </li>
+    </ul>
+</header>
+<!--顶部导航结束-->
+<!--商品中心区域开始-->
+<div class="option-container">
+    <div class="option container">
+        <div class="logo layui-inline">
+            <a href="javascript:;">
+                <img src="../../img/work-logo.png" alt="">
+            </a>
+        </div>
+        <div class="products-center layui-inline">
+            <a href="../../productModule/center/index.html">
+                <img src="../../img/products-center.png" alt="">
+            </a>
+        </div>
+        <div class="supply-center" id="applyBox">
+
+        </div>
+    </div>
+</div>
+<!--商品中心区域结束-->
+
+<div class="main container">
+
+    <!--主体内容开始-->
+    <div class="bakground-content container">
+        <div class="search">
+            <h2>我的订单</h2>
+            <div class="search-option">
+                <div class="search-option-item">
+                    <span>订单编号</span>
+                    <input type="text" name="orderNo" id="orderNo" class="layui-input-inline" placeholder="请输入订单编号查询">
+                </div>
+                <div class="search-option-item">
+                    <span>订单时间</span>
+                    <input type="text" class="layui-input-inline date" id="st" name="st">
+                    <span>-</span>
+                    <input type="text" class="layui-input-inline date" id="et" name="et">
+                </div>
+                <div class="search-option-item">
+                    <button class="layui-btn layui-btn-mini" id="search-btn"><i class="fa fa-search"></i>搜索</button>
+                </div>
+            </div>
+        </div>
+        <div class="tab-list">
+            <ul class="layui-nav" lay-filter="" id="typeList">
+                <li class="layui-nav-item"><a href="javascript:;" data-id="10">待付款<span class="layui-badge" id="unPay">0</span></a></li>
+                >
+                <li class="layui-nav-item"><a href="javascript:;" data-id="55">已退回<span class="layui-badge" id="returned">0</span></a></li>
+                >
+                <li class="layui-nav-item"><a href="javascript:;" data-id="15,20,25">待收货<span class="layui-badge" id="unReceive">0</span></a></li>
+                >
+                <li class="layui-nav-item"><a href="javascript:;" data-id="30">待评价<span class="layui-badge" id="unEvaluate">0</span></a></li>
+                >
+                <li class="layui-nav-item"><a href="javascript:;" data-id="35">已完成<span class="layui-badge" id="completed">0</span></a></li>
+                >
+                <li class="layui-nav-item"><a href="javascript:;" data-id="60,65">已取消<span class="layui-badge" id="cancel">0</span></a></li>
+                >
+                <li class="layui-nav-item"><a href="javascript:;">全部订单<span class="layui-badge" id="all">0</span></a></li>
+                >
+            </ul>
+        </div>
+        <div class="list-box">
+            <div class="ul-head">
+                <p>订单详情</p>
+                <p>收货人</p>
+                <p>金额</p>
+                <p>状态</p>
+                <p>操作</p>
+            </div>
+            <ul class="order-list" id="orderBox">
+
+            </ul>
+        </div>
+    </div>
+    <div id="page"></div>
+    <!--主体内容结束-->
+    <!--左侧导航开始-->
+    <aside id="leftNavList">
+
+    </aside>
+    <!--左侧导航结束-->
+
+</div>
+<!--评价订单模板-->
+<script type="text/html" id="appraiseTemplate">
+    <form action="" class="layui-form" id="appraiseBox">
+        <div class="layui-form-item">
+            <label class="layui-form-label">商品符合度</label>
+            <div class="layui-input-block starbox">
+                <input type="hidden" name="matchSatisfaction">
+                <i class="fa fa-star-o" data-id="1"></i>
+                <i class="fa fa-star-o" data-id="2"></i>
+                <i class="fa fa-star-o" data-id="3"></i>
+                <i class="fa fa-star-o" data-id="4"></i>
+                <i class="fa fa-star-o" data-id="5"></i>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">包装满意度</label>
+            <div class="layui-input-block starbox">
+                <input type="hidden" name="packageSatisfaction">
+                <i class="fa fa-star-o" data-id="1"></i>
+                <i class="fa fa-star-o" data-id="2"></i>
+                <i class="fa fa-star-o" data-id="3"></i>
+                <i class="fa fa-star-o" data-id="4"></i>
+                <i class="fa fa-star-o" data-id="5"></i>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">快递满意度</label>
+            <div class="layui-input-block starbox">
+                <input type="hidden" name="expressSatisfaction">
+                <i class="fa fa-star-o" data-id="1"></i>
+                <i class="fa fa-star-o" data-id="2"></i>
+                <i class="fa fa-star-o" data-id="3"></i>
+                <i class="fa fa-star-o" data-id="4"></i>
+                <i class="fa fa-star-o" data-id="5"></i>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">综合满意度</label>
+            <div class="layui-input-block starbox">
+                <input type="hidden" name="complexSatisfaction">
+                <i class="fa fa-star-o" data-id="1"></i>
+                <i class="fa fa-star-o" data-id="2"></i>
+                <i class="fa fa-star-o" data-id="3"></i>
+                <i class="fa fa-star-o" data-id="4"></i>
+                <i class="fa fa-star-o" data-id="5"></i>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">评论</label>
+            <div class="layui-input-block">
+                <textarea name="comments" placeholder="请输入评论内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item complanitName">
+            <label class="layui-form-label">上传图片</label>
+            <div class="layui-input-block layui-clear upload-box">
+                <div class="layui-upload">
+                    <div class="btnbox layui-clear">
+                        <button type="button" class="layui-btn upload" id="test1"><i class="layui-icon">&#xe654;</i>限上传5张</button>
+                        <p>上传图片格式为JPG、JPEG、PNG，每张大小5M以内,最多上传5张</p>
+                    </div>
+                    <div class="layui-upload-list img-list layui-clear" id="imgListBox">
+                        <!--<div class="img-box"><img class="layui-upload-img"  src="./img/ys1.png"><i class="layui-icon delete-img">&#x1006;</i></div>
+                        <div class="img-box"><img class="layui-upload-img"  src="./img/ys2.png"><i class="layui-icon delete-img">&#x1006;</i></div>
+                        <div class="img-box"><img class="layui-upload-img"  src="./img/ys3.png"><i class="layui-icon delete-img">&#x1006;</i></div>
+                        <div class="img-box"><img class="layui-upload-img"  src="./img/ys4.png"><i class="layui-icon delete-img">&#x1006;</i></div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <input type="hidden" name="appraiseType" value="1">
+                <input type="hidden" name="orderItemId" value="{{ d }}">
+                <button style="background-color: #1cc8c6" class="layui-btn" lay-submit lay-filter="formAppraise" type="button">提交申请</button>
+                <button type="button" class="layui-btn layui-btn-primary" id="canclebtn">取消</button>
+            </div>
+        </div>
+    </form>
+</script>
+<!--汇总单模板(主单)-->
+<script type="text/html" id="orderTemplate">
+    {{# if(d.data.list.length == 0){ }}
+    <li class="no-data"><p>没有找到相关数据</p></li>
+    {{# } }}
+    {{# if(d.data.list.length != 0){ }}
+    {{# layui.each(d.data.list,function(index,item){ }}
+    <li>
+        <div class="trans-info">
+            <p>{{= item.header.createTime ? layui.woLianw.transDateType(item.header.createTime) : '无' }}</p>
+            <p>订单编号: <span>{{ item.header.orderNo ? item.header.orderNo : '' }}</span></p>
+        </div>
+        <div class="order-info layui-clear">
+            <ul class="order-detail">
+                {{# layui.each(item.detail,function(index1,item1){ }}
+                <li class="layui-clear">
+                    <div class="product-info-box">
+                        <div class="img-box">
+                            <img src="{{=layui.woLianw.getImgUrl(item1.productImageUrl)}}" alt="商品图片">
+                        </div>
+                        <p class="product-number">
+                            X<span class="unit-price">{{ item1.number ? item1.number : '' }}</span>
+                        </p>
+                        <p class="product-name">
+                            <a href="/productModule/goodsdetail.html?productId={{ item1.productId }}" target="_blank" title="{{ item1.productName ? item1.productName : '' }}">
+                                {{ item1.productName ? item1.productName : '' }}</a>
+                        </p>
+                        <p class="remark">买家留言:<span title="{{ item1.remark ? item1.remark : '' }}">{{ item1.remark ? item1.remark : '' }}</span>
+                        </p>
+                    </div>
+                    <div class="receive-name">
+                        <span>{{ item1.contact ? item1.contact : '' }}</span>
+                    </div>
+                    <div class="price">
+                        <p class="total-price">￥{{ item1.itemTotalPrice ? item1.itemTotalPrice : '' }}</p>
+                        <p class="pay-type">
+                            {{# for(var k in d.rechargeType){ }}
+                            {{ (k.indexOf(item.header.PaymentType) != -1) ? d.rechargeType[k] : '' }}
+                            {{# } }}
+                        </p>
+                    </div>
+                    <div class="order-status">
+                        <p class="pay-way">
+                            {{# for(var k in d.orderState){ }}
+                            {{ (item.header.orderState == k) ? d.orderState[k] : '' }}
+                            {{# } }}</p>
+                    </div>
+                </li>
+                {{# }) }}
+            </ul>
+
+            <div class="order-operate">
+                {{# layui.each(d.permissionVoList,function(index2,item2){ }}
+
+                {{# if((item.header.orderState == 10)&&(item2.url == 'pay')){ }}
+
+                <div>
+                    <button class="layui-btn layui-btn-mini pay-btn" data-id="{{ item.header.orderNo }}">付款</button>
+                </div>
+                 {{# } }}
+                 {{# if((item.header.orderState == 10)&&(item2.url == 'cancel')){ }}
+                <div>
+                    <button class="layui-btn layui-btn-mini cacle-btn" data-id="{{ item.header.id }}">取消</button>
+                </div>
+                 {{# } }}
+                 {{# }) }}
+            </div>
+        </div>
+    </li>
+    {{# }) }}
+    {{# } }}
+</script>
+<!--子单模板(子单)-->
+<script type="text/html" id="disOrderTemplate">
+    {{# if(d.data.list.length == 0){ }}
+    <li class="no-data"><p>没有找到相关数据</p></li>
+    {{# } }}
+    {{# if(d.data.list.length != 0){ }}
+    {{# layui.each(d.data.list,function(index,item){ }}
+    <li>
+        <div class="trans-info">
+            <p>{{= item.createTime ? layui.woLianw.transDateType(item.createTime) : '-' }}</p>
+            <p>订单编号: <span>{{ item.orderItemNo ? item.orderItemNo : '' }}</span></p>
+            <p>{{ item.sellerName ? item.sellerName : '' }}</p>
+            <p>
+                <button class="layui-btn-mini layui-btn call-vendor" data-vendorId="{{ item.sellerId ? item.sellerId : '' }}">我信联系</button>
+            </p>
+        </div>
+        <div class="order-info layui-clear">
+            <ul class="order-detail">
+                <li class="layui-clear">
+                    <div class="product-info-box">
+                        <div class="img-box">
+                            <img src="{{=layui.woLianw.getImgUrl(item.productImageUrl)}}" alt="商品图片"
+                                 title="{{ item.productName ? item.productName: '' }}">
+                        </div>
+                        <p class="product-number">
+                            X<span class="unit-price">{{ item.number ? item.number : '' }}</span>
+                        </p>
+                        <p class="product-name"><a href="/productModule/goodsdetail.html?productId={{ item.productId }}" target="_blank"  title="{{ item.productName ? item.productName : '' }}">{{
+                            item.productName ? item.productName : '' }} </a></p>
+                        <p class="remark">买家留言:<span title="{{ item.remark ? item.remark : '' }}">{{ item.remark ? item.remark : '' }}</span>
+                        </p>
+                    </div>
+                    <div class="receive-name">
+                        <span>{{ item.contact ? item.contact : '' }}</span>
+                    </div>
+                    <div class="price">
+                        <p class="total-price">￥{{ item.itemTotalPrice ? item.itemTotalPrice : '' }}</p>
+                    </div>
+                    <div class="order-status">
+                        <p class="pay-way">
+                            {{# for(var k in d.orderState){ }}
+                            {{ (k.indexOf(item.orderState) != -1) ? d.orderState[k] : '' }}
+                            {{# } }}
+                        </p>
+                        <a href="javascript:;" class="order-link" data-orderid="{{ item.id }}">订单详情</a>
+                        {{# if (item.expressId !== null && item.expressId !== undefined) { }}
+                        <div>
+                            <span class="FareGetOrderTraces" data-ename="{{item.expressName || ''}}" data-code="{{item.expressId || ''}}" data-no="{{item.expressNumber || ''}}">物流跟踪</span>
+                        </div>
+                        {{# } }}
+                    </div>
+                </li>
+            </ul>
+
+            <div class="order-operate">
+                {{# layui.each(d.permissionVoList,function(index2,item2){ }}
+                {{# if((item.orderState == 10) && (item2.url == 'pay')){ }}
+                <div>
+                    <button class="layui-btn layui-btn-mini pay-btn" data-id="{{ item.id }}">付款</button>
+                </div>
+                {{# } }}
+                {{# if((item.orderState == 10)&&(item2.url == 'cancel')){ }}
+                <div>
+                    <button class="layui-btn layui-btn-mini cacle-btn" data-id="{{ item.id }}">取消</button>
+                </div>
+                {{# } }}
+                {{# if(((item.orderState == 60) ||(item.orderState == 65)) && (item2.url == "delete")){ }}
+                <div>
+                    <button class="layui-btn layui-btn-mini delete-btn" data-id="{{ item.id }}">删除</button>
+                </div>
+                {{# } }}
+
+                {{# if((item.orderState == 25) && (item2.url == "sureGoods")){ }}
+                <div>
+                    <button class="layui-btn layui-btn-mini receipt-btn" data-id="{{ item.id }}">确认收货</button>
+                </div>
+                {{# } }}
+                {{# if((item.orderState == 20) && (item2.url == "sureGoods")){ }}
+                <!--<div>
+                    <button class="layui-btn layui-btn-mini refund-btn" data-id="{{ item.id }}">退款</button>
+                </div>-->
+                {{# } }}
+                {{# if((item.orderState == 30) && (item2.url == "comment")){ }}
+                <div>
+                    <button class="layui-btn layui-btn-mini  appraise-btn" data-id="{{ item.id }}">评价</button>
+                </div>
+                {{# } }}
+               {{# if(((item.orderState == 30) || (item.orderState == 35)) && (item2.url == "returnGoods") && (item.isApplyReturn == false)){ }}
+                <div>
+                    <button class="layui-btn layui-btn-mini return-btn" data-id="{{ item.id }}">退货</button>
+                </div>
+                {{# } }}
+                {{# }) }}
+                {{# if(((item.orderState == 40) || (item.orderState == 25) || (item.orderState == 30) ||
+                (item.orderState == 35) || (item.orderState == 55)) ){ }}
+                <div>
+                    <button class="layui-btn layui-btn-mini buy-btn" data-id="{{ item.id }}" data-number="{{ item.number }}" data-skuid="{{ item.skuId }}">再次购买</button>
+                </div>
+                {{# } }}
+
+            </div>
+        </div>
+    </li>
+
+
+    {{# }) }}
+    {{# } }}
+</script>
+<script src="../../plugs/layui/layui.all.js"></script>
+<script src="../../js/wolianwComponent/config.js"></script>
+<script src="../../js/qrconde.js"></script>
+<script src="../../js/component.js"></script>
+<script>
+    layui.use(['element', 'form', 'laydate', 'laytpl', 'jquery', 'layer', 'woLianw','laypage','upload'], function () {
+        var element = layui.element
+        var form = layui.form
+        var laydate = layui.laydate
+        var laytpl = layui.laytpl
+        var $ = layui.$
+        var layer = layui.layer
+        var woLianw = layui.woLianw
+        var laypage = layui.laypage
+        var upload = layui.upload
+
+        var index
+        var imageUrls = []
+
+
+        woLianw.setHeight()
+
+        /*我要供货按钮的显示控制 start*/
+        var loginInfo = JSON.parse(window.localStorage.getItem('1788login'))
+
+        if(loginInfo && loginInfo.isSwitch){
+            var str = '<button class="layui-btni" id="wantApply">我要供货</button>'
+            $('#applyBox').append(str)
+        }
+        /*我要供货的登录切换*/
+        $('#applyBox').on('click','#wantApply',function () {
+            console.log(111)
+            woLianw.switchLogin()
+        })
+        /*我要供货按钮的显示控制 end*/
+
+        /*日期控件渲染*/
+        var dtartDate=laydate.render({
+            elem:"#st",
+            calendar: true,
+            /*设置结束时间不能早于开始时间*/
+            change:function (value, date, endDate) {
+                endDate1.config.min={
+                    year:date.year,
+                    month:date.month-1, //关键
+                    date: date.date
+                }
+            },
+            done: function(value, date, endDate){
+                endDate1.config.min={
+                    year:date.year,
+                    month:date.month-1, //关键
+                    date: date.date
+                }
+            }
+        })
+        var endDate1=laydate.render({
+            elem:"#et"
+        })
+        /*创建一个全局变量curScreen，用于存储当前的搜索条件,只在分页里面应该这个搜索条件*/
+        var curScreen = {}
+
+        var orderStates = woLianw.GetQueryString('orderStates')
+        /*代付款订单数*/
+        if(orderStates == 10){
+            curScreen.orderState = orderStates
+            $('#unPay').parent().parent().addClass('layui-this')
+            woLianw.orderDisPaging2({
+                orderState: orderStates
+            }, function (data) {
+                /*重置当前的搜索条件*/
+                for(var k in curScreen){
+                    delete curScreen[k]
+                }
+                curScreen.orderState = status
+                /*重置当前的搜索条件*/
+                renderTemplate({
+                    orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                    rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                    data: data,
+                    permissionVoList: permissionVoList
+                }, 'orderTemplate', 'orderBox')
+                renderPage(data)
+            })
+        }
+        /*已退回订单数*/
+        if(orderStates == 55){
+            curScreen.orderStates = orderStates
+            $('#returned').parent().parent().addClass('layui-this')
+            woLianw.orderDisPaging({
+                orderStates:orderStates
+            }, function (data) {
+                renderTemplate({
+                    orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                    rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                    data: data,
+                    permissionVoList: permissionVoList
+                }, 'disOrderTemplate', 'orderBox')
+                renderPage(data)
+            })
+        }
+        /*待收货*/
+        if((orderStates == 15) || (orderStates == 20) || (orderStates == 25)){
+            curScreen.orderStates = '15,20,25'
+            $('#unReceive').parent().parent().addClass('layui-this')
+            woLianw.orderDisPaging({
+                orderStates:'15,20,25'
+            }, function (data) {
+                renderTemplate({
+                    orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                    rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                    data: data,
+                    permissionVoList: permissionVoList
+                }, 'disOrderTemplate', 'orderBox')
+                renderPage(data)
+            })
+        }
+        /*待评价*/
+        if(orderStates == 30){
+            curScreen.orderStates = orderStates
+            $('#unEvaluate').parent().parent().addClass('layui-this')
+            woLianw.orderDisPaging({
+                orderStates:orderStates
+            }, function (data) {
+                renderTemplate({
+                    orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                    rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                    data: data,
+                    permissionVoList: permissionVoList
+                }, 'disOrderTemplate', 'orderBox')
+                renderPage(data)
+            })
+        }
+        /*已完成*/
+        if(orderStates == 35){
+            curScreen.orderStates = orderStates
+            $('#completed').parent().parent().addClass('layui-this')
+            woLianw.orderDisPaging({
+                orderStates:orderStates
+            }, function (data) {
+                renderTemplate({
+                    orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                    rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                    data: data,
+                    permissionVoList: permissionVoList
+                }, 'disOrderTemplate', 'orderBox')
+                renderPage(data)
+            })
+        }
+        /*已取消*/
+        if((orderStates == 60) || (orderStates == 65)){
+            curScreen.orderStates = '60,65'
+            $('#cancel').parent().parent().addClass('layui-this')
+            woLianw.orderDisPaging({
+                orderStates:'60,65'
+            }, function (data) {
+                renderTemplate({
+                    orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                    rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                    data: data,
+                    permissionVoList: permissionVoList
+                }, 'disOrderTemplate', 'orderBox')
+                renderPage(data)
+            })
+        }
+
+        /*进入页面，默认请求全部订单*/
+        if(!orderStates){
+            $('#all').parent().parent().addClass('layui-this')
+            woLianw.orderDisPaging({}, function (data) {
+                renderTemplate({
+                    orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                    rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                    data: data,
+                    permissionVoList: permissionVoList
+                }, 'disOrderTemplate', 'orderBox')
+                renderPage(data)
+            })
+        }
+
+
+        woLianw.renderModule()
+        renderTotal()
+        var datas = JSON.parse(localStorage.getItem('1788login'));
+
+
+        var permissionVoList = woLianw.screenPermissionVoList(datas.moduleList, "orderModule/buyerOrder")
+        /*获取订单状态枚举信息*/
+        woLianw.getEnum('order-status', function (data) {
+            window.sessionStorage.setItem('orderState', JSON.stringify(data));
+        })
+        /*获取付款类型枚举信息*/
+        woLianw.getEnum('payment-type', function (data) {
+            window.sessionStorage.setItem('paymentType', JSON.stringify(data));
+        })
+
+        woLianw.setHeight();
+
+
+
+        /*点击搜索，按条件搜索订单*/
+        $('#search-btn').on('click', function () {
+            /*点击搜索，搜索条件包含当前的订单类型*/
+            var orderState = $('#typeList').find('.layui-this>a').attr('data-id')
+            var orderNo = $('#orderNo').val() || ''
+            var st = $('#st').val() || ''
+            var et = $('#et').val() || ''
+            if(orderState == 10){
+                /*代付款*/
+                woLianw.orderDisPaging2({
+                    orderNo: orderNo,
+                    st: st,
+                    et: et,
+                    orderStates:orderState
+                }, function (data) {
+                    /*重置当前的搜索条件*/
+                    for(var k in curScreen){
+                        delete curScreen[k]
+                    }
+                    curScreen.orderStates = orderState
+                    curScreen.orderNo = orderNo
+                    curScreen.st = st
+                    curScreen.et = et
+                    /*重置当前的搜索条件*/
+                    renderTemplate({
+                        orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                        rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                        data: data,
+                        permissionVoList: permissionVoList
+                    }, 'orderTemplate', 'orderBox')
+                    renderPage(data)
+                })
+            }else{
+                /*除代付款外其他类型的查询*/
+                woLianw.orderDisPaging({
+                    orderNo: orderNo,
+                    st: st,
+                    et: et,
+                    orderStates:orderState
+                }, function (data) {
+                    /*重置当前的搜索条件*/
+                    for(var k in curScreen){
+                        delete curScreen[k]
+                    }
+                    curScreen.orderStates = orderState
+                    curScreen.orderNo = orderNo
+                    curScreen.st = st
+                    curScreen.et = et
+                    /*重置当前的搜索条件*/
+                    renderTemplate({
+                        orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                        rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                        data: data,
+                        permissionVoList: permissionVoList
+                    }, 'disOrderTemplate', 'orderBox')
+                    renderPage(data)
+                })
+            }
+
+
+        })
+
+        /*点击订单类型，按照订单类型查询订单*/
+        $('#typeList>li>a').on('click', function () {
+            var _this = this
+            var status = $(_this).attr('data-id')
+
+            if (status != undefined) {
+                /*已退回，待收货，待评价，已完成，已取消，调取拆单之后的接口查询*/
+                console.log(status)
+                if (status != 10) {
+                    if(status == 60){
+                        woLianw.orderDisPaging({
+                            orderStates: '65,'+status
+                        }, function (data) {
+                            /*重置当前的搜索条件*/
+                            for(var k in curScreen){
+                                delete curScreen[k]
+                            }
+                            curScreen.orderStates = '65,'+status
+                            /*重置当前的搜索条件*/
+                            renderTemplate({
+                                orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                                rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                                data: data,
+                                permissionVoList: permissionVoList
+                            }, 'disOrderTemplate', 'orderBox')
+                            renderPage(data)
+                        })
+                    }else{
+                        woLianw.orderDisPaging({
+                            orderStates: status
+                        }, function (data) {
+                            /*重置当前的搜索条件*/
+                            for(var k in curScreen){
+                                delete curScreen[k]
+                            }
+                            curScreen.orderStates = status
+                            /*重置当前的搜索条件*/
+                            renderTemplate({
+                                orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                                rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                                data: data,
+                                permissionVoList: permissionVoList
+                            }, 'disOrderTemplate', 'orderBox')
+                            renderPage(data)
+                        })
+                    }
+
+                } else {
+                        /*待付款，调取未拆单接口查询*/
+                        woLianw.orderDisPaging2({
+                            orderState: status || ''
+                        }, function (data) {
+                            /*重置当前的搜索条件*/
+                            for(var k in curScreen){
+                                delete curScreen[k]
+                            }
+                            curScreen.orderState = status
+                            /*重置当前的搜索条件*/
+                            renderTemplate({
+                                orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                                rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                                data: data,
+                                permissionVoList: permissionVoList
+                            }, 'orderTemplate', 'orderBox')
+                            renderPage(data)
+                        })
+                }
+
+
+            } else {
+                /*全部订单，调取未拆单接口查询*/
+                woLianw.orderDisPaging({}, function (data) {
+                    /*重置当前的搜索条件*/
+                    for(var k in curScreen){
+                        delete curScreen[k]
+                    }
+                    /*重置当前的搜索条件*/
+                    renderTemplate({
+                        orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                        rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                        data: data,
+                        permissionVoList: permissionVoList
+                    }, 'disOrderTemplate', 'orderBox')
+                    renderPage(data)
+                })
+            }
+
+        })
+
+        /*取消订单*/
+        $('#orderBox').on('click', '.cacle-btn', function () {
+            var _this = this
+            console.log($(_this).attr('data-id'))
+            layer.confirm('确定取消订单吗？', {
+                btn: ['确定', '取消'] //按钮
+                , title: '提示'
+            }, function (index) {
+                /**/
+                var orderId = $(_this).attr('data-id')
+                woLianw.cancleOrder({
+                    orderId: orderId
+                },function (msg) {
+                    layer.msg(msg)
+                    renderTotal()
+                    woLianw.orderDisPaging2(curScreen, function (data) {
+                        renderTemplate({
+                            orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                            rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                            data: data,
+                            permissionVoList: permissionVoList
+                        }, 'orderTemplate', 'orderBox')
+                    })
+                })
+                layer.close(index)
+            }, function () {
+
+            });
+        })
+
+        /*确认收货*/
+        $('#orderBox').on('click', '.receipt-btn', function () {
+            var _this = this
+            layer.confirm('确定确认收货吗？', {
+                btn: ['确定', '取消'] //按钮
+                , title: '提示'
+            }, function (index) {
+                /**/
+                var orderItemId = $(_this).attr('data-id')
+                woLianw.ensureReceiveGoods({
+                    orderItemId: orderItemId,
+                },function (msg) {
+                    layer.msg(msg)
+                    renderTotal()
+                    woLianw.orderDisPaging(curScreen, function (data) {
+                        renderTemplate({
+                            orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                            rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                            data: data,
+                            permissionVoList: permissionVoList
+                        }, 'disOrderTemplate', 'orderBox')
+                    })
+                })
+                layer.close(index)
+            }, function () {
+
+            });
+        })
+
+        /*订单详情*/
+        $('#orderBox').on('click','.order-link',function () {
+            var _this = this
+            var orderId = $(_this).attr('data-orderid')
+            window.open('./detail.html?orderId='+orderId)
+        })
+
+        /*退货*/
+        $('#orderBox').on('click','.return-btn',function () {
+            var _this = this
+            var orderId = $(_this).attr('data-id')
+            window.open('../srvOrder/applyForReturns.html?orderItemId='+orderId)
+        })
+
+        /*付款*/
+        $('#orderBox').on('click','.pay-btn',function () {
+            var _this = this
+            var orderNo = $(_this).attr('data-id')
+            woLianw.payOpen(orderNo)
+        })
+
+        /*删除订单*/
+        $('#orderBox').on('click','.delete-btn',function () {
+            var _this = this
+            var orderItemId = $(_this).attr('data-id')
+            layer.confirm('确定删除此订单吗？', {
+                btn: ['确定', '取消'] //按钮
+                , title: '提示'
+            }, function (index) {
+                /**/
+                woLianw.buyerOrderDelete(orderItemId,function (msg) {
+                    layer.msg(msg)
+                    woLianw.orderDisPaging(curScreen, function (data) {
+                        renderTemplate({
+                            orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                            rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                            data: data,
+                            permissionVoList: permissionVoList
+                        }, 'disOrderTemplate', 'orderBox')
+                    })
+                    renderTotal()
+                })
+                layer.close(index)
+            }, function () {
+
+            });
+
+        })
+
+        /*再次购买*/
+        $('#orderBox').on('click','.buy-btn',function () {
+            var _this = this
+            layer.confirm('确定将此商品加入进货单吗？', {
+                btn: ['确定','取消'] //按钮
+                ,title:'提示'
+            }, function(index){
+                /*更新默认地址之后，重新获取新的用户地址列表*/
+                var skuId = $(_this).attr('data-skuid')
+                var number = $(_this).attr('data-number')
+                if(skuId && number){
+                    woLianw.buyCartAdd({
+                        skuId:skuId,
+                        num:number
+                    },function (res) {
+                        layer.msg(res.msg)
+                    })
+                }
+                layer.close(index)
+            }, function(){
+
+            });
+        })
+
+        /*联系工厂*/
+        $('#orderBox').on('click','.call-vendor',function () {
+            var vendorId = $(this).attr('data-vendorId')
+            if(vendorId){
+                woLianw.contactSupplier({
+                    id:vendorId,
+                    formType:'FULL'
+                })
+            }
+        })
+
+        /*点击评价,调出评价信息的弹框，评价订单*/
+        $('#orderBox').on('click','.appraise-btn',function () {
+            var _this = this
+            var orderItemId = $(this).attr('data-id')
+            var appraiseTemplate = document.getElementById('appraiseTemplate').innerHTML
+            laytpl(appraiseTemplate).render(orderItemId, function (html) {
+                index = layer.open({
+                    type: 1,
+                    title:'评价',
+                    area:['600px','750px'],
+                    content: html, //这里content是一个DOM，注意：最好该元素要存放在body最外层，否则可能被其它的相对元素所影响
+                    success:function () {
+                        var uploadInst = upload.render({
+                            elem: '#test1' //绑定元素
+                            ,url: layui.woLianw.url+'/sell/product/uploadfile' //上传接口
+                            ,done: function(res){
+                                if(res.code == 1){
+                                    //上传完毕回调
+                                    var str = '<div class="img-box"><img class="layui-upload-img"  src="'+woLianw.src+res.data+'"><i class="layui-icon delete-img">&#x1006;</i></div>'
+                                    imageUrls.push(res.data)
+                                    $('.img-list').append(str)
+                                }
+                                if(imageUrls.length>=5){
+                                    $('#test1').css('display','none')
+                                }
+                                if(imageUrls.length <5){
+                                    $('#test1').css('display','block')
+                                }
+                            }
+                            ,error: function(){
+                                //请求异常回调
+                                layer.msg('文件')
+                            },
+                            before:function (obj) {
+
+                            }
+                        });
+                    }
+                });
+            })
+
+
+        })
+
+        /*删除上传的图片*/
+        $('body').on('click','i.delete-img',function () {
+            var _this = this
+            var index = $(_this).parent().prevAll('.img-box').length
+            imageUrls.splice(index,1)
+            $(this).parent().remove()
+            if(imageUrls.length>=5){
+                $('#test1').css('display','none')
+            }else{
+                $('#test1').css('display','block')
+            }
+        })
+
+        /*评价信息填写*/
+        $('body').on('mouseenter','.starbox i',function () {
+            var _this = this
+            $(_this).prevAll('i').addClass('fa-star').removeClass('fa-star-o')
+            $(_this).nextAll('i').addClass('fa-star-o').removeClass('fa-star')
+            $(_this).addClass('fa-star').removeClass('fa-star-o')
+        })
+        $('body').on('mouseleave','.starbox i',function () {
+            var _this = this
+            $(_this).parent().find('i').addClass('fa-star-o').removeClass('fa-star')
+            $(_this).parent().find('.check-this').prevAll('i').addClass('fa-star').removeClass('fa-star-o')
+            $(_this).parent().find('.check-this').addClass('fa-star').removeClass('fa-star-o')
+        })
+        $('body').on('click','.starbox i',function () {
+            var _this = this
+            $(_this).parent().find('i').removeClass('check-this')
+            $(_this).addClass('check-this')
+            $(_this).parent().find('input').val($(_this).attr('data-id'))
+        })
+
+
+        /*提交退货申请*/
+        form.on('submit(formDemo)', function(data){
+            console.log(data.field)
+            var srvImageUrls = imageUrls.join(',')
+            data.field.srvImageUrls = srvImageUrls
+            console.log(data.field)
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        /*提交评价信息*/
+        form.on('submit(formAppraise)', function(data){
+            console.log(data.field)
+            data.field.image = imageUrls.join(',')
+            woLianw.buyerOrderAppraise(data.field,function (msg) {
+                imageUrls = []
+                layer.msg(msg)
+                layer.close(index)
+                woLianw.orderDisPaging(curScreen, function (data) {
+                    renderTemplate({
+                        orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                        rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                        data: data,
+                        permissionVoList: permissionVoList
+                    }, 'disOrderTemplate', 'orderBox')
+                })
+                renderTotal()
+            })
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        /*点击取消。关闭填写评价信息的弹框*/
+        $('body').on('click','#canclebtn',function () {
+            layer.close(index)
+            imageUrls = []
+        })
+
+        /*数据渲染模板*/
+        function renderTemplate(data, templateId, targetId) {
+            var template = document.getElementById(templateId).innerHTML
+            var target = document.getElementById(targetId)
+            laytpl(template).render(data, function (html) {
+                target.innerHTML = html
+            })
+        }
+
+        /*分页控件配置*/
+        function renderPage(data) {
+            laypage.render({
+                elem: 'page'
+                ,count: data.total
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,limits:[15,25,35]
+                ,limit:15
+                /*,curr: location.hash.replace('#!page=', '') //获取起始页
+                ,hash: 'page' //自定义hash值*/
+                ,jump: function(obj,first){
+                    //obj包含了当前分页的所有参数，比如：obj.curr得到当前页，以便向服务端请求对应页的数据。obj.limit得到每页显示的条数
+
+                    //首次不执行
+                    if(!first){
+                        //搜集表单数据和分页信息
+                        if(curScreen.orderState && (curScreen.orderState == 10)){
+                            /*待付款，调取未拆单接口查询*/
+                            var parameter = JSON.parse(JSON.stringify(curScreen))
+                            curScreen.page = obj.curr
+                            curScreen.limit = obj.limit
+                            parameter.page = obj.curr
+                            parameter.limit = obj.limit
+                            woLianw.orderDisPaging2(parameter, function (data) {
+                                renderTemplate({
+                                    orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                                    rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                                    data: data,
+                                    permissionVoList: permissionVoList
+                                }, 'orderTemplate', 'orderBox')
+                            })
+                        }else{
+
+                            /*除代付款外，其他类型的订单查询*/
+                            var parameter = JSON.parse(JSON.stringify(curScreen))
+                            curScreen.page = obj.curr
+                            curScreen.limit = obj.limit
+                            parameter.page = obj.curr
+                            parameter.limit = obj.limit
+                            console.log(parameter)
+                            woLianw.orderDisPaging(parameter, function (data) {
+                                renderTemplate({
+                                    orderState: JSON.parse(window.sessionStorage.getItem('orderState')),
+                                    rechargeType: JSON.parse(window.sessionStorage.getItem('paymentType')),
+                                    data: data,
+                                    permissionVoList: permissionVoList
+                                }, 'disOrderTemplate', 'orderBox')
+                            })
+                        }
+                    }
+                }
+            });
+        }
+
+        function renderTotal() {
+            /*订单统计*/
+            woLianw.orderNumForBuyer(function (data) {
+                var unReceiveCount = 0
+                var cancelCount = 0
+                var allCount = 0
+                $.each(data,function (index,item) {
+                    /*代付款订单数*/
+                    if(item.orderState == 10){
+                        $('#unPay').text(item.orderCount)
+                    }
+                    /*已退回订单数*/
+                    if(item.orderState == 55){
+                        $('#returned').text(item.orderCount)
+                    }
+                    /*待收货*/
+                    if((item.orderState == 15) || (item.orderState == 20) || (item.orderState == 25)){
+                        unReceiveCount += parseFloat(item.orderCount)
+                    }
+                    /*待评价*/
+                    if(item.orderState == 30){
+                        $('#unEvaluate').text(item.orderCount)
+                    }
+                    /*已完成*/
+                    if(item.orderState == 35){
+                        $('#completed').text(item.orderCount)
+                    }
+                    /*已取消*/
+                    if((item.orderState == 60) || (item.orderState == 65)){
+                        cancelCount += parseFloat(item.orderCount)
+                    }
+                    allCount += parseFloat(item.orderCount)
+                })
+                $('#unReceive').text(unReceiveCount)
+                $('#cancel').text(cancelCount)
+                $('#all').text(allCount)
+            })
+        }
+    })
+</script>
+</body>
+</html>

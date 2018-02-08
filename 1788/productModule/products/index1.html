@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta type="description" content="行业代理-全部商品">
+    <title>全部商品</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../plugs/layui/css/layui.css">
+    <link rel="stylesheet" href="../../plugs/font-awesome/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../../css/allGoods/allGoods.css">
+    <link rel="stylesheet" href="../../css/publicHead.css">
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<!--顶部导航开始-->
+		<div class="layui-header">
+			<!-- 头部区域（可配合layui已有的水平导航） -->
+			<nav class="navbox">
+				<ul class="layui-nav layui-layout-left">
+					<li class="layui-nav-item" id="userCenter">
+					</li>
+				</ul>
+				<ul class="layui-nav layui-layout-right">
+					<li class="layui-nav-item">
+						<a href="../../home.html"><i class="fa fa-desktop fa-fw" aria-hidden="true"></i> 我的工作台</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="../../followModule/product/index.html"><i class="fa fa-folder fa-fw" aria-hidden="true"></i> 收藏夹</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href="../../buyCartModule/cart/index.html"><i class="fa fa-shopping-cart fa-fw" aria-hidden="true"></i> 进货单</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href=""><i class="fa fa-headphones fa-fw" aria-hidden="true"></i> 我连客服</a>
+						<dl class="layui-nav-child">
+              <dd><a href="javascript:;"><i class="fa fa-user-circle" aria-hidden="true"></i>&emsp;客服一</a></dd>
+              <dd><a href="javascript:;"><i class="fa fa-user-circle" aria-hidden="true"></i>&emsp;客服二</a></dd>
+              <dd><a href="javascript:;"><i class="fa fa-user-circle" aria-hidden="true"></i>&emsp;客服三</a></dd>
+	          </dl>
+					</li>
+					<li class="layui-nav-item">
+						<a href=""><i class="fa fa-commenting-o fa-fw" aria-hidden="true"></i> 我信</a>
+					</li>
+					<li class="layui-nav-item">
+						<a href=""><i class="fa fa-headphones" aria-hidden="true"></i> 我要供货</a>
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<!--顶部导航结束-->
+
+			<!-- logo + 搜索 +进货单 开始-->
+			<div class="grid_total">
+				<div class="grid_wrap">
+					<div class="grid_logo">
+						<a href="javascript:;"><img src="../../img/product-LOGO.png" /></a>
+					</div>
+					<div class="grid_search">
+						<div class="search_box">
+              <form action="" class="layui-form">
+                <select name="" lay-verify="required">
+                  <option value="0" selected="">全部分类</option>
+                  <option value="1">店铺</option>
+                  <option value="2">商品</option>
+                  <option value="3">视频</option>
+                  <option value="4">新闻</option>
+                  <option value="4">问问</option>
+                  <option value="4">相册</option>
+                </select>
+                <div class="layui-unselect layui-form-select">
+                	<div class="layui-select-title">
+                		<input type="text" placeholder="请选择" value="全部分类" readonly="" class="layui-input layui-unselect">
+                		<i class="layui-edge"></i>
+                	</div>
+                	<dl class="layui-anim layui-anim-upbit">
+                		<dd lay-value="0" class="layui-this">全部分类</dd>
+                		<dd lay-value="1" class="">店铺</dd>
+                		<dd lay-value="2" class="">商品</dd>
+                		<dd lay-value="3" class="">视频</dd>
+                		<dd lay-value="4" class="">新闻</dd>
+                		<dd lay-value="4" class="">问问</dd>
+                		<dd lay-value="4" class="">相册</dd>
+                	</dl>
+                </div>
+                <input type="text" name="key" class="layui-input search-content-word">
+                <input type="button" lay-submit lay-filter="search1" value="搜索" class="layui-btn search-content-btn">
+              </form>
+						</div>
+						<div class="shopping-cart">
+              <a href="javascript:;">
+                <i class="fa fa-shopping-cart"></i>
+                <span>我的进货单</span>
+                <span class="layui-badge">99</span>
+              </a>
+            </div>
+					</div>
+				</div>
+
+			</div>
+			<!-- logo + 搜索 +进货单 结束-->
+
+		<!-- 第二个nav 开始-->
+		<div class="second_nav">
+			<div class="grid_wrap">
+				<ul class="second_ul">
+					<li class="active"><a href="javascript:;">首页</a></li>
+					<li><a href="javascript:;">全部商品</a></li>
+					<li><a href="javascript:;">热卖</a></li>
+					<li><a href="javascript:;">新品</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- 第二个nav  结束-->
+
+		<div class="mycontainer">
+		    <!--主体内容开始-->
+		    <div class="grid_wrap">
+		    	<div class="left_ranking">
+						<div class="ranking_title">
+							<i class="left_quare"></i>
+							<cite>销售排行</cite>
+							<img src="../../img/decoration.png" />
+						</div>
+						<ul class="ranking_ul">
+							<li>
+								<span class="layui-badge firstToThree">1</span>
+								<img src="../../img/dfs01.png" />
+								<label class="lab_box">
+									<i class="goods_txt">欧麦斯(OUMAISI) 无叶风扇</i> <br />
+									<i class="goods_price">￥98.00</i>
+								</label>
+							</li>
+							<li>
+								<span class="layui-badge firstToThree">2</span>
+								<img src="../../img/dfs02.png" />
+								<label class="lab_box">
+									<i class="goods_txt">欧麦斯(OUMAISI) 无叶风扇</i> <br />
+									<i class="goods_price">￥98.00</i>
+								</label>
+							</li>
+							<li>
+								<span class="layui-badge firstToThree">3</span>
+								<img src="../../img/dfs03.png" />
+								<label class="lab_box">
+									<i class="goods_txt">欧麦斯(OUMAISI) 无叶风扇</i> <br />
+									<i class="goods_price">￥98.00</i>
+								</label>
+							</li>
+							<li>
+								<span class="layui-badge">4</span>
+								<img src="../../img/dfs01.png" />
+								<label class="lab_box">
+									<i class="goods_txt">欧麦斯(OUMAISI) 无叶风扇</i> <br />
+									<i class="goods_price">￥98.00</i>
+								</label>
+							</li>
+							<li>
+								<span class="layui-badge">5</span>
+								<img src="../../img/dfs02.png" />
+								<label class="lab_box">
+									<i class="goods_txt">欧麦斯(OUMAISI) 无叶风扇</i> <br />
+									<i class="goods_price">￥98.00</i>
+								</label>
+							</li>
+							<li>
+								<span class="layui-badge">6</span>
+								<img src="../../img/dfs03.png" />
+								<label class="lab_box">
+									<i class="goods_txt">欧麦斯(OUMAISI) 无叶风扇</i> <br />
+									<i class="goods_price">￥98.00</i>
+								</label>
+							</li>
+						</ul>
+						<div class="ranking_title">
+							<i class="left_quare"></i>
+							<cite>店铺公告</cite>
+							<img src="../../img/decoration.png" />
+						</div>
+						<div class="ranking_title announcement">
+							劳动者光荣！欧麦斯风扇 大促
+						</div>
+
+					</div>
+					<div class="right_content">
+						<ul class="list_goods_ul" id="productListBox">
+							<li>
+								<div class="imgBox">
+									<img src="../../img/list_goods_01.png" width="225px" height="224px" />
+									<label>
+										<span class="left_span">佳佳女装</span>
+										<!--<span class="right_span">湖北武汉</span>-->
+									</label>
+								</div>
+								<div class="bottom_content">
+									<label>
+										<span class="goods_price">￥288.00</span>
+										<span class="layui-badge firstToThree">包邮</span>
+                                        <span class="mark-price">￥399.00</span>
+									</label>
+									<p>
+                                        <a href="">白色t恤女短袖笑脸纯棉夏韩版宽松圆领纯色体恤女百搭显瘦打底衫</a>
+									</p>
+									<article>
+										<label class="banjia-btn">
+											<i class="fa fa-square-o check_i"></i>
+											<span>搬家</span>
+										</label>
+										<label class="guanzhu-btn">
+											<i class="fa fa-heart-o focus"></i>
+											<span>关注</span>
+										</label>
+										<!--<label>
+											<i class="fa fa-shopping-cart addToCart"></i>
+											<span>加入购物车</span>
+										</label>-->
+									</article>
+								</div>
+
+								<div class="border-left"></div>
+								<div class="border-bottom"></div>
+								<div class="border-top"></div>
+								<div class="border-right"></div>
+							</li>
+						</ul>
+
+						<!--分页 start-->
+						<div class="pageBox" id="pageBox"></div>
+						<!--分页 end-->
+
+					</div>
+		    </div>
+		    <!--主体内容结束-->
+
+		    <!--右侧悬停 [上一页，下一页]区域  开始-->
+				<!--<div class="right_tools">
+					<div class="prev">上一页</div>
+					<div class="look_goods">查看店内所有商品</div>
+					<ul>
+						<li>
+							<i class="fa fa-square-o check_i"></i>
+							<span>热卖爆款</span>
+						</li>
+						<li>
+							<i class="fa fa-square-o check_i"></i>
+							<span>新品上市</span>
+						</li>
+						<li>
+							<i class="fa fa-square-o check_i"></i>
+							<span>落地扇</span>
+						</li>
+						<li>
+							<i class="fa fa-square-o check_i"></i>
+							<span>塔扇</span>
+						</li>
+						<li>
+							<i class="fa fa-square-o check_i"></i>
+							<span>专页扇</span>
+						</li>
+						<li>
+							<i class="fa fa-square-o check_i"></i>
+							<span>台扇</span>
+						</li>
+						<li>
+							<i class="fa fa-square-o check_i"></i>
+							<span>冷风扇</span>
+						</li>
+						<li>
+							<i class="fa fa-square-o check_i"></i>
+							<span>空气净风扇</span>
+						</li>
+						<li>
+							<i class="fa fa-square-o check_i"></i>
+							<span>各种扇</span>
+						</li>
+					</ul>
+					<div class="next">下一页</div>
+				</div>-->
+				<!--右侧悬停 [上一页，下一页]区域  结束-->
+		</div>
+
+	</div>
+    <div class="app">
+        <!--<ul id="storeShipping">
+            <li>
+                <div class="check-box">
+                    <input type="checkbox">快递
+                </div>
+                <div class="shipping-info">
+                    <div class="shipping-item">
+                        <input type="radio">运费模板<select name="" id=""></select>
+                    </div>
+                    <div class="shipping-item">
+                        <input type="radio">统一运费 <input type="text">元
+                    </div>
+                    <div class="shipping-item">
+                        <input type="radio">卖家承担运费
+                    </div>
+                </div>
+            </li>
+        </ul>-->
+    </div>
+<script src="../../plugs/layui/layui.all.js"></script>
+<!--<script src="./js/bindData.js"></script>
+<script src="./js/goods_check.js"></script>-->
+<script type="text/html" id="app">
+
+    <ul id="storeShipping">
+        {{# layui.each(d,function(index,item){ }}
+        <li>
+            <form action=""  class="layui-form formShipping" lay-ignore>
+            <div class="check-box">
+                <input type="checkbox">{{ item.shipping }}
+            </div>
+            <div class="shipping-info">
+                <div class="shipping-item">
+                    {{# if(item.ship_template_list.length != 0){ }}
+                    <input type="radio" name="ship_template_id" title="运费模板" class="layui-input-inline ship_template_id" value=" ">
+                    <select name="" id="" lay-filter="template" class="layui-input-inline">
+                        <option value=""> 请选择 </option>
+                        {{# layui.each(item.ship_template_list,function(index1,item2){ }}
+                        <option value="{{ item2.ship_template_id }}"> {{ item2.template_name }} </option>
+                        {{# }) }}
+                    </select>
+                    {{# } }}
+                </div>
+                <div class="shipping-item">
+                    <input name="ship_template_id" type="radio" title="统一运费" value="0" class="layui-input-inline ship_fare"><input class="layui-input-inline ship_fare_number" type="text">元
+                </div>
+                <input type="hidden" name="swayid" value="{{ item.swayid }}" class="swayid">
+            </div>
+            </form>
+        </li>
+        {{# }) }}
+    </ul>
+        <div class="btn-box">
+            <!--<input type="button" class="layui-btn layui-btn-mini" lay-submit lay-filter="sendShipping" value="确定">
+            <input type="button" class="layui-btn layui-btn-mini" value="取消">-->
+        </div>
+
+</script>
+<script src="../../js/wolianwComponent/config.js"></script>
+<script type="text/html" id="productTemplate">
+    {{# layui.each(d,function(index,item){ }}
+    <li>
+        <div class="imgBox">
+            <img src="{{=layui.woLianw.getImgUrl(item.pictureUrl)}}" width="225px" height="224px" />
+            <label>
+                <span class="left_span">{{ item.vendorName ? item.vendorName : '' }}</span>
+                <!--<span class="right_span">湖北武汉</span>-->
+            </label>
+        </div>
+        <div class="bottom_content">
+            <label>
+                <span class="goods_price">￥{{ item.minPrice }}</span>
+                <span class="layui-badge firstToThree">包邮</span>
+                <span class="mark-price">￥{{ item.maxPrice }}</span>
+            </label>
+            <p>
+                <a href="">{{ item.name ? item.name : '' }}</a>
+            </p>
+            <article data-productid="{{ item.productId }}">
+                <label class="banjia-btn">
+                    <i class="fa fa-square-o check_i"></i>
+                    <span>搬家</span>
+                </label>
+                <label class="guanzhu-btn">
+                    <i class="fa fa-heart-o focus"></i>
+                    <span>关注</span>
+                </label>
+                <!--<label>
+                    <i class="fa fa-shopping-cart addToCart"></i>
+                    <span>加入购物车</span>
+                </label>-->
+            </article>
+        </div>
+
+        <div class="border-left"></div>
+        <div class="border-bottom"></div>
+        <div class="border-top"></div>
+        <div class="border-right"></div>
+    </li>
+
+    {{# }) }}
+</script>
+<script>
+    layui.use(['element','jquery', "woLianw", "laypage",'laytpl','form'], function () {
+        var element = layui.element;
+        var $ = layui.jquery;
+        var form = layui.form
+        var woLianw = layui.woLianw;
+        var laypage = layui.laypage;
+        var laytpl = layui.laytpl
+
+        var the_left=$(".right_content").offset().left;
+        var the_width=$(".right_content").width();
+        $(".right_tools").css("left", the_left+the_width+45+'px');
+
+
+
+        woLianw.buyProductList({},function (data) {
+            renderTemplate(data.resultList,'productTemplate','productListBox')
+        })
+        $("ul.list_goods_ul").on("click", "article label i" , function(){
+            var classLists = $(this).attr("class");
+            if(classLists.indexOf("-square") >= 0){  //搬家
+                $(this).toggleClass("fa-square-o").toggleClass("fa-check-square");
+                $(this).parent().toggleClass("i_checked");
+            }else if(classLists.indexOf("-heart") >= 0){ //关注
+                $(this).toggleClass("fa-heart-o").toggleClass("fa-heart");
+                $(this).parent().toggleClass("i_checked");
+            }else{																			//加入购物车
+                $(this).parent().toggleClass("i_checked");
+            }
+
+        });
+
+        /*运费模板下拉，选中的值，赋给单选框*/
+        form.on('select(template)', function(data){
+            console.log(data.elem); //得到select原始DOM对象
+            console.log(data.value); //得到被选中的值
+            console.log(data.othis); //得到美化后的DOM对象
+            var _this = this
+            $(_this).parent().parent().parent().find('.ship_template_id').val(data.value)
+            console.log($(_this).parent().parent().parent().find('.ship_template_id').val())
+            form.render()
+        });
+        /*填完统一运费，复制给运费前面的单选框*/
+        $('body').on('blur','.ship_fare_number',function () {
+            var value = $(this).val()
+            if(!value){
+                value = 0
+            }
+            $(this).parent().find('.ship_fare').val(value)
+            form.render()
+        })
+
+        /*对商品进行搬家*/
+        $('ul.list_goods_ul').on('click','.banjia-btn',function () {
+            var _this = this
+            var erp_goods_id = [$(_this).parent().attr('data-productid')]
+            var productIds = $(_this).parent().attr('data-productid')
+            console.log(erp_goods_id)
+
+            woLianw.getStoreShipping(function (data) {
+                var template = document.getElementById('app').innerHTML
+                console.log(data)
+                var html = laytpl(template)
+                var str = ''
+                html.render(data, function (ht) {
+                    console.log(ht)
+                    str = ht
+                })
+
+                layer.open({
+                    title: '设置配送方式',
+                    area: '450px',
+                    btn:['确定','取消'],
+                    content: str,
+                    success: function(layero, index){
+                        form.render()
+                    },
+                    yes:function (index) {
+
+                        var erp_goods_json = getErpGoodsJson(erp_goods_id)
+                        woLianw.movingDomoving({
+                            productIds:productIds,
+                            erp_goods_json:JSON.stringify(erp_goods_json)
+                        },function (data) {
+                            layer.msg(data.msg)
+                        })
+                    },
+                    btn2:function (index) {
+                        layer.close(index1)
+                    }
+
+                })
+
+            })
+            })
+
+        /*关注商品*/
+        $('ul.list_goods_ul').on('click','.guanzhu-btn',function () {
+            var _this = this
+            layer.confirm('确定关注商品吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                var productId = $(_this).parent().attr('data-productid')
+                console.log(productId)
+                woLianw.followAdd({
+                    disFollowType:2,
+                    itemIds:productId
+                },function (msg) {
+                    layer.msg(msg)
+                })
+            }, function(){
+
+            });
+        })
+
+        /*搬家设置运费模板后的数据JSON串*/
+        function getErpGoodsJson(productIds) {
+            var erp_goods_json = []
+            var goods_ship = []
+            $.each($('#storeShipping li form'),function (index,item) {
+                if($(item).find('.layui-form-checkbox').hasClass('layui-form-checked')){
+                    if($(item).find('.ship_template_id').parent().find('.layui-form-radio').hasClass('layui-form-radioed')){
+                        goods_ship.push({
+                            swayid:$(item).find('.swayid').val(),
+                            ship_template_id:$(item).find('.ship_template_id').val()
+                        })
+                    }
+                    if($(item).find('.ship_fare').parent().find('.layui-form-radio').hasClass('layui-form-radioed')){
+                        goods_ship.push({
+                            swayid:$(item).find('.swayid').val(),
+                            ship_fare:$(item).find('.ship_fare').val()
+                        })
+                    }
+                }
+            })
+            $.each(productIds,function (index,item) {
+                erp_goods_json.push({
+                    erp_goods_id:item,
+                    goods_ship:goods_ship
+                })
+            })
+            return erp_goods_json
+        }
+
+//   ./json/myProduct.json
+      /* $(function(){  //页码加载完  根据分页 初始化页面
+					renderPageData("pageBox", null, "list_goods_ul", "./json/myProduct.json");
+				});*/
+
+
+		/**
+		 * layui.laypage 分页封装
+		 * @param laypageDivId 分页控件Div层的id
+		 * @param pageParams 分页的参数  pageIndex: 当前页码  pageSize: 每页显示多少条数据
+		 * @param resultContentId 模板渲染后显示在页面的内容的容器id
+		 * @param url 向服务器请求分页的url链接地址
+		 */
+		//
+		function renderPageData(laypageDivId, pageParams, resultContentId, url){
+			if(!pageParams){
+				pageParams = {
+					pageIndex : 1,
+					pageSize : 10
+				}
+			}
+			$.ajax({
+				url : url,//basePath + '/sysMenu/pageSysMenu',
+				method : 'get',
+				data : pageParams,//JSON.stringify(datasub)
+				async : true,
+				complete : function (XHR, TS){},
+				error : function(XMLHttpRequest, textStatus, errorThrown) {
+					if("error"==textStatus){
+						error("服务器未响应，请稍候再试");
+					}else{
+						error("操作失败，textStatus="+textStatus);
+					}
+				},
+				success : function(data) {
+					var jsonObj;
+					if('object' == typeof data){
+						jsonObj = data;
+					}else{
+						jsonObj = JSON.parse(data);
+					}
+					$("#" + resultContentId).html( processData(pageParams.pageIndex, pageParams.pageSize, jsonObj) );
+
+					//重新初始化分页插件
+						laypage.render({
+						    elem : laypageDivId,//存放分页的div盒子 ID
+						    count: jsonObj.length,//数据总数
+						    pages: Math.ceil(jsonObj.length / pageParams.pageSize), //计算总共多少页
+						    limit: pageParams.pageSize,//限制每页显示多少数据
+						    limits: [10, 20, 30],//定义下拉框里面 可供选择的 每页显示多少条数据
+//						    theme: '#1E9FFF',//自定义分页样式
+						    first: '首页',
+		    				last: '尾页',
+						    layout: ['count', 'skip', "first", 'prev', 'page', 'next', "last", 'limit'],//分页排版
+						    jump: function(obj, first){//obj是一个object类型。包括了分页的所有配置信息。
+						    	pageParams.pageIndex = obj.curr;
+						    	if(!first){//first一个Boolean类，检测页面是否初始加载。非常有用，可避免无限刷新。
+						    		$("#" + resultContentId).html(processData(obj.curr, obj.limit, jsonObj));
+						    	}
+					      }
+						});
+				}
+			});
+		};
+
+        form.on('submit(search1)', function(data){
+            console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+            console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            woLianw.buyProductList(data.field,function (data) {
+                renderTemplate(data.resultList,'productTemplate','productListBox')
+            })
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+
+
+	    //处理数据   根据当前页码curr  和 每页数据的数量 nums
+
+	    function processData(curr, nums, data){
+	        //此处只是演示，实际场景通常是返回已经当前页已经分组好的数据
+            var arr = [];
+            var	last = curr*nums - 1;
+            last = last >= data.length ? (data.length-1) : last;
+            for(var i = (curr*nums - nums); i <= last; i++){
+              arr.push(data[i]);// 把每符合条件的数据装入数组
+            }
+            return productTemplate(arr);
+         }
+        /*数据渲染模板*/
+        function renderTemplate(data, templateId, targetId) {
+            var template = document.getElementById(templateId).innerHTML
+            var target = document.getElementById(targetId)
+            laytpl(template).render(data, function (html) {
+                target.innerHTML = html
+            })
+        }
+
+});
+
+</script>
+</body>
+</html>

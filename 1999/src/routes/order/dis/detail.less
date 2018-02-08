@@ -1,0 +1,95 @@
+@import "../../../themes/default.less";
+
+.dataTable {
+  background: #f7f7f7;
+  text-align: left;
+  padding: 20px;
+
+  table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  th {
+    text-align: right;
+    padding: 4px 10px 4px 0;
+    width: 100px;
+  }
+
+  td {
+    padding: 4px 0;
+  }
+
+  .money {
+    color: @error-color;
+  }
+}
+
+.goodsInfo {
+  background: #f7f7f7;
+  text-align: left;
+  padding: 20px;
+
+  .imageBox {
+    width: 142px;
+    height: 142px;
+    overflow: hidden;
+    position: relative;
+    background: #f7f7f7;
+
+    &:before {
+      content: '';
+      display: block;
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      border: 1px solid rgba(0,0,0,.05);
+    }
+
+    img {
+      width: 142px;
+      height: 142px;
+    }
+  }
+
+  table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  th {
+    text-align: right;
+    padding: 4px 10px 4px 0;
+    width: 100px;
+  }
+
+  td {
+    padding: 4px 0;
+  }
+
+  th.imageBoxTh {
+    vertical-align: top;
+    padding: 0;
+    width: 152px;
+  }
+}
+
+.tabsInfo {
+  margin-top: 20px;
+
+  .productContent {
+    
+  }
+
+  .productProperties {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 14px;
+
+    td {
+      padding: 4px 0;
+    }
+  }
+}

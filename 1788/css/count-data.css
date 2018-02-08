@@ -1,0 +1,115 @@
+.main .layui-count-data{
+    background-color: #E8EFF5;
+    padding: 10px 25px;
+}
+.main .layui-count-data .layui-count-data-container{
+    padding: 10px 10px 20px;
+    background-color: #fff;
+}
+.main .layui-count-data ul.layui-count-data-container li{
+    background-color: #fff;
+    height: 100px;
+}
+.main .layui-count-data ul.layui-count-data-container li p.layui-count-data-type{
+    height: 14px;
+    padding-left: 20px;
+    position: relative;
+    color: #767677;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 14px;
+}
+.main .layui-count-data ul.layui-count-data-container li p.layui-count-data-type::before{
+    content: "";
+    height: 14px;
+    width: 3px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #1BC8C6;
+}
+.main .layui-count-data ul.layui-count-data-container li .layui-background-area{
+    background-color: #E8EFF5;
+    padding-top: 8px;
+}
+.main .layui-count-data ul.layui-count-data-container li .layui-count-data-number{
+    height: 76px;
+}
+.main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-money,
+.main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-order{
+    width: 50%;
+    height: 76px;
+    float: left;
+}
+.main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-money p.layui-count-data-curmoney::before{
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #1BC7C6;
+    left: 0px;
+    top: 14px;
+    border-radius: 50%;
+}
+.main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-order p.layui-count-data-curorder::before{
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #FD9F14;
+    left: 0px;
+    top: 14px;
+}
+@media screen and (max-width: 780px) {
+    .main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-money p.layui-count-data-curmoney::before{
+        left: 20%;
+    }
+    .main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-order p.layui-count-data-curorder::before{
+        left: 20%;
+    }
+}@media screen and (max-width: 1000px) {
+    .main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-money p.layui-count-data-curmoney::before{
+        left: 20%;
+    }
+    .main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-order p.layui-count-data-curorder::before{
+        left: 20%;
+    }
+}@media screen and (max-width: 1200px) {
+    .main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-money p.layui-count-data-curmoney::before{
+        left: 5%;
+    }
+    .main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-order p.layui-count-data-curorder::before{
+        left: 5%;
+    }
+}@media screen and (min-width: 1200px) {
+    .main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-money p.layui-count-data-curmoney::before{
+        left:10%;
+    }
+    .main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-order p.layui-count-data-curorder::before{
+        left: 10%;
+    }
+}
+.main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-money p.layui-count-data-curmoney,
+.main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-order p.layui-count-data-curorder{
+    height: 38px;
+    font-size: 16px;
+    color: #000;
+    font-weight: bold;
+    line-height: 38px;
+    text-align: center;
+    position: relative;
+}
+.main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-money p.layui-count-data-title,
+.main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-order p.layui-count-data-title{
+    font-size:12px;
+    text-align: center;
+}
+.main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-order p{
+
+}
+.main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-money,
+.main .layui-count-data ul.layui-count-data-container li .layui-count-data-number .layui-count-data-order{
+    width: 50%;
+    height: 70px;
+}

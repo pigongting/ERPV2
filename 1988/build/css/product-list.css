@@ -1,0 +1,275 @@
+.main .layui-form .layui-form-item{
+    float: left;
+    clear: none;
+    text-align: center;
+}
+.main .layui-form .release-date{
+    text-align: center;
+}
+.main .layui-form .layui-form-item input{
+    height: 24px;
+}
+.main .layui-form .layui-form-item dl dd{
+    text-align: left;
+}
+.main .layui-form .layui-form-item .dateInput{
+    background-position: 116px center;
+}
+.main .layui-form .layui-form-item label{
+    padding-top: 0;
+}
+.main .layui-form button.search-btn{
+    width: 72px;
+    height: 26px;
+    line-height: 26px;
+}
+.main .product-list {
+    min-width: 900px;
+}
+.main .product-list .head-info{
+    height: 50px;
+    background-color: #e4e9f2;
+}
+.main .product-list .head-info p{
+    float: left;
+    line-height: 50px;
+    font-size: 14px;
+    color: #323232;
+    font-weight: bold;
+}
+.main .product-list .head-info p:nth-of-type(1){
+    padding-left: 2%;
+}
+.main .product-list .batch{
+    padding: 15px 1% 15px 2%;
+}
+.main .product-list .batch input[type=checkbox]{
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    background-color: #f9fafb;
+}
+.main .product-list .batch span{
+    font-size: 14px;
+    color: #323232;
+    margin-left: 5px;
+}
+.main .product-list .batch input[type=button]{
+    padding: 5px 20px;
+    background-color: #438bfd;
+    color: #ffffff;
+    outline-style: none;
+    float: right;
+    border: 0px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.main .product-list ul li{
+    height: 222px;
+    border: 1px solid #e4e4e4;
+    margin-bottom: 20px;
+}
+.main .product-list ul li.no-data{
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+}
+.main .product-list ul li .product-info{
+    height: 182px;
+}
+.main .product-list ul li .product-info>div{
+    float: left;
+    height: 182px;
+    padding-top: 20px;
+}
+.main .product-list ul li .product-info>div:nth-of-type(1){
+    padding-left: 2%;
+}
+.main .product-list ul li .product-info>div:nth-of-type(1)>div{
+    float: left;
+}
+.main .product-list ul li .product-info>div:nth-of-type(1) .checkbox-box{
+    padding-right: 13px;
+    float:left ;
+}
+.main .product-list ul li .product-info input[type=checkbox]{
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    background-color: #f9fafb;
+}
+.main .product-list ul li .product-info .img-box,
+.main .product-list ul li .product-info .img-box img{
+    width: 140px;
+    height: 140px;
+}
+.main .product-list ul li .product-info .pro-name{
+    padding-left: 10px;
+    width: 40%;
+}
+.main .product-list ul li .product-info .pro-name .product-name {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    margin-bottom: 20px;
+    height: 42px;
+}
+.main .product-list ul li .product-info .pro-name .product-name a{
+    font-size: 16px;
+    color: #3e78d5;
+}
+.main .product-list ul li .product-info .pro-name .product-name a:hover{
+    text-decoration: underline;
+}
+.main .product-list ul li .product-info .pro-name  .buy-number,
+.main .product-list ul li .product-info .pro-name  .buy-area,
+.main .product-list ul li .product-info .pro-name  .shipping{
+    font-size: 12px;
+    color: #666666;
+    margin-bottom: 10px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+.main .product-list ul li .product-info .sp span{
+    line-height: 145px;
+    font-size: 14px;
+    color: #323232;
+    font-weight: 600;
+}
+.main .product-list ul li .product-info .sale-amount{
+    position: relative;
+}
+.main .product-list ul li .product-info .sale-amount span{
+    line-height: 20px;
+}
+.main .product-list ul li .product-info .sp .salebox{
+    height: 25px;
+    position: absolute;
+    top: 84px;
+}
+.main .product-list ul li .product-info .sp .salebox:hover .skuBox{
+    display: block;
+}
+.main .product-list ul li .product-info .sp span.salenum{
+    cursor: pointer;
+    color: #3e78d5;
+}
+.main .product-list ul li .product-info .product-operate{
+    padding-top: 10px;
+}
+.main .product-list ul li .product-info .product-operate button{
+    display: block;
+    width: 80%;
+    height: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: #f9fafb;
+    border: 1px solid #e4e4e4;
+    border-radius: 2px;
+    font-size: 12px;
+    color: #323232;
+    overflow: hidden;
+}
+.main .product-list ul li .product-info .product-operate button:nth-of-type(1){
+    margin-left: 10px;
+}
+.main .product-list ul li .product-status{
+    height: 40px;
+    background-color: #F7F7F7;
+    padding-left: 2%;
+}
+.main .product-list ul li .product-status p{
+    float: left;
+    padding-right: 80px;
+    line-height: 40px;
+    font-size: 12px;
+    color: #666666;
+}
+
+.sku-product-name{
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    width: 760px;
+    padding: 0 20px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+}
+.sku-info-box{
+    padding: 0 20px;
+}
+.sku-list{
+    width: 100%;
+
+    border: 1px solid #e4e4e4;
+    margin-bottom: 20px;
+}
+.sku-list thead tr{
+    text-align: center;
+    height: 50px;
+    border-bottom: 1px solid #e4e4e4;
+}
+.sku-list thead th span{
+    color: #3e78d5;
+    font-size: 12px;
+    font-weight: 400;
+    cursor: pointer;
+}
+.sku-list tbody tr{
+    height: 40px;
+    text-align: center;
+    border-bottom: 1px solid #e4e4e4;
+}
+.sku-list tbody tr td input{
+    width: 80px;
+    padding-left: 10px;
+    height: 24px;
+    border: 1px solid #e4e4e4;
+    border-radius: 2px;
+}
+form#groupListBox{
+    padding: 50px 35px 200px;
+}
+form#groupListBox label{
+    padding-top: 0;
+}
+form#groupListBox input{
+    height: 26px;
+}
+form#groupListBox .layui-form-select dl dd.layui-this{
+    background-color: #f9fafb;
+    color: #323232;
+}
+#pageBox{
+    padding: 25px 50px 50px;
+    float: right;
+}
+.salebox .skuBox{
+    display: none;
+    position: absolute;
+    box-shadow: 1px 1px 10px 5px #f0f0f0;
+    z-index: 100;
+    left: 0px;
+    top: 20px;
+}
+.salebox table{
+    width: 410px;
+    background-color: #ffffFF;
+}
+.salebox table thead tr{
+    text-align: center;
+    height: 50px;
+    background-color: #f7f7f9;
+    border-bottom: 1px solid #e4e4e4;
+}
+.salebox  tbody tr{
+    background-color: #f7f7f9;
+    height: 40px;
+    text-align: center;
+    border-bottom: 1px solid #e4e4e4;
+}

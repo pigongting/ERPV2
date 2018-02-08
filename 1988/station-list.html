@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta type="description" content="总代理-用户中心">
+    <title>岗位管理</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./plugins/layui255/css/layui.css" media="all">
+    <link rel="stylesheet" href="./plugins/font-awesome/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="./build/css/main.css">
+    <link rel="stylesheet" href="build/css/contentPages.css">
+    <link rel="stylesheet" href="./build/css/employee.css">
+    <link rel="stylesheet" href="./build/css/commontable.css">
+</head>
+<body>
+  <div class="seller-header">
+    <span class="layui-breadcrumb">
+      <a href="javascript:;">你当前所在的位置</a>
+      <a href="javascript:;">用户管理</a>
+      <a href="javascript:;">岗位列表</a>
+    </span>
+  </div>
+
+  <div class="main station-list">
+    <form class="layui-form">
+      <div class="layui-row pi-FormFilter">
+        <div class="pi-FilterSubmit">
+          <div class="button-list" style="text-align: right;">
+              <button class="layui-btn pi-TableButton pi-TableButtonBlue search-btn" name="roleSearchBtn" lay-submit lay-filter="*"><i class="fa fa-search"></i> 搜索</button>
+              <button type="reset" class="layui-btn pi-TableButton pi-TableButtonRed empty-btn" name="roleEmptyBtn"><i class="fa fa-trash"></i> 清空</button>
+              <button type="reset" class="layui-btn pi-TableButton pi-TableButtonGreen" name="roleAddBtn"><i class="fa fa-plus"></i> 新增</button>
+          </div>
+        </div>
+        <div class="pi-FilterItem">
+          <div class="layui-form-item">
+            <div class="layui-inline">
+              <label class="layui-form-label">岗位名称</label>
+              <div class="layui-input-inline" style="width: 200px;">
+                <input type="text" id="searchRoleName" name="searchRoleName" autocomplete="off" class="layui-input" placeholder="请输入岗位名称">
+              </div>
+            </div>
+            <div class="layui-inline">
+              <label class="layui-form-label">激活状态</label>
+              <div class="layui-input-inline" style="width: 200px;">
+                <select name="roleListSelect" lay-filter="roleListSelect">
+                  <option value="-1">全部</option>
+                  <option value="0">未激活</option>
+                  <option value="1">已激活</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="pi-CommonTable">
+      <table class="pi-TableHead">
+        <tr>
+          <th class="cloumn-1 pi-FirstColumn">序号</th>
+          <th class="cloumn-2">岗位名称</th>
+          <th class="cloumn-3">岗位描述</th>
+          <th class="cloumn-5">激活状态</th>
+          <th class="cloumn-6">所属系统</th>
+          <th class="cloumn-7">岗位类型</th>
+          <th class="cloumn-8">操作</th>
+        </tr>
+      </table>
+      <table class="pi-TableBody" id="stationTable"></table>
+    </div>
+    <div id="laypageBox" class="pi-Page"></div>
+  </div>
+
+  <div id="addRoleWrap"> </div>
+  <div id="detailContent" style="display: none;"></div>
+
+<!-- 员工详情 -->
+<script type="text/html" id="detailContentTemplate">
+  <ul>
+    <li class="item">角色名称：{{d.name}}</li>
+    <li class="item">岗位描述：{{(d.remark) ? d.remark : ''}}</li>
+    <li class="item">排序：{{(d.sort) ? d.sort : ''}}</li>
+    <li class="item">激活状态：{{(d.enabled) ? '已激活' : '未激活'}}</li>
+  </ul>
+</script>
+
+<script id="stationTemplate" type="text/html">
+  {{# layui.each(d, function(index, item){ }}
+  <tr>
+    <td class="cloumn-1 pi-FirstColumn"><input type="hidden" name="roleId" value='{{ item.id }}'>{{ item.id ? item.id : "无" }}</td>
+    <td class="cloumn-2"><input type="hidden" name="roleName" value='{{ item.name }}'>{{ item.name ? item.name : "无" }}</td>
+    <td class="cloumn-3"><input type="hidden" name="roleRemark" value='{{ item.remark ? item.remark : "" }}'>{{ item.remark ? item.remark : "无" }}</td>
+    <td class="cloumn-5"><input type="hidden" name="roleEnabled" value='{{ item.enabled ? item.enabled : false }}'>{{ item.enabled ? "已激活" : "未激活" }}</td>
+    <td class="cloumn-6">
+      <input type="hidden" name="roleSystemId" value='{{ item.systemId }}'>
+      {{# if(item.systemId == 0){ }} 中控
+      {{# }else if(item.systemId == 1){ }}总代理
+      {{# }else if(item.systemId == 2){ }}供应商
+      {{# }else if(item.systemId == 3){ }}农村电商
+      {{# }else if(item.systemId == 4){ }}县区运营
+      {{# }else if(item.systemId == 5){ }}校园电商
+      {{# } }}
+    </td>
+    <td class="cloumn-7">
+      <input type="hidden" name="roleRoleType" value='{{ item.roleType }}'>
+      {{# if(item.roleType == 0){ }} 公有
+      {{# }else if(item.roleType == 1){ }}私有
+      {{# }else if(item.roleType == 2){ }}默认
+      {{# } }}
+    </td>
+    <td class="cloumn-8">
+        {{# if(item.roleType == 0){ }}
+        <button class="layui-btn pi-TableButton pi-TableButtonBlue">详情</button>
+        {{# }else{ }}
+        <button class="layui-btn pi-TableButton pi-TableButtonBlue listDetailsBtn" data-id="{{item.id}}">详情</button>
+        <button class="layui-btn pi-TableButton pi-TableButtonBlue listEditBtn">编辑</button>
+        <button class="layui-btn pi-TableButton pi-TableButtonRed layui-btn-danger listDeleteBtn">删除</button>
+        <a href="{{'setPermission.html?id='+item.id}}" style="display: inline-block; margin-left: 10px;">
+          <button class="layui-btn pi-TableButton pi-TableButtonGreen">设置权限</button>
+        </a>
+        {{# } }}
+    </td>
+  </tr>
+  {{# }); }}
+
+  {{#  if(d.length === 0){ }}
+  <tr><td colspan="8" class="alignCenter">没有找到匹配的记录</td></tr>
+  {{#  } }}
+</script>
+
+<script type="text/html" id="leftNav">
+    <ul class="layui-nav layui-nav-tree layui-nav-side">
+        {{# layui.each(d,function(index,item){ }}
+        {{# if(item.level==1){ }}
+        <li class="layui-nav-item">
+            <a href="javasript:;">
+                <i class="fa fa-{{ item.icon }}">  </i>
+                <span> {{ item.name }} </span>
+            </a>
+            <dl class="layui-nav-child">
+                <dt>{{ item.name }}</dt>
+                {{# layui.each(d,function(index2,item2){ }}
+                {{# if(item.id==item2.parentId && item2.level==2){ }}
+                <dd><a href='{{ item2.url }}.html'> {{ item2.name }} </a> </dd>
+                {{# } }}
+                {{# }) }}
+            </dl>
+        </li>
+        {{# } }}
+        {{# }) }}
+    </ul>
+</script>
+
+<script src="./build/js/roleFormTemplate.js"></script>
+<script src="./plugins/layui255/layui.js"></script>
+<script src="./build/js/wolianwComponent/config.js"></script>
+<script>
+    layui.use(['element','form','laydate','laytpl', 'layer', "woLianw"],function () {
+        var element=layui.element
+        var form=layui.form
+        var laydate=layui.laydate
+        var laytpl=layui.laytpl
+        var woLianw = layui.woLianw
+        var $=layui.$
+        var layer=layui.layer
+
+        woLianw.setHeight();
+
+        woLianw.getRoleList({page: 1, limit: 10}, renderStationData);
+
+        function renderTemplate(data,templateId,targetId) {
+            var template=document.getElementById(templateId).innerHTML
+            var target=document.getElementById(targetId)
+            laytpl(template).render(data,function (html) {
+                target.innerHTML=html
+            })
+        }
+
+        /*搜索按钮的事件*/
+        $("[name='roleSearchBtn']").on("click",function () {
+            var searchKey=$("#searchRoleName").val();
+            var obj={
+                page: 1,
+                limit: 10,
+                name:searchKey,
+            }
+            var $divSelect = $("select[name='roleListSelect']").next();
+            var layValue = $divSelect.find('dd.layui-this').attr('lay-value');
+            if(layValue != -1){
+              layValue == 0 ? obj.enabled = false : obj.enabled = true;
+            }
+            woLianw.getRoleList(obj, renderStationData);
+            return false;
+        });
+
+        /*新增按钮的事件*/
+        $("[name='roleAddBtn']").on("click",function () {
+        var dom = new RoleForm().bindDom();
+            layer.open({
+                type: 1,
+                shade: [0.8, '#393D49'],
+                anim: 0,
+                title: "新增岗位",
+                btn: ['保存', '取消'],
+                area: '600px',
+                content: dom,
+                success: function(layero, index){
+                    form.render('checkbox');
+                },
+                yes: function(index, layero){
+                  var parameter = {};
+                  parameter.name = layero.find("input[name='roleName']").val();
+                  var $checkboxDiv = layero.find("input[name='roleEnabled']").next();
+                  if($checkboxDiv.hasClass("layui-form-checked")){
+                    parameter.enabled = true;
+                  }else{
+                    parameter.enabled = false;
+                  }
+                  parameter.remark = layero.find("input[name='roleRemark']").val();
+                  parameter.sort = layero.find("input[name='roleSort']").val();
+                  if(parameter.name == ""){
+                    layer.msg("岗位名称不能为空！");
+                    return false;
+                  }else{
+                    console.log(parameter);
+                    woLianw.addRole(parameter, function() {
+                            woLianw.getRoleList({}, renderStationData);
+                        });
+                        layer.close(index); //如果设定了yes回调，需进行手工关闭
+                  }
+
+                }
+            });
+          return false;
+        });
+
+        /*清空按钮的事件*/
+        $("[name='roleEmptyBtn']").on("click",function () {
+            $("#roleFormItem").find("input[name='searchRoleName']").val("");
+
+           var $divSelect = $("select[name='roleListSelect']").next();
+           var $divSeclectValue = $divSelect.find('div input').val('全部');
+           $divSelect.find('dd.layui-this').removeClass('layui-this');
+           $divSelect.find('dl dd[lay-value=-1]').addClass("layui-this");
+       form.render('select', 'roleListSelect');
+          return false;
+        });
+
+        /*岗位编辑事件*/
+        $("#stationTable").on("click", "button.listEditBtn", function(){
+      var roleId, roleName, roleRemark, roleSort = null;
+      var $trs = $(this).parents("tr");
+      roleId = $trs.find("input[name='roleId']").val();
+      roleName = $trs.find("input[name='roleName']").val();
+      roleRemark = $trs.find("input[name='roleRemark']").val();
+      roleSort = $trs.find("input[name='roleSort']").val();
+      roleEnabled = $trs.find("input[name='roleEnabled']").val();
+      var dom = new RoleForm(roleId, roleName, roleSort, roleEnabled, roleRemark).bindDom();
+      form.render("checkbox");
+      layer.open({
+                type: 1,
+                shade: [0.8, '#393D49'],
+                anim: 0,
+                title: "编辑岗位",
+                btn: ['保存', '取消'],
+                area: '600px',
+                content: dom,
+                success: function(layero, index){
+                    form.render('checkbox');
+                },
+                yes: function(index, layero){
+                  var parameter = {};
+                  parameter.id = layero.find("input[name='roleId']").val();
+                  parameter.name = layero.find("input[name='roleName']").val();
+                  var $checkboxDiv = layero.find("input[name='roleEnabled']").next();
+                  if($checkboxDiv.hasClass("layui-form-checked")){
+                    parameter.enabled = true;
+                  }else{
+                    parameter.enabled = false;
+                  }
+                  parameter.remark = layero.find("input[name='roleRemark']").val();
+                  parameter.sort = layero.find("input[name='roleSort']").val();
+                  woLianw.updateRole(parameter, function(){
+                  	woLianw.getRoleList({}, renderStationData);	
+                  });
+                    layer.close(index); //如果设定了yes回调，需进行手工关闭
+                }
+            });
+        });
+
+        /*岗位删除事件*/
+        $("#stationTable").on("click", "button.listDeleteBtn", function(){
+          var roleId = null;
+          var $trs = $(this).parents("tr");
+          roleId = $trs.find("input[name='roleId']").val();
+          layer.confirm('确定删除吗?', {icon: 3, title:'提示'}, function(index) {
+            var parameter = {};
+            parameter.roleId = roleId;
+            woLianw.deleteRole(parameter);
+            woLianw.getRoleList({systemId:1}, renderStationData);
+            layer.close(index);
+          });
+        });
+
+
+        /* 渲染 - 详情 */
+        function renderDetailContent(data, callback) {
+            var Template = document.getElementById("detailContentTemplate").innerHTML;
+            var InsertPlace = document.getElementById("detailContent");
+            laytpl(Template).render(data, function(html) {
+                InsertPlace.innerHTML = html;
+                callback();
+            })
+        }
+        
+        /* 弹窗 - 详情 */
+        function layerDetailContent() {
+          layer.open({
+            type: 1,
+            title: '岗位信息详情',
+            content: $('#detailContent'),
+            area: ['800px'],
+            btn: false,
+          });
+        }
+
+        /* 事件 - 详情 */
+        $(document).on('click', '.listDetailsBtn', function(){
+          var that = $(this);
+          woLianw.ajaxRoleDetail(that.data('id'), function (data) {
+            renderDetailContent(data, layerDetailContent);
+          });
+        });
+
+        /*将岗位列表的信息通过laytpl模板引擎渲染到页面*/
+        function renderStationData(data) {
+            var stationTemplate=document.getElementById("stationTemplate").innerHTML;
+            var stationTable=document.getElementById("stationTable");
+            laytpl(stationTemplate).render(data, function (html) {
+                stationTable.innerHTML=html;
+            });
+        }
+    })
+</script>
+</body>
+</html>

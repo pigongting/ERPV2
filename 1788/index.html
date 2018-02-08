@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+        <meta name="renderer" content="webkit">
+		<title></title>
+	</head>
+	<body>
+		<meta http-equiv="refresh" id="jump" />
+		<script src="./plugs/layui/layui.all.js"></script>
+		<script src="./js/wolianwComponent/config.js"></script>
+		<script>
+
+		    layui.use(['element', 'layer', "woLianw"],function () {
+		        var $=layui.$
+		        var woLianw = layui.woLianw;
+
+						var datas = JSON.parse(window.localStorage.getItem('1788login'));
+						woLianw.getAddressList({},function () {
+                            $("#jump").attr("content", "0.1;URL='home.html'");
+                        })
+
+
+						/*if(datas){
+							$("#jump").attr("content", "0.1;URL='index1.html'");
+						}else{
+							$("#jump").attr("content", "0.1;URL='login.html'");
+						}
+*/
+
+		    })
+		</script>
+	</body>
+</html>

@@ -1,0 +1,232 @@
+@import "../themes/default.less";
+
+/* 整页 */
+.loginPage {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+
+  /* 内容 */
+  .loginContent {
+    height: 100%;
+    overflow-y: auto;
+
+    .formWarp {
+      position: relative;
+      background: #e9e9ea url('/assets/img/login/loginbg.jpg') no-repeat 50% 0%;
+      height: 100%;
+      min-height: 940px;
+      padding: 0 0 940px 0;
+      text-align: center;
+      
+      &:after {
+        content: '';
+        display: block;
+        height: 100%;
+        width: 0;
+        display: inline-block;
+        vertical-align: middle;
+      }
+
+      .formBox {
+        position: relative;
+        text-align: left;
+        display: inline-block;
+        vertical-align: top;
+        margin-left: auto;
+        margin-right: auto;
+        width: 1100px;
+        height: 643px;
+        
+        .formPosition {
+          position: absolute;
+          right: -54px;
+          top: 0;
+          width: 428px;
+          height: 643px;
+          padding: 154px 84px 0 84px;
+          background: url('/assets/img/login/loginboader.png') no-repeat 100% 0%;
+        }
+
+        .hidePassword {
+          position: fixed;
+          left: -10000px;
+          top: -10000px;
+        }
+
+        :global {
+          .ant-input {
+            height: 34px;
+            font-size: 13px;
+            background-color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding-left: 44px;
+          }
+
+          .ant-input:-webkit-autofill {
+            box-shadow: inset 0 0 0 1000px #fff;
+            -moz-box-shadow: inset 0 0 0 1000px #fff;
+            -webkit-box-shadow: inset 0 0 0 1000px #fff;
+          }
+
+          .ant-form-item {
+            margin-bottom: 0;
+            margin-top: 20px;
+          }
+        }
+
+        .vcode {
+          width: 136px;
+        }
+
+        .vcodeimg {
+          position: absolute;
+          right: 0;
+          top: 0;
+          width: 114px;
+          height: 34px;
+          background: #999;
+          text-align: center;
+          cursor: pointer;
+
+          img {
+            height: 34px;
+            width: 114px;
+          }
+        }
+
+        .nameicon,
+        .passwordicon,
+        .vcodeicon {
+          display: inline-block;
+          vertical-align: top;
+          width: 34px;
+          height: 34px;
+          background: url('/assets/img/login/inputicon.png') no-repeat 0% 0%;
+        }
+
+        .nameicon {
+          background-position-y: -40px;
+        }
+
+        .vcodeicon {
+          background-position-y: -80px;
+        }
+
+        .submitWarp {
+          height: 80px;
+          padding-top: 9px;
+          margin-top: 40px;
+          margin-bottom: 0;
+          text-align: center;
+          background: url('/assets/img/login/submitbg.png') no-repeat 50% 0%;
+
+          .submitButton {
+            height: 40px;
+            width: 260px;
+            font-size: 16px;
+            font-weight: normal;
+            color: #fff;
+            background-color: transparent;
+            border-color: transparent;
+          }
+        }
+
+        .forgetPassword {
+          display: inline-block;
+          vertical-align: top;
+          font-size: 14px;
+          color: #a361f4;
+          line-height: 40px;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        .apply {
+          text-align: center;
+          background: url('/assets/img/login/applybg.png') no-repeat 50% 0%;
+
+          .applyButton {
+            width: 260px;
+            height: 40px;
+            color: #8059f4;
+            font-size: 16px;
+            font-weight: normal;
+            border: none;
+          }
+        }
+
+        .quick {
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 61px;
+          font-size: 16px;
+          line-height: 66px;
+          color: #8059f4;
+          text-align: center;
+          cursor: pointer;
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    
+      .footerWarp {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+        height: 140px;
+        background: rgba(2,2,2,.57);
+        
+        .friendLink {
+          font-size: 14px;
+          text-align: center;
+          line-height: 24px;
+
+          li {
+            position: relative;
+            display: inline-block;
+            vertical-align: top;
+            padding: 15px 12px 10px 12px;
+
+            a {
+              color: #f5f5f5;
+              display: block;
+              padding: 15px 12px;
+
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+          
+          li+li:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 35px;
+            height: 14px;
+            width: 1px;
+            background: rgba(255,255,255,.57);
+          }
+        }
+
+        .copyright {
+          font-size: 12px;
+          color: #fff;
+          text-align: center;
+          line-height: 20px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+.nav{
+    height: 72px;
+    padding: 15px 0;
+}
+.nav ul{
+    height: 42px;
+}
+.nav ul li{
+    float: left;
+    height: 40px;
+    padding: 17px 10px;
+    position: relative;
+}
+.nav ul li>a{
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 18px;
+    color: #fff;
+}
+.nav ul li>a:hover{
+    background-color: #fff;
+    color: #FE3B27;
+}
+
+.nav ul li .more-box{
+    display: none;
+    padding: 15px;
+    position: absolute;
+    left: 0;
+    top: 40px;
+    z-index: 1000;
+    background-color: #ffffFF;
+    border-radius: 3px;
+    width: 1210px;
+}
+.nav ul li:hover .more-box{
+    display: block;
+}
+.nav ul li .more-box dl{
+    padding: 5px 5px 10px;
+    width: 1210px;
+    margin-left: 15px;
+}
+.nav ul li .more-box dl dd{
+    width: 230px;
+    border-bottom: 1px solid #e4e4e4;
+    padding: 5px 0;
+    font-size: 14px;
+    color: #323232;
+}
+.nav ul li .more-box dl dt{
+    float: left;
+    padding: 5px 15px;
+}
+.nav ul li .more-box dl dt a{
+    font-size: 12px;
+}
+.nav ul li .more-box dl dt a:hover{
+    color: #ff3c29;
+}
+.nav ul li .more-box dl
+.nav ul li .more-box dl
+.nav ul li .more-box dl

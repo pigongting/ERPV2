@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <title></title>
+</head>
+<body>
+<meta http-equiv="refresh" id="jump" />
+<script src="./plugins/layui255/layui.all.js"></script>
+<script src="./build/js/wolianwComponent/config.js"></script>
+<script>
+    debugger
+    layui.use(['element', 'layer', "woLianw"],function () {
+        var $=layui.$
+        var woLianw = layui.woLianw;
+        function GetQueryString  (name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var link = window.location.search
+            var r = link.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+        $.ajaxSetup({crossDomain: true, xhrFields: {withCredentials: true}});
+        var sign = GetQueryString('sign');
+        var from = GetQueryString('from');
+        if(sign && from){
+            $.ajax({
+                type: "post",
+                data: {
+                    token: sign
+                },
+                url: ((from === '1588') ? woLianw.wolianwVen1588 : woLianw.wolianw1988)+'api/user/checkToken',
+                success: function (response) {
+                    debugger
+                    var d = JSON.stringify(response.data);
+                    if (response.code) {
+                        window.localStorage.setItem("1988login", d);
+                        window.localStorage.setItem("1988flag", 'true');
+                        window.location.href = './index.html';
+                    } else if (response.code == 10) {
+                        /*未登录，将用户导至登录页*/
+                        //_this.goLoginPage();
+                    }
+                },
+                error: function (response) {
+                    console.log(response.statusText);
+                }
+            });
+        } else {
+            debugger
+            // 1588 登录时使用
+            $.ajax({
+                type: "get",
+                //data: {},
+                url: woLianw.url+'/user/login-info',
+                success: function (response) {
+                    var d = JSON.stringify(response.data);
+                    if (response.code) {
+                        window.localStorage.setItem("1988login", d);
+                        window.localStorage.setItem("1988flag", 'true');
+                        window.location.href = './index.html';
+                    } else if (response.code == 10) {
+                        /*未登录，将用户导至登录页*/
+                        //_this.goLoginPage();
+                    }
+                },
+                error: function (response) {
+                    console.log(response.statusText);
+                }
+            });
+        }
+
+    });
+</script>
+</body>
+</html>

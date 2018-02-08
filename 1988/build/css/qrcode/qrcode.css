@@ -1,0 +1,48 @@
+/*二维码*/
+.mark-bigBox{
+    text-align: center;
+    width: 530px;
+    height: 500px;
+    position: relative;
+}
+.mark-bigBox .mark-top{
+    height: 180px;
+    background-color: #4892fd;
+    background-image: url("../../images/lALPBbCc1VpH86XMsM0CEQ_529_176.png");
+}
+.mark-bigBox .mark-top p{
+    padding: 20px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffFF;
+}
+.mark-bigBox .mark-content{
+    height: 320px;
+    background-color: #ffffFF;
+    padding-top: 265px;
+}
+.mark-bigBox .mark-content p.tip{
+    font-size: 12px;
+    color: #666666;
+}
+.mark-bigBox .mark-box{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -180px;
+    margin-top: -165px;
+    width: 360px;
+    height: 330px;
+    box-shadow: 1px 1px 10px 3px #f0f0f0;
+    padding: 40px 75px 15px;
+    background-color: #ffffFF;
+}
+.mark-bigBox .mark-box img{
+    width: 200px;
+    height: 200px;
+}
+.mark-bigBox .mark-box p{
+    padding-top: 25px;
+    color: #4892fd;
+    font-size: 12px;
+}

@@ -1,0 +1,16 @@
+.main .layui-data-Echart{
+    background-color: #E8EFF5;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    margin: 0;
+}
+.main .layui-data-Echart .layui-data-Echart-bar,
+.main .layui-data-Echart .layui-data-Echart-pie{
+    height: 170px;
+
+}
+.main .layui-data-Echart .layui-data-Echart-bar .layui-data-Echart-databar,
+.main .layui-data-Echart .layui-data-Echart-pie .layui-data-Echart-datapie{
+    height: 150px;
+    background-color: #fff;
+}

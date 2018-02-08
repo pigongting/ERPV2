@@ -1,0 +1,280 @@
+.option .logo{
+    float: left;
+    padding: 20px 0;
+}
+.option h2{
+    float: left;
+    font-size: 30px;
+    color: #323232;
+    line-height: 84px;
+}
+.main .background-content{
+    padding: 20px 30px;
+    background-color: #ffffff;
+}
+.main .addAddress{
+    padding-bottom: 20px;
+}
+.main .addAddress button i{
+    margin-right: 3px;
+}
+.main .addAddress button{
+    background-color: #1cc8c6;
+}
+.main .addAddress span{
+    color: #999999;
+    font-size: 12px;
+    margin-left: 10px;
+}
+.main p.tip{
+    padding-bottom: 20px;
+    color: #ff3c29;
+    font-size: 12px;
+}
+.main h3.box-title{
+    padding: 20px;
+    font-size: 12px;
+    color: #323232;
+    font-weight: bold;
+    position: relative;
+}
+.main h3.box-title::before{
+    position: absolute;
+    content: '';
+    left: 0px;
+    top: 50%;
+    margin-top: -4px;
+    width: 8px;
+    height: 8px;
+    background-color: #1cc8c6;
+}
+.main .address-box table,
+.main .order-box table{
+    width: 100%;
+    text-align: left;
+    margin-bottom: 20px;
+}
+.main .address-box table thead tr th:nth-of-type(1),
+.main .order-box table thead tr th:nth-of-type(1){
+    padding-left: 3%;
+}
+.main .address-box table thead tr,
+.main .order-box table thead tr{
+    height: 40px;
+    background-color: #F0F1F7;
+}
+.main .address-box .layui-form-radio i{
+    font-size: 16px;
+    color: #1cc8c6;
+}
+.main .address-box table tbody tr td:nth-of-type(5){
+
+}
+.main .address-box table tbody tr td:nth-of-type(4){
+    width: 150px;
+}
+.main .address-box table tbody tr td:nth-of-type(3){
+    width: 345px;
+}
+.main .address-box table tbody tr td:nth-of-type(2){
+    width: 180px;
+}
+.main .address-box table tbody tr td:nth-of-type(1){
+    padding-left: 2%;
+    width: 195px;
+}
+.main .address-box table tbody tr{
+    height: 40px;
+    border-bottom: 1px solid #e4e4e4;
+    border-left: 1px solid #e4e4e4;
+    border-right: 1px solid #e4e4e4;
+}
+.main .address-box table button{
+    background-color: #FFFFFF;
+    border: 1px solid #e4e4e4;
+    color: #323232;
+}
+.main .address-box table tbody tr td input[type=radio]{
+    margin-right: 10px;
+}
+.main .order-box table tbody tr{
+    border: 1px solid #e4e4e4;
+    border-collapse: collapse;
+}
+.main .order-box table tbody tr td{
+    width: 155px;
+}
+.main .order-box table tbody tr td:nth-of-type(1){
+    padding-left: 3%;
+    width: 520px;
+}
+.main .order-box table tbody tr{
+    height: 180px;
+}
+.main .order-box table tbody tr td .t-box{
+    padding-top: 20px;
+    max-width: 485px;
+}
+.main .order-box table tbody tr td .b-box span{
+    font-size: 14px;
+    color: #666666;
+}
+.main .order-box table tbody tr td .b-box input{
+    border: 1px solid #e4e4e4;
+    padding-left: 5px;
+    margin-left: 5px;
+    height: 24px;
+    width: 375px;
+}
+.main .order-box table tbody tr td .b-box{
+    padding: 15px 0;
+}
+.main .order-box table tbody tr td img{
+    width: 100px;
+    height: 100px;
+}
+.main .order-box table tbody tr td .t-box>a{
+    float: left;
+    display: block;
+    width: 100px;
+    height: 100px;
+}
+.main .order-box table tbody tr td .t-box p{
+    float: left;
+    padding-left: 20px;
+    width: 330px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.main .order-box table tbody tr td .t-box p.product-sku{
+    padding-top: 15px;
+}
+.main .footer-info{
+    height: 50px;
+    background-color: #F0F1F7;
+    padding:0px 10px;
+}
+.main .footer-info p{
+    float: left;
+    padding-left: 110px;
+    line-height: 50px;
+    font-size: 14px;
+    color: #323232;
+}
+.main .footer-info p:nth-of-type(1){
+    padding-left: 20px;
+}
+.main .footer-info button{
+    width: 100px;
+    height: 36px;
+    float: right;
+    margin-left: 20px;
+    margin-top: 7px;
+}
+.main .red{
+    color: #ff3c29;
+}
+.main .footer-info .b-wz,
+.main .footer-info .pay-price{
+    font-size: 14px;
+    color: #ff3c29;
+    font-weight: bold;
+}
+.main .footer-info button{
+    font-size: 14px;
+}
+.main .footer-info button.pay-btn{
+    color: #FFFFFF;
+    background: -ms-linear-gradient(left, #fe6928,  #ff3c29);        /* IE 10 */
+
+    background:-moz-linear-gradient(left,#fe6928,#ff3c29);/*火狐*/
+
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#b8c4cb), to(#f6f6f8));/*谷歌*/
+
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#0000ff));      /* Safari 4-5, Chrome 1-9*/
+
+    background: -webkit-linear-gradient(left, #fe6928, #ff3c29);   /*Safari5.1 Chrome 10+*/
+
+    background: -o-linear-gradient(left, #fe6928, #ff3c29);  /*Opera 11.10+*/
+
+}
+.main .footer-info button.save-btn{
+    color: #323232;
+    background-color: #FFFFFF;
+}
+.white{
+    background-color: #ffffFF;
+}
+#tipBox{
+    background-color: #ffF;
+    width: 400px;
+    height: 300px;
+    padding-top: 20px;
+    margin: 20px auto;
+}
+#tipBox .empty{
+    margin: 20px auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #ff3c29;
+    top: 0;
+    position: relative;
+}
+#tipBox p.tip-title{
+    text-align: center;
+    font-size: 14px;
+    color: #323232;
+    font-weight: bold;
+}
+#tipBox .empty::before{
+    position: absolute;
+    content: '';
+    height: 50px;
+    width: 4px;
+    background-color: #ff3c29;
+    left: 50%;
+    margin-left: -2px;
+    top: 10px;
+
+}
+#tipBox .empty::after{
+    position: absolute;
+    content: '';
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background-color: #ff3c29;
+    left: 50%;
+    margin-left: -4px;
+    top: 70px;
+}
+#tipBox p.tips{
+    font-size: 14px;
+    color: #666666;
+    text-align: center;
+    padding: 10px 0;
+}
+#tipBox .btn-box{
+    height: 100px;
+    padding: 30px 75px;
+}
+#tipBox .btn-box a{
+    display: block;
+    float: left;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 2px;
+}
+#tipBox .btn-box a.problem{
+    background-color: #fe6928;
+    margin-right: 50px;
+}
+#tipBox .btn-box a.pay-success{
+    background-color: #666666;
+    color: #ffffFF;
+}

@@ -1,0 +1,104 @@
+.footer{
+    width: 100%;
+    background-color: #f0f1f7;
+}
+.footer .wolian-server{
+    height: 160px;
+}
+.footer .wolian-server ul{
+    height: 160px;
+    padding: 58px 0px;
+}
+.footer .wolian-server ul li{
+    width: 300px;
+    height: 44px;
+    float: left;
+    padding-left: 125px;
+    position: relative;
+}
+.footer .wolian-server ul li h5{
+    width: 53px;
+    height: 44px;
+    position: absolute;
+    left: 62px;
+    top: 0;
+    overflow: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.footer .wolian-server ul li:nth-of-type(1) h5{
+    background-image: url("./../../img/icon_zhengpinbaozheng.png");
+}
+.footer .wolian-server ul li:nth-of-type(2) h5{
+    background-image: url("./../../img/icon_peisong.png");
+}
+.footer .wolian-server ul li:nth-of-type(3) h5{
+    background-image: url("./../../img/icon_anquan.png");
+}
+.footer .wolian-server ul li:nth-of-type(4) h5{
+    background-image: url("./../../img/icon_fuwu.png");
+}
+
+.footer .wolian-server ul li p.server-title{
+    font-size: 24px;
+    color: #323232;
+    text-align: left;
+    line-height: 44px;
+}
+.footer .wolian-server ul li p.server-dec{
+    font-size: 14px;
+    color: #999999;
+    text-align: left;
+}
+
+.footer .wolian-help{
+    width: 760px;
+    height: 232px;
+    float: left;
+}
+.footer .wolian-help dl{
+    display: block;
+    float: left;
+    margin:0 30px 0 62px;
+}
+.footer .wolian-help dl dt{
+    font-size: 14px;
+    font-weight: bold;
+    color: #323232;
+}
+.footer .wolian-help dl dd{
+    margin-top: 25px;
+}
+.footer .wolian-help dl dd a{
+    font-size: 14px;
+    color: #999999;
+}
+.footer .wolian-help dl dd a:hover{
+    color: #f95a4f;
+}
+.footer .wolian-info{
+    width: 440px;
+    height: 232px;
+    float: right;
+}
+.footer .wolian-info>div{
+    width: 164px;
+    height: 200px;
+    float: left;
+    margin: 0 20px;
+}
+.footer .wolian-info>div img{
+    width: 164px;
+    height: 164px;
+}
+.footer .wolian-info>div p{
+    font-size: 14px;
+    text-align: left;
+    padding: 10px 10px;
+    height: 34px;
+    line-height: 34px;
+    color: #323232;
+}
+.footer .wolian-info
+.footer .wolian-info
+.footer .wolian-info

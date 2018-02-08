@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta type="description" content="总代理-收藏中心">
+    <title>收藏中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../plugs/layui/css/layui.css">
+    <link rel="stylesheet" href="../../font/font_399822_6dl4ikiuwern3ik9/iconfont.css">
+    <link rel="stylesheet" href="../../plugs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../../css/background-style/background-common.css">
+    <link rel="stylesheet" href="../../css/background-style/background-option.css">
+    <link rel="stylesheet" href="../../css/background-style/main.css">
+    <link rel="stylesheet" href="../../css/background-style/aside.css">
+    <link rel="stylesheet" href="../../css/collection-center/concerned-products.css">
+    <link rel="stylesheet" href="../../css/collection-center/concerned-suppliers.css">
+</head>
+<body>
+<!--顶部导航开始-->
+<header>
+    <ul class="layui-nav container" id="commonHeader">
+        <li class="layui-nav-item user-name" id="userCenter">
+        </li>
+
+    </ul>
+</header>
+<!--顶部导航结束-->
+<!--商品中心区域开始-->
+<div class="option-container">
+    <div class="option container">
+        <div class="logo layui-inline">
+            <a href="javascript:;">
+                <img src="../../img/work-logo.png" alt="">
+            </a>
+        </div>
+        <div class="products-center layui-inline">
+            <a href="../../productModule/center/index.html">
+                <img src="../../img/products-center.png" alt="">
+            </a>
+        </div>
+        <div class="supply-center" id="applyBox">
+
+        </div>
+    </div>
+</div>
+<!--商品中心区域结束-->
+
+<div class="main container">
+
+    <!--主体内容开始-->
+    <div class="bakground-content container">
+        <div class="main-content">
+            <div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+                <ul class="layui-tab-title">
+                    <li class="layui-this">关注的商品</li>
+                    <li>关注的供应商</li>
+                </ul>
+                <div class="layui-tab-content">
+                    <div class="layui-tab-item concerned-products layui-show ">
+                        <ul class="products-list  layui-clear" id="productList">
+                        </ul>
+                        <div class="page" id="productPage">
+                        </div>
+                    </div>
+                    <div class="layui-tab-item concerned-suppliers">
+                        <ul class="suppliers-list" id="vendorList">
+                        </ul>
+                        <div class="page" id="vendorPage">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--主体内容结束-->
+    <!--左侧导航开始-->
+    <aside id="leftNavList">
+
+    </aside>
+    <!--左侧导航结束-->
+</div>
+<script type="text/html" id="productTemplate">
+    {{# if((!d.list) || (d.list.length == 0)){ }}
+    <li style="height: 50px;text-align: center;line-height: 50px;width: 100%;">暂无数据</li>
+    {{# } }}
+    {{# if(d.list.length > 0){ }}
+    {{# layui.each(d.list,function(index,item){ }}
+    <li data-id="{{ item.id }}">
+        <div class="product-image">
+            <a href="/productModule/goodsdetail.html?productId={{ item.id }}">
+                <img src="{{=layui.woLianw.getImgUrl(item.pictureUrl)}}" alt="商品图片" title="{{ item.name ? item.name : '' }}">
+            </a>
+        </div>
+        <div class="product-price">
+            <span>￥</span><span>{{ item.listPrice }}</span>
+        </div>
+        <p class="product-name">
+            <a href="/productModule/goodsdetail.html?productId={{ item.id }}">{{ item.name ? item.name : '' }}</a>
+        </p>
+        <button class="layui-btn layui-btn-mini delete-btn"><i class="iconfont">&#xe626;</i></button>
+        <div class="mask">
+            <p>确定要删除？</p>
+            <button class="layui-btn layui-btn-mini b-btn">确定</button>
+            <button class="layui-btn layui-btn-mini cacle-btn">取消</button>
+        </div>
+    </li>
+    {{# }) }}
+    {{# } }}
+</script>
+<script type="text/html" id="vendorTemplate">
+    {{# layui.each(d.list,function(index,item){ }}
+    <li data-id="{{ item.id }}">
+        <div class="supplier-info">
+            <div class="supplier-pic">
+                <img alt="供应商logo" src="{{=layui.woLianw.getImgUrl(item.logoUrl)}}" alt="{{ item.logoUrl ? item.logoUrl : '' }}"  title="{{ item.companyName ? item.companyName : '' }}">
+            </div>
+            <p class="supplier-name">{{ item.companyName ? item.companyName : "" }}</p>
+            <p class="supplier-phone">联系电话:<span>{{ item.phone ? item.phone : "" }}</span></p>
+            <p class="supplier-address">区域:<span>{{ item.fullAddress ? item.fullAddress : "" }}</span></p>
+        </div>
+        <div class="delete-supplier">
+            <button class="layui-btn layui-btn-mini delete-btn">
+                <i class="iconfont">&#xe626;</i>
+            </button>
+        </div>
+        <div class="supplier-products-list">
+            <div class="supplier-product-operate">
+                <button class="layui-btn layui-btn-mini hotsale-btn isActive">热销</button>
+                <button class="layui-btn layui-btn-mini new-btn">新品</button>
+                <a class="link-more" href="/productModule/products/index.html?vendorId={{ item.id }}" target="_blank">查看更多</a>
+            </div>
+            <div class="supplier-product">
+                <ul class="supplier-product-list newlist unactive">
+                    {{# layui.each(item.newList,function(index1,item1){ }}
+                    <li>
+                        <a href="/productModule/goodsdetail.html?productId={{ item1.id }}" target="_blank">
+                            <img src="{{=layui.woLianw.getImgUrl(item1.pictureUrl)}}" alt="商品图片" title="{{ item1.name ? item1.name : '' }}">
+                        </a>
+                        <p class="product-tag"><span class="product-price">￥{{ item1.listPrice ? item1.listPrice : '' }}</span></p>
+                    </li>
+                    {{# }) }}
+                </ul>
+                <ul class="supplier-product-list hotlist">
+                    {{# layui.each(item.hotList,function(index1,item1){ }}
+                    <li>
+                        <a href="/productModule/goodsdetail.html?productId={{ item1.id }}" target="_blank">
+                            <img src="{{=layui.woLianw.getImgUrl(item1.pictureUrl)}}" alt="商品图片" title="{{ item1.name ? item1.name : '' }}">
+                        </a>
+                        <p class="product-tag"><span class="product-price">￥{{ item1.listPrice ? item1.listPrice : '' }}</span></p>
+                    </li>
+                    {{# }) }}
+                </ul>
+            </div>
+        </div>
+    </li>
+    {{# }) }}
+</script>
+<script type="text/html" id="leftNav">
+    <ul class="layui-nav layui-nav-tree layui-nav-side">
+        {{# layui.each(d,function(index,item){ }}
+        {{# if(item.level==1){ }}
+        <li class="layui-nav-item">
+            <a href="javasript:;">
+                <i class="fa fa-{{ item.icon }}">  </i>
+                <span> {{ item.name }} </span>
+            </a>
+            <dl class="layui-nav-child">
+                <dt>{{ item.name }}</dt>
+                {{# layui.each(d,function(index2,item2){ }}
+                {{# if(item.id==item2.parentId && item2.level==2){ }}
+                <dd><a href='../{{ item2.url }}.html'> {{ item2.name }} </a> </dd>
+                {{# } }}
+                {{# }) }}
+            </dl>
+        </li>
+        {{# } }}
+        {{# }) }}
+    </ul>
+</script>
+<script src="../../plugs/layui/layui.all.js"></script>
+<script src="../../js/wolianwComponent/config.js"></script>
+<script>
+    layui.use(['element','form','laydate','laytpl','jquery','layer','woLianw','laypage'],function () {
+        var element=layui.element
+        var form=layui.form
+        var laydate=layui.laydate
+        var laytpl=layui.laytpl
+        var $=layui.$
+        var layer=layui.layer
+        var laypage = layui.laypage
+        var woLianw = layui.woLianw
+
+
+        /*我要供货按钮的显示控制 start*/
+        var loginInfo = JSON.parse(window.localStorage.getItem('1788login'))
+        if(!loginInfo){
+            window.location.href = '/login.html'
+            return false
+        }
+        if(loginInfo.isSwitch){
+            var str = '<button class="layui-btni" id="wantApply">我要供货</button>'
+            $('#applyBox').append(str)
+        }
+        /*我要供货的登录切换*/
+        $('#applyBox').on('click','#wantApply',function () {
+            console.log(111)
+            woLianw.switchLogin()
+        })
+        /*我要供货按钮的显示控制 end*/
+
+        woLianw.renderModule()
+        woLianw.setHeight()
+
+        /*获取关注的工厂信息*/
+        woLianw.followVendor({},function (data) {
+            renderTemplate(data,'vendorTemplate','vendorList')
+            if(!data){
+                return false
+            }
+            laypage.render({
+                elem: 'vendorPage'
+                ,count: data.total
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj,first){
+                    //首次不执行
+                    if(!first){
+                        woLianw.followProduct({
+                            page: obj.curr,
+                            limit: obj.limit
+                        },function (data) {
+                            renderTemplate(data, 'productTemplate', 'productList')
+                        })
+                    }
+                }
+            });
+
+        })
+        /*获取关注的商品信息*/
+        woLianw.followProduct({
+            limit:18
+        },function (data) {
+            renderProducts(data)
+            /*renderTemplate(data,'productTemplate','productList')
+            //完整功能
+            if(!data){
+                return false
+            }
+            laypage.render({
+                elem: 'productPage'
+                ,count: data.total
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj,first){
+                    //首次不执行
+                    if(!first){
+                        woLianw.followProduct({
+                            page: obj.curr,
+                            limit: obj.limit
+                        },function (data) {
+                            renderTemplate(data, 'productTemplate', 'productList')
+                        })
+                    }
+                }
+            });*/
+        })
+        function renderProducts(data) {
+            renderTemplate(data,'productTemplate','productList')
+            //完整功能
+            if(!data){
+                return false
+            }
+            laypage.render({
+                elem: 'productPage'
+                ,count: data.total
+                ,limit:18
+                ,limits:[18,36,54]
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,jump: function(obj,first){
+                    //首次不执行
+                    if(!first){
+                        woLianw.followProduct({
+                            page: obj.curr,
+                            limit: obj.limit
+                        },function (data) {
+                            renderTemplate(data, 'productTemplate', 'productList')
+                        })
+                    }
+                }
+            });
+        }
+        /*点击删除按钮，弹出确认遮罩层*/
+        $(".products-list").on("click",".delete-btn",function () {
+            var _this=this
+            $(_this).css("display","none !important")
+            $(_this).parent().find(".mask").css("display","block")
+        })
+        /*鼠标进入商品区域，显示删除按钮*/
+        $(".products-list").on("mouseleave",".mask",function () {
+            $(this).css("display","none")
+        })
+
+        /*取消对供应商的关注*/
+        $("#vendorList").on('click','.delete-btn',function () {
+            var _this = this
+            layer.confirm('确定取消对供应商的关注吗？', {
+                btn: ['确定','取消'] //按钮
+                ,title:'提示'
+            }, function(index){
+                /*更新默认地址之后，重新获取新的用户地址列表*/
+                var itemId = $(_this).parent().parent().attr('data-id')
+                woLianw.followCancel({
+                    type:1,
+                    itemId:itemId
+                },function () {
+                    woLianw.followVendor({},function (data) {
+                        renderTemplate(data,'vendorTemplate','vendorList')
+                    })
+                })
+
+                layer.close(index)
+            }, function(){
+
+            });
+        })
+
+        /*取消对商品的关注*/
+        $("#productList").on('click',".b-btn",function () {
+            var _this = this
+            var itemId = $(_this).parent().parent().attr('data-id')
+            woLianw.followCancel({
+                type:2,
+                itemId:itemId
+            },function () {
+                woLianw.followProduct({},function (data) {
+                    /*renderTemplate(data,'productTemplate','productList')*/
+                    renderProducts(data)
+                })
+            })
+        })
+        /*取消删除操作*/
+        $('#productList').on('click','.cacle-btn',function () {
+            console.log(1)
+            $(this).parent().css('display','none')
+        })
+
+        $('#vendorList').on('click','.hotsale-btn',function () {
+            var _this = this
+            $(_this).addClass('isActive')
+            $(_this).parent().find('.new-btn').removeClass('isActive')
+            $(_this).parent().parent().find('.hotlist').removeClass('unactive')
+            $(_this).parent().parent().find('.newlist').addClass('unactive')
+        })
+        $('#vendorList').on('click','.new-btn',function () {
+            var _this = this
+            $(_this).addClass('isActive')
+            $(_this).parent().find('.hotsale-btn').removeClass('isActive')
+            $(_this).parent().parent().find('.newlist').removeClass('unactive')
+            $(_this).parent().parent().find('.hotlist').addClass('unactive')
+        })
+        function renderTemplate(data,templateId,targetId) {
+            var template=document.getElementById(templateId).innerHTML
+            var target=document.getElementById(targetId)
+            if(!data){
+                var str = '<li class="noData" style="width: 100%;height: 50px;line-height: 50px;text-align: center;border: 1px solid #e4e4e4;">暂无数据</li>'
+                target.innerHTML = str
+                return false
+            }
+            laytpl(template).render(data,function (html) {
+                target.innerHTML=html
+            })
+        }
+
+    })
+</script>
+</body>
+</html>

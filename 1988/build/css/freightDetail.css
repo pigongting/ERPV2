@@ -1,0 +1,138 @@
+#ibox-freightDetail * {
+  box-sizing: inherit;
+}
+
+#ibox-freightDetail .layui-input-block {
+  box-sizing: content-box;
+}
+
+#ibox-freightDetail .layui-form-label {
+  min-width: 120px;
+}
+
+#ibox-freightDetail .layui-form-label .red {
+  color: #FF5722;
+}
+
+#ibox-freightDetail .layui-input-block {
+  margin-left: 150px;
+}
+
+#ibox-freightDetail .layui-btn-normal-o {
+  color: #438bfd;
+  background: #fff;
+  border: 1px solid #438bfd;
+  line-height: 24px;
+  height: 24px;
+}
+
+#ibox-freightDetail .lay-submit-item {
+  padding-top: 40px;
+}
+
+#ibox-freightDetail .layui-input-help {
+  margin-left: 150px;
+  line-height: 2.4;
+  padding: 24px 0;
+  color: #666;
+}
+
+#ibox-freightDetail .layui-input-help li:before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background: #438bfd;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+#ibox-freightDetail .edit-table {
+  background: #eff3f9;
+  margin: 30px 0 30px 150px;
+  padding: 20px 50px 50px 50px;
+}
+
+#ibox-freightDetail .edit-table .layui-input-block {
+  margin-left: 0px;
+}
+
+#ibox-freightDetail .layui-table-view {
+  margin: 20px 0 0 0;
+}
+
+#ibox-freightDetail .add-button {
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-top: none;
+  padding: 9px 15px;
+}
+
+#ibox-freightDetail .layui-form-radio i:hover, 
+#ibox-freightDetail .layui-form-radioed i {
+  color: #438bfd;
+}
+
+#ibox-freightDetail .layui-form-radio i {
+  font-size: 18px;
+}
+
+#ibox-freightDetail .layui-table-cell {
+  height: auto;
+  line-height: 28px;
+  overflow: initial;
+  text-overflow: initial;
+  white-space: initial;
+}
+
+#fareArea {
+  display: none;
+}
+
+#fareArea dl {
+  border-bottom: 1px solid #e0e0e0;
+  padding: 16px 0;
+}
+
+#fareArea dl:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+#fareArea dl dt {
+  float: left;
+  margin-right: 50px;
+  font-weight: bold;
+}
+
+#fareArea dl dd {
+  float: left;
+}
+
+#fareArea dl dd.selected .layui-form-checkbox span {
+  color: #FF5722;
+}
+
+#fareArea .tips {
+  color: #FF5722;
+  padding: 0 0 16px 0;
+  font-size: 12px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

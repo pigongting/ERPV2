@@ -1,0 +1,35 @@
+
+.main .layui-right-area{
+    padding-left: 110px;
+}
+.main .layui-header{
+    height: 61px;
+    width: 100%;
+}
+.layui-header-navlist{
+
+}
+.layui-header-navlist .layui-layout-left{
+
+}
+.layui-header-navlist .layui-nav-item,.layui-header-navlist .layui-nav{
+    background-color: #fff;
+}
+.layui-header-navlist .layui-nav-item a{
+    padding: 0 10px;
+}
+.layui-header-navlist .layui-nav-item a span{
+    color:#000;
+    font-size: 12px;
+}
+.layui-header-navlist .layui-nav-item a span.layui-nav-more{
+    color: #0C0C0C;
+}
+.layui-header-navlist .layui-layout-left{
+    left: 0px;
+}
+.layui-header-navlist .layui-nav-item a img{
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+}

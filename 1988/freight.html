@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>运费模板列表</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="我连网卖家中心-运费模板列表" />
+		<link rel="stylesheet" href="./plugins/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="./plugins/font-awesome/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="build/css/contentPages.css">
+    <link rel="stylesheet" href="build/css/index.css" />
+	</head>
+	<body -bgcolor="#eee">
+		<div class="seller-header">
+      <span class="layui-breadcrumb">
+        <a href="javascript:;">你当前所在的位置</a>
+        <a href="javascript:;">物流设置</a>
+        <a><cite>运费模板列表</cite></a>
+      </span>
+		</div>
+
+		<!-- 电子对账单 start -->
+		<section class="ibox">
+			<header class="ibox-title pdauto">
+				<div class="layui-row">
+					<div class="layui-col-sm12 layui-col-md12 layui-col-md12">
+						<i class="fa fa-exclamation-circle color-blue"></i>
+						<span>温馨提示：运费模板需要与商品信息关联后，买家下单时才能自动计算运费 </span>
+					</div>
+				</div>
+				<div class="layui-row">
+					<div class="layui-col-md8">
+            <a href="freightDetail.html" style="display: inline-block; margin-right: 10px;">
+              <button type="button" class="layui-btn layui-btn-small"><i class="fa fa-plus"></i>&nbsp;&nbsp;新建运费模板</button>
+            </a>
+						<button type="button"  class="layui-btn layui-btn-small layui-btn-normal">
+							<a href="/fare-product.html" style="color: #FFFFFF;">关联商品信息</a>
+						</button>
+            <a href="freightCalculate.html" style="display: inline-block; margin-left: 10px;" id="freightCalculateHtml">
+						  <button type="button" class="layui-btn layui-btn-small layui-btn-normal">运费模拟计算器</button>
+            </a>
+					</div>
+					<div class="layui-col-md4" style="text-align: right;">
+
+					</div>
+				</div>
+			</header>
+			<article id="category1" class="ibox-content pdauto" style="margin-top: 15px;border-top: 1px solid #e2e2e2;padding-top: 10px;"></article>
+		</section>
+		<!-- 电子对账单 end -->
+
+		<script type="text/html" id="category1Template">
+        {{# layui.each(d.list, function(index, item){  }}
+			<div class="layui-row" style="padding-top: 20px; ">
+				<div class="layui-col-lg8">
+					<b style="margin-right: 50px;">运费模板名称：{{item.name}}</b>
+					{{# if(item.modifyTime){  var itemTime = layui.woLianw.transDateType(item.modifyTime); }}
+          	<span class="ibox-attribute">最后修改日期：{{itemTime}}</span>
+        	{{#  }  }}
+				</div>
+				<div class="layui-col-lg4 layui-text-right">
+					<a href="{{'freightDetail.html?id='+item.id}}" style="display: inline-block; margin-right: 10px;">
+            <button type="button" class="layui-btn layui-btn-normal layui-btn-small"><i class="fa fa-edit"></i>&nbsp;&nbsp;编辑</button>
+          </a>
+					<button type="button" class="layui-btn layui-btn-small bg-red handleFareDelete" data-id="{{item.id}}"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</button>
+				</div>
+			</div>
+			<div class="layui-row">
+				<div class="layui-col-lg12">
+					<table lay-filter="parse_table" class="layui-table">
+						<thead>
+							<tr>
+								<th width="100">计价方式</th>
+								<th width="300">运送到</th>
+								<th>{{(item.chargeType === 1) ? '首件（件）' : '首重(kg)'}}</th>
+								<th>{{(item.chargeType === 1) ? '首件运费（元）' : '首重运费(元)'}}</th>
+        				<th>{{(item.chargeType === 1) ? '续件（件）' : '续重(kg)'}}</th>
+								<th>{{(item.chargeType === 1) ? '续件运费（元）' : '续重运费(元)'}}</th>
+								<th>{{(item.chargeType === 1) ? '包邮（件）' : '包邮(kg)'}}</th>
+								<th width="200">备注</th>
+							</tr>
+						</thead> 
+						<tbody>
+							{{# layui.each(item.itemList, function(i, ele){  }}
+							<tr>
+								{{# if(i === 0){ }}
+								<td rowspan="{{item.itemList.length}}">按{{(item.chargeType === 1) ? '数量' : '重量'}}</td>
+			        	{{#  }  }}
+								<td>{{ele.shippingRegion}}</td>
+								<td>{{=layui.woLianw.thousandBit(ele.startAmount)}}</td> 
+								<td>{{ele.startPrice}}</td>
+                <td>{{=layui.woLianw.thousandBit(ele.additionAmount)}}</td>
+								<td>{{ele.additionPrice}}</td>
+								<td>{{ele.freeAmount}}</td>
+								{{# if(i === 0){ }}
+								<td rowspan="{{item.itemList.length}}">{{item.remark || ''}}</td> 
+			        	{{#  }  }}
+							</tr>
+							{{# })  }}
+						</tbody>
+					</table>
+				</div>
+			</div>
+  		{{# })  }}
+		</script>		
+		
+		<script src="./plugins/layui/layui.js"></script>
+		<script src="./build/js/wolianwComponent/config.js"></script>
+		<script>
+			//JavaScript代码区域
+			layui.use(['element','form','laydate','laytpl', 'layer', "woLianw"],function () {
+        var element=layui.element;
+        var form = layui.form;
+        var layer = layui.layer;
+        var laytpl = layui.laytpl;
+        var $ = layui.jquery;
+        var woLianw = layui.woLianw;
+        
+        woLianw.getFareList(renderDataHtml, "category1Template", "category1");
+				
+       	/*通过laytpl模板引擎将数据渲染到页面*/
+        function renderDataHtml(data, templateID, wrapID) {
+          var template = document.getElementById(templateID).innerHTML;
+          var wrap = document.getElementById(wrapID);
+          laytpl(template).render(data, function (html){
+            wrap.innerHTML = html;
+          });
+        }
+        /* 删除运费模板 */
+        $(document).on('click', '.handleFareDelete', function(){
+          var that = $(this);
+          layer.confirm('确定删除吗?', {icon: 3, title:'提示'}, function(index){
+            woLianw.ajaxFareDelete(that.data('id'), function() {
+              layer.msg('删除成功');
+              woLianw.getFareList(renderDataHtml, "category1Template", "category1");
+            });
+            layer.close(index);
+          });
+        });
+        /* 运费计算器 */
+        $(document).on('click', '#freightCalculateHtml', function(e){
+          if ($('#category1').find('.layui-row').length === 0) {
+            layer.msg('请先添加运费模板');
+            e.preventDefault();
+          }
+        });
+			});
+		</script>
+	</body>
+</html>

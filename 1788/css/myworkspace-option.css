@@ -1,0 +1,15 @@
+.main .layui-option{
+    padding: 10px 0px 10px 20px;
+    background-color: #E8EFF5;
+}
+.main .layui-option .layui-form-select .layui-input{
+    width: 100px;
+    height: 30px;
+    border-radius: 20px;
+}
+.main .layui-option .layui-form-select dl{
+    top:35px;
+}
+.main .layui-option .layui-form-select{
+    margin-right: 10px;
+}

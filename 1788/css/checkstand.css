@@ -1,0 +1,185 @@
+
+html, body{
+	margin: 0;
+	height: 100%;
+}
+#checkstand{
+	background-color: #F0F1F7;
+	overflow: hidden;
+}
+#checkstand .grid_wrap{
+ 	margin: 20px auto;
+	background-color: #fff;
+	overflow: hidden;
+	padding: 0 0 100px;
+}
+
+.title_wrap{
+	height: 50px;
+	line-height: 50px;
+	margin: 25px 50px 0;
+}
+
+.smallSquares{
+	width: 6px;
+	height: 6px;
+	background-color: #fe5728;
+	display: inline-block;
+	margin-right: 13px;
+}
+
+.title_txt{
+	color: #323232;
+	font-size: 16px;
+	font-weight: bold;
+	display: inline-block;
+}
+.orderInformation{
+	margin: 0 50px;
+	border: 1px solid #e4e4e4;
+	height: auto;
+	overflow: hidden;
+}
+.orderContent li{
+	margin: 0 50px;
+	height: 50px;
+	line-height: 50px;
+	font-size: 14px;
+	color: #323232;
+	margin-bottom: 10px;
+
+}
+.orderContent li span{
+	width: 50%;
+	float: left;
+}
+.promptWrap{
+	font-size: 14px;
+	height: 50px;
+	background-color: #fef5f5;
+	border: solid 1px #e4e4e4;
+	color: #ff3c29;
+	line-height: 50px;
+  margin: -1px 50px 0;
+}
+.promptWrap P{
+	margin: 0 50px;
+}
+
+.orderList label.tit{
+	display: inline-block;
+	text-align: justify;
+  text-align-last: justify;
+  min-width: 80px;
+}
+.orderList label.con{
+	display: inline-block;
+}
+
+.orderBox{
+	margin: 0 50px;
+	border: 1px solid #e4e4e4;
+	height: auto;
+	overflow: hidden;
+}
+.orderBox p{
+	height: 40px;
+	line-height: 40px;
+	margin-bottom: 10px;
+	font-size: 14px;
+	color: #323232;
+}
+.orderBox p.warmPrompt{
+	margin-left: 20px;
+}
+.orderBox p.prompt{
+	margin-left: 90px;
+	color: #2e87f5;
+}
+.payWay{
+	margin: 30px 50px;
+	overflow: hidden;
+}
+.leftPay, .rightPay{
+	float: left;
+	margin-bottom:-10000px;
+ 	padding-bottom:10000px;
+ 	line-height: 50px;
+}
+.rightPay{
+	margin-left: 50px;
+}
+.payI{
+	color: #ccc;
+	cursor: pointer;
+	font-size: 16px;
+	margin-right: 20px;
+	vertical-align: middle;
+}
+.realPayMoney{
+	color: #ff4e3d;
+	font-size: 20px;
+	font-weight: bold;
+}
+.payPassword{
+	width: 270px;
+	padding: 0 10px;
+	height: 30px;
+	line-height: 30px;
+	border: solid 1px #e4e4e4;
+}
+.payButton{
+	margin: 0 50px;
+	padding: 0 0 0 105px;
+}
+.submitA{
+	width: 94px;
+	height: 26px;
+	display: inline-block;
+	background-image: linear-gradient(-38deg,
+		#ff3c29 0%,
+		#ff5429 50%,
+		#fe6928 100%),
+	linear-gradient(
+		#1cc8c6,
+		#1cc8c6);
+	background-blend-mode: normal, normal;
+	border-radius: 2px;
+	color: #fff;
+	text-align: center;
+	line-height: 26px;
+	margin-right: 5px;
+}
+.submitA:hover{
+	color: #fff;
+}
+.cacleBtn:hover{
+	color: #fe5e28;
+}
+.cacleBtn{
+	width: 94px;
+	height: 26px;
+	box-shadow: 0px 2px 6px 0px
+		rgba(255, 67, 41, 0.22);
+	border-style: solid;
+	border-width: 1px;
+	border-image-source: linear-gradient(-38deg,
+		#ff3c29 0%,
+		#ff5429 50%,
+		#fe6928 100%);
+	border-image-slice: 1;
+	border-radius: 2px;
+	display: inline-block;
+	color: #fe5e28;
+	text-align: center;
+	line-height: 26px;
+}
+
+
+
+.settlementLogo{
+	color: #fe5e28;
+	width: 68px;
+	font-family: MicrosoftYaHei;
+	font-size: 22px;
+}

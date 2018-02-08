@@ -1,0 +1,98 @@
+html,body { height: 100%; }
+
+.pi-TableButton { min-width: 80px; height: 26px; line-height: 26px; font-size: 12px; padding-left: 10px; padding-right: 10px; }
+.pi-TableButtonGreen { background-color: #39cb88; color: #fff; }
+.pi-TableButtonBlue { background-color: #438bfd; color: #fff; }
+.pi-TableButtonRed { background-color: #ff4e3e; color: #fff; }
+.pi-TableButtonTiffany { background-color: #1cc8c6; color: #fff; }
+.pi-TableButtonWhite { background-color: #fff; color: #000; border: 1px solid #d9d9d9; }
+.pi-TableButtonWhite:hover { color: #000; }
+.pi-TableButtonGray { background-color: #f7f7f7; color: #000; border: 1px solid #d9d9d9; }
+.pi-TableButtonGray:hover { color: #000; }
+
+.orderInfo { padding: 34px 34px 0 34px; }
+.orderInfo .title { height: 55px; line-height: 55px; font-size: 12px; font-weight: bold; }
+
+#orderInfoBox { padding: 16px 0; background: #f6f7fb; }
+#orderInfoBox table { font-size: 12px; table-layout: fixed; width: 100%; }
+#orderInfoBox table th { text-align: right; padding-right: 30px; }
+#orderInfoBox table td { padding-right: 30px; }
+#orderInfoBox table td,
+#orderInfoBox table th { vertical-align: top; padding-top: 10px; padding-bottom: 10px; }
+#orderInfoBox .cloumn-1 { width: 100px; }
+#orderInfoBox .cloumn-2 {  }
+#orderInfoBox .cloumn-3 { width: 100px; }
+#orderInfoBox .cloumn-4 {  }
+
+.tabInfo { padding: 30px; }
+.tabInfo .layui-tab-title li { padding-left: 0; padding-right: 0; color: #666666; margin-right: 40px; }
+.tabInfo .layui-tab-brief>.layui-tab-title .layui-this { color: #448bff; }
+.tabInfo .layui-tab-title .layui-this:after { border-bottom-color: #448bff; }
+.tabInfo .layui-tab-content { padding: 20px 0 0 0; }
+.tabInfo .layui-tab { margin: 0; }
+
+#goodsInfoBox { padding: 16px 0; background: #f6f7fb; }
+#goodsInfoBox table { font-size: 12px; table-layout: fixed; width: 100%; }
+#goodsInfoBox table th { text-align: right; padding-right: 30px; }
+#goodsInfoBox table td { padding-right: 30px; }
+#goodsInfoBox table td,
+#goodsInfoBox table th { vertical-align: top; padding-top: 0px; padding-bottom: 0px; color: #000; font-weight: bold; }
+#goodsInfoBox table td span,
+#goodsInfoBox table th span { color: #000; font-weight: normal; }
+#goodsInfoBox .cloumn-1 { width: 188px; padding-left: 26px; padding-right: 0; }
+#goodsInfoBox .cloumn-2 {  }
+#goodsInfoBox .cloumn-3 {  }
+#goodsInfoBox .pi-ImageBox:before { content: ''; display: block; position: absolute; left: 0; top: 0; bottom: 0; right: 0; border: 1px solid #eee; }
+#goodsInfoBox .pi-ImageBox { float: left; width: 168px; height: 168px; position: relative; background: #f7f7f7; }
+#goodsInfoBox .pi-ImageBox img { width: 168px; height: 168px; }
+#goodsInfoBox .money { color: #ff3b28; }
+
+#customerInfoBox { padding: 16px 0; background: #f6f7fb; }
+#customerInfoBox table { font-size: 12px; table-layout: fixed; width: 100%; }
+#customerInfoBox table th { text-align: right; padding-right: 30px; }
+#customerInfoBox table td { padding-right: 30px; }
+#customerInfoBox table td,
+#customerInfoBox table th { vertical-align: top; padding-top: 10px; padding-bottom: 10px; }
+#customerInfoBox .cloumn-1 { width: 100px; }
+#customerInfoBox .cloumn-2 {  }
+#customerInfoBox .cloumn-3 { width: 100px; }
+#customerInfoBox .cloumn-4 {  }
+
+#orderActionInfoBox { padding: 16px 0; background: #f6f7fb; }
+#orderActionInfoBox table { font-size: 12px; table-layout: fixed; width: 100%; }
+#orderActionInfoBox table th { text-align: right; padding-right: 30px; }
+#orderActionInfoBox table td { padding-right: 30px; }
+#orderActionInfoBox table td,
+#orderActionInfoBox table th { vertical-align: top; padding-top: 10px; padding-bottom: 10px; }
+#orderActionInfoBox .cloumn-1 { width: 100px; }
+#orderActionInfoBox .cloumn-2 {  }
+#orderActionInfoBox .cloumn-3 { width: 100px; }
+#orderActionInfoBox .cloumn-4 {  }
+
+#commentInfoBox { padding: 16px 0; background: #f6f7fb; }
+#commentInfoBox table { font-size: 12px; table-layout: fixed; width: 100%; }
+#commentInfoBox table th { text-align: right; padding-right: 30px; }
+#commentInfoBox table td { padding-right: 30px; }
+#commentInfoBox table td,
+#commentInfoBox table th { vertical-align: top; padding-top: 10px; padding-bottom: 10px; }
+#commentInfoBox .cloumn-1 { width: 100px; }
+#commentInfoBox .cloumn-2 {  }
+#commentInfoBox .cloumn-3 { width: 100px; }
+#commentInfoBox .cloumn-4 {  }
+
+
+
+
+.buttonList { position: absolute; bottom: 0; left: 0; right: 0; text-align: right; padding: 0 30px 30px 30px; }
+
+
+
+
+
+
+
+
+
+
+
+

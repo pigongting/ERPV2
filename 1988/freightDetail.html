@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>运费模板详情</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="我连网卖家中心-运费模板详情" />
+    <link rel="stylesheet" href="./plugins/layui255/css/layui.css" media="all">
+    <link rel="stylesheet" href="./plugins/font-awesome/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="build/css/index.css" />
+    <link rel="stylesheet" href="build/css/freightDetail.css" />
+  </head>
+  <body -bgcolor="#eee">
+    <div class="seller-header">
+      <span class="layui-breadcrumb">
+        <a href="javascript:;">你当前所在的位置</a>
+        <a href="javascript:;">物流设置</a>
+        <a href="javascript:;">运费模板列表</a>
+        <a><cite>运费模板详情</cite></a>
+      </span>
+    </div>
+
+    <!-- 电子对账单 start -->
+    <section class="ibox" id="ibox-freightDetail"></section>
+    <section class="ibox" id="fareArea"></section>
+    <!-- 电子对账单 end -->
+    
+    <script type="text/html" id="category1Template">
+    {{# layui.each(d, function(index, item){  }}
+      <form class="layui-form">
+        <div class="layui-form-item">
+          <div class="layui-input-block">
+            <input type="hidden" name="id" value="{{item.id || ''}}">
+          </div>
+        </div>
+        <div class="layui-form-item">
+          <label class="layui-form-label">运费模板名称<i class="red">*</i></label>
+          <div class="layui-input-block" style="margin-right: 12px;">
+            <input type="text" name="name" placeholder="" value="{{item.name}}" autocomplete="off" class="layui-input" lay-verify="required" id="name">
+          </div>
+        </div>
+        <div class="edit-table">
+          <div class="layui-form-item">
+            <div class="layui-input-block">
+              {{# if(item.chargeType === 1){ }}
+              <input type="radio" name="chargeType" value="1" title="按数量计价" lay-filter="chargeType" checked>
+              <input type="radio" name="chargeType" value="2" title="按重量计价" lay-filter="chargeType">
+              {{#  }  }}
+              {{# if(item.chargeType === 2){ }}
+              <input type="radio" name="chargeType" value="1" title="按数量计价" lay-filter="chargeType">
+              <input type="radio" name="chargeType" value="2" title="按重量计价" lay-filter="chargeType" checked>
+              {{#  }  }}
+            </div>
+          </div>
+          <table class="layui-hide" id="regionTable" lay-filter="regionTable"></table>
+          <div class="add-button">
+            <button type="button" class="layui-btn layui-btn-small handleInsertRegion"><i class="fa fa-plus"></i>&nbsp;&nbsp;为指定地区设置运费</button>
+          </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+          <label class="layui-form-label">备注</label>
+          <div class="layui-input-block" style="margin-right: 22px;">
+            <textarea name="remark" placeholder="可对运费政策补充，如：货运方式、到达天数等" class="layui-textarea" id="remark">{{item.remark || ''}}</textarea>
+          </div>
+        </div>
+        <ul class="layui-input-help">
+          <li>除指定地区外，其他地区的运费采用“默认运费”。</li>
+          <li>包邮设为0表示不设置包邮。</li>
+        </ul>
+        <div class="layui-form-item lay-submit-item">
+          <div class="layui-input-block">
+            <button class="layui-btn layui-btn-small layui-btn-normal" lay-submit lay-filter="*">&emsp;保存&emsp;</button>
+            <a href="freight.html" style="display: inline-block; margin-left: 10px;">
+            	<button type="button" class="layui-btn layui-btn-small layui-btn-normal-o">&emsp;返回列表&emsp;</button>
+            </a>
+          </div>
+        </div>
+      </form>
+    {{# })  }}
+    </script>
+
+    <script type="text/html" id="fareAreaTemplate">
+    	<div class="tips"><i class="fa fa-exclamation-circle"></i>&ensp;红色文字表示在其他指定地区中有勾选，再次勾选会更新之前该省份的设置</div>
+    	<form class="layui-form">
+	    	{{# layui.each(d, function(index, item){  }}
+	    	<dl class="fareAreaList">
+	    		<dt>
+	    			{{# if(item.checked === true){ }}
+            <input type="checkbox" title="{{item.BigArea}}" value="{{item.BigArea}}" lay-filter="area" lay-skin="primary" checked>
+            {{#  } else {  }}
+            <input type="checkbox" title="{{item.BigArea}}" value="{{item.BigArea}}" lay-filter="area" lay-skin="primary">
+            {{#  }  }}
+	    		</dt>
+	    		{{# layui.each(item.Items, function(i, ele){  }}
+	    		<dd class="{{(ele.selected === true) ? 'selected' : ''}}">
+	    			{{# if(ele.checked === true){ }}
+	    			<input type="checkbox" name="{{item.BigArea}}" value="{{ele.id}}" title="{{ele.name}}" lay-filter="city" lay-skin="primary" checked>
+            {{#  } else {  }}
+	    			<input type="checkbox" name="{{item.BigArea}}" value="{{ele.id}}" title="{{ele.name}}" lay-filter="city" lay-skin="primary">
+            {{#  }  }}
+	    		</dd>
+	    		{{# })  }}
+	    	</dl>
+	      {{# })  }}
+      </form>
+    </script>
+
+<script src="./plugins/layui255/layui.js"></script>
+<script src="./build/js/wolianwComponent/config.js"></script>
+<script>
+  function WidthCheck(str, maxLen){ 
+    var w = 0; 
+    var tempCount = 0; 
+    //length 获取字数数，不区分汉子和英文 
+    for (var i=0; i<str.value.length; i++) { 
+      //charCodeAt()获取字符串中某一个字符的编码 
+      var c = str.value.charCodeAt(i); 
+      //单字节加1 
+      if ((c >= 0x0001 && c <= 0x007e) || (0xff60<=c && c<=0xff9f)) {
+        w++; 
+      } else { 
+        w+=2; 
+      } 
+      if (w > maxLen) { 
+        str.value = str.value.substr(0,i); 
+        break;
+      } 
+    }
+  }
+  function twoDecimal(num, maxbit) {
+    var numString = num + "";
+    var numArray = numString.split('.');
+    var decimal = '';
+    var result = '';
+
+    if (numArray.length > 1) {
+      decimal = numArray[1].substring(0, maxbit);
+    }
+
+    result = decimal ? numArray[0] +'.'+ decimal : numArray[0];
+    result = decimal ? parseFloat(result) : parseInt(result);
+    result = (decimal.length < maxbit) ? result.toFixed(decimal.length) : result.toFixed(maxbit);
+
+    return result;
+  }
+</script>
+<script>
+  //JavaScript代码区域
+  layui.use(['element','form','table','laydate','laytpl', 'layer', "woLianw"],function () {
+    var element=layui.element;
+    var form = layui.form;
+    var table = layui.table;
+    var layer = layui.layer;
+    var laytpl = layui.laytpl;
+    var $ = layui.jquery;
+    var woLianw = layui.woLianw;
+    var qureyId = woLianw.pathSarchValue(location.search, 'id');
+
+	  var fareAreaData = null;
+    var tableData = [
+      {
+        "name": "",
+        "remark": "",
+        "chargeType": 1,
+        "itemList": [
+          {
+            "id": 1,
+            "shippingRegion": "",
+            "startAmount": '1',
+            "startPrice": '1.00', 
+            "additionAmount": '1',
+            "additionPrice": '1.00',
+            "freeAmount": '0',
+            "isDefault": true,
+            "templateId": 0
+          },
+        ],
+      },
+    ];
+
+		function renderAreaHtml(data) {
+	    fareAreaData = data;
+      var template = document.getElementById("fareAreaTemplate").innerHTML;
+      var wrap = document.getElementById("fareArea");
+      laytpl(template).render(data, function (html){
+        wrap.innerHTML = html;
+        form.render();
+      });
+    }
+
+		/* 运费区域 */
+    woLianw.getFareArea(renderAreaHtml);
+
+    /*通过laytpl模板引擎将数据渲染到页面*/
+    function renderDataHtml(data, templateID, wrapID) {
+    	tableData = data;
+      var template = document.getElementById(templateID).innerHTML;
+      var wrap = document.getElementById(wrapID);
+      laytpl(template).render(data, function (html){
+        wrap.innerHTML = html;
+        form.render();
+        table.render({
+          elem: '#regionTable',
+          data: data[0].itemList,
+          cols: [[
+			      {field:'shippingRegion', title: '运送到', templet: function(d){
+			      	var allregion = '全国(除指定地区以外)';
+			      	var strregion = '';
+			      	var defaulttext = (d.isDefault) ? '<span style="color: #FF5722;">&ensp;默认运费</span>' : '';
+              try {
+                  var region = JSON.parse(d.shippingRegion);
+                  if (region) {
+                      for (var j = 0; j < region.length; j++) { 
+                          if (j === 0) {
+                              strregion = region[j].name;
+                          } else {
+                              strregion += '、'+region[j].name;
+                          }
+                      }
+                      return strregion + defaulttext;
+                  } else {
+                      return allregion + defaulttext;
+                  }
+              } catch (e) {
+                  return allregion + defaulttext;
+              }
+  					}},
+            {field:'startAmount', width: 100, edit: 'text', title: (data[0].chargeType === 1) ? '首件（件）' : '首重(kg)'},
+			      {field:'startPrice', width: 130, edit: 'text', title: (data[0].chargeType === 1) ? '首件运费（元）' : '首重运费(元)'},
+			      {field:'additionAmount', width: 100, edit: 'text', title: (data[0].chargeType === 1) ? '续件（件）' : '续重(kg)'},
+			      {field:'additionPrice', width: 130, edit: 'text', title: (data[0].chargeType === 1) ? '续件运费（元）' : '续重运费(元)'},
+			      {field:'freeAmount', width: 100, edit: 'text', title: (data[0].chargeType === 1) ? '包邮（件）' : '包邮(kg)'},
+			      {field:'', title: '操作', width: 240, templet: function(d){
+			      	if(d.isDefault !== true){
+                return (
+                	'<div>'+
+	                  '<button type="button" class="layui-btn layui-btn-small bg-red handleDeleteRegion" data-id="'+ d.id +'"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</button>'+
+	                  '<button type="button" class="layui-btn layui-btn-normal layui-btn-small handleUpdateRegion" data-id="'+ d.id +'" data-region=\''+ d.shippingRegion +'\'><i class="fa fa-edit"></i>&nbsp;&nbsp;编辑</button>'+
+              		'</div>'
+              	);
+              } else {
+              	return '';
+              }
+  					}},
+			    ]],
+        });
+      });
+    }
+		
+		if (qureyId) {
+			woLianw.ajaxFareShow({id: qureyId}, renderDataHtml, "category1Template", "ibox-freightDetail");
+		} else {
+    	renderDataHtml(tableData, "category1Template", "ibox-freightDetail");
+		}
+		
+		/* 切换计价方式 */
+    form.on('radio(chargeType)', function(data){
+    	tableData[0].chargeType = parseInt(data.value);
+			renderDataHtml(tableData, "category1Template", "ibox-freightDetail");  
+		});
+
+    /* 插入区域 */
+    $(document).on('click', '.handleInsertRegion', function(){
+    	layer.open({
+			  type: 1,
+			  title: '为指定地区设置运费',
+			  content: $('#fareArea'),
+			  area: ['800px'],
+			  btn: ['保存', '取消'],
+				yes: function (index, layero){
+					var nowRegion = [];
+					for (var s = 0; s < fareAreaData.length; s++) {
+						var sitem = fareAreaData[s];
+						delete sitem.checked;
+						for (var ss = 0; ss < sitem.Items.length; ss++) {
+							var ssitem = sitem.Items[ss];
+							if (ssitem.checked === true) {
+								ssitem.selected = true;
+								nowRegion.push(ssitem);
+								delete ssitem.checked;
+							}
+						}
+					}
+
+					// console.log(nowRegion);
+					// console.log(fareAreaData);
+
+					if (nowRegion.length < 1) {
+						layer.close(index);
+						return;
+					}
+					
+					var ifyRegion = JSON.stringify(nowRegion);
+					var newItemList = [];
+					for (var s = 0; s < tableData[0].itemList.length; s++) {
+						var sitem = tableData[0].itemList[s];
+						if (sitem.shippingRegion === ifyRegion) {
+							continue;
+						} else if (sitem.shippingRegion !== '' && sitem.shippingRegion !== undefined) {
+							var newRegion = [];
+							var oldRegion = JSON.parse(sitem.shippingRegion);
+							for (var ss = 0; ss < oldRegion.length; ss++) {
+								var ssitem = oldRegion[ss];
+								var reg = new RegExp(ssitem.name);
+								if (!reg.test(ifyRegion)) {
+									newRegion.push(ssitem);
+								}
+							}
+							sitem.shippingRegion = JSON.stringify(newRegion);
+						}
+						if (sitem.shippingRegion !== '[]') {
+							newItemList.push(sitem);
+						}
+					}
+
+					tableData[0].itemList = newItemList;
+
+			    tableData[0].itemList.push({
+            "id": tableData[0].itemList.length + 1,
+            "shippingRegion": ifyRegion,
+            "startAmount": "",
+            "startPrice": "",
+            "additionAmount": "",
+            "additionPrice": "",
+            "freeAmount": "0",
+            "isDefault": false,
+            "templateId": 0
+          });
+
+          tableData[0].name = $('#name').val();
+					tableData[0].remark = $('#remark').val();
+
+					renderDataHtml(tableData, "category1Template", "ibox-freightDetail");
+			    layer.close(index);
+					renderAreaHtml(fareAreaData);
+			  },
+				btn2: function (index, layero){
+					for (var s = 0; s < fareAreaData.length; s++) {
+						var sitem = fareAreaData[s];
+						delete sitem.checked;
+						for (var ss = 0; ss < sitem.Items.length; ss++) {
+							var ssitem = sitem.Items[ss];
+							if (ssitem.checked === true) {
+								delete ssitem.checked;
+							}
+						}
+					}
+
+					renderAreaHtml(fareAreaData);
+				}
+			});
+    });
+
+    /* 删除运费模板 */
+    $(document).on('click', '.handleDeleteRegion', function(){
+      var that = $(this);
+      layer.confirm('确定删除吗?', {icon: 3, title:'提示'}, function(index){
+        var list = tableData[0].itemList;
+        var newlist = [];
+		    for (var i = 0; i < list.length; i++) {
+		    	var item = list[i];
+		    	if (item.id !== that.data('id')) {
+		    		newlist.push(item);
+		    	}
+		    }
+		    tableData[0].itemList = newlist;
+				renderDataHtml(tableData, "category1Template", "ibox-freightDetail");  
+        layer.close(index);
+      });
+    });
+
+    /* 编辑运费模板 */
+    $(document).on('click', '.handleUpdateRegion', function(){
+      var that = $(this);
+      var ifyRegion = JSON.stringify(that.data('region'));
+      var id = that.data('id');
+			
+			for (var s = 0; s < fareAreaData.length; s++) {
+				var sitem = fareAreaData[s];
+				sitem.checked = true;
+				for (var ss = 0; ss < sitem.Items.length; ss++) {
+					var ssitem = sitem.Items[ss];
+					var reg = new RegExp(ssitem.name);
+					if (reg.test(ifyRegion)) {
+						ssitem.checked = true;
+					}
+					if (ssitem.checked !== true) {
+						sitem.checked = false;
+					}
+				}
+			}
+
+			renderAreaHtml(fareAreaData);
+
+      layer.open({
+			  type: 1,
+			  title: '为指定地区设置运费',
+			  content: $('#fareArea'),
+			  area: ['800px'],
+			  btn: ['保存', '取消'],
+				yes: function (index, layero){
+					var nowRegion = [];
+					for (var s = 0; s < fareAreaData.length; s++) {
+						var sitem = fareAreaData[s];
+						delete sitem.checked;
+						for (var ss = 0; ss < sitem.Items.length; ss++) {
+							var ssitem = sitem.Items[ss];
+							if (ssitem.checked === true) {
+								ssitem.selected = true;
+								nowRegion.push(ssitem);
+								delete ssitem.checked;
+							}
+						}
+					}
+
+					// console.log(nowRegion);
+					// console.log(fareAreaData);
+					
+					if (nowRegion.length < 1) {
+						layer.close(index);
+						return;
+					}
+					
+					var ifyRegion = JSON.stringify(nowRegion);
+					var newItemList = [];
+					for (var s = 0; s < tableData[0].itemList.length; s++) {
+						var sitem = tableData[0].itemList[s];
+						
+						if (sitem.id === id) {
+							sitem.shippingRegion = ifyRegion;
+						} else {
+							if (sitem.shippingRegion === ifyRegion) {
+								continue;
+							} else if (sitem.shippingRegion !== '' && sitem.shippingRegion !== undefined) {
+								var newRegion = [];
+								var oldRegion = JSON.parse(sitem.shippingRegion);
+								for (var ss = 0; ss < oldRegion.length; ss++) {
+									var ssitem = oldRegion[ss];
+									var reg = new RegExp(ssitem.name);
+									if (!reg.test(ifyRegion)) {
+										newRegion.push(ssitem);
+									}
+								}
+								sitem.shippingRegion = JSON.stringify(newRegion);
+							}
+						}
+
+						if (sitem.shippingRegion !== '[]') {
+							newItemList.push(sitem);
+						}
+					}
+
+					tableData[0].itemList = newItemList;
+
+					tableData[0].name = $('#name').val();
+					tableData[0].remark = $('#remark').val();
+
+					renderDataHtml(tableData, "category1Template", "ibox-freightDetail");
+			    layer.close(index);
+					renderAreaHtml(fareAreaData);
+			  },
+				btn2: function (index, layero){
+					for (var s = 0; s < fareAreaData.length; s++) {
+						var sitem = fareAreaData[s];
+						delete sitem.checked;
+						for (var ss = 0; ss < sitem.Items.length; ss++) {
+							var ssitem = sitem.Items[ss];
+							if (ssitem.checked === true) {
+								delete ssitem.checked;
+							}
+						}
+					}
+
+					renderAreaHtml(fareAreaData);
+				}
+			});
+    });
+		
+		// 监听表单提交
+    form.on('submit(*)', function(data){
+      // console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+      // console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+      // console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+
+    	var params = data.field;
+    	
+    	for (var s = 0; s < tableData[0].itemList.length; s++) {
+    		var sitem = tableData[0].itemList[s];
+    		if (isNaN(parseInt(sitem.startAmount)) || isNaN(parseInt(sitem.startPrice)) || isNaN(parseInt(sitem.additionAmount)) || isNaN(parseInt(sitem.additionPrice)) || isNaN(parseInt(sitem.freeAmount))) {
+					layer.open({
+					  type: 0, 
+					  title: false,
+					  anim: 6,
+					  icon: 5,
+					  closeBtn: 0,
+					  btn: false,
+					  time: 2000,
+					  content: '运费设置填写错误',
+					});
+					return false;
+    		}
+
+  			delete sitem.id;
+  			delete sitem.LAY_TABLE_INDEX;
+  			// sitem.shippingRegion = (sitem.shippingRegion) ? JSON.stringify(sitem.shippingRegion) : "";
+  			// sitem.shippingRegion = (sitem.shippingRegion) ? '[{"id":1,"name":"北京市"},{"id":2,"name":"上海市"},{"id":3,"name":"天津市"},{"id":4,"name":"重庆市"}]' : "";
+    	}
+			
+			params.templateItems = JSON.stringify(tableData[0].itemList);
+			
+			if (qureyId) {
+      	woLianw.ajaxFareUpdate(params);
+			} else {
+      	woLianw.ajaxFareAdd(params);
+			}
+      return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+    });
+
+    // 监听 - 名称输入框
+    $(document).on('change', '[name="name"]', function(e){
+      tableData[0].name = WidthCheck(this, 24) || this.value;
+      renderDataHtml(tableData, "category1Template", "ibox-freightDetail");  
+    });
+
+    // 监听 - 备注文本框
+    $(document).on('change', '[name="remark"]', function(e){
+      tableData[0].remark = this.value;
+      renderDataHtml(tableData, "category1Template", "ibox-freightDetail");  
+    });
+
+    // 监听单元格编辑
+	  table.on('edit(regionTable)', function(obj){
+	    var value = obj.value //得到修改后的值
+	    ,data = obj.data //得到所在行所有键值
+	    ,field = obj.field; //得到字段
+
+      if (tableData[0].chargeType === 1) {
+        // 数量
+        if (!/^[0-9.]+$/.test(value)) {
+          value = '';
+        } else {
+          value = twoDecimal(value, (field === 'startPrice' || field === 'additionPrice') ? 2 : 0);
+        }
+      } else if (tableData[0].chargeType === 2) {
+        // 重量
+        if (!/^[0-9.]+$/.test(value)) {
+          value = '';
+        } else {
+          value = twoDecimal(value, 2);
+        }
+        console.log(value);
+      }
+      
+      // 续（件/重）不能为 0
+      if (field === 'additionAmount') {
+        value = (value === 0) ? '' : value;
+      }
+
+      // 价格始终保留两位小数
+      if (field === 'startPrice' || field === 'additionPrice') {
+        value = value.toFixed(2);
+      }
+	    
+	    var list = tableData[0].itemList;
+	    for (var i = 0; i < list.length; i++) {
+	    	var item = list[i];
+	    	if (item.id === data.id) {
+	    		item[field] = value;
+	    	}
+	    }
+      
+      renderDataHtml(tableData, "category1Template", "ibox-freightDetail");
+	    // console.log('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
+	  });
+		
+		// 选择区域
+	  form.on('checkbox(area)', function(data){
+		  // console.log(data.elem); //得到checkbox原始DOM对象
+		  // console.log(data.elem.checked); //是否被选中，true或者false
+		  // console.log(data.value); //复选框value值，也可以通过data.elem.value得到
+		  // console.log(data.othis); //得到美化后的DOM对象
+
+		  for (var s = 0; s < fareAreaData.length; s++) {
+				var sitem = fareAreaData[s];
+				if (sitem.BigArea === data.value) {
+					sitem.checked = data.elem.checked;
+
+					for (var ss = 0; ss < sitem.Items.length; ss++) {
+						var ssitem = sitem.Items[ss];
+						ssitem.checked = data.elem.checked;
+					}
+				}
+			}
+
+			renderAreaHtml(fareAreaData);
+		});
+
+		// 选择城市
+	  form.on('checkbox(city)', function(data){
+		  // console.log(data.elem); //得到checkbox原始DOM对象
+		  // console.log(data.elem.checked); //是否被选中，true或者false
+		  // console.log(data.value); //复选框value值，也可以通过data.elem.value得到
+		  // console.log(data.othis); //得到美化后的DOM对象
+			
+			for (var s = 0; s < fareAreaData.length; s++) {
+				var sitem = fareAreaData[s];
+				sitem.checked = true;
+				for (var ss = 0; ss < sitem.Items.length; ss++) {
+					var ssitem = sitem.Items[ss];
+					if (ssitem.id === data.value) {
+						ssitem.checked = data.elem.checked;
+					}
+					if (ssitem.checked !== true) {
+						sitem.checked = false;
+					}
+				}
+			}
+
+			renderAreaHtml(fareAreaData);
+		});
+
+  });
+</script>
+</body>
+</html>

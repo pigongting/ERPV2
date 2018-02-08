@@ -1,0 +1,29 @@
+.station-operate{
+    padding: 20px 50px;
+    border-bottom: 1px solid #e4e4e4;
+}
+.station-operate>div{
+    padding: 10px 0;
+}
+.station-operate input{
+    border: 1px solid #e4e4e4;
+    width: 200px;
+    height: 24px;
+    border-radius: 3px;
+}
+.station-operate .layui-form-select{
+    width: 200px;
+    height: 24px;
+    display: inline-block;
+}
+.station-list{
+    padding: 20px 50px;
+}
+.station-list table thead tr{
+    background-color: #e5e9f2;
+}
+.station-list table thead tr th {
+    border: 0;
+    font-size: 14px;
+    font-weight: bold;
+}

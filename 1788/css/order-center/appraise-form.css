@@ -1,0 +1,94 @@
+#appraiseBox{
+    width: 550px;
+    padding: 20px 0;
+    background-color: #ffffFF;
+}
+#appraiseBox label{
+    width: 110px;
+    padding-top: 0;
+    vertical-align: middle;
+}
+#appraiseBox .layui-input-block {
+    margin-left: 135px;
+}
+
+#appraiseBox .layui-input-block i{
+    cursor: pointer;
+}
+#appraiseBox .layui-input-block i.fa-star{
+    margin-right: 7px;
+    font-size: 20px;
+    color: rgb(247, 186, 42);
+}
+#appraiseBox .layui-input-block i.fa-star-o{
+    margin-right: 7px;
+    font-size: 20px;
+    color: #999999;
+}
+#appraiseBox .img-list{
+    padding: 20px 0;
+    margin: 0;
+    height: 120px;
+}
+#appraiseBox .img-list .img-box{
+    width: 80px;
+    height: 80px;
+    margin-right: 25px;
+    float: left;
+    position: relative;
+    border: 1px solid #e4e4e4;
+}
+#appraiseBox .img-list .img-box i{
+    position: absolute;
+    font-size: 12px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    color: #FFFFff;
+    cursor: pointer;
+    top: -9px;
+    right: -9px;
+    border-radius: 50%;
+    background-color: #ff414e;
+    text-align: center;
+}
+#appraiseBox .img-list img{
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+}
+#appraiseBox button.upload{
+    width: 80px;
+    height: 80px;
+    position: relative;
+    padding: 20px 0 0;
+    text-align: center;
+    background-color: #FFFFff;
+    border: 1px solid #e4e4e4;
+    color: #999999;
+    float: left;
+    margin-right: 20px;
+}
+#appraiseBox button.upload i{
+    font-size: 28px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    margin-left: -14px;
+    font-weight: bold;
+    color: #d4d4d7;
+}
+#appraiseBox .upload-box p{
+    width: 200px;
+    float: left;
+    color: #999999;
+    font-size: 12px;
+    padding-top: 5px;
+}
+#appraiseBox .upload-box{
+    margin-left: 20px;
+    padding: 20px 0;
+}
+#appraiseBox button{
+    margin-right: 115px;
+}

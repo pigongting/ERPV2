@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			<title>我的资金</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="我连网卖家中心-我的资金" />
+		<link rel="stylesheet" href="./plugins/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="./plugins/font-awesome/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="build/css/contentPages.css">
+    <link rel="stylesheet" href="build/css/index.css" />
+	</head>
+	<body -bgcolor="#eee">
+	<div class="seller-header">
+            <span class="layui-breadcrumb">
+              <a href="javascript:;">你当前所在的位置</a>
+              <a href="javascript:;">资金管理</a>
+              <a><cite>我的资金</cite></a>
+            </span>
+	</div>
+		<div class="layui-fluid pl0 pr0">
+
+			<!-- 账户余额 start -->
+			<section class="ibox pdauto">
+				<header class="ibox-title">
+					<div class="layui-row">
+						<div class="layui-col-sm12 layui-col-md12 layui-col-md12">
+							<h1>账户余额</h1>
+						</div>
+					</div>
+				</header>
+				<article class="ibox-content">
+					<div class="layui-row">
+						<div class="layui-col-lg9 layui">
+							<div class="layui-col-lg2">
+								<i class="square-mr10 square-blue"></i>
+								<span class="ibox-attribute">全部余额：</span> 
+								<cite class="ibox-value">￥965.00</cite>
+							</div>
+							<div class="layui-col-lg2">
+								<i class="square-mr10 square-red"></i>
+								<span class="ibox-attribute">锁定余额：</span> 
+								<cite class="ibox-value">￥920300</cite>
+							</div>
+							<div class="layui-col-lg2">
+								<i class="square-mr10 square-green"></i>
+								<span class="ibox-attribute">账户状态：</span>
+								<cite class="ibox-value">有效</cite>
+							</div>
+							<div class="layui-col-lg3">
+								<button class="layui-btn layui-btn-small layui-btn-normal">充值</button>
+								<button class="layui-btn layui-btn-small layui-btn-normal">转账</button>
+								<button class="layui-btn layui-btn-small">提现</button>
+							</div>
+						</div>
+					</div>
+					<div class="layui-row">
+						<div class="layui-col-lg9">
+							<div class="layui-col-lg2">
+								<i class="fa fa-credit-card"></i>
+								<span class="ibox-attribute">银行卡：</span>
+								<cite class="ibox-value">5</cite>
+								<label class="ibox-sets">管理</label>
+							</div>
+						</div>
+					</div>
+				</article>
+			</section>
+			<!-- 账户余额 end -->
+			
+			<!-- 电子对账单 start -->
+			<section class="ibox pdauto">
+				<header class="ibox-title">
+					<div class="layui-row">
+						<div class="layui-col-sm12 layui-col-md12 layui-col-md12">
+							<h1>电子对账单</h1>
+						</div>
+					</div>
+				</header>
+				<article class="ibox-content">
+					<div class="layui-row">
+						<div class="layui-col-lg9">
+							<div class="layui-col-lg6">
+								<div class="layui-form-item">
+						      <label class="layui-form-label">时间：</label>
+						      <div class="layui-input-inline">
+						      	<i class="fa fa-calendar"></i>
+						        <input type="text" class="layui-input" id="date-ymd-start" placeholder="yyyy年MM月dd日">
+						      </div>
+							    <label class="layui-form-label middle-line">—</label>
+						      <div class="layui-input-inline">
+						      	<i class="fa fa-calendar"></i>
+						        <input type="text" class="layui-input" id="date-ymd-end" placeholder="yyyy年MM月dd日">
+						      </div>
+							  </div>
+							</div>
+							<div class="layui-col-lg6">
+								<label class="layui-form-label">最近：</label>
+								<button class="layui-btn layui-btn-mini layui-btn-white">一个月</button>
+								<button class="layui-btn layui-btn-mini layui-btn-white">三个月</button>
+								<button class="layui-btn layui-btn-mini layui-btn-white">半年</button>
+								<button class="layui-btn layui-btn-small layui-btn-normal"><i class="fa fa-search"></i>&nbsp;&nbsp;搜索</button>
+							</div>
+							
+						</div>
+					</div>
+					<div class="layui-row">
+						<div class="layui-col-lg12">
+							<div class="layui-tab layui-tab-brief" lay-filter="docDemoTabBrief">
+							  <ul class="layui-tab-title">
+							    <li class="layui-this">交易记录</li>
+							    <li>充值记录</li>
+							    <li>提现记录</li>
+							    <li>退款记录</li>
+							    <li>转账记录</li>
+							  </ul>
+							  <div class="layui-tab-content" style="height: 200px;">
+							    <div class="layui-tab-item layui-show">
+							    	<!--<table lay-filter="parse_table" lay-data="{url:'datas/money_table.json', id:'parse_table', skin:'line'}"  class="layui-table">
+							    		<thead>
+							    			<tr>
+							    				<th lay-data="{field:'dates', width: '250'}">日期</th>
+										      <th lay-data="{field:'trading', width: '250'}">交易</th>
+										      <th lay-data="{field:'goods-title', width: '550'}">商品</th>
+										      <th lay-data="{field:'results', width: '250'}">结果</th>
+							    			</tr>
+							    		</thead>
+							    	</table>-->
+							    	<table class="layui-table layui-table-line">
+							    		<tr>
+							    			<td>2017-10-1</td>
+							    			<td>交易流水号</td>
+							    			<td>韩璐休闲男装2017新款男士T恤打底衬衣衣服纯色印花长袖男等多件</td>
+							    			<td>交易成功</td>
+							    		</tr>
+							    		<tr>
+							    			<td>2017-10-1</td>
+							    			<td>充值</td>
+							    			<td>韩璐休闲男装2017新款男士T恤打底衬衣衣服纯色印花长袖男等多件</td>
+							    			<td>交易成功</td>
+							    		</tr>
+							    		<tr>
+							    			<td>2017-10-1</td>
+							    			<td>交易流水号</td>
+							    			<td>韩璐休闲男装2017新款男士T恤打底衬衣衣服纯色印花长袖男等多件</td>
+							    			<td>交易失败</td>
+							    		</tr>
+							    		<tr>
+							    			<td>2017-10-1</td>
+							    			<td>充值</td>
+							    			<td>韩璐休闲男装2017新款男士T恤打底衬衣衣服纯色印花长袖男等多件</td>
+							    			<td>交易失败</td>
+							    		</tr>
+							    	</table>
+							    </div>
+							    <div class="layui-tab-item">内容2</div>
+							    <div class="layui-tab-item">内容3</div>
+							    <div class="layui-tab-item">内容4</div>
+							    <div class="layui-tab-item">内容5</div>
+							  </div>
+							</div> 
+						</div>
+					</div>
+				</article>
+			</section>
+			<!-- 电子对账单 end -->
+			
+		</div> 
+		
+		
+		
+		
+		
+		
+		
+		<script src="./plugins/layui/layui.js"></script>
+		<script>
+			//JavaScript代码区域
+			layui.use(['element', 'laydate', 'table', 'form','laypage'], function(){
+			  var form = layui.form,
+			  		$ = layui.jquery,	
+			  	  layer = layui.layer,
+			  	  laydate = layui.laydate,
+			  	  table = layui.table,
+				  laypage=layui.laypage;
+			  	  
+			  	  //自定义格式
+					  laydate.render({
+					    elem: '#date-ymd-start',
+					    format: 'yyyy年MM月dd日'
+					  });
+					  laydate.render({
+					    elem: '#date-ymd-end',
+					    format: 'yyyy年MM月dd日'
+					  });
+					  
+						
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,28 @@
+#detailContent ul {
+    padding: 40px 50px;
+}
+
+#detailContent ul .item {
+    padding: 10px 0;
+}
+
+#addEditContent .layui-form {
+    padding: 0 50px;
+}
+
+#modifyPassword .layui-form {
+    padding: 0 50px;
+}
+
+.mylaybox button{
+    padding: 0 15px;
+    height: 26px;
+    line-height: 26px;
+    font-size: 12px;
+}
+
+.container:after {
+  content: '';
+  display: block;
+  clear: both;
+}

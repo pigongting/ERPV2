@@ -1,0 +1,187 @@
+.live-stream{
+    height: 470px;
+    padding: 30px 20px 70px;
+}
+.live-stream .live-stream-left{
+    height: 370px;
+    width: 370px;
+    float: left;
+}
+.live-stream .live-stream-left .live-stream-content{
+    height: 333px;
+    width: 370px;
+    position: relative;
+    background-color: #999999;
+}
+.live-stream .live-stream-left  .live-stream-content .live-stream-img{
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+.live-stream .live-stream-left .live-stream-content .live-stream-img img{
+    height: 333px;
+    width: 370px;
+}
+.live-stream .live-stream-content .live-stream-head-picture{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: absolute;
+    left: 10px;
+    top: -20px;
+    z-index: 90;
+}
+.live-stream  .live-stream-content .live-stream-head-picture img{
+    width: 40px;
+    height: 40px;
+}
+
+.live-stream .live-stream-left .live-stream-content .live-stream-adress{
+    display: block;
+    width: 370px;
+    height: 333px;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+}
+.live-stream .live-stream-left .live-stream-content .live-stream-adress .live-stream-video{
+    width: 80px;
+    height:80px;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -40px;
+    margin-top: -40px;
+    z-index: 60;
+}
+.live-stream .live-stream-left .live-stream-content .live-stream-adress .live-stream-video img{
+    width: 80px;
+    height: 80px;
+}
+.live-stream .live-stream-left .live-stream-content p.live-stream-title{
+    height: 26px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    padding-left: 50px;
+    font-size: 14px;
+    line-height: 26px;
+    z-index: 50;
+    background: -ms-linear-gradient(left, rgba(63,45,40,0.9),  rgba(108,109,112,0.4));        /* IE 10 */
+
+    background:-moz-linear-gradient(left,rgba(63,45,40,0.9),rgba(108,109,112,0.4));/*火狐*/
+
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(rgba(63,45,40,0.9)), to(rgba(108,109,112,0.4)));/*谷歌*/
+
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(63,45,40,0.9)), to(rgba(108,109,112,0.4)));      /* Safari 4-5, Chrome 1-9*/
+
+    background: -webkit-linear-gradient(left, rgba(63,45,40,0.9), rgba(108,109,112,0.4));   /*Safari5.1 Chrome 10+*/
+
+    background: -o-linear-gradient(left, rgba(63,45,40,0.9), rgba(108,109,112,0.4));  /*Opera 11.10+*/
+}
+.live-stream  .live-stream-footer{
+    height: 40px;
+    padding: 9px 0px;
+}
+.live-stream  .live-stream-footer a.viewer-number{
+    display: block;
+    height: 22px;
+    font-size: 14px;
+    line-height: 22px;
+    float: right;
+    text-align: right;
+}
+.live-stream  .live-stream-footer a.wolian-live-streaming-address{
+    display: block;
+    width: 57px;
+    height: 22px;
+    border-radius: 4px;
+    float: left;
+    background-image: url("./../../img/live-stream.png");
+    background-repeat: no-repeat;
+}
+.live-stream .live-stream-right{
+    float: right;
+    width: 790px;
+    height: 370px;
+}
+.live-stream .live-stream-right ul li{
+    width: 220px;
+    height: 185px;
+    float: left;
+    margin: 0px 10px 15px 30px;
+}
+.live-stream .live-stream-right ul li .live-stream-content{
+    height: 134px;
+    width: 220px;
+    position: relative;
+    background-color: #999999;
+}
+.live-stream .live-stream-right ul li .live-stream-content .live-stream-img{
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+.live-stream .live-stream-right ul li .live-stream-content .live-stream-img img{
+    height: 134px;
+    width: 220px;
+}
+.live-stream .live-stream-right ul li .live-stream-content .live-stream-adress{
+    display: block;
+    width: 220px;
+    height: 134px;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+}
+.live-stream .live-stream-right ul li .live-stream-content .live-stream-adress .live-stream-video{
+    width: 50px;
+    height:50px;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -25px;
+    margin-top: -25px;
+    z-index: 60;
+}
+.live-stream .live-stream-right ul li .live-stream-content .live-stream-adress .live-stream-video img{
+    width: 50px;
+    height: 50px;
+}
+.live-stream .live-stream-right ul li .live-stream-content p.live-stream-title{
+    height: 20px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    color: #fff;
+    padding-left: 50px;
+    font-size: 12px;
+    line-height: 20px;
+    z-index: 50;
+    background: -ms-linear-gradient(left, rgba(63,45,40,0.9),  rgba(108,109,112,0.4));        /* IE 10 */
+
+    background:-moz-linear-gradient(left,rgba(63,45,40,0.9),rgba(108,109,112,0.4));/*火狐*/
+
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(rgba(63,45,40,0.9)), to(rgba(108,109,112,0.4)));/*谷歌*/
+
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(63,45,40,0.9)), to(rgba(108,109,112,0.4)));      /* Safari 4-5, Chrome 1-9*/
+
+    background: -webkit-linear-gradient(left, rgba(63,45,40,0.9), rgba(108,109,112,0.4));   /*Safari5.1 Chrome 10+*/
+
+    background: -o-linear-gradient(left, rgba(63,45,40,0.9), rgba(108,109,112,0.4));  /*Opera 11.10+*/
+}
+.live-stream .live-stream-right ul li
+.live-stream .live-stream-right ul li
+.live-stream .live-stream-right ul li
+.live-stream .live-stream-right ul li
+.live-stream .live-stream-right ul li
+.live-stream .live-stream-right ul li
+.live-stream .live-stream-right ul li
+.live-stream .live-stream-right ul li

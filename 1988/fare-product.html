@@ -1,0 +1,530 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>关联商品列表</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="stylesheet" href="./plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="./plugins/font-awesome/font_399839_u0h8dbd9lu4pwrk9/iconfont.css">
+    <link rel="stylesheet" href="./build/css/main.css">
+    <link rel="stylesheet" href="./build/css/order-tobe-accept.css">
+    <link rel="stylesheet" href="./build/css/popup.css">
+    <!--<link rel="stylesheet" href="./build/css/product-list.css">-->
+    <link rel="stylesheet" href="./build/css/fare-product.css">
+
+</head>
+<body>
+<div class="seller-header">
+            <span class="layui-breadcrumb">
+              <a href="javascript:;">你当前所在的位置</a>
+              <a href="javascript:;">物流设置</a>
+              <a><cite>关联商品</cite></a>
+            </span>
+</div>
+<div class="main ">
+    <div class="back-order-operate layui-row">
+        <form action="" class="layui-form">
+            <div class="layui-form-item layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <label class="layui-form-label ">商品名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="keyword" id="keyword"  placeholder="请输入商品名称" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+
+            <div class="layui-form-item layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <label class="layui-form-label">运费类型</label>
+                <div class="layui-input-block">
+                    <select name="freightType"  id="freightType" lay-filter="freightType">
+                        <option value="">请选择</option>
+                        <option value="0">卖家承担运费</option>
+                        <option value="1">使用运费模板</option>
+                        <option value="2">运费到付</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12" id="templateBox">
+                <label class="layui-form-label">运费模板</label>
+                <div class="layui-input-block">
+                    <select name="templateId" id="templateId" disabled>
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="button-list layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <button type="button" lay-filter="search" class="layui-btn search-btn" lay-submit>
+                    <i class="layui-icon iconfont">&#xe620;</i>查询
+                </button>
+                <input type="button" id="editAll" value="批量修改运费设置">
+            </div>
+        </form>
+    </div>
+    <div class="back-order-list">
+        <table>
+            <thead>
+                <tr>
+                    <th><input type="checkbox" id="allCheck">全选</th>
+                    <th>商品图片</th>
+                    <th>商品名称</th>
+                    <th>单位</th>
+                    <th>单位重量(kg)</th>
+                    <th>运费类型</th>
+                    <th>运费模板</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody id="productBox">
+            <!--<tr>
+                <td><input type="checkbox"></td>
+                <td><img src="./build/images/sasw(3).png" alt=""></td>
+                <td><p><a href="" class="product-link">通版 4GB+64GB 浅蓝色 移动联通电信4G手机小</a></p></td>
+                <td>件</td>
+                <td><input type="text" value="1.0" readonly><a href="" class="blue">保存</a><span class="cut-line">|</span><a href="" class="blue">取消</a><a href="" class="blue">编辑</a></td>
+                <td>运费到付</td>
+                <td>顺丰快递，按重量计算</td>
+                <td><button class="layui-btn layui-btn-mini">修改运费设置</button></td>
+            </tr>-->
+            </tbody>
+        </table>
+    </div>
+    <div id="pageBox"></div>
+
+</div>
+
+<script src="./plugins/layui/layui.js"></script>
+<script src="./build/js/wolianwComponent/config.js"></script>
+
+<script type="text/html" id="productTemplate">
+    {{# if(d.data.list.length == 0){ }}
+    <tr style="height: 50px">
+        <td colspan="8" style="text-align: center;height: 50px;">暂无匹配的数据记录</td>
+    </tr>
+    {{# } }}
+    {{# if(d.data.list.length != 0){ }}
+    {{# layui.each(d.data.list,function(index,item){ }}
+    <tr data-id="{{ item.id ? item.id : '' }}">
+        <td><input type="checkbox"></td>
+        <td><img src="{{=layui.woLianw.getImgUrl(item.pictureUrl)}}" alt=""></td>
+        <td><p><a href="javascript:;" class="product-link">{{ item.name ? item.name : '' }}</a></p></td>
+        <td>{{ item.unitName ? item.unitName : '' }}</td>
+        <td>
+            <input class="weightInput layui-input-inline" type="text"  value="{{ (item.weight != undefined) ? item.weight : 0 }}" readonly>
+            <a href="javascript:;" class="blue save-b no-block">保存</a>
+            <span class="cut-line no-block">|</span>
+            <a href="javascript:;" class="blue cancle-b no-block">取消</a>
+            <a href="javascript:;" class="blue edit-b">编辑</a></td>
+        <td>
+            <!--{{# if(0 == item.freightType){  }}
+            包邮
+            {{# } }}
+            {{# if(1 == item.freightType){  }}
+            使用运费模板
+            {{# } }}
+            {{# if(2 == item.freightType){  }}
+            运费到付
+            {{# } }}-->
+            {{ item.freightTypeName ? item.freightTypeName : '' }}
+        </td>
+        <td>
+            {{ item.fareTemplateName ? item.fareTemplateName : '' }}
+            {{# layui.each(d.fareSelect.list,function(index1,item1){ }}
+            <!--{{ (item1.id == item.fareTemplateId) ? item1.name : '' }}-->
+            {{# if(item1.id == item.fareTemplateId){ }}
+            <input type="hidden" value="{{ item1.chargeType }}" class="chargeType">
+            {{# } }}
+            {{# }) }}
+        </td>
+        <td><button class="layui-btn layui-btn-mini edit-fareTemplate">修改运费设置</button></td>
+    </tr>
+    {{# }) }}
+    {{# } }}
+</script>
+<script type="text/html" id="fareTemplate">
+    <div id="fareBox">
+        <form action="" class="layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">运费类型</label>
+                <div class="layui-input-block">
+                    <select name="freightType" lay-verify="required"  id="freightType1" lay-filter="freightType1">
+                        <option value="">请选择</option>
+                        <option value="0">卖家承担运费</option>
+                        <option value="1">使用运费模板</option>
+                        <option value="2">运费到付</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item" id="templateBox1">
+                <label class="layui-form-label">运费模板</label>
+                <div class="layui-input-block">
+                    <select name="templateId" id="templateId1" disabled>
+                        <option value="">-请选择-</option>
+                      {{# if(d.data){ }}
+                        {{# layui.each(d.data.list,function(index,item){  }}
+                        {{# if(!d.isWeight){ }}
+                        {{# if(item.chargeType ==2){ }}
+                        <option value="{{ item.id }}" disabled>{{ item.name }}(重量为0不能使用按重计算)</option>
+                        {{# } }}
+                        {{# if(item.chargeType !=2){ }}
+                        <option value="{{ item.id }}">{{ item.name }}</option>
+                        {{# } }}
+
+                        {{# } }}
+
+                        {{# if(d.isWeight){ }}
+                        <option value="{{ item.id }}">{{ item.name }}</option>
+                        {{# } }}
+
+                        {{# }) }}
+                      {{# } }}
+                    </select>
+                </div>
+                <input type="hidden" value="{{ d.productIds }}" name="productIds">
+            </div>
+
+            <div class="button-list ">
+                <button type="button" lay-filter="saveInfo" class="layui-btn" lay-submit>
+                    保存
+                </button>
+                <button type="button"  id="cancleBtn" class="layui-btn">
+                    取消
+                </button>
+            </div>
+        </form>
+    </div>
+</script>
+
+
+<script>
+    layui.use(['element','form','laydate','laytpl','jquery','layer','woLianw','laypage'],function () {
+        var element=layui.element
+        var form=layui.form
+        var laydate=layui.laydate
+        var laytpl=layui.laytpl
+        var $=layui.$
+        var layer=layui.layer
+        var woLianw = layui.woLianw
+        var laypage = layui.laypage
+        var curScreen = {}
+        var index
+
+        woLianw.getFareList(function (data) {
+            window.sessionStorage.setItem('fareList',JSON.stringify(data))
+        })
+
+        /*获取运费模板下拉选择数据*/
+        woLianw.ajaxFareSelect(function (data) {
+            window.sessionStorage.setItem('fareSelect',JSON.stringify(data))
+            var html='<option value="">请选择</option>'
+            $.each(data.list,function (index,item) {
+                html+='<option value="'+item.id+'">'+item.name+'</option>'
+            })
+            $('#templateId').html(html)
+            form.render()
+        })
+
+        /*进入页面首次请求全部数据*/
+        woLianw.fareProductList(curScreen,function (response) {
+            renderPage(response)
+            console.log( JSON.parse(window.sessionStorage.getItem('fareSelect')))
+            renderTemplate({
+                data:response,
+                fareSelect: JSON.parse(window.sessionStorage.getItem('fareSelect'))
+            },'productTemplate','productBox')
+        })
+
+        /*选择运费类型下拉框，如果选择‘使用运费模板’，则显示运费模板下拉选择框*/
+        form.on('select(freightType)', function(data){
+            if(data.value == 1){
+                $('#templateBox').css('display','block').find('#templateId').removeAttr('disabled').attr('lay-verify','required').attr('name','templateId')
+                form.render()
+            }else {
+                $('#templateBox').css('display','none').find('#templateId').attr('disabled',true).removeAttr('lay-verify').removeAttr('name')
+                form.render()
+            }
+        });
+
+        /*条件查询*/
+        form.on('submit(search)', function(data){
+
+            woLianw.fareProductList(data.field,function (response) {
+                for(var k in data.field){
+                    curScreen[k] = data.field[k]
+                }
+                renderPage(response)
+                renderTemplate({
+                    data:response,
+                    fareSelect:JSON.parse(window.sessionStorage.getItem('fareSelect'))
+                },'productTemplate','productBox')
+            })
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        /*点击编辑*/
+        $('#productBox').on('click','.edit-b',function () {
+            var _this = this
+            var value = $(_this).parent().find('input.weightInput').val()
+            $(_this).parent().find('input.weightInput').attr('data-value',value)
+            $(_this).addClass('no-block').parent().find('.save-b,.cancle-b,.cut-line').removeClass('no-block')
+            $(_this).parent().find('input.weightInput').addClass('editing').removeAttr('readonly')
+        })
+        /*点击保存*/
+        $('#productBox').on('click','.save-b',function () {
+            var _this = this
+            var id = $(_this).parent().parent().attr('data-id')
+            var weight = $(_this).parent().find('.weightInput').val()
+            var reg = /^\d+(\.\d+)?$/;
+            if((weight == undefined) && (weight == null) && (weight == '')){
+                layer.alert('请先填写商品重量！')
+                return false
+            }
+            if(!reg.test(weight)){
+                layer.alert('重量不能填写非数字!')
+                return false
+            }
+            if(($(_this).parent().parent().find('.chargeType').val() == 2) && (weight == 0)){
+                layer.alert('按重计算的商品，重量不能为0!')
+                return false
+            }
+            if((id != undefined) && (id != null) && (id != '')){
+                layer.confirm('确定保存修改的商品重量吗？', {
+                    btn: ['确定','取消'] //按钮
+                }, function(index){
+                    woLianw.productUpdate({
+                        id:id,
+                        weight: weight
+                    },function (msg) {
+                        layer.msg(msg)
+                        $(_this).addClass('no-block').parent().find('.cancle-b,.cut-line').addClass('no-block')
+                        $(_this).parent().find('.edit-b').removeClass('no-block')
+                        $(_this).parent().find('input.weightInput').removeClass('editing').attr('readonly',true)
+                        layer.close(index)
+                    })
+
+                }, function(){
+
+                });
+            }
+        })
+
+        /*点击取消*/
+        $('#productBox').on('click','.cancle-b',function () {
+            var _this = this
+            $(_this).parent().find('input.weightInput').val($(_this).parent().find('input.weightInput').attr('data-value'))
+            $(_this).addClass('no-block').parent().find('.save-b,.cut-line').addClass('no-block')
+            $(_this).parent().find('.edit-b').removeClass('no-block')
+            $(_this).parent().find('input.weightInput').removeClass('editing').attr('readonly',true)
+        })
+
+        /*选择单个商品*/
+        $('#productBox').on('click','input[type=checkbox]',function () {
+            $('#allCheck')[0].checked = getCheckData().isAllChecked
+        })
+
+        /*全选与反选*/
+        $('#allCheck').on('click',function () {
+            var _this = this
+            $.each($('#productBox').find('input[type=checkbox]'),function (index,item) {
+                $(item)[0].checked = $(_this)[0].checked
+            })
+
+        })
+
+        /*点击设置运费*/
+        $('#productBox').on('click','.edit-fareTemplate',function () {
+            var _this = this
+            var id = $(_this).parent().parent().attr('data-id')
+            var template = document.getElementById('fareTemplate').innerHTML
+            var chargeType = $(_this).parent().parent().find('.chargeType').val()
+            var selectData = JSON.parse(window.sessionStorage.getItem('fareSelect'))
+            var isWeight = true
+            if ($(_this).parent().parent().find('input.weightInput').val() == 0){
+                isWeight = false
+            }
+            console.log(isWeight)
+            laytpl(template).render({
+                data:selectData,
+                productIds:id,
+                chargeType:chargeType,
+                isWeight:isWeight
+            },function (html) {
+                index=layer.open({
+                    title:'设置商品运费模板',
+                    content:html,
+                    btn:0,
+                    area:['500px','450px'],
+                    success:function () {
+                        form.render()
+                    }
+                })
+            })
+
+        })
+
+        /*（设置）选择运费模板下拉*/
+        form.on('select(freightType1)', function(data){
+            console.log(data.value)
+            if(data.value == 1){
+                $('#templateId1').removeAttr('disabled').attr('lay-verify','required')
+                form.render()
+            }else {
+                $('#templateId1').attr('disabled',true).removeAttr('lay-verify')
+                form.render()
+            }
+        });
+
+        /*点击保存运费设置*/
+        form.on('submit(saveInfo)', function(data){
+            console.log(data.field)
+            if(data.field.freightType == 1){
+                woLianw.fareAppointFare({
+                    freightType:data.field.freightType,
+                    templateId:data.field.templateId,
+                    productIds:data.field.productIds
+                },function (msg) {
+                    layer.msg(msg)
+                    layer.close(index)
+                    woLianw.fareProductList(curScreen,function (response) {
+                        renderPage(response)
+                        renderTemplate({
+                            data:response,
+                            fareSelect: JSON.parse(window.sessionStorage.getItem('fareSelect'))
+                        },'productTemplate','productBox')
+                    })
+                })
+            }else{
+                woLianw.fareAppointFare({
+                    freightType:data.field.freightType,
+                    productIds:data.field.productIds
+                },function (msg) {
+                    layer.msg(msg)
+                    layer.close(index)
+                    woLianw.fareProductList(curScreen,function (response) {
+                        renderPage(response)
+                        renderTemplate({
+                            data:response,
+                            fareSelect: JSON.parse(window.sessionStorage.getItem('fareSelect'))
+                        },'productTemplate','productBox')
+                    })
+                })
+            }
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        /*批量修改运费设置*/
+        $('#editAll').on('click',function () {
+            var _this = this
+            if(getCheckData().productArr.length == 0){
+                layer.alert('请先勾选商品!')
+                return false
+            }else{
+                var template = document.getElementById('fareTemplate').innerHTML
+                var selectData = JSON.parse(window.sessionStorage.getItem('fareSelect'))
+                console.log(getCheckData().isWeight)
+                laytpl(template).render({
+                    data:selectData,
+                    productIds: getCheckData().productArr.join(','),
+                    isWeight:getCheckData().isWeight
+                },function (html) {
+                    index=layer.open({
+                        title:'设置商品运费模板',
+                        content:html,
+                        btn:0,
+                        area:['500px','450px'],
+                        success:function () {
+                            form.render()
+                        }
+                    })
+                })
+            }
+        })
+
+        /*点击取消，关闭弹框*/
+        $('body').on('click','#cancleBtn',function () {
+            layer.close(index)
+        })
+
+        /*分页控件配置*/
+        function renderPage(data) {
+            laypage.render({
+                elem: 'pageBox'
+                ,count: data.total
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,limits:[15, 25, 35]
+                ,limit:15
+                ,curr: location.hash.replace('#!page=', '') //获取起始页
+                ,hash: 'page' //自定义hash值
+                ,jump: function(obj,first){
+                    //obj包含了当前分页的所有参数，比如：obj.curr得到当前页，以便向服务端请求对应页的数据。obj.limit得到每页显示的条数
+
+                    //首次不执行
+                    if(!first){
+                        //搜集表单数据和分页信息
+                        var data={
+                            keyword: $('#keyword').val() || '',
+                            templateId: $('#templateId').val() || '',
+                            freightType:$('#freightType').val() || '',
+                            page:obj.curr,
+                            limit:obj.limit
+                        }
+                        curScreen.page = obj.curr
+                        curScreen.limit = obj.limit
+
+                        woLianw.fareProductList(curScreen,function (response) {
+                            renderTemplate({
+                                data:response,
+                                fareSelect:JSON.parse(window.sessionStorage.getItem('fareSelect'))
+                            },'productTemplate','productBox')
+                        })
+                    }
+                }
+            });
+        }
+        /*数据渲染模板*/
+        function renderTemplate(data,templateId,targetId) {
+            $('#allCheck')[0].checked = false
+            var template=document.getElementById(templateId).innerHTML
+            var target=document.getElementById(targetId)
+            laytpl(template).render(data,function (html) {
+                target.innerHTML=html
+            })
+        }
+
+        function getCheckData() {
+            var length = $('#productBox').find('tr input[type=checkbox]').length
+            var count = 0
+            var checkedArr = []
+            var isWeight = true
+            $.each($('#productBox').find('tr input[type=checkbox]'),function (index,item) {
+                if($(this)[0].checked){
+                    count ++
+                    checkedArr.push($(this).parent().parent().attr('data-id'))
+                    if($(this).parent().parent().find('input.weightInput').val() == 0){
+                        isWeight = false
+                    }
+
+                }
+            })
+            if(count == length){
+                return {
+                    isAllChecked: true,
+                    productArr:checkedArr,
+                    isWeight:isWeight
+                }
+            }else{
+                return {
+                    isAllChecked: false,
+                    productArr:checkedArr,
+                    isWeight:isWeight
+                }
+            }
+        }
+    })
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+</html>
+

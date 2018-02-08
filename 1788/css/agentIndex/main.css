@@ -1,0 +1,218 @@
+*{
+    box-sizing: border-box;
+    font-family: "MicrosoftYaHei";
+}
+body{
+    background-image: url("./../../img/bg.png");
+    background-repeat: no-repeat;
+    background-position: -800px 0px ;
+}
+.container{
+    width: 1200px;
+    margin: 0 auto;
+}
+ .layui-header{
+    background-color: transparent;
+}
+ .layui-header ul.layui-nav{
+    background-color: transparent;
+}
+ .layui-header  ul .layui-nav-bar{
+     display: none !important;
+     background-color: transparent;
+ }
+ .layui-header .layui-header-right ul.layui-nav{
+    padding-right: 0;
+}
+ .layui-header ul.layui-nav li:last-of-type{
+    margin-right: 0 !important;
+}
+ .layui-header ul.layui-nav li.layui-nav-item i,
+ .layui-header ul.layui-nav li.layui-nav-item a,
+ .layui-header ul.layui-nav li.layui-nav-item span{
+    color: #fff;
+}
+ .layui-header ul.layui-nav li.layui-nav-item a span.layui-nav-more{
+     border-width: 4px;
+    border-color: #fff rgba(255,255,255,0) rgba(255,255,255,0);
+    background-color: rgba(255,255,255,0);
+}
+.layui-header ul.layui-nav li.layui-nav-item a span.layui-nav-mored{
+    border-width: 4px;
+    border-color: rgba(255,255,255,0) rgba(255,255,255,0) #fff rgba(255,255,255,0);
+    background-color: rgba(255,255,255,0);
+}
+ .layui-header ul.layui-nav li.layui-nav-item dl{
+    background-color: #fd8462;
+     top: 35px;
+}
+ .layui-header ul.layui-nav li.layui-nav-item dl dd:hover,
+ .layui-header ul.layui-nav li.layui-nav-item dl dd:hover a{
+     background-color: #fb705a;
+ }
+ .layui-header ul.layui-nav .layui-nav-child dd.layui-this,
+ .layui-header ul.layui-nav .layui-nav-child dd.layui-this a{
+     background-color: #fb705a;
+ }
+ .layui-header ul.layui-nav li.layui-nav-item dl dd a{
+    color: #fff;
+    width: 100%;
+}
+ .layui-header ul.layui-nav li.layui-nav-item dl a:hover{
+    background-color: #909090;
+}
+.special-column-title{
+    height: 100px;
+    width: 100%;
+}
+/*我连优选*/
+.wlw-recommend{
+    background-color: #f0f1f7;
+}
+.wolian-recommend{
+    height: 100px;
+    background-image: url("./../../img/lALPBbCc1Vx4dCMtzQGa_410_45.png");
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+}
+/*我连优选*/
+
+.cur-price{
+    font-size: 16px;
+    font-weight: bold;
+    width: 50%;
+    color: #f95a4f;
+    padding: 5px 0 5px 10px;
+    float: left;
+    text-align: left;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    display: block;
+    white-space: nowrap;
+}
+.original-price{
+    display: block;
+    width: 50%;
+    font-size: 14px;
+    color: #999999;
+    text-decoration: line-through;
+    padding: 5px 10px 5px 0px;
+    float: right;
+    text-align: right;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.product-tag{
+    height: 42px;
+    padding: 10px 15px;
+}
+.product-tag span{
+    display: block;
+    float: left;
+    margin-right: 5px;
+}
+.product-tag span.free-shipping{
+    background-image: url("./../../img/free-shipping.png");
+    width: 40px;
+    height: 20px;
+}
+.product-tag span.wolian-self-support{
+    background-image: url("./../../img/self-support.png");
+    width: 60px;
+    height: 20px;
+}
+
+
+
+/*预售专场的整体风格设置开始*/
+.yuShouBg,.woliantj{
+    background-color: #fff;
+}
+.advance-sale{
+    background-color: #fff;
+}
+.advance-sale .container{
+    background-image: url("./../../img/title_yusouzhuanchang.png");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+#yuShouSpecial,#wolianTuiJian{
+
+    background: -ms-linear-gradient(top, #fecf6a,  #fff);        /* IE 10 */
+
+    background:-moz-linear-gradient(top,#fecf6a,#fff);/*火狐*/
+
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#fecf6a), to(#fff));/*谷歌*/
+
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fecf6a), to(#fff));      /* Safari 4-5, Chrome 1-9*/
+
+    background: -webkit-linear-gradient(top, #fecf6a, #fff);   /*Safari5.1 Chrome 10+*/
+
+    background: -o-linear-gradient(top, #fecf6a, #fff);  /*Opera 11.10+*/
+}
+/*预售专场的整体风格设置结束*/
+
+
+
+
+/*特价专场的整体风格设置开始*/
+.offerBg{
+    background-color: #f0f1f7;
+}
+.special-offer{
+    background-color: #f0f1f7;
+}
+.special-offer .container{
+    background-image: url("./../../img/title_tejiazhuanchang.png");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+#specialOffer{
+    background: -ms-linear-gradient(top, #fd8c97,  #fbf4f5);        /* IE 10 */
+
+    background:-moz-linear-gradient(top,#fd8c97,#fff);/*火狐*/
+
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#fd8c97), to(#fbf4f5));/*谷歌*/
+
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fd8c97), to(#fbf4f5));      /* Safari 4-5, Chrome 1-9*/
+
+    background: -webkit-linear-gradient(top, #fd8c97, #fbf4f5);   /*Safari5.1 Chrome 10+*/
+
+    background: -o-linear-gradient(top, #fd8c97, #fbf4f5);  /*Opera 11.10+*/
+}
+/*特价专场的整体风格设置结束*/
+
+
+/*我连直播的整体风格设置开始*/
+.wolian-live-streaming{
+    background-color: #fff;
+}
+.wolian-live-streaming .container{
+    background-image: url("./../../img/title_wolianzhibo.png");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+/*我连直播的整体风格设置结束*/
+
+.big-container{
+    box-shadow: 0px 0px 10px 5px rgba(236,106,93,0.16);
+    width: 1200px;
+    height: 350px;
+    margin: 0 auto;
+}
+#headerRight .layui-nav .layui-this:after, .layui-nav-bar,#headerRight .layui-nav-tree .layui-nav-itemed:after{
+    display: none;
+}
+#headerRight ul li img{
+    margin-right: 2px;
+}
+/*我连推荐的整体风格*/
+.wolian-live-streaming{
+    background-color: #fff;
+}
+.woliantj .container{
+    background-image: url("./../../img/title_woliantuijian.png");
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}

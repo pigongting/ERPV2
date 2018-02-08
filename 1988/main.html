@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+			<title>我的工作台</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="我连网卖家中心-我的工作台" />
+		<link rel="stylesheet" href="./plugins/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="./plugins/font-awesome/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="build/css/contentPages.css">
+    <link rel="stylesheet" href="build/css/index.css" />
+    <link rel="stylesheet" href="build/css/main.css" />
+		<link rel="stylesheet" href="build/css/qrcode/qrcode.css">
+	</head>
+	<body bgcolor="#eff3f9">
+
+		<div class="seller-header">
+      <span class="layui-breadcrumb">
+        <a href="javascript:;">你当前所在的位置</a>
+        <a><cite>我的工作台</cite></a>
+      </span>
+		</div>
+		<div class="layui-fluid pl0 pr0" >
+			<!--  start -->
+			<section class="ibox" style="/*padding: 5px 20px;*/">
+				<header class="ibox-title">
+					<div class="layui-row">
+						<div class="layui-col-lg4 layui-col-md12 layui-col-sm12 layui-col-xs12 border-right-dashed" style="height:170px;">
+							<div class="user-box">
+								<a href="main.html" target="_top">
+									<img src="build/images/user.png" class="user-img" id="logoUrl" />
+								</a>
+							</div>
+							<div class="ibox-text">
+								<label class="line-text layui-elip" title="" id="companyNameTitle">
+									<span class="ibox-attribute"></span>
+									<cite class="ibox-value" id="companyName" style="font-weight: bold"></cite>
+								</label>
+								<label class="line-text layui-elip" title="全部">
+									<span class="ibox-attribute">主营范围：</span>
+									<cite class="ibox-value">全部</cite>
+								</label>
+								<label class="line-text line-flex">
+									<a href="javascripa:;" class="icon-i" title="">
+										<!--<i class="fa fa-map-marker marker"></i>-->
+										<img src="build/images/local_icon.png" id="marker" alt="">
+										<input type="button" value="" />
+									</a>
+									<a href="javascripa:;" class="icon-i">
+										<!--<i class="fa fa-mobile mobile"></i>-->
+										<img src="build/images/dianhua_icon.png" id="mobile" alt="">
+										<input type="button" value="手机" />
+									</a>
+									<a href="javascripa:;" class="icon-i">
+										<!--<i class="fa fa-comment-o weixin"></i>-->
+										<img src="build/images/rengezhongxin_cion.png" id="userName" alt="">
+										<input type="button" value="我信" />
+									</a>
+									<a href="verdonHome.html" class="icon-i"target="_self">
+										<!--<i class="fa fa-home home"></i>-->
+										<img src="build/images/shiliangzhineng.png" id="home"  alt="">
+										<input type="button" value="主页" />
+									</a>
+								</label>
+							</div>
+						</div>
+						<div class="layui-col-lg4 layui-col-md6 layui-col-sm12 layui-col-xs12 border-right-dashed">
+							<div class="lineBox line-flex">
+								<label class="listLine">
+									<span class="listIcon color-blue"><i class="fa fa-list-alt"></i></span>
+									<span class="listText">订单</span>
+								</label>
+								<label class="listLine">
+									<a href="order-tobe-accepted.html">
+										<span class="listIcon color-red"><b id="unReceive">0</b></span>
+										<span class="listText">待接单</span>
+									</a>
+								</label>
+								<label class="listLine">
+									<a href="back-order.html">
+										<span class="listIcon color-red"><b id="unSend">0</b></span>
+										<span class="listText">待发货</span>
+									</a>
+								</label>
+								<label class="listLine">
+									<a href="order-all.html">
+										<span class="listIcon"><b id="allOrder">0</b></span>
+										<span class="listText">全部订单</span>
+									</a>
+								</label>
+								<label class="listLine">
+									<span class="listIcon"><b></b></span>
+									<span class="listText"></span>
+								</label>
+								<label class="listLine"></label>
+							</div>
+							<div class="lineBox line-flex">
+								<label class="listLine">
+									<span class="listIcon color-red"><i class="fa fa-support"></i></span>
+									<span class="listText">售后单</span>
+								</label>
+								<label class="listLine">
+									<a href="order-tobe-return.html">
+										<span class="listIcon color-red"><b id="unReturn">0</b></span>
+										<span class="listText">待退货</span>
+									</a>
+								</label>
+								<label class="listLine">
+									<a href="order-tobe-returnaccept.html">
+										<span class="listIcon color-red"><b id="unAccept">0</b></span>
+										<span class="listText">待收货</span>
+									</a>
+								</label>
+								<!--<label class="listLine">
+									<span class="listIcon color-red"><b id="unRefund">0</b></span>
+									<span class="listText">待退款</span>
+								</label>-->
+								<label class="listLine">
+									<a href="order-tobe-allreturn.html">
+										<span class="listIcon"><b id="allSrv">0</b></span>
+										<span class="listText">全部退货单</span>
+									</a>
+								</label>
+								<label class="listLine"></label>
+							</div>
+							<div class="lineBox line-flex">
+								<label class="listLine">
+									<span class="listIcon color-green"><i class="fa fa-gift"></i></span>
+									<span class="listText">商品</span>
+								</label>
+								<label class="listLine">
+									<a href="product-list.html?verifyState=0">
+										<span class="listIcon"><b id="verifyCount">0</b></span>
+										<span class="listText">待审核</span>
+									</a>
+								</label>
+								<label class="listLine">
+									<a href="product-list.html?onOffState=1">
+										<span class="listIcon"><b id="onlineCount">0</b></span>
+										<span class="listText">已上架</span>
+									</a>
+								</label>
+								<label class="listLine">
+									<a href="product-list.html?onOffState=0">
+										<span class="listIcon"><b id="offlineCount">0</b></span>
+										<span class="listText">已下架</span>
+									</a>
+								</label>
+								<label class="listLine">
+									<a href="product-list.html?verifyState=2">
+										<span class="listIcon"><b id="verifyNoCount">0</b></span>
+										<span class="listText">已驳回</span>
+									</a>
+								</label>
+							</div>
+						</div>
+						<div class="layui-col-lg4 layui-col-md6 layui-col-sm12 layui-col-xs12">
+							<!--<div class="layui-row" style="margin-left: 20px;border-bottom: 1px dashed #e2e2e2;">
+								<div class="layui-col-md3 layui-col-sm3 layui-col-xs3">
+									<label class="labelText text-right">
+										<span class="listIcon">账户余额</span>
+									</label>
+								</div>
+								<div class="layui-col-md5 layui-col-sm5 layui-col-xs5">
+									<label class="labelText">
+										<span class="listIcon amount color-blue">0</span>
+									</label>
+								</div>
+								<div class="layui-col-md4 layui-col-sm4 layui-col-xs4">
+									<label class="labelText">
+										<button class="layui-btn layui-btn-small layui-btn-normal">充值</button>
+										<button class="layui-btn layui-btn-small">转账</button>
+									</label>
+								</div>
+							</div>
+							<div class="layui-row" style="margin-left: 20px;border-bottom: 1px dashed #e2e2e2;">
+								<div class="layui-col-md3 layui-col-sm3 layui-col-xs3">
+									<label class="labelText text-right">
+										<span class="listIcon">可提现金额</span>
+									</label>
+								</div>
+								<div class="layui-col-md5 layui-col-sm5 layui-col-xs5">
+									<label class="labelText">
+										<span class="listIcon amount">0</span>
+									</label>
+								</div>
+								<div class="layui-col-md4 layui-col-sm4 layui-col-xs4">
+									<label class="labelText">
+										<button class="layui-btn layui-btn-small layui-btn-normal">充值</button>
+										<button class="layui-btn layui-btn-small">银行卡</button>
+									</label>
+								</div>
+							</div>
+							
+							<div class="layui-row" style="margin-left: 20px;">
+								<div class="layui-col-md3 layui-col-sm3 layui-col-xs3">
+									<label class="labelText text-right">
+										<span class="listIcon">冻结金额</span>
+									</label>
+								</div>
+								<div class="layui-col-md9 layui-col-sm9 layui-col-xs9">
+									<label class="labelText">
+										<span class="listIcon amount color-red">0</span>
+									</label>
+								</div>
+							</div>-->
+								<div class="cart-number layui-clear">
+									<div class="cart-info">
+										<p>
+											<i class="fa fa-credit-card-alt"></i>个人钱包
+										</p>
+										<p class="cart-tips"><span style="color: #ff3c29;">温馨提示:</span> 为保障用户资金安全, <span style="color: #ff3c29;">请下载我连网App</span> ,实现资金的安全管理!新版个人钱包只能实现资金展示,更多管理功能请使用我连App,原有资金请在老版个人钱包提现</p>
+									</div>
+									<div class="downlink-box">
+										<p id="downLink">下载我连网App</p>
+									</div>
+								</div>
+
+								<div class="user-balance">
+									<!-- <div class="total-balance">
+                                         <p class="balance-number">￥ <span id="balance">0</span></p>
+                                         <p class="balance-name">全部余额</p>
+                                     </div>
+                                     <div class="total-balance">
+                                         <p class="balance-number">￥ <span id="freeze_balance">0</span></p>
+                                         <p class="balance-name">锁定余额</p>
+                                     </div>-->
+									<div class="layui-tab">
+										<ul class="layui-tab-title">
+											<li class="layui-this">新版个人钱包</li>
+											<li>老版个人钱包</li>
+										</ul>
+										<div class="layui-tab-content">
+											<div class="layui-tab-item layui-show layui-clear layui-row">
+												<div class="total-balance layui-col-xs6" style="margin-right: 0;">
+													<p class="balance-number">全部余额:￥ <span id="balance">0</span></p>
+												<!--	<p class="balance-name">全部余额</p>-->
+												</div>
+												<div class="total-balance  layui-col-xs6" style="margin-right: 0;">
+													<p class="balance-number">锁定余额:￥ <span id="freeze_balance">0</span></p>
+												<!--	<p class="balance-name">锁定余额</p>-->
+												</div>
+											</div>
+											<div class="layui-tab-item layui-clear layui-row" id="oldVerWallet"></div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+
+					</div>
+				</header>
+			</section>
+			<!--  end -->
+			
+			<!-- 本月 上月 本年 全年 start -->
+			<section class="ibox" style="/*padding: 20px;*/">
+				<header class="ibox-title">
+					<div class="layui-row" id="purchBox">
+					</div>
+				</header>
+			</section>
+			<!-- 本月 上月 本年 全年 end -->
+			
+			<!-- 订单金额 、商品一级分类 start-->
+			<section class="ibox" style="/*padding: 0;*/">
+				<header class="ibox-title" style="padding: 0">
+					<div class="layui-row">
+						<div class="layui-col-md6 layui-col-sm6 layui-col-xs12 echartsBox" style="border-right: 10px solid #eff3f9;">
+							<div class="echartsTools">
+							<!--	<ul class="ulBox">
+									<li class="liChecked">天</li>
+									<li>月</li>
+									<li>年</li>
+								</ul>-->
+							</div>
+							<div class="echartsContent" id="orderAmount" style="height:260px;">
+								
+							</div>
+						</div>
+						
+						<div class="layui-col-md6 layui-col-sm6 layui-col-xs12 echartsBox" style="border-left: 10px solid #eff3f9;">
+							<div class="echartsContent" id="ringgoods" style="height:260px;">
+								
+							</div>
+						</div>
+					</div>
+				</header>
+			</section>
+			<!-- 订单金额 、商品一级分类 end-->
+			
+			<!-- 区域销售统计 start-->
+			<section class="ibox" style="padding: 0;">
+				<header class="ibox-title">
+					<div class="layui-row">
+						<div class="layui-col-md12 layui-col-sm12 layui-col-xs12 echartsBox">
+							<div class="echartsContent" id="chinaChart" style="height: 750px;">
+								
+							</div>
+						</div>
+					</div>
+				</header>
+			</section>
+			<!-- 区域销售统计 end-->
+			
+		</div>
+
+
+		<script src="./plugins/layui/layui.all.js"></script>
+		<script src="./build/js/wolianwComponent/config.js"></script>
+		<script src="plugins/qrcode/qrconde.js"></script>
+		<script type="text/javascript" src="build/js/echarts/echarts-all.js"></script>
+		<!--<script src="build/js/main.js"></script>-->
+		<script type="text/html" id="purchTemplate">
+			{{# if(d.length != 0){  }}
+			{{# layui.each(d,function(index,item){ }}
+			<div class="layui-col-md3 layui-col-sm6 layui-col-xs12 countBox">
+				<span class="gradient">{{ item.dt }}</span>
+				<ul class="ulBox">
+					<li>
+						<span class="listNum">{{= layui.woLianw.formatCurrency(item.salesMoney) }}</span>
+						<span class="listTitle">销售金额</span>
+					</li>
+					<li>
+						<span class="listNum">{{ item.orderCount }}</span>
+						<span class="listTitle">订单数量</span>
+					</li>
+				</ul>
+			</div>
+			{{# }) }}
+			{{# } }}
+			{{# if(d.length == 0){ }}
+			{{# layui.each(['上月','本月','本年','全部'],function(index,item){ }}
+			<div class="layui-col-md3 layui-col-sm6 layui-col-xs12 countBox">
+				<span class="gradient">{{ item }}</span>
+				<ul class="ulBox">
+					<li>
+						<span class="listNum">0</span>
+						<span class="listTitle">销售金额</span>
+					</li>
+					<li>
+						<span class="listNum">0</span>
+						<span class="listTitle">订单数量</span>
+					</li>
+				</ul>
+			</div>
+			{{# }) }}
+			{{# } }}
+</script>
+<script type="text/html" id="oldVerWalletTemplate">
+		<div class="total-balance">
+			<p class="balance-number">全部余额:￥ <span id="balance1">{{=layui.woLianw.thousandBit(d.totalremain)}}</span></p>
+		</div>
+		<div class="total-balance">
+			<p class="balance-number">锁定余额:￥ <span id="freeze_balance1">{{=layui.woLianw.thousandBit(d.frozeremain)}}</span></p>
+		</div>
+		<div id="oldLink">
+			<button class="layui-btn layui-btn-mini" id="enterGetCash">提现</button>
+		</div>
+</script>
+		<script>
+			//JavaScript代码区域
+			layui.use(['element', 'laydate', 'table', 'form','woLianw','laytpl'], function(){
+			  var form = layui.form,
+			  		$ = layui.jquery,	
+			  	  layer = layui.layer,
+			  	  laydate = layui.laydate,
+			  	  table = layui.table,
+				  woLianw = layui.woLianw,
+				  laytpl = layui.laytpl
+              var appUrl
+
+                if(localStorage.getItem("1988login")) {
+                    var jsonDatas = JSON.parse(localStorage.getItem("1988login"));
+                    $('#companyName').text(jsonDatas.companyName)
+					$('#companyNameTitle').attr('title',jsonDatas.companyName)
+					$('#logoUrl').attr('src',woLianw.getImgUrl(jsonDatas.logoUrl))
+					$('#marker').attr('title',jsonDatas.fullAddress)
+					$('#mobile').attr('title',jsonDatas.phone)
+					$('#userName').attr('title',jsonDatas.name)
+					$('#home').attr('title','企业简介')
+                }
+                var myChart = echarts.init(document.getElementById('orderAmount'));
+                var myChart2 = echarts.init(document.getElementById('chinaChart'));
+                var myChart3 = echarts.init(document.getElementById('ringgoods'));
+
+                window.onresize = function () {
+                    //重置容器高宽
+                    myChart.resize();
+                    myChart2.resize();
+                    myChart3.resize();
+                };
+			  	  
+			  	  //自定义格式
+					  laydate.render({
+					    elem: '#date-ymd-start',
+					    format: 'yyyy年MM月dd日'
+					  });
+					  laydate.render({
+					    elem: '#date-ymd-end',
+					    format: 'yyyy年MM月dd日'
+					  });
+					 
+
+					
+					$(".icon-i > i").hover(function(){
+					 		var theValue=$(this).siblings("input").val();
+							layer.tips(theValue, this, {
+							  tips: [3, '#D8E6FE']
+							});
+					 },function(){
+					 		layer.closeAll('tips');
+					 });
+
+					/*工厂统计商品*/
+                woLianw.productVerifyCount(function (data) {
+					for(var k in data){
+					    /*待审核*/
+					    if(k == 'verifyCount'){
+							$('#verifyCount').text(data[k])
+						}
+						/*驳回*/
+						if(k == 'verifyNoCount'){
+                            $('#verifyNoCount').text(data[k])
+						}
+						/*已上架*/
+						if(k == 'onlineCount'){
+                            $('#onlineCount').text(data[k])
+						}
+						/*已下架*/
+						if(k == 'offlineCount'){
+                            $('#offlineCount').text(data[k])
+						}
+					}
+                })
+
+                /*获取1988首页销售数据记录*/
+                woLianw.purchaseNumForBuyer(function (data) {
+                    renderTemplate(data,'purchTemplate','purchBox')
+                })
+
+                /*退货单(售后)数据*/
+                woLianw.srvOrderStatistic(function (data) {
+                    if (data.length != 0){
+                        var count = 0
+                        $.each(data,function (index,item) {
+                            count += parseFloat(item.totalNumber)
+							/*待退货*/
+							if(item.backState ==18){
+								$('#unReturn').text(item.totalNumber)
+							}
+							/*待收货*/
+							if(item.backState ==20){
+                                $('#unAccept').text(item.totalNumber)
+							}
+							/*待退款暂不显示*/
+							/*if(item.backState ==16){
+                                $('#unRefund').text(item.totalNumber)
+							}*/
+                        })
+                        $('#allSrv').text(count)
+                    }else {
+                        $('#allSrv,#unRefund,#unreturn,#unAccept').text(0)
+                    }
+                })
+
+                /*订单统计*/
+                woLianw.orderNumForBuyer(function (data) {
+                    if(data.length != 0){
+                        var count = 0
+                        $.each(data,function (index,item) {
+                            count += parseFloat(item.orderCount)
+                            /*代付款订单数*/
+                            if(item.orderState == 15){
+                                $('#unReceive').text(item.orderCount)
+                            }
+                            /*待收货订单数*/
+                            if(item.orderState == 20){
+                                $('#unSend').text(item.orderCount)
+                            }
+                        })
+						$('#allOrder').text(count)
+                    }else{
+                        $('#unSend,#allOrder,#unReceive').text(0)
+                    }
+                })
+
+                /*商品分类汇总(饼形图)*/
+                woLianw.purchaseTypeForBuyer(function (data) {
+
+                    if(data.length == 0){
+                        var arr = [{
+                            value:1,
+                            name:'暂无数据'
+                        }]
+                    }else{
+                        var arr = []
+                        $.each(data,function (index,item) {
+                            arr.push({
+                                value:item.salesMoney,
+                                name:item.name
+                            })
+                        })
+                    }
+                    /*开始配置插件*/
+                    var option = {
+                        title: {
+                            text: '商品一级分类',
+                            textStyle:{
+                                color: '#323232',
+                                fontSize: 14,
+                                fontWeight: 'bold'
+                            },
+                            x: 20,
+                            y: 20,
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: "{a} <br/>{b}: {c} ({d}%)"
+                        },
+                        //图例组件     展现了不同系列的标记(symbol)，颜色和名字。可以通过点击图例控制哪些系列不显示
+
+                        series: [
+                            {
+                                name:'访问来源',
+                                type:'pie',
+                                radius: ['50%', '70%'],
+                                avoidLabelOverlap: false,
+                                label: {
+                                    normal: {
+                                        show: true,
+                                        position: 'outside'
+                                    },
+                                    emphasis: {
+                                        show: true,
+                                        textStyle: {
+                                            fontSize: '30',
+                                            fontWeight: 'bold'
+                                        }
+                                    }
+                                },
+                                labelLine: {
+                                    normal: {
+                                        show: true
+                                    }
+                                },
+                                data:arr
+                            }
+                        ]
+                    };
+                    /*结束配置插件*/
+                    /*插件渲染*/
+                    myChart3.setOption(option);
+                })
+
+                /*订单金额柱状图*/
+                woLianw.everyMonthOrderNumForBuyer(function (data) {
+                    if(data.length == 0){
+                        var valueArr = [0]
+                        var axioArr = []
+                    }else{
+                        var valueArr = []
+                        var axioArr = []
+                        $.each(data,function (index,item) {
+                            valueArr.push(item.salesMoney)
+                            axioArr.push(item.cmonth)
+                        })
+                    }
+                    /*开始配置柱状图*/
+                    var options={
+                        tooltip: {
+                            trigger: 'axis',
+                            axisPointer: {
+                                type: 'shadow'
+                            }
+                        },
+                        //定义一个标题
+                        title:{
+                            text:'订单金额',
+                            textStyle:{
+                                color: '#323232',
+                                fontSize: 14,
+                                fontWeight: 'bold'
+                            },
+                            x: 20,
+                            y: 20,
+                        },
+                        color:['#327FF3'],
+                        //图例组件     展现了不同系列的标记(symbol)，颜色和名字。可以通过点击图例控制哪些系列不显示
+                        /*legend:{
+                            data: '订单金额'
+                        },*/
+                        //是否启用拖拽重计算特性，默认关闭(即值为false)
+                        calculable: true,
+                        //X轴设置
+                        xAxis:{
+                            data:axioArr
+                        },
+                        yAxis:{
+
+                        },
+                        //name=legend.data的时候才能显示图例
+                        series:[
+                            {
+                                name:'订单金额',
+                                type:'bar',
+                                data:valueArr
+                            }]
+
+                    };
+                    /*结束配置柱状图*/
+                    /*渲染插件*/
+                    myChart.setOption(options);
+
+                })
+
+				/*区域销售统计图*/
+				woLianw.salesPictureForSeller(function (data) {
+                    var arr = []
+				    if(data.length != 0){
+					    $.each(data,function (index,item) {
+							arr.push({
+								name:item.province,
+								value:item.salesMoney
+							})
+                        })
+					}
+                    var options2 = {
+                        title: {
+                            text: '区域销售统计',
+                            textStyle:{
+                                color: '#323232',
+                                fontSize: 14,
+                                fontWeight: 'bold'
+                            },
+                            x: 20,
+                            y: 20,
+                        },
+                        tooltip: {
+                            trigger: 'item',
+                            formatter: '{b}<br>{c}元'
+
+                        },
+                        //图例组件     展现了不同系列的标记(symbol)，颜色和名字。可以通过点击图例控制哪些系列不显示
+                        /*legend: {
+                            orient: 'vertical',
+                            left: 'left',
+                            data: ['地区'],
+                        },*/
+                        dataRange: {
+                            min: 0,
+                            max: 2500,
+                            x: 40,
+                            y: "bottom",
+                            text:['高','低'],           // 文本，默认为数值文本
+                            calculable : true
+                        },
+                        /*visualMap: {
+                            min: 0,
+                            max: 2500,
+                            left: 'left',
+                            top: 'bottom',
+                            text: ['高', '低'], // 文本，默认为数值文本
+                            color: ['#0773DE', '#3993E6','#77BBEF', '#A2D7F6', '#DAFBFE'],
+                            calculable: true
+                        },*/
+                        toolbox: {
+                            show: true,
+                            orient: 'vertical',
+                            x: 'right',
+                            y: 'center',
+                            feature : {
+                                mark : {show: true},
+                                dataView : {show: true, readOnly: false},
+                                restore : {show: true},
+                                saveAsImage : {show: true}
+                            }
+                        },
+                        roamController: {
+                            show: true,
+                            x: 'right',
+                            mapTypeControl: {
+                                'china': true
+                            }
+                        },
+                        series: [
+                            {
+                                name: '地区',
+                                type: 'map',
+                                mapType: 'china',
+                                selectedMode : 'multiple',
+                                roam: false,   //是否开启鼠标滚轮 缩放地图
+                                itemStyle: {
+                                    normal: {
+                                        borderWidth: 2,
+                                        borderColor: '#a6c8dd',
+                                        color: '#eee',
+                                        areaStyle:{color:'#eee'},//设置地图颜色
+                                        label: { show: true }
+                                    },
+                                    emphasis: {
+                                        borderWidth: 2,
+                                        borderColor: '#fff',
+                                        color: '#32cd32',
+                                        label: {
+                                            show: true,
+                                            textStyle: {
+                                                color: '#fff'
+                                            }
+                                        }
+                                    }
+                                },
+                                data: arr
+                            }
+                        ]
+                    };
+                    myChart2.setOption(options2);
+                })
+
+                /*余额查询*/
+                woLianw.payBalanceQuery(function (data) {
+                    appUrl = data.appUrl
+                    if (data.hasAccount) {
+                        $("#downLink").text('查看钱包').attr('data-src', data.appUrl)
+                        $('#balance').text(woLianw.formatCurrency(data.balance))
+                        $('#freeze_balance').text(woLianw.formatCurrency(data.freeze_balance))
+                        window.localStorage.removeItem('1988flag')
+                    }
+                    if (!data.hasAccount) {
+                        $("#downLink").text('下载我连APP').attr('data-src', data.appUrl)
+						if (!(window.localStorage.getItem('1988flag'))){
+                            return false
+						}
+                        layer.open({
+                            type: 1,
+                            title: false,
+                            closeBtn: 0,
+                            area: ['530px', '500px'],
+                            shadeClose: true,
+                            content: '<div class="mark-bigBox">\n' +
+                            '            <div class="mark-top">\n' +
+                            '                <p>开通个人钱包</p>\n' +
+                            '            </div>\n' +
+                            '            <div class="mark-content">\n' +
+                            '                <p class="tip">提示:如果您已经下载我连网APP，扫描二维码可直接进入开通钱包</p>\n' +
+                            '            </div>\n' +
+                            '            <div class="mark-box">\n' +
+                            '                <div id="qrcode" style="width: 200px;height: 200px;"></div>' +
+                            '                <p>请扫描二维码下载我连网APP，并开通个人钱包，确保用户资金安全</p>\n' +
+                            '            </div>\n' +
+                            '        </div>',
+                            success:function () {
+                                /*二维码*/
+                                var qrcode = new QRCode(document.getElementById("qrcode"), {
+                                    width : 96,//设置宽高
+                                    height : 96
+                                });
+                                qrcode.makeCode("/qrcode/index.html?url="+appUrl);
+                                window.localStorage.removeItem('1988flag')
+                            }
+                        });
+                    }
+
+                })
+
+
+                /*点击下载我连app或者查看钱包链接*/
+                $('#downLink').on('click', function () {
+
+                    var src = $(this).attr('data-src')
+                    layer.open({
+                        type: 1,
+                        title: false,
+                        closeBtn: 0,
+                        area: ['530px', '500px'],
+                        shadeClose: true,
+                        content: '<div class="mark-bigBox">\n' +
+                        '            <div class="mark-top">\n' +
+                        '                <p>开通个人钱包</p>\n' +
+                        '            </div>\n' +
+                        '            <div class="mark-content">\n' +
+                        '                <p class="tip">提示:如果您已经下载我连网APP，扫描二维码可直接进入开通钱包</p>\n' +
+                        '            </div>\n' +
+                        '            <div class="mark-box">\n' +
+                        '                <div id="qrcode" style="width: 200px;height: 200px;"></div>' +
+                        '                <p>请扫描二维码下载我连网APP，并开通个人钱包，确保用户资金安全</p>\n' +
+                        '            </div>\n' +
+                        '        </div>',
+                        success:function () {
+                            /*二维码*/
+                            var qrcode = new QRCode(document.getElementById("qrcode"), {
+                                width : 96,//设置宽高
+                                height : 96
+                            });
+                            qrcode.makeCode("/qrcode/index.html?url="+appUrl);
+                        }
+                    });
+                })
+
+                /*数据渲染模板*/
+                function renderTemplate(data, templateId, targetId) {
+                    var template = document.getElementById(templateId).innerHTML
+                    var target = document.getElementById(targetId)
+                    laytpl(template).render(data, function (html) {
+                        target.innerHTML = html
+                    })
+                }
+
+                // 渲染表单
+				        function renderOldVerWallet (data) {
+				          var oldVerWalletTemplate = document.getElementById('oldVerWalletTemplate').innerHTML;
+				          var oldVerWalletWrap = document.getElementById('oldVerWallet');
+				          laytpl(oldVerWalletTemplate).render(data, function (html){
+				            oldVerWalletWrap.innerHTML = html;
+				            form.render();
+				          });
+				        }
+
+				        // 数据加载
+				        woLianw.ajaxPayOldBalance(null, function (data) {
+				          renderOldVerWallet(data);
+				        }, function (err) {
+				          layer.msg(err);
+				        });
+
+								$(document).on('click', '#enterGetCash', function () {
+									console.log(this);
+			            window.location.href = '/getCash.html';
+								});
+
+            });
+		</script>
+	</body>
+</html>

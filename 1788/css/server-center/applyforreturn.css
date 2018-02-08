@@ -1,0 +1,205 @@
+.main-content form{
+    padding-top: 20px;
+}
+
+.main-content{
+    padding: 20px 0px 20px 40px;
+    background-color: #ffffff;
+}
+.main-content form label{
+    display: block;
+    float: none;
+    width: 100%;
+    padding: 0px 20px 20px;
+    margin: 0;
+    text-align: left;
+    font-size: 12px;
+    color: #393939;
+    font-weight: bold;
+    position: relative;
+}
+.main-content form label::before{
+    content: '';
+    width: 6px;
+    height: 6px;
+    background-color: #1cc8c6;
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+.main-content form .layui-input-block{
+    margin-left: 0;
+    padding-bottom: 50px;
+}
+.main-content form .productSkuId img{
+    width: 100px;
+    height: 100px;
+    float: left;
+}
+.main-content form .productSkuId input{
+    width: 900px;
+    height: auto;
+    padding: 2px 20px;
+    float: left;
+    border: 0;
+    font-size: 12px;
+    color: #666666;
+    line-height: normal;
+}
+.main-content form .productSkuId input:nth-of-type(1){
+    font-size: 14px;
+    font-weight: bold;
+    color: #323232;
+    padding-bottom: 10px;
+}
+.main-content form .complanitPhone input,
+.main-content form .complanitName input{
+    width: 275px;
+    height: 24px;
+}
+.main-content form .layui-form-checkbox i{
+    display: none;
+}
+.main-content form .layui-form-checked i{
+    display: block;
+    font-size: 15px;
+    width: 15px;
+    line-height: normal;
+    bottom: -9px;
+    right: 1px;
+    color: #ffffff;
+    background-color: #1cc8c6;
+}
+.main-content form .layui-form-radioed i::before{
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: -20px;
+    width: 0;
+    height: 0;
+    border-right: 18px solid transparent;
+    border-bottom: 18px solid transparent;
+    border-left: 18px solid #e8f9f9;
+    z-index: 100;
+}
+.main-content form .layui-form-checkbox{
+    padding-right: 0;
+    border: 0;
+    margin-right: 45px;
+    margin-bottom: 30px;
+}
+.main-content form .layui-form-checkbox:nth-of-type(7n){
+    margin-right: 0;
+}
+.main-content form .layui-form-radio i{
+    display: none;
+}
+.main-content form .layui-form-radio span{
+    background-color: #1cc8c6;
+    padding: 5px 30px;
+    text-align: center;
+    background-color: #F0F1F7;
+    color: #393939;
+    font-size: 14px;
+    display: block;
+}
+
+.main-content form .layui-unselect  span{
+
+}
+.main-content form .layui-form-radioed  span{
+    background-color: #e8f9f9;
+    border: 1px solid #1cc8c6;
+    color: #1cc8c6;
+}
+.main-content form .layui-form-checked span,
+.main-content form .layui-form-checked:hover span{
+    background-color: #e8f9f9;
+    color: #1cc8c6;
+    border: 1px solid #1cc8c6;
+}
+.main-content form textarea{
+    width: 798px;
+    height: 180px;
+    resize: none;
+    background-color: #F0F1F7;
+    border: 0;
+    outline-style: none;
+}
+.main-content form .img-list{
+    float: left;
+    margin: 0;
+}
+.main-content form .img-list .img-box{
+    width: 80px;
+    height: 80px;
+    margin-right: 20px;
+    float: left;
+    position: relative;
+    border: 1px solid #e4e4e4;
+}
+.main-content form .img-list .img-box i{
+    position: absolute;
+    font-size: 12px;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    color: #FFFFff;
+    cursor: pointer;
+    top: -9px;
+    right: -9px;
+    border-radius: 50%;
+    background-color: #ff414e;
+    text-align: center;
+}
+.main-content form .img-list img{
+    width: 80px;
+    height: 80px;
+}
+.main-content form button.upload{
+    width: 80px;
+    height: 80px;
+    position: relative;
+    padding: 20px 0 0;
+    text-align: center;
+    background-color: #FFFFff;
+    border: 1px solid #e4e4e4;
+    color: #999999;
+    float: left;
+    margin-right: 20px;
+}
+.main-content form button.upload i{
+    font-size: 28px;
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    margin-left: -14px;
+    font-weight: bold;
+    color: #d4d4d7;
+}
+.main-content form .upload-box p{
+    width: 200px;
+    float: left;
+    color: #999999;
+    font-size: 12px;
+    padding-top: 5px;
+}
+.main-content form .layui-form-item input#send{
+    padding: 0px 25px;
+    height: 26px;
+    line-height: 26px;
+    background-color: #1cc8c6;
+    color: #FFFFff;
+}
+.main .layui-form-radio i:hover, .layui-form-radioed i{
+    color: #1cc8c6;
+}
+.main .layui-form .product-img img{
+    float: left;
+    width: 130px;
+    height: 130px;
+}
+.main .layui-form .product-img p{
+    padding-left: 145px;
+    padding-top: 2px;
+}

@@ -1,0 +1,1328 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+  	<title>商品发布--填写商品信息详情</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="商品发布-填写商品信息详情">
+    <link rel="stylesheet" href="./plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="./plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="./build/css/main.css">
+    <link rel="stylesheet" type="text/css" href="./build/css/nobuyarea.css">
+	<script src="./plugins/layui/layui.js"></script>
+	<script src="./build/js/wolianwComponent/config.js"></script>
+	<script src="./build/js/nobuy.js"></script>
+	<script type="text/javascript" src="./plugins/kindeditor/kindeditor-all-min.js"></script>
+	<script type="text/javascript" src="./plugins/kindeditor/lang/zh-CN.js"></script>
+	<script src="./components/proinfo/tradInfoTemplate.js"></script>
+	<script src="./components/proinfo/watchInput.js"></script>
+</head>
+<body>
+	<div class="seller-header">
+		<span class="layui-breadcrumb">
+	      <a href="javascript:;">你当前所在的位置</a>
+	      <a href="javascript:;">商品管理</a>
+	      <a><cite>商品发布</cite></a>
+	    </span>
+	</div>
+	<div class="main">
+		<div class="operateSteps">
+			<span class="stepsList firstStep rightPoint1">
+					<i>1</i>
+					<em>选择商品类目</em>
+				</span>
+			<span class="stepsList secondStep activeStep rightPoint2">
+					<i>2</i>
+					<em>填写商品信息详情</em>
+				</span>
+			<span class="stepsList thirdStep rightPoint3">
+					<i>3</i>
+					<em>提交申请</em>
+				</span>
+		</div>
+		<div class="layui-col-sm12">
+			<div class="ibox content">
+				<div class="ibox-title blue-bg">
+					<h5>发布产品信息</h5>
+					<div class="ibox-tools">
+						您选择的类目：<span id="checkedPathSpan"></span>
+						<a class="layui-btn btn-primary layui-btn-small" href="productRelease.html">返回重选类目</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="layui-col-sm12">
+			<form id="fillproductinfo" action="post" class="layui-form layui-form-pane form-horizontal">
+				<div class="ibox content ibox-border layui-hide" id="bookReleaseInfo">
+					<div class="ibox-title">
+						<h5>预售信息</h5>
+					</div>
+					<div class="ibox-content" id="presaleDateBox">
+						<div class="layui-form-item">
+							<label class="layui-form-label"><i class="red">*</i>预计：</label>
+							<div class="layui-input-inline">
+								<input type="text" name="presaleDate" class="layui-input" id="presaleDateChoose" placeholder="yyyy年MM月dd日">
+							</div>
+							<div class="layui-input-inline" style="width: 35%;">
+								<input class="layui-input" checked type="radio" name="presaleType" title="前发货" id="releaseDate1" value="1" />
+								<input class="layui-input" type="radio" name="presaleType" title="开始发货" id="releaseDate0" value="0" />
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ibox content ibox-border layui-hide" id="goodsCategory">
+					<div class="ibox-title">
+						<h5>商品分类</h5>
+					</div>
+					<div class="ibox-content">
+						<div class="layui-form-item">
+							<label class="layui-form-label"><i class="red">*</i>对应商品分类：</label>
+							<div class="layui-input-inline w80" id="divCatsShow">
+								
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content">
+						<div class="layui-form-item">
+							<label class="layui-form-label"><i class="red">*</i>选择对应APP商品分类：</label>
+							<div class="layui-input-inline w80 AppCategoryBox" id="AppCategoryBox" tabindex = '-1'>
+								<input type="text" id="inputAppCategory" placeholder="请填写对应app商品分类" name="AppCategoryName" class="layui-input">
+								<button type="button" class="layui-btn layui-btn-default dropdown-toggle" id="btnAppCategory">
+									<span class="fa fa-chevron-down"></span>
+								</button>
+               					 <ul class="layui-hide" id="ulAppCategoryResults"></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ibox content ibox-border">
+					<div class="ibox-title">
+						<h5>产品属性</h5>
+					</div>
+					<div class="ibox-content" id="productShuXing">
+						<div class="layui-form-item">
+							<label class="layui-form-label"><i class="red">*</i>产品信息(名称)：</label>
+							<div class="layui-input-inline">
+								<input type="text" name="name" lay-verify="noEmpty|title" class="layui-input">
+							</div>
+						</div>
+					</div>
+					<div id="productAttrs"></div>
+					<!--装spu的盒子-->
+					<div class="ibox-content" id="afterAddAttrWrap"></div>
+					<!--自添加属性盒子-->
+					<div class="ibox-content">
+						<a class="layui-btn addProAttrBtn" id="addProAttrBtn" href="javascriipt:;"><i class="fa fa-plus"></i>&nbsp;添加产品属性</a>
+						<label class="layui-input-inline addProAttrLab">
+			            	如果您觉得我们提供的产品属性无法满足您的需要，您可以手动添加产品属性
+			          </label>
+					</div>
+				</div>
+				<div class="ibox content ibox-border" id="tradInfoIbox">
+					<div class="ibox-title">
+						<h5>交易信息</h5>
+					</div>
+					<div class="ibox-content tradInfoPublicAtt">
+						<div class="layui-form-item">
+							<label class="layui-form-label"><i class="red">*</i>计量单位：</label>
+							<div class="layui-input-inline">
+								<input type="text" id="unitName" placeholder="请填写计量单位" name="unitName" class="layui-input" lay-verify="noEmpty">
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content tradInfoPublicAtt">
+						<div class="layui-form-item">
+							<label class="layui-form-label"><i class="red">*</i>定价方式：</label>
+							<div class="layui-input-inline w80">
+								<input type="radio" name="priceType" lay-filter="priceType" title="普通价格" value="0" class="layui-input" lay-verify="noRadio" checked="checked">
+								<input type="radio" name="priceType" lay-filter="priceType" title="阶梯价格" value="1" class="layui-input" lay-verify="noRadio">
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content priceRange layui-hide">
+						<div class="layui-form-item">
+							<label class="layui-form-label"><i class="red">*</i>价格区间：</label>
+							<div class="layui-input-inline w80">
+								<table border="0px" class="priceRangeTab" id="priceRangeTab" cellspacing="0" cellpadding="0">
+									<tr>
+										<th>购买数量</th>
+										<th>供货价格</th>
+										<th width="50px"></th>
+									</tr>
+									<tr class="editorTr">
+										<td>
+											购买多少 <input class="myselfInput" readonly="readonly" name="1" value="1" type="text" /><label uid="unitName"></label> 及以上
+										</td>
+										<td>
+											<input class="myselfInput themoney" id="mandatoryInput" type="text" /> 元/<label uid="unitName"></label>
+										</td>
+										<td></td>
+									</tr>
+									<tr>
+										<td colspan="3">
+											<a class="layui-btn layui-btn-mini ml10 mt10" id="addPriceRangeBtn" href="javascriipt:;">
+												<i class="fa fa-plus"></i>&nbsp;增加价格区间
+											</a>
+										</td>
+									</tr>
+								</table>
+								
+							</div>
+						</div>
+					</div>
+	
+					<div id="tradInfo"></div> <!--装产品交易信息模板的盒子-->
+					<div class="ibox-content layui-hide" id="skuPicture"> <!-- 放图片盒子 -->
+						<div class="layui-form-item">
+							<label class="layui-form-label">匹配图片</label>
+							<div class="layui-input-inline w80">
+								<div class="layui-upload-row"></div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="ibox-content layui-hide" id="specifications"><!--规格设置-->
+						<div class="layui-form-item">
+							<label class="layui-form-label" style="border: none;"></label>
+							<div class="layui-input-inline w80">
+								<table border="1px" class="specificationsTab" id="skuSetTab" cellspacing="0" cellpadding="0">
+									<tr>
+										<th><i class="red">*</i>供货价格(元)<i class="fa fa-question-circle"></i><a href="javascript:;" onclick="setSame(0)" class="setSame">设置相同</a></th>
+										<th><i class="red">*</i>建议零售价(元)<i class="fa fa-question-circle"></i><a href="javascript:;" onclick="setSame(1)" class="setSame">设置相同</a></th>
+										<th>市场零售价(元)<i class="fa fa-question-circle"></i><a href="javascript:;" onclick="setSame(2)" class="setSame">设置相同</a></th>
+										<th><i class="red">*</i>可售数量<i class="fa fa-question-circle"></i><a href="javascript:;" onclick="setSame(3)" class="setSame">设置相同</a></th>
+										<th>单品货号<i class="fa fa-question-circle"></i><a href="javascript:;" onclick="setSame(4)" class="setSame">设置相同</a></th>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content specifications" >
+						<div class="layui-form-item">
+							<label class="layui-form-label"><i class="red">*</i>可售数量：</label>
+							<div class="layui-input-inline">
+								<input type="text" name="saleAmount"  class="layui-input onlyNum" value="1" />
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content specifications">
+						<div class="layui-form-item">
+							<label class="layui-form-label"><i class="red">*</i>供货价格(元)</label>
+							<div class="layui-input-inline">
+								<input type="text" name="vendorPrice" class="layui-input themoney" value="1" />
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content specifications">
+						<div class="layui-form-item">
+							<label class="layui-form-label"><i class="red">*</i>建议零售价(元)</label>
+							<div class="layui-input-inline">
+								<input type="text" name="suggestPrice" class="layui-input themoney" value="1" />
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content specifications">
+						<div class="layui-form-item">
+							<label class="layui-form-label">市场零售价(元)</label>
+							<div class="layui-input-inline">
+								<input type="text" name="marketPrice" class="layui-input themoney" value="0" />
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content specifications">
+						<div class="layui-form-item">
+							<label class="layui-form-label">单品货号</label>
+							<div class="layui-input-inline">
+								<input type="text" name="skuNo" class="layui-input" value="">
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content tradInfoPublicAtt">
+						<div class="layui-form-item">
+							<label class="layui-form-label">最小起订量：</label>
+							<div class="layui-input-inline">
+								<input type="text" name="minBuyNum" class="layui-input" value="1" onKeyUp="this.value=this.value.replace(/\D/g,'')" onafterpaste="this.value=this.value.replace(/\D/g,'')">
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content tradInfoPublicAtt">
+						<div class="layui-form-item">
+							<label class="layui-form-label"><i class="red">*</i>最大购买量（0表示不限制）：</label>
+							<div class="layui-input-inline">
+								<input type="text" name="maxBuyNum" class="layui-input onlyNum" value="0" lay-verify="noEmpty" />
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content tradInfoPublicAtt">
+						<div class="layui-form-item">
+							<label class="layui-form-label"><i class="red">*</i>运费设置：</label>
+							<div class="layui-input-inline">
+								<select name="freightType" lay-verify="noEmpty" lay-filter="freightType">
+									<option value="">请选择</option>
+									<option value="0">卖家承担运费</option>
+									<option value="1">使用运费模板</option>
+									<option value="2">运费到付</option>
+								</select>
+							</div>
+							<!--使用运费模板的话-->
+							<div class="layui-input-inline layui-hide">
+								<select name="fareTemplateId" lay-filter="freight-weight" id="useFreight"></select>
+								<a href="freight.html" class="freightA" target="_blank">管理运费模板</a>
+								<a href="javascript:;" class="freightA" onclick="useFreightRefresh()">刷新</a>
+							</div>
+						</div>
+					</div>
+					<div class="ibox-content tradInfoPublicAtt">
+						<div class="layui-form-item">
+							<label class="layui-form-label">单位重量：</label>
+							<div class="layui-input-inline">
+								<input type="text" placeholder="请填写单位重量" name="weight" class="layui-input notZeroNum onlyFloatNum" />
+							</div>
+							<div class="layui-input-inline">
+								<label class="layui-form-label afterUnitName">公斤/<span uid="unitName"></span></label>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ibox content ibox-border" id="limitArea">
+					<div class="ibox-title">
+						<h5>禁止销售区域</h5>
+					</div>
+					<div class="ibox-content">
+						<div class="limitAreaUlBox">
+							<ul class="tab-title" id="tab-title"></ul>
+							<span class="xiala" id="xiala"><i class="fa fa-chevron-down"></i></span>
+						</div>
+						<div class="layui-row row-content" id="limitAreaWrap">
+							<div class="col-content">
+								<div class="tab-header">
+									<input lay-ignore type="checkbox" id="provinceAll" name="provinceAll" value="一级全选" />
+									<label id="provinceLab">全国</label>
+								</div>
+								<div class="tab-content" id="province"></div>
+							</div>
+							<div class="col-content">
+								<div class="tab-header">
+									<input lay-ignore type="checkbox" id="cityAll" name="cityAll" value="二级全选" />
+									<label id="cityLab"></label>
+								</div>
+								<div class="tab-content" id="city"></div>
+							</div>
+							<div class="col-content">
+								<div class="tab-header">
+									<input lay-ignore type="checkbox" id="areaAll" name="areaAll" value="三级全选" />
+									<label id="areaLab"></label>
+								</div>
+								<div class="tab-content" id="area"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ibox content ibox-border">
+					<div class="ibox-title">
+						<h5>图片和详细信息</h5>
+					</div>
+					<div class="ibox-content">
+						<div class="layui-form-item">
+							<label class="layui-col-sm2 layui-form-label"><i class="red">*</i>图片：</label>
+							<div class="layui-col-sm10 layui-input-block" style="margin-left: 10px;">
+								<div id="picterWrapper" style="border: 1px solid #dadada;padding: 20px;">
+									<div class="layui-upload-drag" id="productPicUpload" style="width: 100%;box-sizing: border-box;padding: 100px;">
+									  <i class="layui-icon"></i>
+									  <p style="margin:20px 0;"><a href="javascript:;" class="layui-btn layui-btn-lg">点击上传</a></p>
+									  <p style="font-size:18px;color:#ccc;">或将照片拖到这里，单次最多可选5张,格式gif,jpg,jpeg,bmp,png 建议尺寸420*420</p>
+									</div>
+									
+									<div class="layui-upload-list layui-hide">
+								   <ul class="picterViewList" id="picterViewList">
+								   	<!--<li class="isUpload"><img src="build/images/p1.png"><span class="fa fa-check"><span></li>
+								   	<li class="isPreview"><img src="build/images/p1.png"><span class="fa fa-times-circle"><span></li>-->
+								   </ul>
+								   <div class="uploadBtnBox">
+								   	<span></span>
+								   	<button type="button" class="layui-btn" id="startUpload">开始上传</button>
+								   </div>
+								  </div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!--富文本 编辑器 -->
+					<div class="ibox-content">
+						<div class="layui-form-item">
+							<label class="layui-col-sm2 layui-form-label"><i class="red">*</i>详细说明：</label>
+							<div class="layui-col-sm10 layui-input-block" style="margin-left: 10px;">
+								       <textarea id="keditor_id" name="descContent" style="width:100%;height:400px;"></textarea>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- <form action="">
+					<input type="submit" value="">
+				</form> -->
+	
+				<div class="ibox content" style="text-align: center;">
+					<button type="submit" id="publishBtn" lay-filter="publishBtn" lay-submit name="submit_name" class="layui-btn layui-btn">确认并提交审核</button>
+					<button type="button" id="cancelBtn" class="layui-btn layui-btn-primary">取消</button>
+				</div>
+				
+				
+				
+	
+			</form>
+		</div>
+				
+		<table id="productReleaseSuccess" border="1" cellspacing="0" cellpadding="0" style="display: none;">
+			<tr>
+				<th>
+						<h2>发布成功！</h2>
+						<!-- ，您的信息已经提交审核 -->
+				</th>
+			</tr>
+			<tr>
+				<td>
+					<p>您的信息将在工作时间(周一到周五9:00-17:00)2小时内发布上网，非工作时间24小时内发布上网。</p>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<a href="productRelease.html" class="layui-btn">继续发布商品</a>
+					<!--<a href="javascript:;" class="layui-btn">继续发布预售商品</a>-->
+					<a href="product-list.html" class="layui-btn">管理已发布商品</a>
+				</td>
+			</tr>
+		</table>
+		
+	</div>
+	
+	<!--选择对应APP商品分类  ulAppCategoryResults -->
+	<script type="text/html" id="ulAppCategoryResultsItemTemplate">
+		{{# layui.each(d, function(index, item){  }}
+		<li id="{{item.id}}" path="{{item.path}}" name="{{item.name}}" parentId="{{item.parentId}}" class="list-group-item">{{item.path}}</li>
+		{{# }) }}
+	</script>
+
+	<!--使用运费模板 -->
+	<script type="text/html" id="useFreightTemplate">
+		<option value="" freightType="0">请选择</option>
+		{{# layui.each(d, function(index, item){  }}
+		<option value="{{item.id}}" freightType="{{item.chargeType}}">{{item.name}}</option>
+		{{# }); }}
+	</script>
+	
+	
+	
+	<!--下拉框 级联 spuLinkage -->
+	<script type="text/html" id="spuLinkageItemTemplate">
+		{{# layui.each(d, function(index, item){  }}
+		<label class="layui-form-label" pid="{{item.pid}}">{{ item.name }}</label>
+		
+		<div class="layui-input-inline">
+			<!--判断  0为输入框-->
+      	{{# if(item.inputType == 0){ }}
+        <input type="text" name="{{item.name}}" lay-verify="noEmpty" class="layui-input">
+        {{# }else if(item.inputType == 1){ }}
+        <!--判断  1为下拉框 这里要继续循环-->
+        <select name="{{item.name}}" lay-filter="spuFilter" lay-varify="noEmpty">
+        	<option value="">请选择</option>
+        	{{# layui.each(item.valueList, function(i, elem){ }}
+	        <option vid="{{elem.vid}}" id="{{elem.vid}}" value="{{elem.name}}">{{ elem.name }}</option>
+	        {{# }) }}
+	      </select>
+	      {{# }else if(item.inputType == 2){ }}
+	      <!--判断  2为多选框-->
+		      {{# layui.each(item.valueList, function(i, elem){ }}
+		      <input type="checkbox" lay-skin="primary"name="{{item.name}}" title="{{ elem.name }}" value="{{elem.name}}" class="layui-input">
+		      {{# }) }}
+	      {{# }else if(item.inputType == 3){ }}
+	      	{{# layui.each(item.valueList, function(i, elem){ }}
+		      <input type="radio" value="{{elem.name}}" name="{{item.name}}" title="{{elem.name}}" class="layui-input">
+		      {{# }) }}
+	      {{# } }}
+	  	</div>
+		{{# }) }}
+	</script>
+	
+	<!--省province-->
+	<script type="text/html" id="provinceTemplate">
+		{{# layui.each(d, function(index, item){  }}
+		<div class="line-list">
+			<input lay-ignore type="checkbox" name="province" id="{{ item.did }}" value="{{ item.name }}" />
+			<label ischecked labId="{{item.did}}">{{item.name}}</label>
+		</div>
+		{{# })  }}
+	</script>
+	<!--市city-->
+	<script type="text/html" id="cityTemplate">
+		{{# layui.each(d, function(index, item){  }}
+		<div class="line-list">
+			<input lay-ignore type="checkbox" name="city" id="{{ item.did }}" value="{{ item.name }}"/>
+			<label ischecked labId="{{ item.did }}">{{ item.name }}</label>
+		</div>
+		{{# })  }}
+	</script>
+	<!--区area-->
+	<script type="text/html" id="areaTemplate">
+		{{# layui.each(d, function(index, item){  }}
+		<div class="line-list">
+			<input lay-ignore type="checkbox" name="area" id="{{ item.did }}" value="{{ item.name }}" />
+			<label ischecked labId="{{ item.did }}">{{ item.name }}</label>
+		</div>
+		{{# })  }}
+	</script>
+	
+
+	
+
+
+
+<script>
+	var picUrls=[];
+	//var ue = UE.getEditor('editor');  //富文本编辑器
+
+
+
+    layui.use(['element','form','laydate','laytpl', 'layer', "woLianw", 'upload'],function () {
+
+
+
+
+        var element=layui.element;
+        var form = layui.form;
+        var laytpl = layui.laytpl;
+        var $ = layui.jquery;
+        var woLianw = layui.woLianw;
+		var upload = layui.upload;
+		var laydate = layui.laydate;
+  			
+  		window.submitObj = {};
+
+
+
+
+			
+			  //获取releaseType来判断是否显示预售的字段
+			  //发布类型：1 直接发布， 2 预售发布
+		window.releaseType = 0;
+		if(window.location.href.split('?releaseType=')[1]){
+			releaseType = window.location.href.split('?releaseType=')[1];
+		}
+		if(releaseType==1){
+			//将预售的div显出出来，并加上必选的样式
+			$("#bookReleaseInfo").removeClass("layui-hide");
+			$("#presaleDateChoose").attr("lay-verify","noEmpty");
+			//预售时间   自定义格式	
+			laydate.render({
+				elem: '#presaleDateChoose'
+				,format: 'yyyy年MM月dd日'
+				,min:1
+				,max:60
+			});
+		}
+			
+
+   
+			//图片上传
+			var $ulpreview = $('#picterViewList');  //预览图片的盒子
+			var filearr = new Array();
+			//自定义下标数组判断是否存在值
+			function contains(array, value) {
+				for (val in array)
+					if (array[val] === value){
+						return true;
+					}
+				return false;
+			}
+			var uploadPicter = upload.render({
+			    elem: '#productPicUpload' //绑定元素
+			    ,url: woLianw.url+'/sell/product/uploadfile' //上传接口
+			    ,method: "post"
+			    ,accept: "images"  //指定允许上传的文件类型，可选值有：images（图片）、file（所有文件）、video（视频）、audio（音频）
+			    ,exts: "jpg|png|gif|bmp|jpeg"	 //允许上传的文件后缀  如果 accept 未设定，那么限制的就是图片的文件格式
+			    ,size: 10240 //最大允许上传的文件大小
+			    ,auto: false   //是否选完文件后自动上传
+			    ,field: "file" 	//设定文件域的字段名
+			    ,multiple: false  //是否允许多文件上传。设置 true即可开启。不支持ie8/9
+			    ,number: 5   //设置同时可上传的文件数量，一般配合 multiple 参数出现   0（即不限制）
+			    ,bindAction: '#startUpload'
+			    ,choose: function(obj){
+					var $ulpreviewBox = $ulpreview.parent();
+					var imgNum = $ulpreview.find("li").length;
+					if(imgNum >= 5){
+						layer.msg("最多只能放入5张图片");
+					}else{
+						var that = this;
+						this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+						obj.preview(function(index, file, result){//读取本地文件
+							//console.log(index); //得到文件索引
+							//console.log(file); //得到文件对象
+							//console.log(result); //得到文件base64编码，比如图片
+							//删除重复记录
+							if (contains(filearr, file.name)) {
+								delete that.files[index];
+								return false;
+							} else {
+								filearr[index] = file.name;
+							}
+							
+							$ulpreviewBox.removeClass("layui-hide");
+							var $li = $([
+							'<li class="isPreview" id="listImg'+index+'">',
+								'<img src="'+result+'" />',
+								'<span class="fa fa-times-circle">',
+							'</li>'
+							].join(''));
+						
+							//删除
+							$li.find('span.fa-times-circle').on('click', function(){
+								delete that.files[index]; //删除对应的文件
+								delete filearr[index];	//删除记录的文件名 以免删除后出现同名文件不可选
+								$li.remove();
+								if($ulpreview.find("li").length == 0){
+									$ulpreviewBox.addClass("layui-hide");
+								}
+							});
+						
+							$('#picterViewList').append($li);
+							$("#startUpload").removeAttr("disabled");
+						})
+					}
+				    
+				    
+			    }
+			    ,before: function(obj){ //obj参数包含的信息，跟 choose回调完全一致，可参见上文。
+				    //layer.msg("正在上传！", {time: 1000}); //上传loading
+				  }
+			    ,done: function(res, index){
+				  //code=0代表上传不成功
+			      if(res.code == 0){
+			      	console.log(res.msg);
+			      }else if(res.code == 1){  //code=1代表上传成功
+				      //do something （比如将res返回的图片链接保存到表单的隐藏域）
+				      layer.msg("上传成功！", {time: 1000}); //上传成功提示
+				      $("#startUpload").attr("disabled", "true");
+				      var previewLi = document.getElementById("listImg"+ index);
+				      $(previewLi).removeClass().addClass("isUpload");
+					  $(previewLi).find("span").removeClass().addClass("fa fa-check");
+					  delete this.files[index]; //删除文件队列已经上传成功的文件
+                      delete filearr[index];//删除记录的文件名
+				      picUrls.push(res.data);
+				    }
+				    //获取当前触发上传的元素，一般用于 elem 绑定 class 的情况，注意：此乃 layui 2.1.0 新增
+				    var item = this.item;
+				    
+			    }
+			    ,error: function(results){
+			      //请求异常回调
+			      console.log(results);
+			    }
+			});
+			  
+		//修改限购区域显示
+        function reRenderLimitAera(data,templateID, wrapID){
+			if(data.readOnly==true){
+				$("#limitArea").hide();
+
+			}else{
+                $("#limitArea").show();
+                woLianw.renderDataHtml(data.didList,templateID, wrapID);
+			}
+		}
+
+        
+		//渲染限购区域 省级模块
+		woLianw.getLinkage("-1", reRenderLimitAera, "provinceTemplate", "province");
+
+		woLianw.getHsmjCategory("", FillList, 1); //商品分类
+
+        var productReleaseData = JSON.parse(window.localStorage.getItem("productReleaseData"));
+        submitObj["cid"] = productReleaseData.parameter.cid;
+        console.log(productReleaseData);
+        $("#checkedPathSpan").html(productReleaseData.path);
+        document.getElementById("productAttrs").innerHTML = TradInfoTemplate(productReleaseData.spu, 1);
+        document.getElementById("tradInfo").innerHTML = TradInfoTemplate(productReleaseData.sku, 2);
+		form.render(); //重新渲染layui的form表单
+        
+        //点击下拉框  级联
+        form.on('select(spuFilter)', function(data){
+        	var $this_parent = $(data.elem).parent();
+					var pid = $this_parent.siblings("label").attr("pid");
+					var optionId = 0;
+					$(data.elem).find("option").each(function(){
+						if(this.value == data.value){
+							optionId = this.id;
+						}
+					})
+					var attr = pid+"+"+optionId;
+					if(this.innerHTML == "其他"){
+						var otherid = "other"+optionId;
+						if(!document.getElementById(otherid)){
+							$this_parent.after('<div class="layui-input-inline" vid="'+otherid+'"><input type="text" name="'+data.elem.name+'" class="layui-input"></div>');
+						}
+					}else if(this.innerHTML != "其他"){
+						var $nextDiv = $this_parent.next();
+						if($nextDiv.attr("vid") && $nextDiv.attr("vid").indexOf("other") != -1){
+							$this_parent.next().remove();
+						}
+					}
+					if(!document.getElementById(attr)){ //如果存在id为attr的元素 就停止（防止重复创建） 不存在才继续执行
+						//添加之前先把之前的都清掉，再添加
+						$this_parent.siblings("div.layui-form-item").remove();
+						if(attr in productReleaseData.spuLinkage){
+							$this_parent.parent().append('<div class="layui-form-item" id="'+ attr +'"></div>');
+							woLianw.renderDataHtml(productReleaseData.spuLinkage[attr], "spuLinkageItemTemplate", attr);
+							form.render("select");
+						}
+					}
+				});
+				
+				//点击单选框  级联
+        form.on('radio(spuFilter)', function(data){
+        	var $this_parent = $(data.elem).parent();
+					var pid = $this_parent.siblings("label").attr("pid");
+					var vid = $(data.elem).attr("vid");
+					var attr = pid+"+"+vid;
+					if(document.getElementById(attr)){ //如果存在id为attr的元素 就停止（防止重复创建）
+						return false;
+					}else{
+						//添加之前先把之前的都清掉，再添加
+						$this_parent.siblings("div.layui-form-item").remove();
+						if(attr in productReleaseData.spuLinkage){
+							$this_parent.parent().append('<div class="layui-form-item" id="'+ attr +'"></div>');
+							woLianw.renderDataHtml(productReleaseData.spuLinkage[attr], "spuLinkageItemTemplate", attr);
+							form.render("select");
+						}
+					}
+				});
+
+				//选择运费模板
+				form.on("select(freight-weight)", function(data){
+					
+					var $select = $(data.elem);
+					var chargeType = $select.find("option:selected").attr("freightType");
+					var $weight = $("div.tradInfoPublicAtt").find("input[name=weight]");
+					if(chargeType==2){//重量   lay-verify="noEmpty"
+						$weight.attr("lay-verify", "noEmpty");
+						$weight.parent().siblings("label").html('<i class="red">*</i>单位重量：');
+					}else{
+						$weight.removeAttr("lay-verify");
+						$weight.parent().siblings("label").html('单位重量：');
+					}
+				});
+
+				form.on("select(freightType)", function(data){
+					if(data.value ==1){
+						woLianw.fillProInfoFareList(function(data){
+							$("#useFreight").parent().removeClass("layui-hide");
+							if(data.length >0){
+								console.log(data);
+								$("#useFreight").empty();
+								woLianw.renderDataHtml(data, "useFreightTemplate", "useFreight");
+							}else{
+								$("#useFreight").empty();
+								var option = '<option value="-1">暂无模板</option>';
+								$("#useFreight").append(option);
+							}
+							form.render();
+						});
+					}else{
+						$("#useFreight").parent().addClass("layui-hide");
+					}
+				});
+				
+			//表单过滤（是否填写，填写正确与否）
+			form.verify({
+					//不能为空
+					noEmpty: function(value, item){ //value：表单的值、item：表单的DOM对象
+						
+						if(value == ""  || value == null){
+								$(item).parent().addClass("layui-form-danger");
+								var $tips = $(item).parents("div.layui-form-item").find("label.layui-form-label").text();
+								$("body,html").animate({ 
+									scrollTop: $(item).parent().offset().top //让body的scrollTop等于pos的top，就实现了滚动 
+								}, 1000);
+								
+							return $tips + '是必填项不能为空！';
+						}
+					},
+					//
+					noRadio: function(value, item){
+						if(!$(item).siblings("div.layui-form-radio").hasClass("layui-form-radioed")){
+							$(item).parent().addClass("layui-form-danger");
+								$("body,html").animate({ 
+									scrollTop: $(item).parent().offset().top //让body的scrollTop等于pos的top，就实现了滚动 
+								}, 100);
+							return '必选项不能为空！';
+						}
+					}
+				
+			});
+
+				window.useFreightRefresh  = function (){
+					woLianw.fillProInfoFareList(function(data){
+						$("#useFreight").parent().removeClass("layui-hide");
+						if(data.length >0){
+							console.log(data);
+							$("#useFreight").empty();
+							woLianw.renderDataHtml(data, "useFreightTemplate", "useFreight");
+						}else{
+							var option = '<option value="-1">暂无模板</option>';
+							$("#useFreight").append(option);
+						}
+						form.render();
+					});
+				}		
+				
+				//点击单选框 【普通价格or阶梯价格】
+				form.on('radio(priceType)', function(data){
+				    //
+					if(data.value == 0){
+						$("div.priceRange").addClass("layui-hide");
+                        setLeaderPrice();
+					}else if(data.value == 1){
+						$("div.priceRange").removeClass("layui-hide");
+                        setLeaderPrice();
+					}
+				});
+				function setLeaderPrice() {
+                    //获取当前sku下的所有tr
+                    var isLeaderPrice = ($("input[name='priceType']:checked").val()=="1");
+                    var $skuEditorTr = $("#skuSetTab").find("tr.editorTr");
+                    //获取价格的第一行
+                    var firstLeadPrice = $("#priceRangeTab tr.editorTr").eq(0).find("input").eq(1).val();//获取第一个阶梯价格
+					firstLeadPrice ? $("div.specifications").find("input[name=vendorPrice]").val(firstLeadPrice) : ""; //设置 单spu的供货价
+                    $.each($skuEditorTr, function (i, e) {
+                        var trArr = $(this).find("input");
+                        var times = 0;
+                        for (var i = trArr.length - 1; i >= 0; i--) {
+                            if (times === 4) {
+                                if (isLeaderPrice) {
+                                    if (firstLeadPrice) {
+										$(trArr[i]).val(firstLeadPrice);
+                                    }
+									$(trArr[i]).attr("readonly", true);
+									
+                                }
+                                else {
+                                    $(trArr[i]).removeAttr("readonly");
+                                    $(trArr[i]).val(0);
+                                }
+                            }
+                            times++;
+                        }
+                    });
+                }
+
+				
+				//sku 单选框 选中后 增加一条table信息
+				form.on('checkbox(skuFilter)', function(data){
+				
+					var $name = data.elem.name;  //当前属性下的name
+					var $value = data.value;  //当前点击的checkbox 的 value
+					var $elem = $(data.elem).parents("#tradInfo");
+					if($elem.length <= 0){
+						return;
+					}
+					var $th = $("#skuSetTab").find("tr:first th");
+					var $divBox= $(data.elem).parent("div.layui-input-inline");  //当前元素 的父级
+					var $selfcheckedDiv = $divBox.find("div.layui-form-checkbox"); //当前元素所在同一个父级下的所有元素(包括自己)
+					var $otherCheckBoxDiv = $divBox.parents("div.ibox-content").siblings().find("div.layui-input-inline");  //另外所有属性下的所有checkbox 盒子
+					var currentChecked = $(data.othis).hasClass("layui-form-checked");  //当前点击是勾选  还是取消勾选  （true/false）
+					var isneedaddth =false;
+					var $editorTr = $("#skuSetTab").find("tr.editorTr");  //当前存在的 有数据的tr
+					if(currentChecked){ //被选中
+						$("#specifications").removeClass("layui-hide");
+						if($name =="颜色"){		
+							$("#skuPicture").removeClass("layui-hide");
+							createUploadPIc($value);
+						} 
+						var checkedarray = $divBox.find("div.layui-form-checked");
+						if(checkedarray.length ==1){//需要生成表头
+							addTh($th, $name);
+							isneedaddth=true;
+						}
+						var $othercheckedarray = $otherCheckBoxDiv.find("div.layui-form-checked"); //其他所有属性下的 被选中的checkbox
+						var thNum = $("#skuSetTab").find("tr:first th").length;    //表头的字段数量
+						
+						if($editorTr.length>0 && isneedaddth){ //如果已经存在被选中的
+								//增加tr
+								$.each($editorTr, function(i, item){//在已有的tr上面加TD
+									//现获取有几个column
+									addtd(item,$value, $name);
+								})
+						}else{ //如果没有任何tr
+							addTr(data, $othercheckedarray, ($editorTr.length<1),isneedaddth,thNum);
+						}
+                        setLeaderPrice();
+						
+					}
+					else{//取消勾选
+						var _elem = document.getElementById($value);
+						$(_elem).parent().remove();
+ 			
+						var $editorTr2 = $("#skuSetTab").find("tr.editorTr");  //当前存在的 有数据的tr
+						var checkedarray = $divBox.find("div.layui-form-checked");
+						var othercheckedarray = $otherCheckBoxDiv.find("div.layui-form-checked");
+						var thIndex =0;
+						if(checkedarray.length < 1){ //点击的checkbox集合没有一个被选中
+							if(othercheckedarray.length < 1){
+								$.each($editorTr2, function(i, e){
+									$(e).remove();
+								})
+							}
+							$.each($th, function(i,item) {
+								if($(this).text() == $name){
+									$(this).remove(); 
+									thIndex=i;
+									return false;
+								}
+							});
+							$.each($editorTr2, function() {
+								$(this).find("td").eq(thIndex).remove();
+								//把对应的其他输入框的内容清空
+							})
+						}else{
+							$.each($editorTr2, function(i, e){
+								if($(e).find("input[type=text]").eq(0).val() == $value || $(e).find("input[type=text]").eq(1).val() == $value){
+									$(e).remove();
+								}
+							})
+						}
+                        setLeaderPrice();
+					}
+					
+				});	
+				
+				//渲染 富文本编辑器 
+				//var ue = UE.getEditor('editor');
+				// var _editor = UE.getEditor('Ueditor');
+				// _editor.ready(function () {
+				// 	//设置编辑器不可用
+				// 	//_editor.setDisabled();  这个地方要注意 一定要屏蔽
+				// 	//隐藏编辑器，因为不会用到这个编辑器实例，所以要隐藏
+				// 	//_editor.hide();
+				// 	//侦听图片上传
+				// 	_editor.addListener('beforeinsertimage', function (t, arg) {
+				// 		//将地址赋值给相应的input,只去第一张图片的路径
+				// 		alert();
+				// 		var imgs;
+				// 		for(var a in arg){
+				// 			imgs +=arg[a].src+',';
+				// 		}
+				// 		$("#picture").attr("value", arg[0].src);
+				// 		//图片预览
+				// 		$("#preview").attr("src", arg[0].src);
+				// 	})
+
+				// });
+				// //弹出图片上传的对话框
+				// function upImage() {
+				// 	var myImage = _editor.getDialog("insertimage");
+				// 	myImage.open();
+				// }
+        	
+        
+				//提交表单
+				form.on('submit(publishBtn)', function(data){
+					var hcid = "";
+					var dids = [];					//用来装 限购区域id
+					var spu = {};					 //用来装 spu
+					var content = window.contentEditor.html();// ue.getContent(); //用来装 商品详情的富文本信息
+					var sku = []						//用来装 sku
+
+					//收集sku的信息
+					var pricesku = {};
+					var tmpsku = {};
+					var $skuEditorTr = $("#skuSetTab").find("tr.editorTr");
+					$skuEditorTrObj = {};
+					$.each($skuEditorTr, function(i, e) { //序列化 每个tr 提取数据
+						var trArr = $(this).find("input").serializeArray();
+						var times = 0;
+						var colorString="";
+						for(var i = trArr.length-1; i >= 0; i--){
+							var name = $.trim(trArr[i].name);
+							var value = $.trim(trArr[i].value);
+							if(times>=5){
+								//遍历到真正的sku了
+								if($.trim(name)=="颜色"){
+									
+									colorString+= value+"|";
+								}else{
+									tmpsku[name] = value;
+								}
+							}else{ //价格和货号
+								pricesku[name] = value;
+							}
+							times++;
+						}
+						if(colorString!=""){
+							if(colorString[colorString.length-1]=="|"){
+								
+								colorString = colorString.substring(0,colorString.length-1);
+								var colorStringArr = colorString.split("|");
+								if(colorStringArr.length==2){
+									tmpsku["颜色"] = colorStringArr[1]+"|"+colorStringArr[0];
+								}else{
+									tmpsku["颜色"] = colorStringArr[0];
+								}
+								
+							}
+						}
+						pricesku["properties"] = JSON.stringify(tmpsku);
+						sku.push(pricesku);
+						pricesku= {};
+						tmpsku= {};
+					});
+					//如果只是单spu商品 而没有sku 则模拟sku保存数据  properties为空  其他的如：供货价 可售数量 建议零售价 市场零售价 货号 等 同样模拟sku 存入
+					if(sku.length<1) {
+						skuObj = {};
+						skuObj["properties"] = "";
+						var  specifications = $("div.specifications input, div.specifications select").serializeArray(); 
+						if(specifications.length > 0){
+							//单spu 的信息   供货价 可售数量 建议零售价 市场零售价 货号
+							$.each(specifications, function(i, elem){
+								skuObj[elem.name] = elem.value;
+							}); 
+							sku.push(skuObj);
+						}
+					}
+					//app审核
+					var ischeckUser = localStorage.getItem("ischeckUser")=="true";
+
+					if(ischeckUser){ //免审核用户
+						//需要检测app分类是否选择
+						var inputHICD = document.getElementById("addCate");
+						hicd = $(inputHICD).attr("existid");
+						submitObj["hcid"] = hicd;
+						if(hicd == "" || hicd == undefined){
+							layer.msg("必须选择一个app分类！", {time: 2000}); 
+							return false;
+						}
+					}
+					
+					var ladderPrice = {};					//用来装 阶梯价格
+			    
+				var spuInfo = $("#productAttrs input, #productAttrs select").serializeArray();	//获取spu信息
+				var  tradInfoPublicAtt = $("div.tradInfoPublicAtt input, div.tradInfoPublicAtt select").serializeArray();	//获取spu，sku之外的公共信息
+				
+			    var tradInfo = $("#tradInfo input, #tradInfo select").serializeArray(); //获取sku信息
+			    var ladderPriceTab = $("#priceRangeTab tr.editorTr");//获取阶梯价格 的信息
+				var afterAddAttrBox = $("#afterAddAttrWrap div.afterAddAttrBox");//spu自定义属性 的信息
+				
+				 //isPresale  是否预售（0/1）
+				 submitObj["isPresale"] = releaseType;
+				 if(releaseType){
+					var $presaleDate = $("#presaleDateBox input").serializeArray();  //预售日期信息
+					//预售日期 presaleDate
+					$.each($presaleDate, function(i, elem){
+						var name = elem.name;
+						var value = elem.value;
+						submitObj[name] = value;
+					}); 
+				 }
+
+			    $("#tab-title i").each(function(){ //获取限购区域的id们  
+			    	dids.push($(this).attr("xid"));
+			    });
+				  //spu
+					$.each(spuInfo, function(i, elem){
+					  var name = elem.name;
+				      var value = elem.value;
+				      var line = spu[name];
+				      if (line == null) { line = [] }
+				      line.push(value);
+				      spu[name] = line;
+					}); 
+					//spu自定义属性
+					$.each(afterAddAttrBox, function(i, elem){
+						var valArr = [];
+						var name = $(this).find("input").eq(0).val();
+						var value = $(this).find("input").eq(1).val();
+						valArr.push(value);
+				    spu[name] = valArr;
+					}); 
+					//sku
+					$.each(tradInfo, function(i, elem){
+					  var name = elem.name;
+				      var value = elem.value;
+				      var line = spu[name];
+				      if (line == null) { line = [] }
+				      line.push(value);
+				      sku[name] = line;
+					}); 
+					
+					//公共信息（计量单位，最小可定量，最大购买量等）
+					$.each(tradInfoPublicAtt, function(i, elem){
+				      submitObj[elem.name] = elem.value;
+					}); 
+					
+					if(submitObj.priceType == 1){  //如果 选了普通价格（priceType=0） 不用计算阶梯价格 ； 如果选了阶梯价格（priceType=1），就执行下面代码 计算阶梯价格
+						//阶梯价格
+						$.each(ladderPriceTab, function(i, elem){
+							var name = $(this).find("input.myselfInput").eq(0).val();
+							var value = $(this).find("input.myselfInput").eq(1).val();
+					    ladderPrice[name] = value;
+						}); 
+					}
+					
+					submitObj["dids"] = dids.join(",");   //区域限制
+					submitObj["urls"] = picUrls.join(",");   //上传图片
+					submitObj["content"] = content;   //商品详情
+				  	submitObj["name"] = $("#productShuXing input[name=name]").val();  //产品标题
+					submitObj["spu"] = JSON.stringify(spu);
+					submitObj["ladderPrice"] = JSON.stringify(ladderPrice);
+					submitObj["sku"] = JSON.stringify(sku);
+					
+			    console.log(submitObj);
+		      
+		      woLianw.productInfoSubmit(submitObj, function(response) {
+				if(response.code == 1){
+					layer.open({
+						type: 1,
+						title: '发布成功',
+						closeBtn: 2,  //右上角的关闭X
+						cancel: function(){ 
+							//右上角关闭回调
+							window.location.href = "product-list.html"
+							//return false 开启该代码可禁止点击该按钮关闭
+						},
+						shade: [0.8, '#393D49'],  //遮罩
+						scrollbar: false,   //屏蔽浏览器滚动
+						content: $("#productReleaseSuccess"),
+						area: ['1200px']
+					});
+				}else{
+					layer.msg(response.msg, function(){}); 
+				}
+
+				
+			})
+          
+          	return false;
+		      
+		});
+				
+				
+		
+		
+
+        $(function(){
+        	
+        	//spu 点击增加新属性
+        	$("#addProAttrBtn").click(function(){
+        		var str = '<div class="layui-input-block afterAddAttrBox">';
+        		str+= '<input type="text" maxlength="100" name="spuInfoAddKey"  class="layui-input afterAddAttr"> : ';
+        		str+= '<input type="text" maxlength="100" name="spuInfoAddValue" class="layui-input afterAddAttr">';
+        		str+= '<a href="javascript:;" class="layui-btn deleteAttrBtn"><i class="fa fa-trash">&nbsp;&nbsp;删除</a></div>';
+        		var $html = $(str);
+        		$("#afterAddAttrWrap").append(str);
+        	});
+        	//sku点击增加自定义项
+        	$("#tradInfo").on("click", "a.addMySelfItem", function () {
+				var value = $(this).siblings("input").val();
+				var inputsArr = [];
+				$(this).parents("div.layui-input-inline").find("input").not($(this).siblings("input")).each(function(){
+					inputsArr.push($(this).val());
+				});
+				
+				var name = $(this).parents("div.layui-input-inline").siblings("label").text().replace("*", "");
+				if (value == "") {
+					layer.msg("值不能为空！");
+				}else if($.inArray(value, inputsArr) != -1){  //判断不能重复 清空让重新输入
+					layer.msg("【 "+value+" 】已存在，不能重复，请重新输入！", {time: 1500});
+					$(this).siblings("input").val("");
+					return;
+					
+				}else {
+					var $html = '<input lay-skin="primary" lay-filter="skuFilter" type="checkbox" name="'+name+'" title="'+value+'" value="'+value+'" class="layui-input">';
+					$html += '<a href="javascript:;" class="deleCheckbox" onclick="deleCheckbox(this,\''+name+'\', \''+value+'\')"'+'>删除</a>';
+					$(this).parent().before($html);
+					$(this).siblings("input").val("");
+					form.render(); //重新渲染layui的form表单
+					//$(this).parents("div.layui-input-inline").find("div.layui-form-checkbox").last().trigger("click");
+				}
+
+			});
+        	
+        	//sku 点击增加价格区间
+        	$("#addPriceRangeBtn").click(function(){
+				var length = $("#priceRangeTab").find("tr").length;
+				if(length>4){
+					layer.msg("最多只能添加三个区间价格！", {time: 1000});
+					return;
+				}
+				if($(this).attr("canClick") == "false"){
+					return;
+				}
+
+        		if(!$("#mandatoryInput").val()){
+        			$("#mandatoryInput").focus();
+        		}else{
+        			var $value = $("#unitName").val();
+        			var str = '';
+        				str += '<tr class="editorTr">';
+							str += '<td> 购买多少';
+								str += '<input class="myselfInput onlyNum" type="text" /><label uid="unitName">'+$value+'</label>及以上';
+							str += '</td>';
+							str += '<td>';
+								str += '<input class="myselfInput themoney" type="text" />元/<label uid="unitName">'+$value+'</label>';
+							str += '</td>';
+							str += '<td><a href="javascript:;" class="deletePriceRangeA">删除</a></td>';
+						str += '</tr>';
+        			$(this).parents("tr").before(str);
+        		}
+			});
+			
+			//价格区间的数量 只能前者大于后者   
+			$("#priceRangeTab").on({
+				blur: function(){
+					var $editorTr = $(this).parents("tr.editorTr");  //获取当前所在的行tr
+					var firstIndex = $("#priceRangeTab tr").index($editorTr);
+					if(firstIndex > 1){  //不是表头 也不是区间价格第一行
+						var index = $editorTr.find("input").index(this); //获取当前是一行的第几个input (左边数量，右边价格)
+						var prevNum0 = $editorTr.prev().find("input").eq(0).val();  //获取上一行的数量
+						var prevNum1 = $editorTr.prev().find("input").eq(1).val();  //获取上一行的价格
+						if(index == 0 && $(this).val() <= parseFloat(prevNum0)){ //如果是数量比上面更小
+							layer.msg("价格区间的数量只能前者大于后者");  
+							$("#").attr("canClick", "false");  //不让点击增加价格区间按钮
+							$(this).focus();
+						}else if(index == 1 && $(this).val() >= parseFloat(prevNum1)){  //如果是价格比上面更大
+							layer.msg("产品单价必须下面价格小于上面价格");
+							$("#addPriceRangeBtn").attr("canClick", "false");
+							$(this).focus();
+						}else{ //如果是正常情况
+							$("#addPriceRangeBtn").removeAttr("canClick");
+						}
+					}
+					else if(firstIndex === 1){ //设置sku下面的供货价格
+                        setLeaderPrice();
+                    }
+				
+				}
+			}, "input");
+        	
+        	
+        	
+        	//点击删除 新的自添加属性
+        	$("#afterAddAttrWrap").on("click", "a.deleteAttrBtn", function(){
+        		$(this).parent().remove();
+        	});
+        	
+        	
+        	$("#tradInfo").on("click", "a.deleteAttrBtn", function(){
+        		$(this).parent().remove();
+        	});
+        	
+        	$("#priceRangeTab").on("click", "a.deletePriceRangeA", function(){
+        		$(this).parents("tr").remove();
+        	});
+        	
+        	
+        	//点击取消 提交按钮
+        	$("#cancelBtn").click(function(){
+				location.href = "main.html";
+				//parent.frames['main'].location.href = "main.html";
+        	});
+        	
+        	//监控计量单位的输入
+        	$("#unitName").watch(function(value, currentObj) {
+        	 	var $dom = $("#tradInfoIbox").find("*[uid=unitName]");
+						$dom.text(value);
+			    });
+			    
+        	//监控 选择对应APP商品分类的输入
+        	$("#inputAppCategory").watch(function(value, currentObj) {
+        		var parameter = {
+      				name: value,
+      				limit: 200
+      			}
+        	 	woLianw.getHsmjCategory(parameter, FillList);
+			    });
+			    
+			    //选择对应APP商品分类 点击下拉框
+        	$("#btnAppCategory").click(function(){
+        		if($("#ulAppCategoryResults").hasClass("layui-hide")){
+        			$("#ulAppCategoryResults").removeClass("layui-hide");
+        			var $name = $("#inputAppCategory").val();
+        			var parameter = {
+        				name: $name,
+        				limit: 200
+        			}
+        			woLianw.getHsmjCategory(parameter, FillList);
+        		}else{
+        			$("#ulAppCategoryResults").addClass("layui-hide");
+        		}
+        	});
+        	
+        	//点击所选下拉项
+        	$("#ulAppCategoryResults").on("click", "li", function(){
+        		var $id = $(this).attr("id");
+        		var $existInput = document.getElementById("addCate");
+        		//判断是否已存在，不重复添加！
+        		if(!($($existInput).attr("existId") == $id)){
+        			var $name = $(this).attr("name");
+	        		var $path = $(this).attr("path");
+	        		var $_index = $(this).attr("index");
+	        		var str = '<label class="labelCatsShow">';
+							str += '<span class="spanCatshow">';
+								str += '<a class="layui-btn layui-btn-warning aCategoryName" href="javascript:;">'+$path+'</a> ';
+								str += '<a class="layui-btn layui-btn-danger aCategoryName-remove" href="javascript:;"> × </a> ';
+							str += '</span>';
+							str += '<input type="hidden" existId="'+$id+'" path="'+$path+'" name="hcid" id="addCate" value="'+ $name +'">';
+						str += '</label>';
+							//先清掉以前的， 再添加
+	        		$($existInput).parents("label.labelCatsShow").remove();
+	        		$("#inputAppCategory").val($path);
+	        		$("#divCatsShow").append(str);
+        		}
+        		
+        	});
+        	
+        	//内容ul框 失去焦点 消失
+			$('#AppCategoryBox').blur(function(){
+				$("#ulAppCategoryResults").addClass("layui-hide");
+			})
+        	
+        	
+        	
+        });
+        
+        //点击删除
+        $("#divCatsShow").on("click" ,"a.aCategoryName-remove", function(){
+        	$(this).parents("label.labelCatsShow").remove();
+        	$("#inputAppCategory").val("");
+        	$("#ulAppCategoryResults").addClass("layui-hide");
+        });
+
+
+
+
+
+    
+	});
+    KindEditor.ready(function(K) {
+        window.contentEditor = K.create('#keditor_id',{
+            items:[
+                'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+                'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+                'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen',
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+                'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+                'anchor', 'link', 'unlink', '|', 'about'
+            ],
+            uploadJson : '/api/sell/product/uploadFileForText',
+            allowFileManager : false,
+            filePostName: "file",
+            fillDescAfterUploadImage:false
+
+        });
+    });
+
+</script>
+</body>
+</html>
+

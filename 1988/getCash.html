@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>提现</title>
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta type="description" content="提现">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./plugins/layui255/css/layui.css" media="all">
+<link rel="stylesheet" href="./plugins/font-awesome/css/font-awesome.min.css" media="all">
+<link rel="stylesheet" href="./build/css/index.css" />
+<link rel="stylesheet" href="./build/css/getCash.css">
+</head>
+<body>
+  <div class="seller-header">
+    <span class="layui-breadcrumb">
+      <a href="javascript:;">你当前所在的位置</a>
+      <a><cite>提现</cite></a>
+    </span>
+  </div>
+  
+  <div class="getCashWarp">
+    <div class="getCashHead">提现申请</div>
+    <div class="getCashBody" id="getCashBody"></div>
+  </div>
+
+<script src="./plugins/layui255/layui.js"></script>
+<script src="./plugins/base64.js"></script>
+<script src="./build/js/wolianwComponent/config.js"></script>
+<script type="text/html" id="getCashBodyTemplate">
+  <form class="layui-form">
+    <div class="layui-form-item">
+      <label class="layui-form-label"><i>*</i>提现方式：</label>
+      <div class="layui-input-block">
+        <input type="radio" name="method" value="alipay" title="支付宝" checked>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label"><i>*</i>支付宝帐号：</label>
+      <div class="layui-input-block">
+        <input type="text" name="account" placeholder="请输入支付宝帐号" autocomplete="off" class="layui-input" lay-verify="required">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label"><i>*</i>用户名：</label>
+      <div class="layui-input-block">
+        <input type="text" name="accountuser" placeholder="请输入支付宝真实姓名" autocomplete="off" class="layui-input" lay-verify="required">
+      </div>
+    </div>
+    <div class="amountInfo">总金额：{{d.totalremain}}元；可提现余额：{{d.remain}}元；冻结金额：{{d.frozeremain}}元；</div>
+    <div class="layui-form-item">
+      <label class="layui-form-label"><i>*</i>提现金额：</label>
+      <div class="layui-input-block">
+        <input type="text" name="cashMoney" id="cashMoney" value="0" autocomplete="off" class="layui-input" lay-verify="required">
+        <div class="layui-form-mid layui-word-aux">提现金额在1到2000之间</div>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label"><i>*</i>密码：</label>
+      <div class="layui-input-block">
+        <input type="password" name="passwd" placeholder="请输入六位数及以上支付密码" autocomplete="off" class="layui-input" lay-verify="required">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <button class="layui-btn" lay-submit lay-filter="*">保存</button>
+        <button type="button" class="layui-btn layui-btn-primary" onclick="history.back();">取消</button>
+      </div>
+    </div>
+  </form>
+</script>
+<script>
+  function twoDecimal(num, maxbit, maxnum) {
+    if (num === '') {
+      return '';
+    }
+
+    var numString = num + "";
+    var numArray = numString.split('.');
+    var decimal = null;
+    var result = '';
+
+    if (numArray.length > 1) {
+      decimal = numArray[1].substring(0, maxbit);
+    }
+    
+    if (decimal !== null) {
+      result = numArray[0] +'.'+ decimal;
+      result = parseFloat(result);
+      result = (decimal.length < maxbit) ? result.toFixed(decimal.length) : result.toFixed(maxbit);
+    } else {
+      result = numArray[0];
+      result = parseInt(result);
+    }
+
+    result = (result > maxnum) ? maxnum : result;
+    result = (decimal === "") ? result+'.' : result;
+
+    return result;
+  }
+  layui.use(['element', 'form', 'laydate', 'laytpl', 'layer', "woLianw"], function() {
+    var element = layui.element
+    var form = layui.form
+    var laydate = layui.laydate
+    var laytpl = layui.laytpl
+    var $ = layui.$
+    var layer = layui.layer
+    var woLianw = layui.woLianw;
+
+    // 渲染表单
+    function renderForm (data) {
+      var getCashBodyTemplate = document.getElementById('getCashBodyTemplate').innerHTML;
+      var getCashBodyWrap = document.getElementById('getCashBody');
+      laytpl(getCashBodyTemplate).render(data, function (html){
+        getCashBodyWrap.innerHTML = html;
+        form.render();
+      });
+    }
+
+    // 数据加载
+    woLianw.ajaxPayOldBalance(null, function (data) {
+      renderForm(data);
+    }, function (err) {
+      layer.msg(err);
+    });
+
+    // 表单提交 - 提现
+    form.on('submit(*)', function(data){
+      layer.confirm('确定要提现吗？', {
+          btn: ['确定','取消'] //按钮
+      }, function(index){
+          console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+          // return false;
+          var base64 = new Base64();
+          data.field.passwd = base64.encode(data.field.passwd);
+          // 数据加载
+          woLianw.ajaxPayWithCash(data.field, function (data) {
+            layer.closeAll();
+            renderForm(data);
+              layer.msg('提现成功!');
+              setTimeout(function () {
+                  window.location.href = '/index.html'
+              },1500)
+          }, function (err) {
+            layer.msg(err);
+              setTimeout(function () {
+                  window.location.href = '/index.html'
+              },1500)
+          });
+      });
+
+      return false;
+    });
+
+    // 数据输入限制
+    $(document).on('input', '#cashMoney', function () {
+      var value = $(this).val();
+      $(this).val(twoDecimal(value, 2, 2000));
+    });
+  })
+</script>
+</body>
+</html>

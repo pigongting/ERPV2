@@ -1,0 +1,61 @@
+.search-order{
+    position: relative;
+    padding: 25px 50px;
+}
+.search-order::after{
+    content: "";
+    width: 100%;
+    height: 1px;
+    position: absolute;
+    background-color: #e4e4e4;
+    bottom: 0;
+    left: 0;
+}
+.search-order>div{
+    margin: 10px 0;
+}
+.search-order .layui-form-checkbox i{
+    display: none;
+}
+.search-order .layui-form-checkbox span{
+    padding: 0 10px 0 30px;
+    background-color: #ffffff;
+    font-size: 14px;
+    color: #323232;
+    position: relative;
+}
+.search-order .layui-form-checkbox span::before{
+    position: absolute;
+    content: "";
+    width: 10px;
+    height: 10px;
+    left: 10px;
+    top: 9px;
+}
+.search-order .layui-form-checked span{
+    background-color: #F2F2F2;
+}
+.search-order .layui-form-checkbox{
+    padding-right: 0;
+    border: 1px solid #e4e4e4;
+}
+.search-order .layui-form-checkbox:nth-of-type(1) span::before{
+    background-color: #ff4e3d;
+}
+.search-order .layui-form-checkbox:nth-of-type(2) span::before{
+    background-color: #fb980b;
+}
+.search-order .layui-form-checkbox:nth-of-type(3) span::before{
+    background-color: #3280f4;
+}
+.search-order .layui-form-checkbox:nth-of-type(4) span::before{
+    background-color: #25d0fb;
+}
+.search-order .layui-form-checkbox:nth-of-type(5) span::before{
+    background-color: #39cb88;
+}
+.search-order span.dateLabel{
+    margin-left: 30px;
+    font-size: 14px;
+    color: #323232;
+}

@@ -1,0 +1,242 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="x-ua-compatible" content="ie=edge">
+		<title>商品分组管理</title>
+		<meta name="description" content="">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="manifest" href="site.webmanifest">
+		<link rel="apple-touch-icon" href="icon.png">
+		<link rel="stylesheet" href="./plugins/layui/css/layui.css">
+		<link rel="stylesheet" href="./plugins/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="./build/css/main.css">
+		<link rel="stylesheet" href="./build/css/product-groups.css">
+		<link rel="stylesheet" href="./build/css/popup.css">
+
+	</head>
+
+	<body>
+		<div class="seller-header">
+			<span class="layui-breadcrumb">
+              <a href="javascript:;">你当前所在的位置</a>
+              <a href="javascript:;">商品管理</a>
+              <a><cite>商品分组管理</cite></a>
+            </span>
+		</div>
+		<div class="main">
+			<div class="search-content">
+				<label for="">商品分组名称</label>
+				<input type="text" class="layui-input-inline" id="searchCondition">
+				<button class="layui-btn search-btn" id="searchProductGroup">
+            <i class="fa fa-search"></i>&nbsp;&nbsp;搜索
+        </button>
+				<button class="layui-btn add-groups-btn" id="addProductGroup">
+            <i class="fa fa-plus"></i>&nbsp;&nbsp;新建商品分组
+        </button>
+			</div>
+			<div class="groups-list">
+				<table id="tbProductGroup">
+					<thead>
+						<tr>
+							<th>排序</th>
+							<th>商品分组名称</th>
+							<th>分组商品数量</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					
+				</table>
+			</div>
+
+		</div>
+
+		<script type="text/html" id="productGroupTemplate">
+			<thead>
+				<tr>
+					<th>排序</th>
+					<th>商品分组名称</th>
+					<th>分组商品数量</th>
+					<th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{# layui.each(d,function(index,item){ }}
+				<tr>
+					<td>{{ index+1 }}</td>
+					<td>{{ item.name }}</td>
+					<td>{{ item.productCount }}</td>
+					</td>
+					<td data-id={{ item.id }} data-name={{ item.name }}>
+						<button class="layui-btn layui-btn-normal layui-btn-small edit-btn"><i class="fa fa-edit"></i>&nbsp;&nbsp;编辑</button>
+						<button class="layui-btn layui-btn-normal layui-btn-small delete-btn"><i class="fa fa-trash-o"></i>&nbsp;&nbsp;删除</button>
+						<button class="layui-btn layui-btn-small bg-red goProductList"><i class="fa fa-check"></i>&nbsp;&nbsp;分组商品列表</button>
+					</td>
+				</tr>
+
+				{{# }) }}
+			</tbody>
+		</script>
+
+		<div id="editBox"></div>
+		<script type="text/html" id="editTemplate">
+			<div class="edit-task">
+				<div class="center-content">
+					<h3>新建商品分组</h3>
+					<div class="info-content">
+						<form class="layui-form" action="" id="addForm">
+							<div class="layui-form-item">
+								<label class="layui-form-label">分组名称<i class="iconfont icon-bixutian"></i></label>
+								<div class="layui-input-block">
+									<input type="hidden" name="id" value="{{ d.id ? d.id : '' }}">
+									<input type="text" name="name" required value="{{ d.name ? d.name : '' }}" lay-verify="required" placeholder="请输入商品分组名称" autocomplete="off" class="layui-input">
+								</div>
+							</div>
+
+							<div class="layui-form-item">
+								<div class="layui-input-block">
+									<button class="layui-btn pi-TableButton pi-TableButtonBlue save" lay-submit lay-filter="go">保存</button>
+									<button class="layui-btn pi-TableButton pi-TableButtonGray canceled" type="button">取消</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</script>
+		<script src="./plugins/layui/layui.js"></script>
+		<script src="./build/js/wolianwComponent/config.js"></script>
+		<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+
+		<script>
+			layui.use(['element', 'form', 'laydate', 'laytpl', 'jquery', 'layer', 'woLianw'], function() {
+				var element = layui.element
+				var form = layui.form
+				var laydate = layui.laydate
+				var laytpl = layui.laytpl
+				var $ = layui.$
+				var layer = layui.layer
+				var woLianw = layui.woLianw
+
+				$(".groups-list").on("click", ".delete-groups", function() {
+					layer.confirm('该操作将会把已关联的商品的商品分组设置为(无)，您确定要删除该商品分组吗？', {
+						btn: ['确定', '取消'] //按钮
+					}, function() {
+
+					});
+				})
+
+				/*新增商品分组*/
+				$('#addProductGroup').on('click', function() {
+					renderEditPage1({})
+				})
+
+				/*取消*/
+				$('#editBox').on('click', '.canceled', function() {
+					$('#editBox').empty()
+				})
+
+				/*新增商品分组，显示编辑页弹框*/
+				function renderEditPage1(parameter) {
+					var data = parameter
+					var editTemplate = document.getElementById("editTemplate").innerHTML
+					var editBox = document.getElementById("editBox")
+					laytpl(editTemplate).render(data, function(html) {
+						editBox.innerHTML = html
+						form.render()
+					})
+				}
+
+				/*提交表单*/
+				form.on('submit(go)', function(data) {
+					console.log(data.field)
+					if(data.field.id) {
+						woLianw.productGroupUpdate(data.field, function() {
+							$('#editBox').empty()
+							woLianw.getProductGroupList({}, renderUserManageData)
+						})
+					} else {
+						woLianw.addSellProductGroup(data.field, function() {
+							$('#editBox').empty()
+							woLianw.getProductGroupList({}, renderUserManageData)
+						})
+					}
+				})
+
+				/**将模板渲染到页面*/
+				function renderUserManageData(data) {
+					var productGroupTemplate = document.getElementById("productGroupTemplate").innerHTML
+					var tbProductGroup = document.getElementById("tbProductGroup")
+					laytpl(productGroupTemplate).render(data, function(html) {
+
+						tbProductGroup.innerHTML = html
+					})
+				};
+
+				//商品分组列表
+				woLianw.getProductGroupList({}, renderUserManageData)
+
+				/*删除商品分组*/
+				$('#tbProductGroup').on('click', '.delete-btn', function() {
+					var _this = this
+					layer.confirm('该操作将会把已关联的商品的商品分组设置为(无)，您确定要删除该商品分组吗？', {
+						btn: ['确定', '取消'] //按钮
+					}, function(index) {
+						/*更新默认地址之后，重新获取新的用户地址列表*/
+						var id = $(_this).parent().attr('data-id')
+						woLianw.deleteProductGroup(id, function() {
+							woLianw.getProductGroupList({}, renderUserManageData)
+						})
+						layer.close(index);
+					}, function() {
+
+					});
+				})
+				
+				$('#tbProductGroup').on('click', 'button.goProductList', function() {
+					var id = $(this).parent().attr('data-id');
+					window.open("product-list.html?groupId="+id, "_blank");
+				});
+
+				//搜索
+				$("#searchProductGroup").on('click',function(){
+					var search=$("#searchCondition").val()|| null;
+					var obj={
+						name:search
+					}
+					woLianw.getProductGroupList(obj, renderUserManageData)
+					
+				});
+				
+				
+				/*点击编辑，获取对应的商品分组详情*/
+				$('#tbProductGroup').on('click', '.edit-btn', function() {
+					var _this = this
+					var id = $(_this).parent().attr('data-id')
+					var name=$(_this).parent().attr('data-name')
+					var obj={
+						id:id,
+						name:name
+					}
+					renderEditPage(obj);
+				})
+
+				/*将商品分组详情，渲染至编辑页内*/
+				function renderEditPage(parameter) {
+					var data = parameter
+					var editTemplate = document.getElementById("editTemplate").innerHTML
+					var editBox = document.getElementById("editBox")
+					laytpl(editTemplate).render(data, function(html) {
+						editBox.innerHTML = html
+						form.render()
+					})
+				}
+				
+				
+			})
+		</script>
+		<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+	</body>
+
+</html>

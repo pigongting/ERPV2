@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <title></title>
+</head>
+<body>
+<meta http-equiv="refresh" id="jump" />
+<script src="./plugs/layui/layui.all.js"></script>
+<script src="./js/wolianwComponent/config.js"></script>
+<script>
+
+    layui.use(['element', 'layer', "woLianw"],function () {
+        var $=layui.$
+        var woLianw = layui.woLianw;
+        function GetQueryString  (name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var link = window.location.search
+            var r = link.substr(1).match(reg);
+            if (r != null) return unescape(r[2]);
+            return null;
+        }
+        $.ajaxSetup({crossDomain: true, xhrFields: {withCredentials: true}});
+        var sign = GetQueryString('sign');
+        var from = GetQueryString('from');
+        if(sign && from){
+            $.ajax({
+                type: "post",
+                data: {
+                    token: sign
+                },
+                url: ((from === '1588') ? woLianw.wolianwDis1588 : woLianw.wolianw1788)+'api/user/checkToken',
+                success: function (response) {
+                    debugger
+                    var d = JSON.stringify(response.data);
+                    if (response.code) {
+                        window.localStorage.setItem("1788login", d);
+                        window.localStorage.setItem("1788flag", 'true');
+                        window.location.href = './home.html'
+                    } else if (response.code == 10) {
+                        /*未登录，将用户导至登录页*/
+                        //_this.goLoginPage();
+                    }
+                },
+                error: function (response) {
+                    console.log(response.statusText);
+                }
+            });
+        }else{
+            // 1588 登录时使用
+            $.ajax({
+                type: "get",
+                url: woLianw.url+'/user/login-info',
+                success: function (response) {
+                    var d = JSON.stringify(response.data);
+                    if (response.code) {
+                        window.localStorage.setItem("1788login", d);
+                        window.localStorage.setItem("1788flag", 'true');
+                        window.location.href = './home.html'
+                    } else if (response.code == 10) {
+                        /*未登录，将用户导至登录页*/
+                        //_this.goLoginPage();
+                    }
+                },
+                error: function (response) {
+                    console.log(response.statusText);
+                }
+            });
+        }
+
+    });
+</script>
+</body>
+</html>

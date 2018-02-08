@@ -1,0 +1,246 @@
+.title{
+    height: 120px;
+    border-bottom: 1px solid #e4e4e4;
+    padding:0 30px;
+    background-color: #ffffff;
+}
+.title h1{
+    height: 40px;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 40px;
+}
+.title .progress{
+    padding-top: 10px;
+}
+.title .progress p{
+    float: left;
+    background-color: #eff3f9;
+    text-align: center;
+    width: 300px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    position: relative;
+    margin-right: 5px;
+}
+.title .progress p span{
+    padding: 4px 8px;
+    border-radius: 50%;
+    color: #ffffff;
+    background-color: #afbcbc;
+    margin-right: 5px;
+    text-align: center;
+    line-height: 22px;
+    font-size: 12px;
+}
+.title .progress .second::before,
+.title .progress .three::before{
+    content: '';
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 20px solid #ffffff;
+    z-index: 99;
+}
+.title .progress .first::after,
+.title .progress .second::after,
+.title .progress .three::after{
+    content: '';
+    position: absolute;
+    top: 0px;
+    right: -20px;
+    width: 0;
+    height: 0;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-left: 20px solid #eff3f9;
+    z-index: 100;
+}
+.title .progress p.active{
+    background-color: #bfebea;
+    color: #149f9d;
+}
+.title .progress p.active span{
+    background-color: #149f9d;
+}
+.title .progress p.active::after{
+    border-left: 20px solid #bfebea;
+}
+.main-content {
+    background-color: #ffffff;
+    padding-left: 30px;
+}
+.main-content .progress-info{
+    width: 755px;
+    float: left;
+    min-height: 650px;
+    border-right: 1px solid #e4e4e4;
+    padding: 30px 0 50px 0px;
+}
+.main-content .product-info{
+    min-height: 600px;
+    width: 305px;
+    float: left;
+}
+.main-content .product-info .image-box{
+    height: 100px;
+    border-bottom: 1px solid #e4e4e4;
+    padding: 10px;
+}
+.main-content .product-info .image-box img{
+    width: 80px;
+    height: 80px;
+    border: 1px solid #e4e4e4;
+}
+.main-content .product-info .image-box p{
+    float: right;
+    padding-left: 10px;
+    width: 200px;
+    color: #323232;
+    font-size: 14px;
+    text-align: left;
+    font-weight: 600;
+}
+.main-content .product-info ul{
+    width: 305px;
+    padding: 10px;
+    font-size: 12px;
+    color: #666666;
+    text-align: left;
+}
+.main-content .product-info ul li{
+    height: 40px;
+    line-height: 40px;
+}
+.main-content .progress-info ul.timeline li{
+    position: relative;
+    padding-left: 25px;
+    padding-bottom: 20px;
+}
+.main-content .progress-info ul.timeline li::before{
+    content: '';
+    width: 6px;
+    height: 6px;
+    background-color: #1cc8c6;
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+.main-content .progress-info ul.timeline li h3{
+    font-size: 14px;
+    color: #323232;
+    font-weight: bold;
+}
+.main-content .progress-info ul.timeline li h3 span{
+    color: #ff3c29;
+}
+.main-content .progress-info ul.timeline li p{
+    padding: 20px 0 10px;
+    color: #999999;
+    font-size: 12px;
+}
+.main-content .progress-info ul.timeline li p span{
+    letter-spacing: 2px;
+}
+.main-content .progress-info h3.consult-history{
+    font-size: 14px;
+    color: #323232;
+    font-weight: bold;
+    position: relative;
+    padding-left: 25px;
+}
+.main-content .progress-info h3.consult-history::before{
+    content: '';
+    width: 6px;
+    height: 6px;
+    background-color: #1cc8c6;
+    position: absolute;
+    left: 0;
+    top: 5px;
+}
+.main-content .progress-info ul#srvOrderLog{
+    padding-left: 25px;
+}
+.main-content .progress-info ul#srvOrderLog>li .left-box{
+    width: 230px;
+    float: left;
+    overflow: hidden;
+}
+.main-content .progress-info ul#srvOrderLog>li{
+    padding: 20px 20px 20px 0;
+    border-bottom: 1px solid #e4e4e4;
+}
+.main-content .progress-info ul#srvOrderLog li .history-info{
+    width: 230px;
+
+}
+.main-content .progress-info ul#srvOrderLog li .createTime{
+    width: 230px;
+    font-size: 12px;
+    color: #999999;
+
+}
+.main-content .progress-info ul#srvOrderLog li .img-box{
+    width: 50px;
+    height: 50px;
+    float: left;
+}
+.main-content .progress-info ul#srvOrderLog li .img-box img{
+    width: 50px;
+    height: 50px;
+}
+.main-content .progress-info ul#srvOrderLog li .dec-box{
+    padding-left: 15px;
+    float: left;
+}
+.main-content .progress-info ul#srvOrderLog li .createTime{
+    padding-top: 15px;
+    letter-spacing:2px;
+}
+.main-content .progress-info ul#srvOrderLog li .dec-box p{
+    font-size: 12px;
+}
+.main-content .progress-info ul#srvOrderLog li .dec-box .name{
+    color: #323232;
+}
+.main-content .progress-info ul#srvOrderLog li .dec-box .remark{
+    color: #666666;
+    padding: 5px 0px;
+    max-width: 160px;
+}
+.main-content .progress-info ul#srvOrderLog li .transactionStatusCode{
+    color: #fe5e28;
+}
+
+.main-content .srv-image{
+    float: right;
+}
+.main-content .srv-image li{
+    float: right;
+    margin-left: 10px;
+}
+.main-content .srv-image li img{
+    width: 76px;
+    height: 76px;
+}
+.main-content .srv-image li p{
+    padding-top: 5px;
+    font-size: 12px;
+    color: #4c89e5;
+    cursor: pointer;
+}
+.layui-layer-shade{
+    z-index: 1089 !important;
+}
+.layui-layer-nobg{
+    z-index: 1090 !important;
+}
+.big-img{
+    width: 516px;
+    height: 500px;
+}

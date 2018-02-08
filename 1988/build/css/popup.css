@@ -1,0 +1,195 @@
+.popup-title{
+    height: 50px;
+    line-height: 50px;
+    padding-left: 25px;
+    background-color: #e5e9f2;
+}
+.layui-layer-title{
+    background-color: #e5e9f2 !important;
+    padding-left: 25px !important;
+}
+.popup-content {
+    padding: 0 30px 40px;
+}
+.popup-content .popup-content-container{
+    padding: 20px 0;
+    background-color: #f6f7fb;
+}
+.popup-content table{
+    width: 100%;
+}
+.popup-content table thead tr{
+    height: 56px;
+    line-height: 56px;
+}
+.popup-content table thead tr th{
+    text-align: left;
+}
+.popup-content table tbody {
+    background-color: #f6f7fb;
+}
+.popup-content table tbody tr{
+    height: 34px;
+    line-height: 34px;
+}
+
+.popup-content table tbody tr td:nth-of-type(odd){
+    font-size: 12px;
+    font-weight: bold;
+    text-align: right;
+    padding-right: 2%;
+}
+.popup-content table tbody tr td:nth-of-type(even){
+    font-size: 12px;
+    text-align: left;
+    padding-left: 2%;
+}
+.popup-content table tbody tr td .buyer-remark{
+    max-width: 150px;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    line-height: 24px;
+}
+.popup-tab{
+    height: 300px;
+    padding: 0 30px;
+}
+.popup-tab .layui-tab-brief>.layui-tab-title .layui-this{
+    color: #3380f4;
+}
+.popup-tab .layui-tab-brief>.layui-tab-more li.layui-this:after, .layui-tab-brief>.layui-tab-title .layui-this:after{
+    border-bottom: 2px solid #3380f4;
+}
+.popup-tab .layui-tab-item{
+    background-color: #f6f7fb;
+    padding-top: 20px;
+    height: 210px;
+}
+.popup-tab .product-message{
+    height: 210px;
+}
+.popup-tab .product-message .product-image{
+    width: 185px;
+    height: 185px;
+    float: left;
+}
+.popup-tab .product-message .product-image img{
+    width: 185px;
+    height: 185px;
+}
+.popup-tab .product-message .product-data{
+    width: 435px;
+    float: left;
+    padding-left: 15px;
+}
+.popup-tab .product-message .product-data table{
+    width: 100%;
+    font-size: 12px;
+}
+.popup-tab .product-message .product-data table tbody tr{
+    height: 30px;
+}
+.popup-tab .product-message .product-data table tbody tr .product-data-shipping,
+.popup-tab .product-message .product-data table tbody tr .product-data-unitprice,
+.popup-tab .product-message .product-data table tbody tr .product-data-money,
+.popup-tab .product-message .product-data table tbody tr .product-data-total-money{
+    color: #ff3c26;
+}
+.popup-tab .customer-info{
+    position: relative;
+}
+.popup-tab .customer-info table,
+.popup-tab .order-operate-info table,
+.popup-tab .customer-info table{
+    width: 100%;
+}
+.popup-tab .customer-info table tbody tr,
+.popup-tab .order-operate-info table tbody tr{
+    height: 34px;
+    line-height: 34px;
+}
+
+.popup-tab .customer-info table tbody tr td:nth-of-type(odd),
+.popup-tab .order-operate-info table tbody tr td:nth-of-type(odd){
+    font-size: 12px;
+    font-weight: bold;
+    text-align: right;
+    padding-right: 2%;
+}
+.popup-tab .customer-info table tbody tr td:nth-of-type(even),
+.popup-tab .order-operate-info table tbody tr td:nth-of-type(even){
+    font-size: 12px;
+    text-align: left;
+    padding-left: 2%;
+}
+.popup-tab .customer-info table tbody tr td p.receive-address{
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    max-width: 270px;
+    -webkit-box-orient: vertical;
+}
+.popup-tab .evaluate-info{
+    position: relative;
+}
+.popup-tab .evaluate-info .evaluate-info-left,
+.popup-tab .evaluate-info .evaluate-info-right{
+    width: 50%;
+    height: 190px;
+    float: left;
+}
+.popup-tab .evaluate-info .evaluate-info-left>div{
+    height: 50px;
+    line-height: 50px;
+}
+
+.popup-tab .evaluate-info .evaluate-info-left span{
+    width: 30%;
+    text-align: right;
+    padding: 0 15px;
+    display: block;
+    float: left;
+}
+.popup-tab .evaluate-info .evaluate-info-left input{
+    width: 50%;
+    border: 1px solid #e4e4e4;
+    height: 24px;
+}
+.popup-tab .evaluate-info .evaluate-info-right span{
+    vertical-align: top;
+}
+.popup-tab .evaluate-info .evaluate-info-right{
+    padding-top: 13px;
+}
+.popup-tab .evaluate-info .evaluate-info-right textarea{
+    margin-left: 5px;
+    resize: none;
+    border: 1px solid #e4e4e4;
+}
+.popup-tab .evaluate-info input.reply-evaluate{
+    position: absolute;
+    right: 100px;
+    bottom: -70px;
+    color: #ffffff;
+    cursor: pointer;
+    padding: 5px 15px;
+    background-color: #39cb88;
+    border: 0;
+    border-radius: 3px;
+}
+.popup-footer {
+    padding: 0 30px;
+}
+.popup-footer input.popup-return-btn{
+    padding: 5px 15px;
+    background-color: #3380f4;
+    border: 0;
+    border-radius: 3px;
+    color: #ffffff;
+    cursor: pointer;
+    float: right;
+}

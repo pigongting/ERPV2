@@ -1,0 +1,188 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>收货订单明细表</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="stylesheet" href="./plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="./plugins/font-awesome/font_399839_u0h8dbd9lu4pwrk9/iconfont.css">
+    <link rel="stylesheet" href="./build/css/main.css">
+    <link rel="stylesheet" href="./build/css/order-detail/general-order.css">
+    <link rel="stylesheet" href="./build/css/order-detail/search-term.css">
+    <link rel="stylesheet" href="./build/css/order-detail/product-order-list.css">
+
+</head>
+<body>
+<div class="seller-header">
+            <span class="layui-breadcrumb">
+              <a href="javascript:;">你当前所在的位置</a>
+              <a href="javascript:;">报表分析</a>
+              <a><cite>收货订单明细表</cite></a>
+            </span>
+</div>
+<div class="main ">
+    <div class="general-order layui-row layui-col-space20" id="generalOrder">
+    </div>
+    <div class="general-order-search-term">
+        <ul class="layui-form layui-row">
+            <li class="layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <label for="billStartDate">单据开始日期</label>
+                <input type="text" id="billStartDate" class="dateInput">
+            </li>
+            <li class="layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <label for="billEndDate">单据结束日期</label>
+                <input type="text" id="billEndDate" class="dateInput">
+            </li>
+            <li class="layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <label for="receiveStartDate">收货开始日期</label>
+                <input type="text" id="receiveStartDate" class="dateInput">
+            </li>
+            <li class="layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <label for="receiveEndDate">收货接收日期</label>
+                <input type="text" id="receiveEndDate" class="dateInput">
+            </li>
+            <li class="layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12  bill-type">
+                <label for="billType">单据类型</label>
+                <select name="" id="billType">
+
+                </select>
+            </li>
+            <li class="layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <label for="productName">商品名称</label>
+                <input type="text" id="productName" class="layui-input layui-input-inline manual-input">
+            </li>
+            <li class="layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <label for="buyerName">买家名称</label>
+                <input type="text" id="buyerName" class="layui-input layui-input-inline manual-input">
+            </li>
+            <li class="layui-col-lg3 layui-col-md6 layui-col-sm6 layui-col-xs12">
+                <label for="sellerName">卖家名称</label>
+                <input type="text" id="sellerName" class="layui-input layui-input-inline manual-input">
+            </li>
+        </ul>
+        <div class="button-list">
+            <button class="layui-btn search-btn">
+                <i class="layui-icon iconfont">&#xe620;</i>搜索
+            </button>
+            <button class="layui-btn delete-btn">
+                <i class="layui-icon iconfont">&#xe626;</i>删除
+            </button>
+            <button class="layui-btn export-btn">
+                <i class="layui-icon iconfont">&#xe638;</i>导出
+            </button>
+        </div>
+    </div>
+    <div class="products-show-list products-order-list">
+        <table>
+            <thead>
+            <tr>
+                <th class="products-bill-date">单据日期</th>
+                <th class="produts-bill-number">单据编号</th>
+                <th class="products-name">商品名称</th>
+                <th class="products-buyer-name">买家名称</th>
+                <th class="products-seller-name">卖家名称</th>
+                <th class="products-specifications">规格型号</th>
+                <th class="products-unit">单位</th>
+                <th class="products-number">数量</th>
+                <th class="products-sale-money">销售金额</th>
+                <th class="products-receive-date">收货日期</th>
+            </tr>
+            </thead>
+            <tbody id="productOrderList">
+
+            </tbody>
+        </table>
+        <div class="page" id="page">
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script src="./plugins/layui/layui.js"></script>
+
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+<script type="text/html" id="generalData">
+    {{# layui.each(d,function(index,item){ }}
+    <div class="order-area layui-col-xs4 layui-col-sm4 layui-col-md4">
+        <div class="order-bgf">
+            <span class="order-type">{{ item.orderType }}</span>
+            <span class="order-number">{{ item.orderNumber }}</span>
+            <span class="order-unit">{{ item.orderUnit }}</span>
+        </div>
+    </div>
+    {{# }) }}
+</script>
+<script type="text/html" id="orderList">
+    {{# layui.each(d,function(index, item){ }}
+    <tr>
+        <td class="products-bill-date">{{ item.billDate }}</td>
+        <td class="produts-bill-number">{{ item.billNumber }}</td>
+        <td class="products-name">{{ item.name }}</td>
+        <td class="products-buyer-name">{{ item.buyerName }}</td>
+        <td class="products-seller-name">{{ item.sellerName }}</td>
+        <td class="products-specifications">{{ item.specifications }}</td>
+        <td class="products-unit">{{ item.unit }}</td>
+        <td class="products-number">{{ item.number }}</td>
+        <td class="products-sale-money">{{ item.saleMoney }}</td>
+        <td class="products-receive-date">{{ item.receiveDate }}</td>
+    </tr>
+    {{# }) }}
+</script>
+<script>
+    layui.use(['element','form','laydate','laytpl','jquery','laypage'],function () {
+        var element=layui.element
+        var form=layui.form
+        var laydate=layui.laydate
+        var laytpl=layui.laytpl
+        var $=layui.$
+        var laypage=layui.laypage
+
+        laydate.render({
+            elem:"#startDate"
+        })
+        laydate.render({
+            elem:"#endDate"
+        })
+        laydate.render({
+            elem:"#billStartDate"
+        })
+        laydate.render({
+            elem:"#billEndDate"
+        })
+        laydate.render({
+            elem:"#receiveStartDate"
+        })
+        laydate.render({
+            elem:"#receiveEndDate"
+        })
+
+        var getGeneralOrder=function () {
+            $.getJSON('./datas/order/products-order-list.json',function (generalOrderData) {
+                var getTpl=orderList.innerHTML
+                var generalOrderHtml=document.getElementById("productOrderList")
+                laytpl(getTpl).render(generalOrderData,function (html) {
+                    generalOrderHtml.innerHTML=html
+                })
+            })
+        }
+        getGeneralOrder()
+
+        laypage.render({
+            elem:'page',
+            count: 10000,
+            layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+        })
+
+    })
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+</html>
+

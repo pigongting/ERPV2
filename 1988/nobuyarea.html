@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>限制购买的区域</title>
+		<link rel="stylesheet" href="./plugins/layui/css/layui.css" media="all">
+		<link rel="stylesheet" href="./plugins/font-awesome/css/font-awesome.min.css" media="all">
+		<link rel="stylesheet" href="build/css/index.css" />
+		<style>
+			*{margin: 0;padding: 0;}
+			.container{width: 1200px;height: 520px;border: 1px solid lightgreen;margin: 20px auto;}
+			.height{height: 45px;line-height: 45px; position: relative;}
+			.title{font-size: 15px;font-weight: bold;color: red;text-align: center;}
+			.tab-title{
+				position: absolute;
+				left: 0;
+		    height: 45px;
+		    white-space: nowrap;
+		    font-size: 0;
+		    background: #e2e2e2;
+		    border-bottom: 1px solid #e2e2e2;
+        width: calc(100% - 20px);
+		    margin: 0 10px;
+		    overflow-y: hidden;
+		    overflow-x: auto;
+		  }
+		  .tab-title > li{
+		  	position: relative;
+			  display: inline-block;
+	    	padding: 0 10px;
+			}
+			.liBox i{
+				position: absolute;
+				font-size: 13px;
+				color: #fff;
+				right: 7px;
+				top: 5px;
+   			z-index: 999;
+    		cursor: pointer;
+			}
+			.liBox i:hover{
+				color: red;
+			}
+		  .row-content{
+		  	height: 435px;
+		  	box-sizing: border-box;
+		  	padding: 20px 0 0;
+		  	display: flex;
+		  }
+		  .col-content{
+		  	flex: 1;
+		  	box-sizing: border-box;
+		  	padding:0 20px;
+		  	
+		  }
+		  .tab-header{
+		  	height: 30px;
+		  	line-height: 30px;
+		  	vertical-align: middle;
+		  }
+		  .tab-header>input{
+		  	vertical-align: middle;
+    		margin: 0 5px 0 11px;
+		  }
+		  .tab-content{
+		  	height: 370px;
+		  	overflow-y: auto;
+  	    border: 1px solid gray;
+    		padding: 10px;
+		  }
+		  .tab-content input{
+		  	margin-right: 5px;
+		  	vertical-align: middle;
+		  }
+		  .line-list>label{
+		  	cursor: pointer;
+		  }
+		  .submitBox{
+		  	text-align: center;
+		  }
+		</style>
+	</head>
+	<body>
+		<div class="layui-fluid">
+			<div class="container">
+				<div class="layui-row height">
+				  <div class="layui-col-md2" style="background: linen;">
+				  	<div class="title">限制购买的区域</div>
+				  </div>
+				  <div class="layui-col-md10" style="background: lightgreen;">
+				  	<ul class="tab-title"></ul>
+				  </div>
+				</div>
+			<!--	<form action="nobuyarea.html" method="post">-->
+					<div class="layui-row row-content">
+						<div class="col-content">
+							<div class="tab-header">
+								<input type="checkbox" id="provinceAll" name="provinceAll" value="一级全选"/>
+								<label id="provinceLab">全国</label>
+							</div>
+							<div class="tab-content" id="province"></div>	
+						</div>
+						<div class="col-content">
+							<div class="tab-header">
+								<input type="checkbox" id="cityAll" name="cityAll" value="二级全选"/>
+								<label id="cityLab"></label>
+							</div>
+							<div class="tab-content" id="city"></div>
+						</div>
+						<div class="col-content">
+							<div class="tab-header">
+								<input type="checkbox" id="areaAll" name="areaAll" value="三级全选"/>
+								<label id="areaLab"></label>
+							</div>
+							<div class="tab-content" id="area"></div>
+						</div>
+					</div>
+					<div class="submitBox">
+						<button class="layui-btn layui-btn-small layui-btn-normal" id="submit_btn">提交</button>
+						<button class="layui-btn layui-btn-small layui-btn-normal" id="cancel_btn">取消</button>
+					</div>
+				<!--</form>-->
+			</div>
+		</div>
+		
+		<script src="./plugins/layui/layui.js"></script>
+		<script src="./datas/nobuy.js"></script>
+		
+	</body>
+</html>

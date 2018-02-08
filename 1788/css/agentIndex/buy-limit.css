@@ -1,0 +1,22 @@
+.buy-limit{
+    height: 75px;
+    background-image: url("./../../img/buy-limit-bg.png");
+    background-repeat: no-repeat;
+    line-height: 75px;
+}
+.buy-limit .buy-limit-type{
+    font-size: 16px;
+    font-weight: bold;
+    color: #FF4129;
+    padding: 29px 30px 29px 60px;
+    position: relative;
+}
+.buy-limit .buy-limit-type::after{
+    content: "";
+    width: 2px;
+    height: 16px;
+    background-color: #B9B4B4;
+    position: absolute;
+    top: 30px;
+    right: 15px;
+}

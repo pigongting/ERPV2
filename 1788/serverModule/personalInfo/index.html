@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta type="description" content="总代理-服务中心">
+    <title>个人中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../plugs/layui/css/layui.css">
+    <link rel="stylesheet" href="../../font/font_399822_dtv8v5xokcfvfgvi/iconfont.css">
+    <link rel="stylesheet" href="../../plugs/font-awesome/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../../css/background-style/background-common.css">
+    <link rel="stylesheet" href="../../css/background-style/background-option.css">
+    <link rel="stylesheet" href="../../css/background-style/main.css">
+    <link rel="stylesheet" href="../../css/background-style/aside.css">
+    <link rel="stylesheet" href="../../css/server-center/personal-info.css">
+</head>
+<body>
+<!--顶部导航开始-->
+<header>
+    <ul class="layui-nav container" id="commonHeader">
+        <li class="layui-nav-item user-name" id="userCenter">
+        </li>
+    </ul>
+</header>
+<!--顶部导航结束-->
+<!--商品中心区域开始-->
+<div class="option-container">
+    <div class="option container">
+        <div class="logo layui-inline">
+            <a href="javascript:;">
+                <img src="../../img/work-logo.png" alt="">
+            </a>
+        </div>
+        <div class="products-center layui-inline">
+            <a href="../../productModule/center/index.html">
+                <img src="../../img/products-center.png" alt="">
+            </a>
+        </div>
+        <div class="supply-center" id="applyBox">
+
+        </div>
+    </div>
+</div>
+<!--商品中心区域结束-->
+<div class="main container">
+    <!--左侧导航开始-->
+    <aside id="leftNavBox">
+
+    </aside>
+    <!--左侧导航结束-->
+    <!--主体内容开始-->
+    <div class="bakground-content container">
+        <div class="title">
+            <h1>个人中心</h1>
+        </div>
+        <div class="main-content">
+            <form class="layui-form" action="">
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><i class="iconfont">&#xe652;</i>登录名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="loginName" id="loginName" required  lay-verify="required" placeholder="请输入登录名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><i class="iconfont">&#xe652;</i>昵称</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="name" id="name" required  lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><i class="iconfont">&#xe652;</i>真实姓名</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="companyName" id="companyName" required  lay-verify="required" placeholder="请输入真实姓名" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label" >出生日期</label>
+                    <div class="layui-input-block">
+                        <input type="text" name="birthday" id="birthday" required  lay-verify="required" placeholder="请选择出生日期" autocomplete="off" class="layui-input">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label"><i class="iconfont">&#xe652;</i>性别</label>
+                    <div class="layui-input-block sex">
+                        <input type="radio" name="sex" class="gentleman" value="0" title="男">
+                        <input type="radio" name="sex" class="lady" value="1" title="女">
+                    </div>
+                </div>
+
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <input type="button" lay-filter="send" value="提交" class="layui-btn-mini layui-btn b-btn" lay-submit>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!--主体内容结束-->
+</div>
+<script type="text/html" id="leftNav">
+    <ul class="layui-nav layui-nav-tree layui-nav-side">
+        {{# layui.each(d,function(index,item){ }}
+        {{# if(item.level==1){ }}
+        <li class="layui-nav-item">
+            <a href="javasript:;">
+                <i class="fa fa-{{ item.icon }}">  </i>
+                <span> {{ item.name }} </span>
+            </a>
+            <dl class="layui-nav-child">
+                <dt>{{ item.name }}</dt>
+                {{# layui.each(d,function(index2,item2){ }}
+                {{# if(item.id==item2.parentId && item2.level==2){ }}
+                <dd><a href='../{{ item2.url }}.html'> {{ item2.name }} </a> </dd>
+                {{# } }}
+                {{# }) }}
+            </dl>
+        </li>
+        {{# } }}
+        {{# }) }}
+    </ul>
+</script>
+<script src="../../plugs/layui/layui.all.js"></script>
+<script src="../../js/wolianwComponent/config.js"></script>
+<script>
+    layui.use(['element','form','laydate','laytpl','jquery','layer','woLianw'],function () {
+        var element=layui.element
+        var form=layui.form
+        var laydate=layui.laydate
+        var laytpl=layui.laytpl
+        var $=layui.$
+        var layer=layui.layer
+        var woLianw = layui.woLianw
+
+        laydate.render({
+            elem:"#birthday"
+        })
+
+        /*我要供货按钮的显示控制 start*/
+        var loginInfo = JSON.parse(window.localStorage.getItem('1788login'))
+        if(!loginInfo){
+            window.location.href = '/login.html'
+            return false
+        }
+        if(loginInfo.isSwitch){
+            var str = '<button class="layui-btni" id="wantApply">我要供货</button>'
+            $('#applyBox').append(str)
+        }
+        /*我要供货的登录切换*/
+        $('#applyBox').on('click','#wantApply',function () {
+            woLianw.switchLogin()
+        })
+        /*我要供货按钮的显示控制 end*/
+
+        var datas = JSON.parse(window.localStorage.getItem('1788login'));
+        console.log(datas)
+        renderTemplate(datas.moduleList,'leftNav','leftNavBox')
+        function renderTemplate(data,templateId,targetId) {
+            var template=document.getElementById(templateId).innerHTML
+            var target=document.getElementById(targetId)
+            laytpl(template).render(data,function (html) {
+                target.innerHTML=html
+            })
+        }
+
+        woLianw.personalInfo(function (data) {
+            $('#loginName').val(data.loginName)
+            $('#name').val(data.name)
+            $('#companyName').val(data.companyName)
+            $('#birthday').val(data.birthday)
+            data.sex == 1 ? $('.sex').find('.lady').attr('checked',true) : $('.sex').find('.gentleman').attr('checked',true)
+            form.render()
+        })
+        form.on('submit(send)', function(data){
+            woLianw.updatePersonalInfo(data.field,isOk)
+        });
+        function isOk() {
+            layer.open({
+                type: 1
+                ,offset: 'auto' //具体配置参考：offset参数项
+                ,content: '<div style="padding: 20px 80px;">个人信息修改成功</div>'
+                ,btn: '关闭'
+                ,btnAlign: 'c' //按钮居中
+                ,shade: 0 //不显示遮罩
+                ,yes: function(){
+                    layer.closeAll();
+                }
+            });
+        }
+
+    })
+</script>
+</body>
+</html>

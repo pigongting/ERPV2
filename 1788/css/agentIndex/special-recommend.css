@@ -1,0 +1,67 @@
+/*
+.special-recommend{
+    height: 460px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.special-recommend .recommend-left,
+.special-recommend .recommend-left a,
+.special-recommend .recommend-left a img{
+    width: 340px;
+    height: 460px;
+}
+.special-recommend .recommend-left{
+    float: left;
+}
+.special-recommend .recommend-right{
+    width: 840px;
+    height: 460px;
+    float: right;
+}
+.special-recommend .recommend-right .recommend-right-list{
+    height: 460px;
+}
+.special-recommend .recommend-right .recommend-right-list li:nth-of-type(-2+n){
+
+}
+.special-recommend .recommend-right .recommend-right-list li:nth-of-type(n+3){
+    margin-top: 20px;
+}
+
+.special-recommend .recommend-right .recommend-right-list li:nth-of-type(odd){
+    margin-right: 20px;
+}
+.special-recommend .recommend-right .recommend-right-list li,
+.special-recommend .recommend-right .recommend-right-list li a,
+.special-recommend .recommend-right .recommend-right-list li a img{
+    float: left;
+    width: 410px;
+    height: 220px;
+}
+*/
+
+/*以上为第一版设计的样式代码*/
+.special-recommend {
+    height: 180px;
+    padding: 10px 0;
+    margin-top: 20px;
+}
+.special-recommend .special-recommend-list{
+    height: 160px;
+}
+.special-recommend .special-recommend-list li{
+    width: 292px;
+    height: 160px;
+    margin-right: 10px;
+    float: left;
+}
+.special-recommend .special-recommend-list li:nth-of-type(4){
+    margin-right: 0;
+}
+.special-recommend .special-recommend-list li img{
+    width: 292px;
+    height: 160px;
+}
+.special-recommend .special-recommend-list
+.special-recommend .special-recommend-list
+.special-recommend .special-recommend-list

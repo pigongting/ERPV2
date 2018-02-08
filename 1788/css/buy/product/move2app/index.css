@@ -1,0 +1,110 @@
+.container{
+    width: 1200px;
+    margin: 0 auto;
+}
+.filter-box{
+    height: 50px;
+    background-color: #F0F1F7;
+    line-height: 50px;
+}
+.filter-box input.type{
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 50px;
+    background-color: #F0F1F7;
+    color: #323232;
+    height: 50px;
+    margin-left: 20px;
+}
+.filter-box input#moveAllBtn{
+    float: right;
+    background: -ms-linear-gradient(left, #fe6928,  #ff3c29);        /* IE 10 */
+
+    background:-moz-linear-gradient(left,#fe6928,#ff3c29);/*ç«ç‹*/
+
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#b8c4cb), to(#f6f6f8));/*è°·æ­Œ*/
+
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#0000ff));      /* Safari 4-5, Chrome 1-9*/
+
+    background: -webkit-linear-gradient(left, #fe6928, #ff3c29);   /*Safari5.1 Chrome 10+*/
+
+    background: -o-linear-gradient(left, #fe6928, #ff3c29);  /*Opera 11.10+*/
+    color: #ffffFF;
+    width: 80px;
+    height: 26px;
+    margin-top: 12px;
+    margin-right: 10px;
+    border-radius: 4px;
+}
+.filter-box div.checkAll{
+    float: right;
+    height: 50px;
+    line-height: 50px;
+    padding: 0 25px;
+}
+.filter-box div.checkAll input[type=checkbox]{
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+}
+.product-list {
+    padding: 20px 0;
+}
+.product-list ul{
+    padding-left: 0;
+}
+.product-list ul#productListBox>li.nothing{
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+.product-list ul#productListBox>li{
+    box-shadow: 1px 1px 15px 5px #f0f0f0;
+    margin: 0 19px 20px 0;
+}
+.product-list ul#productListBox>li.nothing{
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    box-shadow: none;
+    border: 1px solid #e4e4e4;
+    margin: 0;
+}
+ul.list_goods_ul > li:nth-child(4n){
+    margin: 0 19px 20px 0;
+}
+body .product-list ul.list_goods_ul > li:nth-child(5n){
+    margin: 0 0px 20px 0 !important;
+}
+#areaBtn{
+    position: relative;
+}
+#areaBtn dl{
+    position: absolute;
+    background-color: #FFFFFF;
+    color: #323232;
+    padding: 20px;
+    z-index: 100000;
+    opacity: 1;
+    display: none;
+    left: 0;
+    text-align: left;
+    width: 300px;
+}
+#areaBtn:hover{
+    opacity: 1;
+}
+#areaBtn:hover dl{
+    display: block;
+}
+#areaBtn dl dd{
+    border-bottom: 1px solid #e4e4e4;
+    padding: 5px 0;
+
+}
+#areaBtn dl dt{
+    padding: 5px;
+    float: left;
+}

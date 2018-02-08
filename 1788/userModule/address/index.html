@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta type="description" content="行业代理-服务中心">
+    <title>收货地址</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../plugs/layui/css/layui.css">
+    <link rel="stylesheet" href="../../font/font_399822_6dl4ikiuwern3ik9/iconfont.css">
+    <link rel="stylesheet" href="../../plugs/font-awesome/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../../css/background-style/background-common.css">
+    <link rel="stylesheet" href="../../css/background-style/background-option.css">
+    <link rel="stylesheet" href="../../css/background-style/main.css">
+    <link rel="stylesheet" href="../../css/background-style/aside.css">
+    <link rel="stylesheet" href="../../css/server-center/receive-address.css">
+</head>
+<body>
+<!--顶部导航开始-->
+<header>
+    <ul class="layui-nav container" id="commonHeader">
+        <li class="layui-nav-item user-name" id="userCenter">
+        </li>
+
+    </ul>
+</header>
+<!--顶部导航结束-->
+<!--商品中心区域开始-->
+<div class="option-container">
+    <div class="option container">
+        <div class="logo layui-inline">
+            <a href="javascript:;">
+                <img src="../../img/work-logo.png" alt="">
+            </a>
+        </div>
+        <div class="products-center layui-inline">
+            <a href="../../productModule/center/index.html">
+                <img src="../../img/products-center.png" alt="">
+            </a>
+        </div>
+        <div class="supply-center" id="applyBox">
+
+        </div>
+    </div>
+</div>
+<!--商品中心区域结束-->
+
+<div class="main container">
+
+    <!--主体内容开始-->
+    <div class="bakground-content container">
+        <div class="title">
+            <h1>收货地址</h1>
+        </div>
+        <div class="main-content">
+            <div class="add-address">
+                <button class="layui-btn layui-btn-mini" id="addAddress"><i class="fa fa-plus"></i>新增收货地址</button>
+                <span>你已创建</span>
+                <span id="addressNumber">1</span>
+                <span>个收货地址，最多可以创建10个</span>
+            </div>
+            <div class="address-list" id="receiveAddressTable">
+
+            </div>
+        </div>
+    </div>
+    <!--主体内容结束-->
+    <!--左侧导航开始-->
+    <aside id="leftNavList">
+
+    </aside>
+    <!--左侧导航结束-->
+</div>
+<div class="confirm-task">
+    <div class="center-box">
+        <div class="task-title">
+            <span>提示</span>
+        </div>
+        <div class="task-content">
+            <p class="task-ask">你是否确定要执行删除操作？</p>
+            <p class="task-tips">如果是点击"确定"，否则"取消"</p>
+            <div class="btn-arr">
+                <input type="button" id="yes" value="确定">
+                <input type="button" id="no" value="取消">
+            </div>
+            <p class="warn">!</p>
+        </div>
+    </div>
+</div>
+<div id="editBox"></div>
+<script type="text/html" id="editTemplate">
+    <div class="edit-task">
+        <div class="center-content">
+            <h3>编辑收货地址</h3>
+            <div class="info-content">
+                <form class="layui-form" action="" id="addressForm">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">联系人<i class="iconfont icon-bixutian"></i></label>
+                        <div class="layui-input-block">
+                            <input type="hidden" name="id" value="{{ d.id ? d.id : '' }}">
+                            <input type="text" name="contact" required value="{{ d.contact ? d.contact : '' }}"  lay-verify="required" placeholder="请输入联系人" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item" lay-filter="linkage">
+                        <label class="layui-form-label">所在地区<i class="iconfont icon-bixutian"></i></label>
+                        <div class="layui-input-block fl">
+                            <select name="provinceId" lay-verify="required" lay-filter="provinceId" class="provinceId" id="provinceId">
+                            </select>
+                            <input type="hidden" id="province" name="province">
+                        </div>
+                        <div class="layui-input-block fl">
+                            <select name="cityId" lay-verify="required" lay-filter="cityId" class="cityId" id="cityId">
+                            </select>
+                            <input type="hidden" id="city" name="city">
+                        </div>
+                        <div class="layui-input-block fl">
+                            <select name="areaId" lay-verify="requiredId"  lay-filter="areaId" class="area" id="areaId">
+                            </select>
+                            <input type="hidden" id="area" name="area">
+                        </div>
+
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">详细地址<i class="iconfont icon-bixutian"></i></label>
+                        <div class="layui-input-block">
+                            <input type="text" name="address" required value="{{ d.address ? d.address : '' }}" lay-verify="required" placeholder="请输入详细的收货地址" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item" id="enditPhone">
+                        <label class="layui-form-label">联系方式<i class="iconfont icon-bixutian"></i></label>
+                        <div class="layui-input-block">
+                            <input type="text" name="phone" required   value="{{ d.phone ? d.phone : '' }}"  lay-verify="isPhone" placeholder="请输入手机号码" autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">是否设为默认地址<i class="iconfont icon-bixutian"></i></label>
+                        <div class="layui-input-block">
+                            <input type="checkbox" required lay-filter="isDefault" id="isDefault" name="isDefault" lay-text="ON|OFF" lay-skin="switch" {{ d.isDefault == true ? 'checked' : '' }}>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <div class="layui-input-block">
+                            <input type="button" class="layui-btn layui-btn-primary save" lay-submit lay-filter="go" value="保存修改">
+                            <input type="button" value="取消" class="layui-btn layui-btn-primary cancel">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</script>
+<script type="text/html" id="moduleTemplate">
+    {{# layui.each(d,function(index,item){ }}
+    {{# if(item.level==1){ }}
+    <li class="layui-nav-item">
+        <a href="javasript:;">
+            <i class={{ item.icon }}></i>
+            <span>{{ item.name }}</span>
+        </a>
+        <dl class="layui-nav-child">
+            <dt>{{ item.name }}</dt>
+            {{# layui.each(d,function(index2,item2){ }}
+            {{# if(item.id==item2.parentId && item2.level==2){ }}
+            <dd><a href='{{ item2.url }}.html'>{{ item2.name }}</a> </dd>
+            {{# } }}
+            {{# }) }}
+        </dl>
+    </li>
+    {{# } }}
+    {{# }) }}
+</script>
+<script type="text/html" id="receiveAddressTemplate">
+    <ul>
+        {{# layui.each(d,function(index,item){ }}
+        <li id={{ item.id }}>
+            <p><span>收件人:</span> <span class="contact">{{ item.contact }}</span></p>
+            <p><span>地区:</span> <span class="province">{{ item.province }}</span><span class="city">{{ item.city }}</span><span class="area">{{ item.area }}</span></p>
+            <p><span>详细地址:</span> <span class="address">{{ item.address }}</span></p>
+            <p><span>联系方式:</span> <span class="phone">{{ item.phone }}</span></p>
+            <button class="layui-btn layui-btn-mini delete-btn"><i class="iconfont">&#xe626;</i></button>
+            {{# if(!item.isDefault){ }}
+            <button class="layui-btn layui-btn-mini setup-btn">设为默认地址</button>
+            {{# } }}
+            <button class="layui-btn layui-btn-mini edit-btn">编辑</button>
+        </li>
+        {{# }) }}
+    </ul>
+</script>
+<script src="../../js/jquery-3.2.1.min.js"></script>
+<script src="../../plugs/layui/layui.all.js"></script>
+<script src="../../js/wolianwComponent/config.js"></script>
+<script>
+
+    layui.use(['element','form','laydate','laytpl','jquery','layer','woLianw'],function () {
+        var element=layui.element
+        var form=layui.form
+        var laydate=layui.laydate
+        var laytpl=layui.laytpl
+        var $=layui.$
+        var layer=layui.layer
+        var woLianw = layui.woLianw;
+
+        woLianw.getAddressList({},renderAddressList);
+        /*我要供货按钮的显示控制 start*/
+        var loginInfo = JSON.parse(window.localStorage.getItem('1788login'))
+        if(!loginInfo){
+            window.location.href = '/login.html'
+            return false
+        }
+        if(loginInfo.isSwitch){
+            var str = '<button class="layui-btni" id="wantApply">我要供货</button>'
+            $('#applyBox').append(str)
+        }
+        /*我要供货的登录切换*/
+        $('#applyBox').on('click','#wantApply',function () {
+            woLianw.switchLogin()
+        })
+        /*我要供货按钮的显示控制 end*/
+
+
+
+
+        //自定义验证规则
+        form.verify({
+            isPhone:function (value) {
+                if(!value){
+                    layer.tips('下', '#editPhone', {
+                        tips: 1,
+                        shade:0
+                    });
+                    return '联系方式不能为空'
+                }
+                if((value.charAt(0) == 1) && (value.length != 11)){
+                    layer.tips('下', '#editPhone', {
+                        tips: 3
+                    });
+                    return '您输入的联系方式异常，请重新确认'
+                }
+                if((value.charAt(0) == 0) && (value.length < 9)){
+                    layer.tips('下', '#editPhone', {
+                        tips: 3
+                    });
+                    return '您输入的联系方式异常，请重新确认'
+                }
+            }
+        });
+        /*删除地址*/
+        $('.address-list').on('click','.delete-btn',function () {
+            var _this = this
+            layer.confirm('确定删除这个地址吗？', {
+                btn: ['确定','取消'] //按钮
+                ,title:'提示'
+            }, function(index){
+                /*更新默认地址之后，重新获取新的用户地址列表*/
+                var addressId = $(_this).parent().attr('id')
+                woLianw.deleteAddress(addressId,function () {
+                    woLianw.getAddressList({},renderAddressList)
+                })
+                layer.close(index)
+            }, function(){
+
+            });
+        })
+
+        /*设置默认用户地址*/
+        $('.address-list').on('click','.setup-btn',function () {
+            var _this = this
+            var addressId = $(_this).parent().attr('id')
+            layer.confirm('确定设置为默认地址吗？', {
+                btn: ['确定','取消'] //按钮
+                ,title:'提示'
+            }, function(index){
+                /*更新默认地址之后，重新获取新的用户地址列表*/
+                woLianw.updateAddressDefault(addressId,function () {
+                    woLianw.getAddressList({},renderAddressList)
+                })
+                layer.close(index)
+            }, function(){
+
+            });
+
+        })
+
+        /*点击编辑，获取对应的用户地址详情*/
+        $('.address-list').on('click','.edit-btn',function () {
+            var _this = this
+            var id = $(_this).parent().attr('id')
+            woLianw.getAddressDetail(id,renderEditPage)
+        })
+
+        /*选中省会，获取对应市区信息*/
+        form.on('select(provinceId)',function (data) {
+            var _this = this,
+                provinceId = data.value
+            if(!provinceId){
+                return false
+            }
+            $('#province').val($('#provinceId').find('option:selected').text())
+                woLianw.getLinkage(provinceId,function (parameter) {
+                    $('#cityId').html(createOption(parameter))
+                    $('#areaId').empty()
+                    form.render()
+                })
+        })
+
+        /*选中市区，获取县级信息*/
+        form.on('select(cityId)',function (data) {
+            var _this = this,
+                cityId = data.value
+            if(!cityId){
+                return false
+            }
+            $('#city').val($('#cityId').find('option:selected').text())
+                woLianw.getLinkage(cityId,function (parameter) {
+                    $('#areaId').html(createOption(parameter))
+                    form.render()
+                })
+        })
+
+        /*县级信息下拉选中事件*/
+        form.on('select(areaId)',function (data) {
+            $('#area').val($('#areaId').find('option:selected').text())
+
+        })
+
+        /*是否设为默认地址开关*/
+        form.on('switch(isDefault)', function(data){
+            $('#isDefault').val(data.elem.checked)
+        });
+
+        /*提交表单*/
+        form.on('submit(go)',function (data) {
+            console.log(data.field)
+            if(data.field.id){
+                woLianw.addressUpdate(data.field,function () {
+                    $('#editBox').empty()
+                    woLianw.getAddressList({},renderAddressList)
+                })
+            }else{
+                woLianw.addAddress(data.field,function () {
+                    $('#editBox').empty()
+                    woLianw.getAddressList({},renderAddressList)
+                })
+            }
+        })
+
+        /*取消编辑*/
+        $('#editBox').on('click','.cancel',function () {
+            $('#editBox').empty()
+        })
+
+        /*新增用户地址*/
+        $('#addAddress').on('click',function () {
+            var length = $('#receiveAddressTable ul li').length
+            console.log(length)
+            if(length >= 10){
+                layer.alert('最多只能设置10个收货地址')
+                return false
+            }
+            renderEditPage1({})
+        })
+
+
+        /*将收货地址列表的信息通过laytpl模板引擎渲染到页面*/
+        function renderAddressList(data) {
+            var staffTemplate=document.getElementById("receiveAddressTemplate").innerHTML
+            var staffTable=document.getElementById("receiveAddressTable")
+            laytpl(staffTemplate).render(data,function (html) {
+                $("#addressNumber").text(data.length)
+                staffTable.innerHTML=html
+            })
+        }
+
+        /*将用户地址详情，渲染至编辑页内*/
+        function renderEditPage(parameter) {
+            var data = parameter
+            var editTemplate=document.getElementById("editTemplate").innerHTML
+            var editBox=document.getElementById("editBox")
+            laytpl(editTemplate).render(data,function (html) {
+                editBox.innerHTML=html
+                form.render()
+            })
+            woLianw.getLinkage(-1,function (parameter1) {
+                $('#provinceId').append(createOption(parameter1,data.provinceId))
+                form.render()
+                $('#province').val($('#provinceId').find('option:selected').text())
+            })
+            woLianw.getLinkage(data.provinceId,function (parameter2) {
+                $('#cityId').append(createOption(parameter2,data.cityId))
+                form.render()
+                $('#city').val($('#cityId').find('option:selected').text())
+            })
+            woLianw.getLinkage(data.cityId,function (parameter3) {
+
+                $('#areaId').append(createOption(parameter3,data.areaId))
+                form.render()
+                $('#area').val($('#areaId').find('option:selected').text())
+            })
+        }
+        /*新增用户地址，显示编辑页弹框，默认只显示省*/
+        function renderEditPage1(parameter) {
+            var data = parameter
+            var editTemplate=document.getElementById("editTemplate").innerHTML
+            var editBox=document.getElementById("editBox")
+            laytpl(editTemplate).render(data,function (html) {
+                editBox.innerHTML=html
+                form.render()
+            })
+            woLianw.getLinkage(-1,function (parameter1) {
+                $('#provinceId').append(createOption(parameter1,data.provinceId))
+                form.render()
+                $('#province').val($('#provinceId').find('option:selected').text())
+            })
+        }
+
+        /*拼接地区信息下拉字符串*/
+        function createOption(arr,id) {
+            var html = '<option selected value=>—请选择—</option>'
+            layui.each(arr,function (index,item) {
+                if(id && (id == item.did )){
+                    html += '<option selected value='+item.did+' id='+ item.did +'>'+ item.name +'</option>'
+                }else {
+                    html += '<option value='+item.did+' id='+ item.did +'>'+ item.name +'</option>'
+                }
+            })
+            return html
+        }
+
+
+         /*通过laytpl模板引擎将数据渲染到页面*/
+        function renderDataHtml(data, templateID, wrapID) {
+          var template = document.getElementById(templateID).innerHTML;
+          var wrap = document.getElementById(wrapID);
+          laytpl(template).render(data, function (html){
+              wrap.innerHTML = html;
+          });
+        }
+        woLianw.renderModule()
+
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+.layui-left-navlist .layui-nav-tree{
+    width:110px;
+}
+.layui-left-navlist .layui-nav{
+    background-color: #01A783;
+}
+.main .layui-left-navlist{
+    width: 110px;
+}
+.layui-left-navlist .layui-nav .layui-nav-item a{
+    line-height: 58px;
+    height: 70px;
+}
+.layui-left-navlist .layui-nav .layui-nav-item a:hover{
+    background-color: rgba(	47,79,79,0.5);
+}
+.layui-left-navlist .layui-nav .layui-nav-item a span{
+    color: #fff;
+    height: 16px;
+    display: block;
+    text-align: center;
+}
+.layui-left-navlist .layui-nav .layui-nav-item a .layui-icon{
+    color: #fff;
+    text-align: center;
+    display: block;
+    height: 16px;
+}

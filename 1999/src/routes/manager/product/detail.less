@@ -1,0 +1,245 @@
+@import "../../../themes/default.less";
+
+.mainInfo {
+  
+  &:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  .imageWarp {
+    float: left;
+
+    .mainImage {
+      width: 400px;
+      height: 400px;
+      overflow: hidden;
+      position: relative;
+      background: #f7f7f7;
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        border: 1px solid rgba(0,0,0,.05);
+      }
+
+      img {
+        width: 400px;
+        height: 400px;
+      }
+    }
+
+    .thumImage {
+      
+      height: 66px;
+      overflow: hidden;
+
+      &:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+
+      li {
+        float: left;
+        width: 56px;
+        height: 56px;
+        overflow: hidden;
+        position: relative;
+        background: #f7f7f7;
+        margin: 10px 6px 0 6px;
+        cursor: pointer;
+
+        &:before {
+          content: '';
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          border: 1px solid rgba(0,0,0,.05);
+        }
+
+        &:hover {
+          opacity: .8;
+        }
+
+        img {
+          width: 56px;
+          height: 56px;
+        }
+      }
+    }
+  }
+
+  .choseWarp {
+    margin-left: 420px;
+
+    .lead {
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .priceWarp {
+      background-color: #f7f7f7;
+      font-size: 18px;
+      margin-top: 20px;
+      padding: 20px;
+
+      li {
+        padding: 4px 0;
+      }
+    }
+
+    .skuInfoList {
+       dl {
+        padding-top: 20px;
+
+        dt {
+          display: inline-block;
+          vertical-align: top;
+          line-height: 30px;
+          padding-right: 20px;
+        }
+
+        dd {
+          display: inline-block;
+          vertical-align: top;
+          cursor: pointer;
+          margin-left: 6px;
+        }
+
+        dd.imgprop {
+          width: 30px;
+          height: 30px;
+          overflow: hidden;
+          position: relative;
+          background: #f7f7f7;
+
+          &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            border: 1px solid rgba(0,0,0,.05);
+          }
+
+          &.chose:before {
+            border: 2px solid @primary-color;
+          }
+
+          &:hover:before {
+            border: 2px solid  @primary-5;
+          }
+
+          img {
+            width: 30px;
+            height: 30px;
+          }
+        }
+
+        dd.boxprop {
+          height: 30px;
+          line-height: 30px;
+          position: relative;
+          background: #f7f7f7;
+          padding: 0 20px;
+
+          &:before {
+            content: '';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            border: 1px solid rgba(0,0,0,.05);
+          }
+
+          &.chose:before {
+            border: 2px solid @primary-color;
+          }
+
+          &:hover:before {
+            border: 2px solid @primary-5;
+          }
+
+        }
+      }
+    }
+  }
+}
+
+.tabsInfo {
+  margin-top: 20px;
+
+  .productContent {
+    
+  }
+
+  .productProperties {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 14px;
+
+    td {
+      padding: 4px 0;
+    }
+  }
+
+  .factoryInfo {
+    position: relative;
+    min-height: 100px;
+    padding-left: 120px;
+
+    .factoryLogo {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      left: 0;
+      top: 0;
+
+      &:before {
+        content: '';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        border: 1px solid rgba(0,0,0,.05);
+      }
+
+      img {
+        width: 100px;
+        height: 100px;
+      }
+    }
+    .factoryName {
+      font-size: 30px;
+      font-weight: bold;
+    }
+    .factoryBase {
+      padding-top: 20px;
+      font-size: 16px;
+      li {
+        display: inline-block;
+        vertical-align: top;
+        margin-right: 50px;
+      }
+    }
+    .factoryMsg {
+      padding: 50px 0 0 0;
+    }
+  }
+}

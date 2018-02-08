@@ -1,0 +1,499 @@
+
+
+/* second nav  start*/
+.second_nav{
+	height: 34px;
+	background-color: #393939;
+	width: 100%;
+}
+.second_nav > div.grid_wrap{
+	height: 100%;
+}
+.second_ul > li{
+	width: 150px;
+	height: 100%;
+	float: left;
+}
+.second_ul > li > a{
+  color: #fff;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  line-height: 34px;
+  text-align: center;
+  font-size: 16px;
+}
+.second_ul > li > a:hover{
+	background-color: #ff3f29;
+}
+.active{
+	background-color: #ff3f29;
+}
+
+/* second nav  end */
+
+
+/* 主要内容 start */
+.mycontainer{
+	width: 100%;
+	background-color: #e6eaf3;
+  height: calc(100% - 200px);
+  overflow: hidden;
+}
+
+	/* left_ranking start */
+.left_ranking{
+	width: 205px;
+	background-color: #fff;
+	float: left;
+  min-height: 300px;
+  margin-top: 30px;
+  overflow: hidden;
+  margin-bottom:-9999px;
+	padding-bottom:9999px;
+}
+.ranking_title{
+	box-sizing: border-box;
+  padding: 0 25px;
+  margin: 10px 0px;
+  margin-top: 20px;
+}
+.announcement{
+	font-size: 12px;
+	color: #666;
+	line-height: 18px;
+}
+.left_quare{
+  margin-right: 5px;
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  background-color: #393939;
+}
+.ranking_title > cite{
+	color: #323232;
+  font-size: 12px;
+  font-style: initial;
+  display: inline-block;
+  margin-right: 5px;
+
+}
+.ranking_ul{
+	padding: 0 25px;
+}
+.ranking_ul > li{
+	position: relative;
+	height: 75px;
+	width: 100%;
+	border-bottom: 1px dashed #e4e4e4;
+}
+.firstToThree{
+	background-color: #fe5e28!important;
+}
+.ranking_ul > li > span.layui-badge{
+  line-height: 16px;
+  padding: 0 4px;
+  height: 16px;
+  left: 0;
+  top: -22px;
+  background-color: rgba(125, 125, 125, 1);
+	box-shadow: 0.4px 2px 3px 0px  rgba(134, 133, 133, 0.22);
+}
+.lab_box{
+  width: 100px;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 16px;
+  position: relative;
+  top: 8px;
+}
+.goods_txt{
+	color: #323232;
+	font-style: initial;
+}
+.goods_price{
+	color: #fe5e28;
+	font-style: initial;
+  font-weight: bold;
+}
+	/* left_ranking end */
+
+		/* right_content start */
+.right_content{
+	float: left;
+	width: calc(100% - 205px);
+	min-height: 300px;
+	margin-top: 30px;
+	margin-bottom:-9999px;
+	padding-bottom:9999px;
+}
+.list_goods_ul {
+	width: 100%;
+	box-sizing: border-box;
+	padding-left: 20px;
+	overflow: hidden;
+}
+/*.list_goods_ul > li > .border-left{width: 2px;height: 0px;background: #fe5e28;position:absolute;left:-1px;bottom: 0;}
+.list_goods_ul > li > .border-bottom{width: 0px;height: 2px;background: #fe5e28;position:absolute;left:0;bottom: 0px;}
+.list_goods_ul > li > .border-top{width: 0px;height: 2px;background: #fe5e28;position:absolute;right:0;top: 0px;}
+.list_goods_ul > li > .border-right{width: 2px;height: 0px;background: #fe5e28;position:absolute;right:-1px;top: 0;}*/
+.list_goods_ul > li{
+	width: 224px;
+	height: 340px;
+	background-color: rgba(255, 255, 255, 0.4);
+	/*box-shadow: 0.4px 2px 29px 0px rgba(134, 133, 133, 0.44);*/
+	border-radius: 10px;
+  margin: 0 20px 20px 0;
+  float: left;
+  position: relative;
+}
+.left_ranking > ul > li:last-child{
+	border-bottom: none;
+}
+.list_goods_ul > li label{
+    vertical-align: middle;
+}
+.list_goods_ul > li .layui-form-checkbox[lay-skin=primary] i{
+    width: 12px;
+    height: 12px;
+    vertical-align: middle;
+    line-height: 12px;
+}
+.list_goods_ul > li .layui-form-checkbox[lay-skin=primary]:hover{
+    border: 1px solid #ff3c29;
+}
+.list_goods_ul > li .layui-selected{
+    border: 1px solid #ff3c29;
+}
+.list_goods_ul > li .layui-form-checked i,
+.list_goods_ul > li .layui-form-checked:hover i{
+    color: #ff3c29;
+}
+.list_goods_ul > li .layui-form-checkbox[lay-skin=primary] i{
+
+}
+.list_goods_ul > li .layui-form-checked[lay-skin=primary] i{
+    border-color: #ff3c29;
+}
+.list_goods_ul > li .layui-form-checked[lay-skin=primary]:hover{
+    border-color: #ff3c29 !important;
+}
+.list_goods_ul > li .layui-form-checked[lay-skin=primary] i:hover{
+    border-color: #ff3c29 !important;
+}
+.list_goods_ul > li .layui-form-checked[lay-skin=primary] i{
+    background-color: #ffffFF;
+    color: #ff3c29;
+    border-color: #ff3c29;
+}
+.list_goods_ul > li input.layui-input.layui-unselect{
+    border-color: #ff3c29;
+}
+.list_goods_ul > li .layui-form-checkbox span{
+    padding: 0 0 0 5px;
+    line-height: 15px;
+    font-size: 12px;
+}
+.list_goods_ul > li .layui-form-checked{
+    color: #ff3c29;
+}
+.list_goods_ul > li:nth-child(4n){
+	margin-right: 0;
+}
+.imgBox{
+	width: 225px;
+	height: 224px;
+	position: relative;
+	overflow: hidden;
+}
+.imgBox > img{transition: all 1s;}
+.imgBox > img:hover{
+	transform: scale(1.1); //放大 倍数随意
+}
+.imgBox > label{
+	height: 24px;
+	width: 100%;
+	display: inline-block;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, .4);
+	color: #fff;
+	font-size: 12px;
+}
+.left_span, .right_span{
+	height: 24px;
+	line-height: 24px;
+}
+label > .left_span{
+	float: left;
+	margin-left: 10px;
+    text-align: left;
+}
+label > .right_span{
+	float: right;
+    text-align: right;
+	margin-right: 10px;
+}
+.bottom_content{
+	background-color: #fff;
+	height: 112px;
+  border-radius: 0 0 4px 4px;
+}
+.bottom_content >p{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+
+.bottom_content > label{
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	margin: 3px 0;
+    padding: 0 10px;
+}
+.bottom_content .mark-price{
+    width: 50%;
+    color: #666666;
+    text-decoration: line-through;
+    float: right;
+    text-align: right;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+}
+.bottom_content .goods_price{
+    width: 50%;
+    text-align: left;
+    font-size: 18px;
+    overflow: hidden;
+    text-overflow:ellipsis;
+    white-space: nowrap;
+    float: left;
+}
+.bottom_content .layui-badge{
+	border-radius: 8px;
+    top: 0px;
+    padding: 0px 6px;
+    margin-left: 10px;
+}
+.bottom_content .layui-badge:nth-of-type(1){
+    margin-left: 0;
+}
+
+.bottom_content > p a{
+	font-size: 12px;
+	letter-spacing: 0px;
+	color: #666;
+	margin: 0 10px;
+	height: 35px;
+  text-overflow : clip;
+  text-overflow:ellipsis;
+    display: block;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+}
+.bottom_content > .product-tag{
+    height: 25px;
+    padding: 10px;
+}
+.bottom_content > .product-tag button{
+    background-color: transparent;
+    height: 18px;
+    line-height: 18px;
+    padding-right: 0;
+    float: right;
+}
+.bottom_content > .product-tag button.guanzhu-btn{
+    color: #666666;
+}
+.bottom_content > .product-tag button.guanzhu-btn:hover{
+    color: #ff3c29;
+}
+.bottom_content > .product-tag button.remove-btn{
+    color: #ff3c29;
+}
+.bottom_content > .product-tag .bottom_content .layui-badge{
+    top: 0;
+}
+.bottom_content > article{
+	font-size: 12px;
+	color: #666;
+	margin: 0 10px;
+}
+.bottom_content > article > label > i{
+	font-size: 14px;
+	color: #666;
+	vertical-align: middle;
+	margin-right: 2px;
+	cursor: pointer;
+}
+.bottom_content > article > label:hover, .bottom_content > article > label:hover>i{
+	color: #000;
+}
+.i_checked, .i_checked > *{
+	color: #ff3f29!important;
+}
+.addToCart{
+	position: relative;
+	top: -2px;
+}
+.bottom_content > article > label{
+	margin-right: 10px;
+}
+.bottom_content > article > label:last-child{
+	margin-right: 0;
+}
+		/* right_content end */
+
+		/* right_tools start */
+.right_tools{
+	left: 9999px;
+	position: fixed;
+	text-align: left;
+	height: 416px;
+	width: 110px;
+	background: #fff;
+	top:50%;
+	margin-top: -150px;
+	font-size: 12px;
+}
+.prev, .next{
+	top: 0;
+	left: 0;
+	position: relative;
+	height: 28px;
+	line-height: 28px;
+	background-color: #393939;
+	color: #fff;
+	text-align: center;
+	font-size: 12px;
+	cursor: pointer;
+}
+
+.look_goods{
+	text-align: center;
+  height: 35px;
+  line-height: 35px;
+  border-bottom:1px dashed #e4e4e4;
+}
+.right_tools > ul > li{
+	border-bottom:1px dashed #e4e4e4;
+	height: 35px;
+	line-height: 35px;
+}
+.right_tools > ul > li:hover{
+	background-color: #feefea;
+}
+.right_tools > ul > li:last-child{
+	border-bottom: none;
+	height: 36px;
+}
+.right_tools > ul > li > i{
+	margin: 0 5px 0 10px;
+	font-size: 14px;
+	vertical-align: middle;
+	color: #ccc;
+	cursor: pointer;
+}
+.right_tools > ul > li > span{
+	color: #323232;
+}
+	 /* right_tools end */
+
+/* 主要内容 end */
+
+.pageBox{
+	margin: 40px 0 100px 0;
+	float: right;
+}
+#pageBox span.layui-laypage-count, #pageBox .layui-laypage-skip{
+	background-color: transparent;
+}
+ul#productListBox li .banjia-btn{
+    cursor: pointer;
+}
+ul#productListBox li .guanzhu-btn{
+    float: right;
+    cursor: pointer;
+}
+ul#storeShipping{
+    width: 300px;
+    padding: 10px 60px;
+}
+ul#storeShipping li{
+    padding: 10px 0;
+}
+ul#storeShipping li .check-box{
+    padding: 0  0  10px 5px;
+}
+ul#storeShipping li .check-box input[type=checkbox]{
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+ul#storeShipping li .shipping-info{
+    padding-left: 30px;
+}
+ul#storeShipping li .shipping-info .shipping-item{
+    padding: 0;
+}
+
+.formShipping .layui-form-checked i,.formShipping .layui-form-checked:hover i{
+    color: #1cc8c6;
+}
+.formShipping .layui-form-checked,.formShipping .layui-form-checked:hover{
+    color: #1cc8c6;
+    border: 1px solid #1cc8c6;
+}
+.formShipping .layui-form-checkbox {
+    height: 17px;
+    line-height: 17px;
+    padding-right: 16px;
+}
+.formShipping .layui-form-checkbox i{
+    font-size: 16px;
+    width: 20px;
+}
+.formShipping .layui-form-radio i{
+    font-size: 16px;
+}
+.formShipping .layui-form-radio i:hover,.formShipping .layui-form-radioed i{
+    color: #1cc8c6;
+}
+.formShipping input[type=text]{
+    width: 100px;
+    padding-left: 5px;
+    margin-right: 5px;
+}
+.formShipping .layui-unselect.layui-form-select{
+    float: none;
+    display: inline-block;
+}
+.formShipping .layui-select-title > input.layui-input.layui-unselect{
+    border: 1px solid #f2f2f2;
+}
+.formShipping dl.layui-anim.layui-anim-upbit > dd.layui-this{
+    background-color: #f0f0f0;
+    color: #323232;
+}
+.formShipping .layui-select-title > input.layui-input.layui-unselect{
+    background-color: #f2f2f2;
+}
+.formShipping .layui-input:hover,.formShipping .layui-input:focus{
+    border-color: #f2f2f2 !important;
+}
+.formShipping input[type=button]{
+    width: 80px;
+    height: 30px;
+    background-color: #1cc8c6;
+}
+.formShipping .btn-box{
+    text-align: center;
+    padding-top: 20px;
+}

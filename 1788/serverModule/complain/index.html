@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta type="description" content="总代理-服务中心">
+    <title>举报中心</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../plugs/layui/css/layui.css">
+    <link rel="stylesheet" href="../../font/font_399822_dtv8v5xokcfvfgvi/iconfont.css">
+    <link rel="stylesheet" href="../../css/background-style/background-common.css">
+    <link rel="stylesheet" href="../../css/background-style/background-option.css">
+    <link rel="stylesheet" href="../../css/background-style/main.css">
+    <link rel="stylesheet" href="../../css/background-style/aside.css">
+    <link rel="stylesheet" href="../../css/server-center/disComplainInfo.css">
+</head>
+<body>
+<!--顶部导航开始-->
+<header>
+    <ul class="layui-nav container" id="commonHeader">
+        <li class="layui-nav-item" id="userCenter">
+        </li>
+
+    </ul>
+</header>
+<!--顶部导航结束-->
+<!--举报中心开始-->
+<div class="option-container">
+    <div class="option container layui-form">
+        <h1>举报中心</h1>
+    </div>
+</div>
+<!--举报中心结束-->
+
+<div class="main container">
+    <div class="main-content">
+        <form class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">商品信息</label>
+                <div class="layui-input-block layui-clear productSkuId" id="productSkuId">
+                    <img src="../../img/ys3.png" alt="">
+                    <input type="text" name="title" required readonly value="格力（GREE）正1.5匹 变频 品圆 冷暖 壁挂式空调 KFR-35GW/(35592)FNhDa-A3"  lay-verify="required" autocomplete="off" class="layui-input">
+                    <input type="text" name="title" required readonly value="商品ID：021053" lay-verify="required" autocomplete="off" class="layui-input">
+                    <input type="text" name="title" required readonly value="格力（GREE）" lay-verify="required" autocomplete="off" class="layui-input">
+                    <input type="text" name="title" required readonly value="商品类目:家用电器" lay-verify="required" autocomplete="off" class="layui-input">
+                    <input type="text" name="title" required readonly value="被举报人:格力(GREE)" lay-verify="required" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">举报类型</label>
+                <div class="layui-input-block layui-clear">
+                    <input type="checkbox" name="defendantReason" title="虚假宣传">
+                    <input type="checkbox" name="defendantReason" title="商品信息有误">
+                    <input type="checkbox" name="defendantReason" title="假冒货盗版">
+                    <input type="checkbox" name="defendantReason" title="商标品牌侵权">
+                    <input type="checkbox" name="defendantReason" title="价格违规">
+                    <input type="checkbox" name="defendantReason" title="政治敏感">
+                    <input type="checkbox" name="defendantReason" title="收到空包装">
+                    <input type="checkbox" name="defendantReason" title="滥发信息">
+                    <input type="checkbox" name="defendantReason" title="品牌商品近似">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">您认为商品哪些方面进行了虚假宣传</label>
+                <div class="layui-input-block layui-clear">
+                    <input type="checkbox" name="propagandaType" value="1" title="虚假夸大宣传">
+                    <input type="checkbox" name="propagandaType" value="2" title="使用驰名商标">
+                    <input type="checkbox" name="propagandaType" value="3" title="贬低其他商品">
+                    <input type="checkbox" name="propagandaType" value="4" title="专利为备注专利号">
+                    <input type="checkbox" name="propagandaType" value="5" title="其他">
+                </div>
+            </div>
+            <div class="layui-form-item layui-form-text">
+                <label class="layui-form-label">举报描述</label>
+                <div class="layui-input-block layui-clear">
+                    <textarea name="description" required placeholder="请输入举报的详细描述" class="layui-textarea"></textarea>
+                </div>
+            </div>
+            <div class="layui-form-item complanitName">
+                <label class="layui-form-label">上传证明</label>
+                <div class="layui-input-block layui-clear upload-box">
+                    <div class="layui-upload">
+                        <div class="layui-upload-list img-list">
+                            <div class="img-box"><img class="layui-upload-img"  src="../../img/ys1.png"><i class="layui-icon delete-img">&#x1006;</i></div>
+                            <div class="img-box"><img class="layui-upload-img"  src="../../img/ys2.png"><i class="layui-icon delete-img">&#x1006;</i></div>
+                            <div class="img-box"><img class="layui-upload-img"  src="../../img/ys3.png"><i class="layui-icon delete-img">&#x1006;</i></div>
+                            <div class="img-box"><img class="layui-upload-img"  src="../../img/ys4.png"><i class="layui-icon delete-img">&#x1006;</i></div>
+                        </div>
+                        <button type="button" class="layui-btn upload" id="test1"><i class="layui-icon">&#xe654;</i>限上传5张</button>
+                        <p>上传图片格式为JPG、JPEG、PNG，每张大小5M以内</p>
+                    </div>
+                </div>
+            </div>
+            <div class="layui-form-item complanitName">
+                <label class="layui-form-label">举报人姓名</label>
+                <div class="layui-input-block">
+                    <input type="text" name="complanitName" required  lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item complanitPhone">
+                <label class="layui-form-label">联系方式</label>
+                <div class="layui-input-block">
+                    <input type="text" name="complanitPhone" required  lay-verify="required" placeholder="请输入联系方式" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <input type="button" value="提交" class="layui-btn" id="send" lay-submit lay-filter="formDemo">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="../../plugs/layui/layui.all.js"></script>
+<script src="../../js/wolianwComponent/config.js"></script>
+<script>
+    layui.use(['element','form','laydate','laytpl','layer','woLianw','upload'],function () {
+        var element=layui.element
+        var form=layui.form
+        var laydate=layui.laydate
+        var laytpl=layui.laytpl
+        var $=layui.$
+        var layer=layui.layer
+        var woLianw = layui.woLianw
+        var upload = layui.upload
+
+/*
+
+        upload.render({
+            elem: '#test1'
+            ,url: ''
+            ,accept:'images'
+            ,exts:'jpg|png|jpeg'
+            ,size:5120
+            ,number:5
+            ,multiple: true
+            ,before: function(obj){
+                /!*将每次选择的文件追加到文件队列*!/
+                var files = obj.pushFile();
+                console.log(files)
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    var html = $(['<div class="img-box"><img class="layui-upload-img"  src="'+result+'"><i class="layui-icon delete-img">&#x1006;</i></div>'].join())
+                    /!*判断文件队列中的文件个数是否已经超过了五个，如果超过了五个，就将刚刚添加进去的删除*!/
+                    if(Object.getOwnPropertyNames(files).length > 5){
+                        layer.alert('最多只能上传五张图片')
+                        delete  files[index]
+                        return false
+                    }
+                    html.find('.delete-img').on('click',function () {
+                        delete files[index]; //删除对应的文件
+                        html.remove();
+                    })
+                    $('.img-list').append(html)
+                });
+            }
+            ,choose: function (obj) {
+                var files = this.files = obj.pushFile();
+            }
+            ,done: function(res){
+                //上传完毕
+            }
+        });
+*/
+
+
+        woLianw.setHeight()
+
+        form.on('submit(formDemo)', function(data){
+            console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+            console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+    })
+</script>
+</body>
+</html>

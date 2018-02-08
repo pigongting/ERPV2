@@ -1,0 +1,264 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>退货单详情</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="stylesheet" href="./plugins/layui255/css/layui.css">
+  <link rel="stylesheet" href="./plugins/font-awesome/font_399839_u0h8dbd9lu4pwrk9/iconfont.css">
+  <link rel="stylesheet" href="./build/css/backOrderDetail.css">
+</head>
+
+<body>
+
+  <div class="orderInfo">
+    <div id="orderInfoBox"></div>
+  </div>
+  <div class="tabInfo">
+    <div class="layui-tab layui-tab-brief" lay-filter="*" id="tabBox"></div>
+  </div>
+  <div class="buttonList">
+    <button type="button" class="layui-btn pi-TableButton pi-TableButtonBlue" id="backList">返回列表</button>
+  </div>
+
+<!-- 订单信息 -->
+<script type="text/html" id="orderInfoTemplate">
+  <table>
+    <tr>
+      <th class="cloumn-1">源订单日期</th>
+      <td class="cloumn-2">{{layui.woLianw.transDateType(d.data.purchaseTime)}}</td>
+      <th class="cloumn-3">源订单编号</th>
+      <td class="cloumn-4"><span>{{d.data.orderItemNo}}</span></td>
+    </tr>
+    <tr>
+      <th>退货单日期</th>
+      <td>{{layui.woLianw.transDateType(d.data.createTime) || ''}}</td>
+      <th>退货单编号</th>
+      <td><p class="buyer-remark">{{d.data.orderNo || ''}}</p></td>
+    </tr>
+    <tr>
+      <th>交易状态</th>
+      <td colspan="3">
+        {{# for(var k in d.backStateEnum){ }}
+        {{ (d.data.backState == k) ? d.backStateEnum[k] : '' }}
+        {{# } }}
+      </td>
+    </tr>
+  </table>
+</script>
+
+<!-- tab -->
+<script type="text/html" id="tabTemplate">
+  <ul class="layui-tab-title">
+    <li class="layui-this">商品信息</li>
+    <li>客户信息</li>
+    <li>退货单操作信息</li>
+  </ul>
+  <div class="layui-tab-content">
+    <div class="layui-tab-item layui-show" id="goodsInfoBox"></div>
+    <div class="layui-tab-item" id="customerInfoBox"></div>
+    <div class="layui-tab-item" id="orderActionInfoBox"></div>
+  </div>
+</script>
+
+<!-- 商品信息 -->
+<script type="text/html" id="goodsInfoTemplate">
+  <table>
+    <tr>
+      <th class="cloumn-1">商品名称</th>
+      <td class="cloumn-2">{{d.skuDesc || ''}}</td>
+      <th class="cloumn-3">商品规格</th>
+      <td class="cloumn-4">{{d.skuDesc || ''}}</td>
+    </tr>
+    <tr>
+      <th class="cloumn-1">数量/单位</th>
+      <td class="cloumn-2">{{d.quantity || ''}}{{d.unit ? '/' + d.unit : ''}}<i style="color: transparent;">中</i></td>
+      <th class="cloumn-3">单价</th>
+      <td class="cloumn-4"><span class="money">{{=layui.woLianw.thousandBit(d.venPrice)}}</span><i style="color: transparent;">中</i></td>
+    </tr>
+    <tr>
+      <th class="cloumn-1">损耗费</th>
+      <td class="cloumn-234" colspan="3"><span class="money">{{=layui.woLianw.thousandBit(d.lossCost)}}</span><i style="color: transparent;">中</i></td>
+    </tr>
+    <tr>
+      <th class="cloumn-1">金额</th>
+      <td class="cloumn-2"><span class="money">{{=layui.woLianw.thousandBit(d.price)}}</span><i style="color: transparent;">中</i></td>
+      <th class="cloumn-3">退货金额</th>
+      <td class="cloumn-4"><span class="money">{{=layui.woLianw.thousandBit(d.refundPrice)}}</span><i style="color: transparent;">中</i></td>
+    </tr>
+  </table>
+</script>
+
+<!-- 客户信息 -->
+<script type="text/html" id="customerInfoTemplate">
+  <table>
+    <tr>
+      <th class="cloumn-1">买家姓名</th>
+      <td class="cloumn-2">{{d.companyName || ''}}</td>
+      <th class="cloumn-3">省</th>
+      <td class="cloumn-4">{{d.province || ''}}</td>
+      <th class="cloumn-5">快递公司</th>
+      <td class="cloumn-6">{{d.expressName || ''}}</td>
+    </tr>
+    <tr>
+      <th class="cloumn-1">电话</th>
+      <td class="cloumn-2">{{d.phone || ''}}<i style="color: transparent;">中</i></td>
+      <th class="cloumn-3">市</th>
+      <td class="cloumn-4">{{d.city || ''}}</td>
+      <th class="cloumn-5">快递单号</th>
+      <td class="cloumn-6">{{d.expressNumber || ''}}<i style="color: transparent;">中</i></td>
+    </tr>
+    <tr>
+      <th class="cloumn-1">详细地址</th>
+      <td class="cloumn-2">{{d.homeAddress || ''}}</td>
+      <th class="cloumn-3">区/县</th>
+      <td class="cloumn-4">{{d.area || ''}}</td>
+      <th class="cloumn-5">发货人</th>
+      <td class="cloumn-6">{{d.sender || ''}}</td>
+    </tr>
+  </table>
+</script>
+
+<!-- 订单操作信息 -->
+<script type="text/html" id="orderActionInfoTemplate">
+  <table>
+    <tr>
+      <th class="cloumn-1">同意人</th>
+      <td class="cloumn-2">{{d.agreeUser ? d.agreeUser : ''}}</td>
+      <th class="cloumn-3">同意日期</th>
+      <td class="cloumn-4">{{d.agreeDate ? layui.woLianw.transDateType(d.agreeDate) : ''}}<i style="color: transparent;">中</i></td>
+    </tr>
+    <tr>
+      <th class="cloumn-1">拒绝人</th>
+      <td class="cloumn-2">{{d.refuseUser ? d.refuseUser : ''}}</td>
+      <th class="cloumn-3">拒绝日期</th>
+      <td class="cloumn-4">{{d.refuseDate ? layui.woLianw.transDateType(d.refuseDate) : ''}}<i style="color: transparent;">中</i></td>
+    </tr>
+    <tr>
+      <th class="cloumn-1">收货人</th>
+      <td class="cloumn-2">{{d.receiveUser ? d.receiveUser : ''}}</td>
+      <th class="cloumn-3">收货日期</th>
+      <td class="cloumn-4">{{d.receiveDate ? layui.woLianw.transDateType(d.receiveDate) : ''}}<i style="color: transparent;">中</i></td>
+    </tr>
+    <tr>
+      <th class="cloumn-1">发货人</th>
+      <td class="cloumn-2">{{d.sendUser ? d.sendUser : ''}}</td>
+      <th class="cloumn-3">发货日期</th>
+      <td class="cloumn-4">{{d.sendDate ? layui.woLianw.transDateType(d.sendDate) : ''}}<i style="color: transparent;">中</i></td>
+    </tr>
+  </table>
+</script>
+
+<script src="./plugins/layui255/layui.js"></script>
+<script src="./build/js/wolianwComponent/config.js"></script>
+<script>
+  function transDateType(date, type) {
+    if (date === null) {
+        return '';
+      }
+    var date = new Date(date)
+    var y = date.getFullYear();
+    var m = date.getMonth() + 1;
+    m = m < 10 ? ('0' + m) : m;
+    var d = date.getDate();
+    d = d < 10 ? ('0' + d) : d;
+    var h = date.getHours();
+    var minute = date.getMinutes();
+    minute = minute < 10 ? ('0' + minute) : minute;
+
+    if (type === 'date') {
+      return y + '-' + m + '-' + d;
+    } else {
+      return y + '-' + m + '-' + d + ' ' + h + ':' + minute;
+    }
+  }
+
+
+  layui.use(['element', 'form', 'laydate', 'laytpl', 'jquery', 'layer', 'laypage', 'woLianw'], function () {
+    var element = layui.element;
+    var form = layui.form;
+    var laydate = layui.laydate;
+    var laytpl = layui.laytpl;
+    var $ = layui.$;
+    var layer = layui.layer;
+    var laypage = layui.laypage;
+    var woLianw = layui.woLianw;
+
+    var tab_1_Flag = true;
+    var tab_2_Flag = true;
+
+    woLianw.getEnum('back-state', function (data) {
+      window.sessionStorage.setItem('backState', JSON.stringify(data))
+    })
+
+    element.on('tab(*)', function (data) {
+      if (data.index == 1) {
+        if (tab_1_Flag) {
+          tab_1_Flag = false;
+          woLianw.srvOrderCustomerDetail({ srvOrderId: woLianw.GetQueryString('id') }, function (data) {
+            // 客户信息
+            var template = document.getElementById('customerInfoTemplate').innerHTML;
+            var target = document.getElementById('customerInfoBox');
+            laytpl(template).render(data, function (html) {
+              target.innerHTML = html;
+            });
+          });
+        }
+
+      } else if (data.index == 2) {
+        if (tab_2_Flag) {
+          tab_2_Flag = false;
+          woLianw.srvOrderCustomerLog({ srvOrderId: woLianw.GetQueryString('id') }, function (data) {
+            //  订单操作信息
+            var template = document.getElementById('orderActionInfoTemplate').innerHTML;
+            var target = document.getElementById('orderActionInfoBox');
+            laytpl(template).render(data, function (html) {
+              target.innerHTML = html;
+            });
+          });
+        }
+
+      }
+    });
+
+
+    woLianw.srvOrderDetail({ srvOrderId: woLianw.GetQueryString('id') }, function (data) {
+      // 订单信息
+      var template = document.getElementById('orderInfoTemplate').innerHTML;
+      var target = document.getElementById('orderInfoBox');
+      var backStateEnum = JSON.parse(window.sessionStorage.getItem('backState'))
+      laytpl(template).render({
+        data: data,
+        backStateEnum: backStateEnum
+      }, function (html) {
+        target.innerHTML = html;
+      });
+
+
+      // tab
+      var template = document.getElementById('tabTemplate').innerHTML;
+      var target = document.getElementById('tabBox');
+      laytpl(template).render(data, function (html) {
+        target.innerHTML = html;
+      });
+
+      // 商品信息
+      var template = document.getElementById('goodsInfoTemplate').innerHTML;
+      var target = document.getElementById('goodsInfoBox');
+      laytpl(template).render(data, function (html) {
+        target.innerHTML = html;
+      });
+    });
+
+    $(document).on('click', '#backList', function () {
+      parent.layer.closeAll('iframe');
+    });
+  });
+</script>
+</body>
+</html>

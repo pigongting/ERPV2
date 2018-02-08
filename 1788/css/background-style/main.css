@@ -1,0 +1,28 @@
+body{
+    background-color: #f0f0f0;
+}
+.main{
+    padding: 0px 0 20px 0;
+    position: relative;
+    margin-top: 20px !important;
+}
+.container{
+    width: 1200px;
+    margin: 0 auto;
+}
+.bakground-content{
+    padding-left: 100px;
+}
+.b-btn{
+    background-color: #1cc8c6;
+    padding: 0 15px;
+}
+.cacle-btn{
+    padding: 0 15px;
+    background-color: transparent;
+    border: 1px solid #1CC8C6;
+    color: #1CC8C6;
+}
+.cacle-btn:hover{
+    color: #1CC8C6;
+}

@@ -1,0 +1,60 @@
+.pi-TableButton { min-width: 80px; height: 26px; line-height: 26px; font-size: 12px; padding-left: 10px; padding-right: 10px; opacity: .9; filter: alpha(opacity=90); }
+.pi-TableButtonGreen { background-color: #39cb88; color: #fff; }
+.pi-TableButtonBlue { background-color: #438bfd; color: #fff; }
+.pi-TableButtonRed { background-color: #ff4e3e; color: #fff; }
+.pi-TableButtonTiffany { background-color: #1cc8c6; color: #fff; }
+.pi-TableButtonWhite { background-color: #fff; color: #000; border: 1px solid #d9d9d9; }
+.pi-TableButtonWhite:hover { color: #000; }
+.pi-TableButtonGray { background-color: #f7f7f7; color: #000; border: 1px solid #d9d9d9; }
+.pi-TableButtonGray:hover { color: #000; }
+
+#ibox-freightCalculate * {
+  box-sizing: inherit;
+}
+
+#ibox-freightCalculate .layui-form:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+#ibox-freightCalculate .layui-form-item {
+  float: left;
+  clear: initial;
+}
+
+#ibox-freightCalculate .layui-form-label {
+  width: 86px;
+}
+
+#ibox-freightCalculate .layui-input-block {
+  margin-left: 86px;
+  min-height: 26px;
+}
+
+.layui-form {
+  padding-top: 20px;
+}
+
+.layui-form-label {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.layui-form-item .layui-input {
+  height: 26px;
+}
+
+#amountInput {
+  width: 100px;
+  margin-right: 12px;
+}
+
+#ibox-freightCalculate .lay-submit-item .layui-input-block {
+  margin-left: 0px;
+}
+
+#ibox-freightCalculateTable {
+  width: 770px;
+  padding-left: 65px;
+}

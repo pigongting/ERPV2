@@ -1,0 +1,474 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>全部订单</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="stylesheet" href="./plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="./plugins/font-awesome/font_399839_u0h8dbd9lu4pwrk9/iconfont.css">
+    <link rel="stylesheet" href="./build/css/main.css">
+    <link rel="stylesheet" href="./build/css/popup.css">
+    <link rel="stylesheet" href="./build/css/order.css">
+</head>
+<body>
+<div class="seller-header">
+    <span class="layui-breadcrumb">
+      <a href="javascript:;">你当前所在的位置</a>
+      <a href="javascript:;">订单管理</a>
+      <a><cite>全部订单</cite></a>
+    </span>
+</div>
+<div class="main order-all">
+    <form class="layui-form">
+        <div class="back-order-operate layui-row layui-form pi-FormFilter">
+          <div class="pi-FilterSubmit">
+            <div class="button-list" style="text-align: right;">
+                <button class="layui-btn search-btn" lay-submit lay-filter="*" style="width: 70px; height: 26px; padding: 0; font-size: 12px; background-color: #438bfd; line-height: 26px;">
+                    <i class="layui-icon iconfont">&#xe620;</i>查询
+                </button>
+                <button type="reset" class="layui-btn delete-btn">
+                    <i class="layui-icon iconfont">&#xe626;</i>清空
+                </button>
+            </div>
+          </div>
+          <div class="pi-FilterItem">
+            <div class="layui-form-item">
+              <div class="layui-inline">
+                <label class="layui-form-label">订单编号</label>
+                <div class="layui-input-inline" style="width: 200px;">
+                  <input type="text" name="orderItemNo" autocomplete="off" class="layui-input" placeholder="请输入订单编号">
+                </div>
+              </div>
+              <div class="layui-inline">
+                <label class="layui-form-label">商品名称</label>
+                <div class="layui-input-inline" style="width: 200px;">
+                  <input type="text" name="productName" autocomplete="off" class="layui-input" placeholder="请输入商品名称">
+                </div>
+              </div>
+              <div class="layui-inline">
+                <label class="layui-form-label">订单日期</label>
+                <div class="layui-input-inline" style="width: 100px;">
+                  <input type="text" name="payTimeStart" id="releaseStartDate" autocomplete="off" class="layui-input" placeholder="开始日期">
+                </div>
+                <div class="layui-form-mid">-</div>
+                <div class="layui-input-inline" style="width: 100px;">
+                  <input type="text" name="payTimeEnd" id="releaseEndDate" autocomplete="off" class="layui-input" placeholder="结束日期">
+                </div>
+              </div>
+              <div class="layui-inline">
+                <label class="layui-form-label">订单状态</label>
+                <div class="layui-input-block">
+                  <select name="orderState" lay-filter="aihao">
+                      <option value="">全部</option>
+                      <option value="15">待接单</option>
+                      <option value="20">待发货</option>
+                      <option value="25">待收货</option>
+                      <option value="30">待评价</option>
+                      <option value="35,40">已完成</option>
+                      <option value="45,55">已退回</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </form>
+    <div class="pi-OrderList">
+      <table class="pi-TableHead">
+          <thead>
+              <tr>
+                  <th class="cloumn-1 pi-FirstColumn">订单日期</th>
+                  <th class="cloumn-2">订单编号</th>
+                  <th class="cloumn-3">客户名称</th>
+                  <th class="cloumn-4">收货地址</th>
+                  <th class="cloumn-5">买家备注</th>
+                  <th class="cloumn-6">数量</th>
+                  <th class="cloumn-7">金额</th>
+                  <th class="cloumn-8">运费</th>
+                  <th class="cloumn-9">结算金额</th>
+                  <th class="cloumn-10">操作</th>
+              </tr>
+          </thead>
+      </table>
+      <div id="productToBeAccepted"></div>
+      <div id="pageBox" style="text-align: right;"></div>
+    </div>
+</div>
+
+<div id="inputExpressBox" style="display: none; padding: 40px 50px 0 0;"></div>
+
+<script src="./plugins/layui/layui.js"></script>
+<script src="./build/js/wolianwComponent/config.js"></script>
+<script src="./build/js/component.js"></script>
+
+<!-- 数据表格 -->
+<script type="text/html" id="productToBeAcceptedTemplate">
+    {{# layui.each(d, function(index, item){  }}
+    <form class="layui-form">
+        <table class="pi-TableLine">
+            <tr>
+                <td class="cloumn-1 pi-FirstColumn">{{transDateType(item.createTime)}}</td>
+                <td class="cloumn-2"><div class="pi-LinkColor orderDetailHtml" data-id="{{item.orderItemNo}}">{{item.orderItemNo}}</div></td>
+                <td class="cloumn-3"><p>{{item.buyerName || ''}}</p></td>
+                <td class="cloumn-4">{{item.orderAddress || ''}}</td>
+                <td class="cloumn-5"><p>{{item.remark || ''}}</p></td>
+                <td class="cloumn-6">{{item.number}}</td>
+                <td class="cloumn-7">{{=layui.woLianw.thousandBit(item.vendorPrice)}}</td>
+                <td class="cloumn-8">{{=layui.woLianw.thousandBit(item.freight)}}</td>
+                <td class="cloumn-9">{{=layui.woLianw.thousandBit(item.vendorTotalPrice)}}</td>
+                <td class="cloumn-10"><button type="button" class="layui-btn pi-TableButton pi-TableButtonBlue contactBuyer" data-id="{{item.buyerId}}">联系买家</button> </td>
+            </tr>
+        </table>
+        <table class="pi-TableBody">
+            <tr>
+                <td class="cloumn-123 pi-FirstColumn" colspan="3">
+                  <div class="pi-ImageWarp">
+                    <div class="pi-ImageBox"><img src="{{=layui.woLianw.getImgUrl(item.productImageUrl)}}" alt=""></div>
+                    <div class="pi-TextBox">
+                      <p class="productName pi-LinkColor"><a href="/productDetail.html?productId={{item.productId}}" target="_blank">{{item.productName}}</a></p>
+                      <table>
+                        <tr>
+                          <td class="freightWarp">
+                            <ul class="freight">
+                              <li>配送方式：<span>{{item.freightTypeName || ''}}</span></li>
+                              <li>快递公司：<span>{{item.expressCompany || ''}}</span></li>
+                              <li>快递单号：<span class="pi-LinkColor FareGetOrderTraces" data-ename="{{item.expressCompany || ''}}" data-code="{{item.expressId || ''}}" data-no="{{item.expressNo || ''}}">{{item.expressNo || ''}}</span></li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </table>
+                    </div>
+                  </div>
+                </td>
+                <td class="cloumn-4">
+                  <ul class="otherInfo">
+                    <li>货号：<span>{{item.skuNo || ''}}</span></li>
+                    <li>单位：<span>{{item.unit || ''}}</span></li>
+                    <li>单价：<span>{{=layui.woLianw.thousandBit(item.vendorPrice)}}</span></li>
+                    <li style="color: #fff;">.</li>
+                  </ul>
+                </td>
+                <td class="cloumn-56789" colspan="5">
+                  <ul class="otherInfo">
+                    <li>规格型号：<span>{{item.skuDesc || ''}}</span></li>
+                    <li>预计发货时间：<span>{{transDateType(item.expectedDeliveryTime, 'date')}}</span></li>
+                    <li>订单状态：<span>{{item.orderStateText || ''}}</span></li>
+                    <li>交易状态：<span>{{item.transactionStateText || ''}}</span></li>
+                  </ul>
+                </td>
+                <td class="cloumn-10 cloumn-action">
+                  <ul class="buttonGroup">
+                    {{# if (item.orderState === 25) { }}
+                    <li>
+                      <button class="layui-btn pi-TableButton pi-TableButtonGreen" lay-submit lay-filter="inputExpress" data-expressno="{{item.expressNo}}" data-expressid="{{item.expressId}}" data-id="{{item.id}}">修改物流</button>
+                    </li>
+                    {{# } }}
+                  </ul>
+                </td>
+            </tr>
+        </table>
+    </form>
+    {{# })  }}
+</script>
+
+<!-- 修改物流信息 -->
+<script type="text/html" id="inputExpressTemplate">
+  <form class="layui-form">
+    <input type="hidden" name="orderItemId" value="{{d.id}}">
+    <div class="layui-form-item">
+      <label class="layui-form-label">快递公司：</label>
+      <div class="layui-input-block">
+        <select name="expressId" lay-verify="required">
+          {{# console.log(d.expressId)}}
+          {{# layui.each(d.expressCompany, function(index, item){  }}
+            {{#if (item.id === d.expressId) { }}
+            <option value="{{item.id+','+item.name}}" selected>{{item.name}}</option>
+            {{# } else {  }}
+            <option value="{{item.id+','+item.name}}">{{item.name}}</option>
+            {{# }  }}
+          {{# })  }}
+        </select>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">快递单号：</label>
+      <div class="layui-input-block">
+        <input type="text" name="expressNo" value="{{d.expressNo || ''}}" placeholder="多个单号用逗号分隔" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <div class="layui-input-block">
+        <button class="layui-btn" lay-submit lay-filter="deliverGoods">确定</button>
+        <button type="reset" lay-submit lay-filter="deliverGoodsCancle" class="layui-btn layui-btn-primary">取消</button>
+      </div>
+    </div>
+  </form>
+</script>
+
+<script>
+    function transDateType (date, type) {
+      if (date === null) {
+        return '';
+      }
+        var date=new Date(date)
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        m = m < 10 ? ('0' + m) : m;
+        var d = date.getDate();
+        d = d < 10 ? ('0' + d) : d;
+        var h = date.getHours();
+        var minute = date.getMinutes();
+        minute = minute < 10 ? ('0' + minute) : minute;
+        
+        if (type === 'date') {
+          return y + '-' + m + '-' + d;
+        } else {
+          return y + '-' + m + '-' + d+' '+h+':'+minute;
+        }
+    }
+
+    layui.use(['element','form','laydate','laytpl','jquery','layer','laypage', 'woLianw'],function () {
+        var element=layui.element;
+        var form=layui.form;
+        var laydate=layui.laydate;
+        var laytpl=layui.laytpl;
+        var $=layui.$;
+        var layer=layui.layer;
+        var laypage = layui.laypage;
+        var woLianw = layui.woLianw;
+        
+         /* 钩子 */
+        var layerID = null;
+
+        /* 页面数据 */
+        var filterData = {
+          page: 1,
+          limit: 15,
+        };
+
+        var inputExpressData = {
+          expressCompany: '',
+          expressId: '',
+          expressNo: '',
+          id: [],
+        };
+
+        /* 更新当前页 */
+        if (location.hash) {
+            var hashreg = new RegExp(/#!page=/);
+            if (hashreg.test(location.hash)) {
+                filterData.page = location.hash.replace(hashreg, '');
+            }
+        }
+
+
+
+        /* 日期控件 */
+        laydate.render({
+            elem:"#releaseStartDate"
+        });
+        laydate.render({
+            elem:"#releaseEndDate"
+        });
+
+
+
+        /* 模板渲染 - 表格 */
+        function renderTableTemplate(data, templateId, targetId) {
+            renderPage(data.total);
+            var template = document.getElementById(templateId).innerHTML;
+            var target = document.getElementById(targetId);
+            laytpl(template).render(data.list,function (html) {
+                target.innerHTML = html;
+                form.render('checkbox');
+            })
+        }
+
+        /* 模板渲染 - 分页 */
+        function renderPage(total) {
+            laypage.render({
+                elem: 'pageBox',
+                layout: ['count', 'prev', 'page', 'next', 'limit', 'skip'],
+                limits: [15, 25, 35],
+                count: total,
+                limit: filterData.limit,
+                curr: filterData.page,
+                hash: 'page', //自定义hash值
+                jump: function(obj, first){
+                    filterData.page = obj.curr;
+                    filterData.limit = obj.limit;
+                    //首次不执行
+                    if (!first) {
+                        woLianw.ajaxSellOrderAllOrderList(filterData, renderTableTemplate, 'productToBeAcceptedTemplate', 'productToBeAccepted');
+                    }
+                },
+            });
+        }
+
+        /* 模板渲染 - 详情 */
+
+
+
+
+
+
+
+
+        /* 监听表单提交 - 查询 */
+        form.on('submit(*)', function(data){
+            console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+            console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            
+            for (var key in data.field) { filterData[key] = data.field[key]; }
+
+            woLianw.ajaxSellOrderAllOrderList(filterData, renderTableTemplate, 'productToBeAcceptedTemplate', 'productToBeAccepted');
+
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        /* 监听表单提交 - 填写快递信息 */
+        form.on('submit(inputExpress)', function(data){
+          // console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+          // console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+          console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+          
+          var that = $(this);
+          
+          woLianw.ajaxSellOrderExpressList({},function(data) {
+            inputExpressData.expressCompany = data;
+            inputExpressData.expressNo = that.data('expressno');
+            inputExpressData.expressId = that.data('expressid');
+            inputExpressData.id = that.data('id');
+
+            var template = document.getElementById('inputExpressTemplate').innerHTML;
+            var target = document.getElementById('inputExpressBox');
+            laytpl(template).render(inputExpressData, function (html) {
+                target.innerHTML = html;
+                form.render();
+            })
+
+            layerID = layer.open({
+                type: 1,
+                area: ['500px', '300px'],
+                title:"物流信息修改",
+                content: $('#inputExpressBox'),
+                btnAlign: 'c',
+            });
+          });
+
+          return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        /* 监听表单提交 - 发货 */
+        form.on('submit(deliverGoods)', function(data){
+            // console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+            // console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+            console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+            
+            var arr = data.field.expressId.split(',');
+
+            data.field.expressId = arr[0];
+            data.field.expressName = arr[1];
+
+            /*  待发货订单 - 发货 */
+            woLianw.ajaxSellOrderVenUpdateOrderExpress(data.field, function() {
+              /* 发送请求 */
+              woLianw.ajaxSellOrderAllOrderList(filterData, renderTableTemplate, 'productToBeAcceptedTemplate', 'productToBeAccepted');
+
+              layer.open({
+                type: 0, 
+                title: false,
+                icon: 1,
+                closeBtn: 0,
+                btn: false,
+                time: 1000,
+                content: '修改物流成功',
+              });
+            });
+            
+            layer.close(layerID);
+
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        /* 监听表单提交 - 取消发货 */
+        form.on('submit(deliverGoodsCancle)', function(data){
+            layer.close(layerID);
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+        
+        /* 监听复选框 - 全选 */
+        form.on('checkbox(checkall)', function(data){
+            // console.log(data.elem.form); //得到checkbox原始DOM对象
+            // console.log(data.elem.checked); //是否被选中，true或者false
+            // console.log(data.value); //复选框value值，也可以通过data.elem.value得到
+            // console.log(data.othis); //得到美化后的DOM对象
+
+            $(data.elem.form).find('[name]').each(function(index, item){
+                item.checked = data.elem.checked;
+            });
+
+            $(data.elem.form).find('.layui-form-checkbox').each(function(index, item){
+                if (data.elem.checked) {
+                    $(item).addClass('layui-form-checked');
+                } else {
+                    $(item).removeClass('layui-form-checked');
+                }
+            });
+        });
+        
+        /* 监听复选框 - 单选 */
+        form.on('checkbox(checksingle)', function(data){
+            // console.log(data.elem); //得到checkbox原始DOM对象
+            // console.log(data.elem.checked); //是否被选中，true或者false
+            // console.log(data.value); //复选框value值，也可以通过data.elem.value得到
+            // console.log(data.othis); //得到美化后的DOM对象
+            var allChecked = true;
+
+            $(data.elem.form).find('[lay-filter="checksingle"]').each(function(index, item){
+                if (item.checked === false) { allChecked = false; }
+            });
+
+            if (allChecked) {
+                $(data.elem.form).find('[lay-filter="checkall"]')[0].checked = true;
+                $(data.elem.form).find('.chose-all .layui-form-checkbox').addClass('layui-form-checked');
+            } else {
+                $(data.elem.form).find('[lay-filter="checkall"]')[0].checked = false;
+                $(data.elem.form).find('.chose-all .layui-form-checkbox').removeClass('layui-form-checked');
+            }
+        });
+
+        /* 事件 - 订单详情 */
+        $(document).on("click", ".orderDetailHtml", function (event) {
+            layer.open({
+                type: 2,
+                content: [layui.woLianw.iframe + 'orderDetail.html?id=' + $(this).data('id'), 'no'],
+                area: ['715px', '710px'], //宽高
+                title:"订单详情"
+            });
+        });
+
+        /* 事件 - 联系买家 */
+        $(document).on("click", ".contactBuyer", function (event) {
+          var wi = window.open('about:blank', '_blank');
+          var params = {
+            id: $(this).data('id'),
+          };
+          woLianw.ajaxChatSupplyChatWithCust(params, function(data) {
+            wi.location.href = data;
+          });
+        });
+
+        /* 发送请求 */
+        woLianw.ajaxSellOrderAllOrderList(filterData, renderTableTemplate, 'productToBeAcceptedTemplate', 'productToBeAccepted');
+
+    })
+</script>
+</body>
+</html>
+

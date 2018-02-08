@@ -1,0 +1,152 @@
+.back-order-operate{
+    padding: 20px 50px 5px 50px;
+    border-bottom: 1px solid #e4e4e4;
+}
+.back-order-operate>div{
+    padding: 10px 0 0 0;
+}
+.back-order-operate .buyer-input input,
+.back-order-operate .seller-input input{
+    height: 24px;
+    border: 1px solid #e4e4e4;
+    padding-left: 10px;
+    width: 60%;
+}
+.back-order-list{
+    padding: 20px 50px;
+}
+.back-order-list table{
+    width: 100%;
+    text-align: center;
+}
+.back-order-list table thead tr{
+    background-color: #e4e9f2;
+    height: 50px;
+}
+
+.back-order-list table tr td input[type=checkbox]{
+    width: 22px;
+    height: 22px;
+    vertical-align: middle;
+    margin-left: 5%;
+}
+.back-order-list table tr.buyer-list-item{
+    border: 1px solid #e4e4e4;
+    border-collapse: collapse;
+    height: 40px;
+}
+.back-order-list table tr.buyer-list-item:hover{
+    background-color: #e4e9f2;
+}
+.back-order-list table tr.order-all-info{
+    height: 30px;
+    background-color: #F7F7F7;
+    font-size: 12px;
+    color: #666666;
+    border-top: 1px solid #e4e4e4;
+    border-left: 1px solid #e4e4e4;
+    border-right: 1px solid #e4e4e4;
+}
+.back-order-list table tr.order-all-info td.tal{
+    text-align: left;
+}
+
+.back-order-list table tbody tr td{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.back-order-list table tbody tr.product-info{
+    height: 180px;
+    border: 1px solid #e4e4e4;
+    border-top: none;
+}
+.back-order-list table tbody tr.product-info img{
+    width: 140px;
+    height: 140px;
+}
+.back-order-list table tbody tr.product-info .product-all-info{
+    font-size: 12px;
+    color: #666666;
+    text-align: left;
+    vertical-align: top;
+    padding-top: 20px;
+}
+.back-order-list table tbody tr.product-info .product-all-info p.product-dec{
+    max-width: 400px;
+    font-size: 16px;
+    height: 43px;
+    overflow : hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.back-order-list table tbody tr.product-info .product-all-info p.product-able-sale{
+    padding: 20px 0;
+}
+.back-order-list table tbody tr.product-info .product-operate>div{
+    height: 40px;
+}
+.back-order-list table tbody tr.product-settlement{
+    height: 30px;
+    background-color: #f5f7fb;
+    border: 1px solid #e4e4e4;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.back-order-list .chose-all .layui-form-checkbox[lay-skin=primary] span {
+    float: left;
+    padding-right: 10px;
+}
+
+.back-order-list .buyer-order-date {
+    width: 200px;
+}
+
+.back-order-list .buyer-order-number {
+    width: 200px;
+}
+
+.back-order-list .customer-name {
+    width: 200px;
+}
+.back-order-list .receive-address {
+    width: 200px;
+}
+.back-order-list .receive-remarks {
+}
+.back-order-list .product-number {
+    width: 80px;
+}
+.back-order-list .product-money {
+    width: 100px;
+}
+.back-order-list .product-shipping {
+    width: 100px;
+}
+.back-order-list .product-total-money {
+    width: 100px;
+}
+.back-order-list .product-operate {
+    width: 200px;
+}
+.back-order-list td.product-operate {
+    width: 180px;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.back-order-list td.product-operate .call-detail-btn {
+    margin: 0 6px;
+    padding: 0px 10px;
+    border-radius: 3px;
+    border: 1px solid #e4e4e4;
+    cursor: pointer;
+    background-color: #f9fafb;
+    text-align: center;
+    line-height: 26px;
+}
+
+

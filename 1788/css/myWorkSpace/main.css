@@ -1,0 +1,28 @@
+*{
+    box-sizing: border-box;
+}
+html{
+    width: 100%;
+}
+body{
+    width:100%;
+}
+.main{
+    background-color: #E8EFF5;
+    padding: 0;
+    margin: 0 auto;
+    height:calc(100% - 1px);
+    position: relative;
+}
+.container{
+    width: 1200px;
+}
+.main .layui-left-nav {
+    width: 80px;
+    float: left;
+}
+.main .layui-right-content {
+    width: 100%;
+    padding-left: 80px;
+    height: 100%;
+}

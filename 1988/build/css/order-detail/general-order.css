@@ -1,0 +1,51 @@
+.general-order{
+    padding: 30px 50px;
+    border-bottom: 1px solid #e4e4e4;
+    overflow: hidden;
+    margin: 0;
+}
+.general-order .order-area{
+    height: 150px;
+}
+.general-order .order-area .order-bgf{
+    height: 150px;
+    background-color: #eff3f9;
+    position: relative;
+    text-align: center;
+    line-height: 150px;
+    overflow: hidden;
+}
+.general-order .order-area .order-bgf span.order-type{
+    position: absolute;
+    width: 100px;
+    height: 40px;
+    text-align: right;
+    font-size: 16px;
+    color: #ffffff;
+    font-weight: bold;
+    line-height: 40px;
+    padding-right: 15px;
+    border-radius: 50px;
+    left: -20px;
+    top: 15px;
+
+}
+.general-order>div:nth-of-type(1) .order-bgf span.order-type{
+    background-color: #ff4e3d;
+}
+.general-order>div:nth-of-type(2) .order-bgf span.order-type{
+    background-color: #4791fd;
+}
+.general-order>div:nth-of-type(3) .order-bgf span.order-type{
+    background-color: #39cb88;
+}
+.general-order .order-area .order-bgf span.order-number{
+    font-size: 40px;
+    font-weight: bold;
+    color: #323232;
+}
+.general-order .order-area .order-bgf span.order-unit{
+    font-size: 18px;
+    color: #323232;
+    font-weight: 500;
+}

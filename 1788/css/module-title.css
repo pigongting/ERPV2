@@ -1,0 +1,19 @@
+.main .layui-module-title{
+    height: 30px;
+    background-color: #E8EFF5;
+    padding: 10px 0px 10px 37px;
+}
+.main .layui-module-title h3{
+    font-size: 14px;
+    font-weight: bold;
+    position: relative;
+}
+.main .layui-module-title h3::before{
+    content: "";
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background-color: #08A09D;
+    left: -14px;
+    top:5px;
+}

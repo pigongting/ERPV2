@@ -1,0 +1,29 @@
+.carousel{
+    height: 350px;
+    padding: 0;
+}
+.carousel .layui-carousel{
+    background-color: transparent;
+}
+.carousel .layui-carousel .layui-carousel-ind{
+    text-align: right;
+    top: -40px;
+}
+.carousel .layui-carousel .layui-carousel-ind ul{
+    background-color: transparent;
+    padding: 10px 20px ;
+}
+.carousel .layui-carousel .layui-carousel-ind li{
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+}
+.carousel .layui-carousel .layui-carousel-ind li.layui-this{
+    background-color: #FF4129;
+}
+.carousel .layui-carousel  a,
+.carousel .layui-carousel  a img{
+    display: block;
+    width: 1200px;
+    height: 350px;
+}

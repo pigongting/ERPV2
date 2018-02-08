@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta type="description" content="总代理-用户中心">
+  <title>设置权限</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../plugs/layui255/css/layui.css">
+    <link rel="stylesheet" href="../../font/font_399822_dtv8v5xokcfvfgvi/iconfont.css">
+  <link rel="stylesheet" href="../../plugs/font-awesome/css/font-awesome.min.css" media="all">
+  <link rel="stylesheet" href="../../css/background-style/background-common.css">
+  <link rel="stylesheet" href="../../css/background-style/background-option.css">
+  <link rel="stylesheet" href="../../css/background-style/main.css">
+  <link rel="stylesheet" href="../../css/background-style/aside.css">
+  <link rel="stylesheet" href="../../css/user-center/staff-manage.css">
+  <link rel="stylesheet" href="../../css/setPermission.css">
+</head>
+<body>
+
+<!--顶部导航开始-->
+<header>
+  <ul class="layui-nav container" id="commonHeader">
+    <li class="layui-nav-item user-name" id="userCenter">
+    </li>
+  </ul>
+</header>
+<!--顶部导航结束-->
+
+<!--商品中心区域开始-->
+<div class="option-container">
+  <div class="option container">
+    <div class="logo layui-inline">
+      <a href="javascript:;">
+        <img src="../../img/work-logo.png" alt="">
+      </a>
+    </div>
+    <div class="products-center layui-inline">
+      <a href="/productModule/center/index.html">
+        <img src="../../img/products-center.png" alt="">
+      </a>
+    </div>
+    <div class="supply-center" id="applyBox">
+    </div>
+  </div>
+</div>
+<!--商品中心区域结束-->
+
+<div class="main container">
+
+  <!--主体内容开始-->
+  <div class="bakground-content container" style="background: #fff;">
+    <form class="layui-form">
+      <table class="layui-hide" id="regionTable" lay-filter="regionTable"></table>
+      <div class="layui-form-item">
+        <div class="layui-input-block">
+          <button class="layui-btn" lay-submit lay-filter="*">立即提交</button>
+          <button type="reset" class="layui-btn layui-btn-primary reset">重置</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <!--主体内容结束-->
+    <!--左侧导航开始-->
+    <aside id="leftNavList"></aside>
+    <!--左侧导航结束-->
+</div>
+
+<!-- 左导航 -->
+<script src="../../plugs/layui255/layui.js"></script>
+<script src="../../js/wolianwComponent/config.js"></script>
+
+<script>
+  if (!Array.prototype.includes) {
+    Object.defineProperty(Array.prototype, "includes", {
+      enumerable: false,
+      value: function(obj) {
+          var newArr = this.filter(function(el) {
+            return el == obj;
+          });
+          return newArr.length > 0;
+        }
+    });
+  }
+  layui.use(['element', 'form', 'laydate', 'laytpl', 'layer', 'woLianw', 'table'], function() {
+    var element = layui.element;
+    var form = layui.form;
+    var laydate = layui.laydate;
+    var laytpl = layui.laytpl;
+    var $ = layui.$;
+    var layer = layui.layer;
+    var table = layui.table;
+    var woLianw = layui.woLianw;
+
+    var nowdata = null;
+    var roleId = woLianw.pathSarchValue(location.search, 'id');
+
+   woLianw.renderModule()
+
+    woLianw.setHeight();
+
+      /*我要供货按钮的显示控制 start*/
+      var loginInfo = JSON.parse(window.localStorage.getItem('1788login'))
+      if(!loginInfo){
+          window.location.href = '/login.html'
+          return false
+      }
+      if(loginInfo.isSwitch){
+          var str = '<button class="layui-btni" id="wantApply">我要供货</button>'
+          $('#applyBox').append(str)
+      }
+      /*我要供货的登录切换*/
+      $('#applyBox').on('click','#wantApply',function () {
+          woLianw.switchLogin()
+      })
+      /*我要供货按钮的显示控制 end*/
+
+    function renderTemplate(data,templateId,targetId) {
+        var template=document.getElementById(templateId).innerHTML
+        var target=document.getElementById(targetId)
+        laytpl(template).render(data,function (html) {
+            target.innerHTML=html
+        })
+    }
+
+    /* 获取权限设置 */
+    woLianw.ajaxRoleToSetPermission({ roleId: roleId }, renderTable);
+
+    /* 渲染表格 */
+    function renderTable(data){
+      nowdata = data;
+
+      var allpermissionChoseArray = [];
+      if (data.rows) {
+        for (var i = 0; i < data.rows.length; i++) {
+          allpermissionChoseArray = allpermissionChoseArray.concat(data.rows[i].permissionChoseArray);
+        }
+      }
+
+      var allCheckbox = null;
+      if (allpermissionChoseArray.includes(true) && allpermissionChoseArray.includes(false)) {
+        allCheckbox = '<input type="checkbox" lay-skin="primary" lay-filter="permission" data-ctype="all">';
+      } else if (allpermissionChoseArray.includes(true)) {
+        allCheckbox = '<input type="checkbox" lay-skin="primary" lay-filter="permission" data-ctype="all" checked>';
+      } else if (allpermissionChoseArray.includes(false)) {
+        allCheckbox = '<input type="checkbox" lay-skin="primary" lay-filter="permission" data-ctype="all">';
+      } else {
+        allCheckbox = '';
+      }
+
+      var newtitle = [];
+
+      $.each(data.title, function(n, value){
+        newtitle.push({
+          field: '',
+          title: value,
+          width: (value.length * 14) + 30,
+          style: 'text-align: center;',
+          templet: function(record){
+            var permissionSet = null;
+
+            switch (record.permissionChoseArray[n]) {
+              case true:
+                permissionSet = '<input type="checkbox" lay-skin="primary" lay-filter="permission" data-ctype="single" data-cid="'+ record.id +'" data-ckey="'+ n +'" checked>';
+                break;
+              case false:
+                permissionSet = '<input type="checkbox" lay-skin="primary" lay-filter="permission" data-ctype="single" data-cid="'+ record.id +'" data-ckey="'+ n +'">';
+                break;
+              default:
+                permissionSet = '';
+                break;
+            }
+
+            return permissionSet;
+          }
+        });
+      });
+
+      var fixcol = [
+        {
+          field:'name',
+          width: 200,
+          title: '模块(菜单)名称',
+          templet:  function(record){
+            var statusEle = null;
+            switch (record.level) {
+              case 2:
+                statusEle = '<div>&emsp;┗ '+ record.name +'</div>';
+                break;
+              case 3:
+                statusEle = '<div>&emsp;&emsp;┗ '+ record.name +'</div>';
+                break;
+              default:
+                statusEle = '<div>'+ record.name +'</div>';
+                break;
+            }
+            return statusEle;
+          },
+        },
+        {
+          field: '',
+          width: 48,
+          title: allCheckbox,
+          templet: function(record){
+            if (record.permissionChoseArray.includes(true) && record.permissionChoseArray.includes(false)) {
+              return ('<input type="checkbox" lay-skin="primary" lay-filter="permission" data-ctype="batch" data-cid="'+ record.id +'">');
+            } else if (record.permissionChoseArray.includes(true)) {
+              return ('<input type="checkbox" lay-skin="primary" lay-filter="permission" data-ctype="batch" data-cid="'+ record.id +'" checked>');
+            } else if (record.permissionChoseArray.includes(false)) {
+              return ('<input type="checkbox" lay-skin="primary" lay-filter="permission" data-ctype="batch" data-cid="'+ record.id +'">');
+            } else if (record.isChoice === true) {
+              return ('<input type="checkbox" lay-skin="primary" lay-filter="permission" data-ctype="main" data-cid="'+ record.id +'" checked>');
+            } else if (record.isChoice === false) {
+              return ('<input type="checkbox" lay-skin="primary" lay-filter="permission" data-ctype="main" data-cid="'+ record.id +'">');
+            } else {
+              return ('');
+            }
+          },
+        },
+      ];
+
+      table.render({
+        limit: 10000,
+        elem: '#regionTable',
+        data: data.rows,
+        cols: [fixcol.concat(newtitle)],
+      });
+    }
+
+    form.on('checkbox(permission)', function(data){
+      // console.log(data.elem); //得到checkbox原始DOM对象
+      // console.log(data.elem.checked); //是否被选中，true或者false
+      // console.log(data.value); //复选框value值，也可以通过data.elem.value得到
+      // console.log(data.othis); //得到美化后的DOM对象
+
+      // console.log($(data.elem).data('ctype'));
+      // console.log($(data.elem).data('cid'));
+      // console.log($(data.elem).data('ckey'));
+      updateSetPermission($(data.elem).data('ctype'), $(data.elem).data('cid'), $(data.elem).data('ckey'), data.elem.checked)
+    });
+
+    form.on('submit(*)', function(data){
+      // console.log(data.elem) //被执行事件的元素DOM对象，一般为button对象
+      // console.log(data.form) //被执行提交的form对象，一般在存在form标签时才会返回
+      // console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+
+      try {
+        var options = {
+          roleId: roleId,
+          listJsonStr: [],
+        };
+
+        for (var s = 0; s < nowdata.rows.length; s++) {
+          var sitem = nowdata.rows[s];
+          if (sitem.isChoice === true) {
+            options.listJsonStr.push({
+              moduleId: sitem.id,
+            });
+          } else {
+            for (var ss = 0; ss < sitem.permissionChoseArray.length; ss++) {
+              var ssitem = sitem.permissionChoseArray[ss];
+              var ssdata = sitem.permissionDataArray[ss];
+              if (ssitem === true) {
+                options.listJsonStr.push({
+                  moduleId: sitem.id,
+                  permissionId: ssdata.id,
+                });
+              }
+            }
+          }
+        }
+
+        options.listJsonStr = JSON.stringify(options.listJsonStr);
+
+        woLianw.ajaxRoleSetPermission(options, function () {
+          // history.back();
+          layer.open({
+            type: 1,
+            title: false,
+            closeBtn: 0,
+            content: '<div style="text-align: center; padding: 50px 20px;">恭喜，权限设置成功！</div>',
+            area: '300px;',
+            btn: ['继续修改', '返回岗位列表'],
+            btnAlign: 'c',
+            yes: function (index, layero){
+              layer.close(index);
+            },
+            btn2: function (index, layero){
+              history.back();
+            },
+          });
+        });
+
+      } catch (e) {
+        console.log(e);
+      }
+
+      return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+    });
+
+    function updateSetPermission(ctype, cid, ckey, checked) {
+      var oldrows = nowdata.rows;
+      var newrows = [];
+
+      for (var i = 0; i < oldrows.length; i++) {
+        var item = oldrows[i];
+        if (ctype === 'single') {
+          if (item.id === cid) {
+            item.permissionChoseArray[ckey] = checked;
+          }
+        } else if (ctype === 'batch') {
+          if (item.id === cid) {
+            item.permissionChoseArray = item.permissionChoseArray.map(function(ele, k) {
+              return (ele === false || ele === true) ? checked : ele;
+            });
+          }
+        } else if (ctype === 'all') {
+          item.permissionChoseArray = item.permissionChoseArray.map(function(ele, k) {
+            return (ele === false || ele === true) ? checked : ele;
+          });
+        } else if (ctype === 'main') {
+          if (item.id === cid) {
+            item.isChoice = checked;
+          }
+        }
+
+        newrows.push(item);
+      }
+
+      renderTable({
+        rows: newrows,
+        title: nowdata.title,
+      });
+    }
+
+  })
+</script>
+</body>
+</html>

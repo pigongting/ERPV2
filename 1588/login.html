@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>登录</title>
+<meta name="renderer" content="webkit">
+<meta type="description" content="登录">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./plugins/layui255/css/layui.css">
+<link rel="stylesheet" href="./build/css/login.css">
+</head>
+<body>
+  <div class="loginPage">
+    <div class="loginContent">
+      <div class="formWarp">
+
+        <div class="formBox">
+          <div class="formPosition">
+            <form class="layui-form" action="" id="login">
+              <div class="formItem">
+                <i class="sysitemicon"></i>
+                <div class="inputBox">
+                  <select name="systemId" lay-filter="aihao">
+                    <option value="3">我要采购</option>
+                    <option value="4">我要供货</option>
+                  </select>
+                </div>
+              </div>
+              <div class="formItem loginName">
+                <i class="nameicon"></i>
+                <div class="inputBox">
+                  <input type="text" name="loginName" value="" required  lay-verify="required" placeholder="请输入登录名" autocomplete="off">
+                </div>
+              </div>
+              <div class="formItem">
+                <i class="passwordicon"></i>
+                <div class="inputBox">
+                  <input type="password" name="loginPwd" value="" required lay-verify="required" placeholder="请输入密码" autocomplete="off">
+                </div>
+              </div>
+              <div class="formItem vcode">
+                <i class="vcodeicon"></i>
+                <div class="vcodeimg">
+                  <img src="" alt="点击刷新验证码" id="verification-code" class="verification-code-img">
+                </div>
+                <div class="inputBox">
+                  <input type="text" name="validateCode" id="validateCode" disabled placeholder="请输入验证码" autocomplete="off">
+                </div>
+              </div>
+              <a href="###" class="forgetPassword" style="display: none;">忘记密码</a>
+              <div class="submitWarp">
+                <button class="submitButton" lay-submit lay-filter="formDemo">登录</button>
+              </div>
+            </form>
+            <a class="quick" href="/1588.exe">下载该平台快捷登录方式</a>
+          </div>
+        </div>
+
+        <div class="footerWarp">
+          <ul class="friendLink" id="friendLink"></ul>
+          <dl class="copyright">
+            <dt>Copyright©2015wolianw.com,All Rights Reserved  使用本网站即表示接受我和网用户协议。版权所有 深圳我和网科技有限公司</dt>
+            <dd>粤公网安备 44010602002564号 粤ICP备13011817号-5  ICP经营许可证：粤B2-20160462</dd>
+          </dl>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+<script src="./plugins/layui255/layui.all.js"></script>
+<script src="./plugins/base64.js"></script>
+<script src="./build/js/wolianwComponent/config.js"></script>
+<script type="text/html" id="friendLinkTemplate">
+  <li><a href="{{d.wolianw1988}}">我连战略联盟供应中心</a></li>
+  <li><a href="{{d.wolianw1588}}">我连农村电商服务中心</a></li>
+  <li><a href="{{d.wolianw1588}}">我连农场服务中心</a></li>
+  <li><a href="{{d.wolianw1788}}">我连商超服务中心</a></li>
+  <li><a href="{{d.wolianw1788}}">我连智慧生活馆</a></li>
+</script>
+<script>
+  layui.use(['element', 'form', 'laydate', 'laytpl', 'layer', "woLianw"], function() {
+  	var element = layui.element
+  	var form = layui.form
+  	var laydate = layui.laydate
+  	var laytpl = layui.laytpl
+  	var $ = layui.$
+  	var layer = layui.layer
+  	var woLianw = layui.woLianw;
+
+    var friendLinkTemplate = document.getElementById('friendLinkTemplate').innerHTML;
+    var friendLinkWrap = document.getElementById('friendLink');
+    laytpl(friendLinkTemplate).render(woLianw, function (html){
+      friendLinkWrap.innerHTML = html;
+    });
+
+  	//表单提交登录
+  	form.on('submit(formDemo)', function(data){
+      // console.log(data.field) //当前容器的全部表单字段，名值对形式：{name: value}
+      var base64 = new Base64();
+      data.field.loginPwd = base64.encode(data.field.loginPwd);
+
+     	woLianw.login(data.field, function(msg) {
+        layer.tips(msg, '.loginName', {
+          tips:[2,'#ff3c29']
+        });
+        
+  			$(".vcode").css('display', 'block');  // div 显示
+  			$("#verification-code").trigger("click");  // 模拟点击一下 图片 其实就是刷新 然后获取最新的src
+  			$('#validateCode').attr('lay-verify', 'required').removeAttr('disabled');
+      });
+
+      return false;
+  	});
+    
+  	//点击回车键（enter）同样可以提交登录
+  	document.onkeydown=function(e){
+  	  if(!e)e=window.event;
+  	  if((e.keyCode||e.which)==13){
+  		  $("input.submit").trigger("click");
+  	  }
+  	}
+    
+  	//在验证码上点击  自刷新
+    $("#verification-code").on("click", function (e) {
+      woLianw.getValidateCode(this, $('[name="systemId"]').val());
+    })
+  })
+</script>
+</body>
+</html>

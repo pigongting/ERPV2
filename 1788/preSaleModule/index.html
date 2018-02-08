@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta type="description" content="行业代理-商品列表">
+    <title>特价专场</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../plugs/layui/css/layui.css">
+    <link rel="stylesheet" href="../font/font_399822_dtv8v5xokcfvfgvi/iconfont.css">
+    <link rel="stylesheet" href="../plugs/font-awesome/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../css/allGoods/allGoods.css">
+    <link rel="stylesheet" href="../css/publicHead.css">
+    <link rel="stylesheet" href="../css/buy/product/move2app/index.css">
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <!--顶部导航开始-->
+    <div class="layui-header">
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <nav class="navbox">
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item" id="userCenter">
+                </li>
+            </ul>
+            <ul class="layui-nav layui-layout-right" id="commonHeader">
+
+            </ul>
+        </nav>
+    </div>
+    <!--顶部导航结束-->
+
+    <!-- logo + 搜索 +进货单 开始-->
+    <div class="grid_total" id="repeat_search"></div>
+    <!-- logo + 搜索 +进货单 结束-->
+    <!--<div class="container">
+        <div class="filter-box">
+            <input type="button" class="layui-btn layui-btn-mini type" value="综合">
+            <input type="button" id="moveAllBtn" class="layui-btn-mini layui-btn" lay-submit lay-filter="searchFilter" value="一键搬家">
+            <div class="checkAll">
+                <input type="checkbox" id="checkAll">
+                <span>全选</span>
+            </div>
+        </div>
+    </div>-->
+    <div class="container">
+        <div class="filter-box">
+            <div class="filter-box" style="position: relative">
+                <a href="javascript:;" id="areaBtn" class="layui-btn-mini layui-btn" style="color:#323232;background-color: #F0F1F7;margin-left: 30px;padding: 0 10px;position: relative">地区
+                    <dl id="limitAreaList">
+                        <dd>请选择地区: <span id="curArea"></span><span id="cancleArea" style="float: right;color: #ff3c29;">所有地区</span></dd>
+                    </dl>
+                </a>
+                <button class="layui-btn-mini layui-btn" id="saleBtn" style="background-color: #F0F1F7;margin-left: 30px;padding: 0 10px;color:#323232;" onclick="javascript:setSort('sale');">
+                    销量
+                    <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>
+                </button>
+                <button class="layui-btn-mini layui-btn" id="priceBtn" style="background-color: #F0F1F7;margin-left: 30px;padding: 0 10px;color:#323232;" onclick="javascript:setSort('price');">
+                    价格
+                    <i class="fa fa-sort-amount-desc" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+        <div class="product-list container">
+            <ul class="list_goods_ul" id="productListBox">
+
+            </ul>
+        </div>
+        <div class="container layui-clear" >
+            <div id="page" style="float: right;padding: 10px;"></div>
+        </div>
+        <div class="container" style="padding: 10px 0px;">
+            <p style="font-size: 12px;color: #666666;text-align: center">2016-2019&copy;深圳我和网科技有限公司</p>
+        </div>
+    </div>
+</div>
+<script src="../plugs/layui/layui.all.js"></script>
+<script src="../js/wolianwComponent/config.js"></script>
+<script src="../js/main.js"></script>
+<script type="text/html" id="productTemplate">
+    {{# layui.each(d,function(index,item){ }}
+    <li>
+        <div class="imgBox">
+            <a href="/productModule/goodsdetail.html?productId={{ item.productId }}" target="_blank"  title="{{ item.name ? item.name : '' }}">
+                <img src="{{=layui.woLianw.getImgUrl(item.pictureUrl)}}" width="225px" height="224px"/>
+            </a>
+            <label>
+                <span class="left_span">{{ item.vendorName ? item.vendorName : '' }}</span>
+                <!--<span class="right_span">湖北武汉</span>-->
+            </label>
+        </div>
+        <div class="bottom_content">
+            <label>
+                <span class="goods_price" title="￥{{ item.minPrice }}">￥{{ item.minPrice }}</span>
+                <span class="mark-price" title="￥{{ item.maxPrice }}">￥{{ item.maxPrice }}</span>
+            </label>
+            <p>
+                <a href="/productModule/goodsdetail.html?productId={{ item.productId }}" target="_blank" title="{{ item.name ? item.name : '' }}">
+                    {{# if(item.isPresale){ }}
+                    <span style="color: #ff3c29">【预售】</span>
+                    {{# } }}
+                    {{ item.name ? item.name : '' }}
+                </a>
+            </p>
+            <div class="product-tag" data-productid="{{ item.productId }}">
+                {{# if(item.freePost){ }}
+                <span class="layui-badge firstToThree">包邮</span>
+                {{# } }}
+                {{# if(item.isPromotion){ }}
+                <span class="layui-badge firstToThree">特价</span>
+                {{# } }}
+                <button class="layui-btn guanzhu-btn">
+                    <i class="fa fa-heart-o focus"></i>
+                    关注
+                </button>
+            </div>
+        </div>
+
+    </li>
+
+    {{# }) }}
+</script>
+<script>
+
+
+    layui.use(['element','jquery', "woLianw", "laypage",'laytpl','form'], function () {
+        var element = layui.element;
+        var $ = layui.jquery;
+        var form = layui.form
+        var woLianw = layui.woLianw;
+        var laypage = layui.laypage;
+        var laytpl = layui.laytpl
+
+
+        var keyword = $.trim($('#keyWord').val()).length>0 ? $.trim($('#keyWord').val()) : ( woLianw.GetQueryString('key') ? decodeURI(woLianw.GetQueryString('key')) : "" );
+        var currentPage = woLianw.GetQueryString('p') ?  woLianw.GetQueryString('p') : 1  ;
+        var totalRows=0;
+        var pageSize = 20;
+        var isfirst = true;
+        var currentSaleSortType = "desc";
+        var currentPriceSortType = "desc";
+        var currentsortColumn ="";
+        var vendorAreas = '';
+        var isPromotion = 1;
+        var vendorId = woLianw.GetQueryString('vendorId') || '';
+        var category = woLianw.GetQueryString('category') || '';
+        var categoryIds = woLianw.GetQueryString('categoryIds') || '';
+
+
+        woLianw.search({
+            category:category,
+            key:keyword
+        });
+
+        function renderProductList(sortColumn,sortOrder){
+            currentsortColumn = sortColumn;
+            woLianw.buyProductList({
+                "key":keyword,
+                "page":currentPage,
+                "limit":pageSize,
+                "sortColumn":sortColumn,
+                "sortOrder":sortOrder,
+                "vendorAreas": vendorAreas,
+                "vendorId": vendorId,
+                "categoryIds":categoryIds,
+                "isPromotion":isPromotion
+            },function (data) {
+                totalRows= data.totalRows;
+                if(isfirst) {
+                    laypage.render({
+                        elem: 'page'
+                        , count: totalRows
+                        , limit:pageSize
+                        , layout: ['count', 'prev', 'page', 'next',  'skip']
+                        ,theme:'#ff3c29'
+                        , jump: function (obj,first) {
+                            if(!first){
+                                currentPage = obj.curr
+                                renderProductList(sortColumn,sortOrder);
+                            }
+                        }
+                    });
+                    isfirst=false;
+                }
+                renderTemplate(data,'productTemplate','productListBox')
+                ;});
+        }
+        renderProductList("","");
+        woLianw.buyCartSum(function () {
+
+        })
+
+
+        window.setSort = function(sortColumn) {
+            isfirst = true
+            if(sortColumn== "sale"){
+                currentPage = 1;
+                renderProductList("sale_count",currentSaleSortType);
+                currentSaleSortType= currentSaleSortType=="desc" ? "asc" : "desc";
+                $('#saleBtn').find('i.fa').toggleClass('fa-sort-amount-desc').toggleClass('fa-sort-amount-asc')
+            }else{
+                if(sortColumn== "price"){
+                    currentPage = 1;
+                    renderProductList("min_price",currentPriceSortType);
+                    currentPriceSortType=currentPriceSortType=="desc" ? "asc" : "desc";
+                    $("#priceBtn").find('i.fa').toggleClass('fa-sort-amount-desc').toggleClass('fa-sort-amount-asc')
+                }
+            }
+        }
+
+
+        /*关注商品*/
+        $('ul.list_goods_ul').on('click','.guanzhu-btn',function () {
+            var _this = this
+            layer.confirm('确定关注该商品吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                var productId = $(_this).parent().attr('data-productId')
+                console.log(productId)
+                woLianw.followAdd({
+                    disFollowType:2,
+                    itemIds:productId
+                },function (msg) {
+                    layer.msg(msg)
+                    $(_this).removeClass('guanzhu-btn').addClass('remove-btn')
+                })
+            }, function(){
+
+            });
+        })
+        /*取消关注商品*/
+        $('ul.list_goods_ul').on('click','.remove-btn',function () {
+            var _this = this
+            layer.confirm('确定取消关注该商品吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                var productId = $(_this).parent().attr('data-productId')
+                console.log(productId)
+                woLianw.followCancel({
+                    type:2,
+                    itemId:productId
+                },function (msg) {
+                    layer.msg(msg)
+                    $(_this).removeClass('remove-btn').addClass('guanzhu-btn')
+                })
+            }, function(){
+
+            });
+        })
+
+
+
+        /*读取所有省份*/
+        woLianw.getLinkage(-1,function (data) {
+            var str = ''
+            $.each(data,function (index,item) {
+                str += '<dt class="limitArea">'+item.name+'</dt>'
+            })
+            $('#limitAreaList').append(str)
+        })
+
+        /*选择地区筛选*/
+        $('#limitAreaList').on('click','.limitArea',function () {
+            vendorAreas = $(this).text()
+            $('#curArea').text(vendorAreas)
+            currentPage = 1;
+            isfirst = true
+            renderProductList("","")
+        })
+
+        /*点击搜索，搜索商品*/
+        $('#repeat_search').on('click','#searchBtn',function () {
+            categoryIds = $('#choosecateBtnSpan').attr('cid')
+            keyword = $('#searchkey').val()
+            isfirst = true;
+            renderProductList("","")
+        })
+
+        /*搜索框enter事件*/
+        $('#repeat_search').on('keydown','#searchkey',function (e) {
+            keyword = $(this).val()
+            categoryIds = $('#choosecateBtnSpan').attr('cid')
+            if(e.keyCode == 13){
+                e.preventDefault()
+                isfirst = true;
+                renderProductList("","")
+            }
+        })
+
+        /*取消地区选择*/
+        $('#cancleArea').on('click',function () {
+            vendorAreas = '';
+            $('#curArea').text(vendorAreas);
+            isfirst = true;
+            renderProductList("","")
+        })
+
+
+        /*数据渲染模板*/
+        function renderTemplate(data, templateId, targetId) {
+            var template = document.getElementById(templateId).innerHTML;
+            var target = document.getElementById(targetId);
+            if(data.totalRows == 0) {
+                //输出没有符合要求的搜索结果
+                var html = '<li class="nothing">  没有搜索到符合要求的商品</li>';
+                target.innerHTML = html;
+            }else{
+                laytpl(template).render(data.resultList, function (html) {
+                    target.innerHTML = html
+                });
+            }
+            form.render();
+        }
+
+    });
+
+</script>
+</body>
+</html>

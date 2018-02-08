@@ -1,0 +1,8 @@
+.getCashWarp {  }
+.getCashWarp .getCashHead { border-bottom: 1px solid #eee; padding: 20px 0; font-weight: bold; }
+.getCashWarp .getCashBody { padding: 60px 100px 60px 0; }
+.getCashWarp .getCashBody .layui-form-label { width: 200px; padding-left: 0; }
+.getCashWarp .getCashBody .layui-form-label i { color: #FF5722; padding: 0 4px; font-size: 8px; font-family: serif; font-style: normal; }
+.getCashWarp .getCashBody .layui-input-block { margin-left: 200px; }
+.getCashWarp .getCashBody .layui-word-aux { color: #FF5722 !important; }
+.getCashWarp .getCashBody .amountInfo { margin-bottom: 15px; margin-left: 200px; padding: 10px 0; color: #FF5722; }

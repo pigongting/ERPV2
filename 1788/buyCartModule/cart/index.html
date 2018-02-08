@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta type="description" content="总代理-进货单">
+    <title>进货单</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../plugs/layui/css/layui.css">
+    <link rel="stylesheet" href="../../font/font_399822_dtv8v5xokcfvfgvi/iconfont.css">
+    <link rel="stylesheet" href="../../plugs/font-awesome/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../../css/publicHead.css">
+    <link rel="stylesheet" href="../../css/allGoods/allGoods.css">
+    <link rel="stylesheet" href="../../css/receipt.css">
+    <link rel="stylesheet" href="../../css/agentIndex/special-counter.css">
+</head>
+<body>
+	<div class="layui-layout layui-layout-admin">
+		<!--顶部导航开始-->
+		<div class="layui-header">
+			<!-- 头部区域（可配合layui已有的水平导航） -->
+			<nav class="navbox">
+				<ul class="layui-nav layui-layout-right" id="commonHeader">
+					<li class="layui-nav-item" id="userCenter">
+					</li>
+				</ul>
+			</nav>
+		</div>
+		<!--顶部导航结束-->
+
+        <!-- logo + 搜索 +进货单 开始-->
+        <div class="grid_total" id="repeat_search">
+            <div class="grid_wrap">
+                <div class="grid_logo">
+                    <a href="javascript:;"><img src="/img/product-LOGO.png" /></a>
+                </div>
+                <div class="grid_search">
+                    <div class="search_box">
+                        <div class="chooseCategory" id="chooseCategory">
+                            <button class="layui-btn" id="choosecateBtn">
+                                <span id="choosecateBtnSpan">全部分类</span>
+                                <i class="fa fa-caret-down"></i>
+                            </button>
+                            <div class="layui-row CategoryStep">
+                                <!--1,2,3级分类容器 start-->
+                                <div class="layui-col-sm12 layui-hide" id="category-body">
+                                    <!--一级分类 start-->
+                                    <div class="layui-col-sm4 category category1">
+                                        <div class="ibox ibox-border">
+                                            <div class="ibox-title">
+                                                <h5>一级分类</h5>
+                                            </div>
+                                            <div class="ibox-content">
+                                                <div class="treeview">
+                                                    <ul id="category1" class="list-group"></ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--一级分类 end-->
+                                    <!--2级分类 start-->
+                                    <div class="layui-col-sm4 category category2 layui-hide">
+                                        <div class="ibox ibox-border">
+                                            <div class="ibox-title">
+                                                <h5>二级分类</h5>
+                                            </div>
+                                            <div class="ibox-content">
+                                                <div class="treeview">
+                                                    <ul id="category2" class="list-group"></ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--2级分类 end-->
+                                    <!--3级分类  start-->
+                                    <div class="layui-col-sm4 category category3 layui-hide">
+                                        <div class="ibox ibox-border">
+                                            <div class="ibox-title">
+                                                <h5>三级分类</h5>
+                                            </div>
+                                            <div class="ibox-content">
+                                                <div class="treeview">
+                                                    <ul id="category3" class="list-group"></ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--3级分类  end-->
+                                </div>
+                                <!--1,2,3级分类容器 end-->
+                            </div>
+                        </div>
+                        <form class="layui-form">
+                            <input type="text" id="searchkey" class="layui-input search-content-word" >
+                            <input type="button" value="搜索" id="searchBtn" class="layui-btn search-content-btn">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+		<div class="container">
+	    <!--购物车内容开始-->
+	    <div class="grid_wrap" id="grid_wrap">
+
+        </div>
+            <div class="grid_wrap">
+
+			</div>
+	    <!--购物车内容结束-->
+
+			<!--商品列表内容开始-->
+	    <div id="goodsList" class="goodsList">
+	    	<div class="grid_wrap">
+	    		<div class="listHeader">
+	    			<img src="../../img/lightyellow7x7.png"/>
+	    			<img src="../../img/orange10x10.png"/>
+	    			<label>我连推荐</label>
+	    			<img src="../../img/orange10x10.png"/>
+	    			<img src="../../img/lightyellow7x7.png"/>
+	    		</div>
+
+	    	</div>
+            <div class="grid_wrap">
+                <ul class="listUl special-counter-list" id="productBox">
+
+                </ul>
+                <div id="page" style="padding: 10px;float: right"></div>
+            </div>
+	    </div>
+	    <!--商品列表内容结束-->
+
+		</div>
+	</div>
+	<script type="text/html" id="myGoodsTable">
+
+		<table border="0px" id="my_goods_table">
+			<caption>全部商品</caption>
+			<thead>
+            <tr class="tableHeadr">
+                <th width="50px">
+                    <input type="checkbox" name="allGoodsCheck"  id="goodsAllCheckt" />
+                    <!--<img src="img/checkNo.png" class="checkImg" name="allGoods" />-->
+                </th>
+                <th width="120px">全选</th>
+                <th width="360px">&nbsp;</th>
+                <th width="150px">单价</th>
+                <th width="195px">数量</th>
+                <th width="185px">小计</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            {{# if(d.data.length >0){  }}
+            {{# layui.each(d.data, function(index,item){ }}
+            <tbody>
+            <tr class="whiteClearance">
+                <td colspan="7">
+                    <input type="checkbox"  name="singleGoodsCheck" class="checkBelongAll" />
+                    <!--<img src="img/checkNo.png" class="checkImg" name="singleGoods" />-->
+                    <span>{{ item.companyName ? item.companyName : '' }}</span>
+                </td>
+            </tr>
+            {{# layui.each(item.skuInfoList,function(index1,item1){ }}
+            <tr class="tableBodyMainer product-item" data-productid="{{ item1.productId }}" data-skuid="{{ item1.skuId }}">
+                <td>
+                     {{# if(item1.canBuy){ }}
+                    <input type="checkbox"  name="singleGoodsCheck" class="check-this" />
+                    {{# } }}
+                   <!-- {{# if(!item1.canBuy){ }}
+                    <input type="checkbox"  name="singleGoodsCheck" class="check-this" disabled />
+                    {{# } }}-->
+                    <!--<img src="img/checkNo.png" class="checkImg" name="singleGoods" />-->
+                </td>
+                <td><img src="{{=layui.woLianw.getImgUrl(item1.pictureUrl)}}" width="100px" height="100px" /></td>
+                <td>
+                    <p class="p_title">
+                        {{# if(item1.name.length>30){ }}
+                        {{item1.name.substring(0,30)}}...
+                        {{# } }}
+                        {{# if(item1.name.length<=30){ }}
+                        {{item1.name}}
+                        {{# } }}
+                    </p>
+                    <p>
+                        {{ item1.info ? item1.info : '' }}
+                    </p>
+                </td>
+                <td><span>￥</span><span class="unit-price">{{= layui.woLianw.formatCurrency(item1.buyPrice) }}</span></td>
+                <td class="goods_nums">
+                    <p style="padding: 15px 0">最小购买量:   <b style="color: #ff3c29">{{ item1.minBuyNum }}</b></p>
+                    <img class="minusPointImg" src="../../img/goods_minusImg.png"/>
+                    <input type="text" value={{ item1.number }} class="goodsNum" onkeyup="value=value.replace(/[^\d]/g,'')" name="goodsNum" />
+                    <img class="addPointImg" src="../../img/goods_addImg.png"/>
+                </td>
+                <td>
+                    <p class="goods_price">￥<span class="product-totalprice">{{= layui.woLianw.formatCurrency(item1.buyPrice * item1.number) }}</span></p>
+                    <p class="goods_weight">{{ (item1.weight !=null) ? item1.weight : '' }}kg</p>
+                </td>
+                <td class="setBuns" data-id="{{ item1.skuId }}">
+                    <a class="layui-btn layui-btn-danger layui-btn-mini product-delete" lay-event="del">删除</a> <br />
+                    {{# if(!item1.follow){ }}
+                    <a class="layui-btn layui-btn-primary layui-btn-mini product-addfollow" data-id="{{ item1.productId ? item1.productId : '' }}" lay-event="detail">添加关注</a> <br />
+                    {{# } }}
+                    {{# if(item1.follow){ }}
+                    <a class="layui-btn layui-btn-mini product-cancelfollow" data-id="{{ item1.productId ? item1.productId : '' }}" lay-event="edit">移除关注</a>
+                    {{# } }}
+                </td>
+            </tr>
+            <tr class="whiteClearance h20">
+            </tr>
+            {{# }) }}
+            <!--<tr class="whiteClearance"><td colspan="7">&nbsp;</td></tr>-->
+
+
+            <tr>
+                <td colspan="7">
+
+                </td>
+            </tr>
+            </tbody>
+            {{# }) }}
+            {{# } }}
+            {{#  if(d.data.length === 0){ }}
+            <tbody>
+                <tr class="whiteClearance">
+                    <td colspan="7">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="7" style="text-align: center;height: 50px;line-height: 50px;border: 1px solid #e4e4e4;margin-top: 20px;">
+                        购物车中暂无商品
+                    </td>
+                </tr>
+            </tbody>
+            {{#  } }}
+            <tfoot>
+            <tr class="whiteClearance">
+                <td colspan="7">
+
+                </td>
+            </tr>
+            <tr class="footerTr">
+                <td height="50px">
+                    <input type="checkbox" name="allGoodsCheck"  id="goodsAllCheckb" />
+                   <!-- <img src="img/checkNo.png" class="checkImg" name="allGoods" />-->
+                </td>
+                <td>全选</td>
+                <td colspan="2">
+                    <a href="javascript:;" class="setListA" id="deleteBatch">删除选中商品</a>
+                    <a href="javascript:;" class="setListA" id="followBatch">移到我的关注</a>
+                    <a href="javascript:;" class="setListA" id="clearBatch">清除下架商品</a>
+                </td>
+                <td>
+                    已选中 <span id="totalNum">0</span> 个商品
+                </td>
+                <td>
+                    总价:<span id="totalPrice"></span>
+                </td>
+                <td>
+                    <a href="javascript:;" class="settlement" id="buy">结算</a>
+                </td>
+            </tr>
+            </tfoot>
+
+		</table>
+	</script>
+<script src="../../plugs/layui/layui.all.js"></script>
+<script src="../../js/wolianwComponent/config.js"></script>
+    <script src="../../js/main.js"></script>
+    <script type="text/html" id="wolianTemplate">
+        {{# if(d.length == 0){ }}
+        <li style="width:100%;height:50px;line-height:50px;text-align: center;border: 1px solid #e4e4e4;margin-bottom: 20px;">暂无数据</li>
+        {{# } }}
+        {{# if(d.length>0){ }}
+            {{# layui.each(d,function(index,item){ }}
+            <li>
+                    <div class="product-img">
+                        <a href="/productModule/goodsdetail.html?productId={{ item.id }}" target="_blank">
+                        <img src="{{=layui.woLianw.getImgUrl(item.pictureUrl)}}" alt="">
+                        </a>
+                    </div>
+                    <p class="product-dec" title="{{ item.name }}">
+                        <a href="/productModule/goodsdetail.html?productId={{ item.id }}" target="_blank">
+                        {{# if(item.isPresale){ }}
+                        <span style="color: #ff3c29">【预售】</span>
+                        {{# } }}
+                        {{ item.name }}
+                        </a>
+                    </p>
+                    <div class="product-price">
+                        <span class="cur-price">￥{{ item.listPrice }}</span>
+                        {{# if(item.marketPrice != null){ }}
+                        <span class="original-price" style="text-decoration: line-through;color: #666;float: right">￥{{ item.marketPrice }}</span>
+                        {{# } }}
+                    </div>
+                    <div class="product-tag" data-productid="{{ item.id }}">
+                        {{# if(item.freightType == 0){ }}
+                        <span class="layui-badge firstToThree">包邮</span>
+                        {{# } }}
+                        {{# if(item.isPromotion){ }}
+                        <span class="layui-badge firstToThree">特价</span>
+                        {{# } }}
+                        <button class="layui-btn guanzhu-btn">
+                            <i class="fa fa-heart-o focus"></i>
+                            关注
+                        </button>
+                    </div>
+
+            </li>
+            {{# }) }}
+        {{# } }}
+    </script>
+<script>
+    layui.use(['element','jquery', "table",'laytpl', "woLianw", "laypage",'layer'],function () {
+      var element=layui.element;
+      var $=layui.jquery;
+      var table=layui.table;
+      var laytpl=layui.laytpl;
+      var laypage = layui.laypage;
+      var woLianw = layui.woLianw;
+      var layer = layui.layer
+
+      woLianw.buyCartList(function (data) {
+          renderTemplate(data,'myGoodsTable','grid_wrap')
+          countTotalPrice()
+      })
+
+        woLianw.cartRecommend({
+            page:1,
+            limit:10
+        },function (res) {
+            renderTemplate(res.data.list,'wolianTemplate','productBox')
+            laypage.render({
+                elem: 'page'
+                , count: res.data.total
+                , limit:10
+                , layout: ['count', 'prev', 'page', 'next', 'limit',  'skip']
+                ,limits:[10,15,20]
+                ,theme:'#ff3c29'
+                , jump: function (obj,first) {
+                    if(!first){
+                        woLianw.cartRecommend({
+                            page:obj.curr,
+                            limit:obj.limit
+                        },function (res) {
+                            renderTemplate(res.data.list, 'wolianTemplate', 'productBox')
+                        })
+
+                    }
+                }
+            });
+        })
+
+        /*搜索根据关键词打开商品列表页*/
+        $('#repeat_search').on('click','#searchBtn',function () {
+            var key = $('#searchkey').val() || '';
+            var category = $('#choosecateBtnSpan').text() || '';
+            var categoryIds = $('#choosecateBtnSpan').attr('cid') || '';
+            window.open(encodeURI('../../productModule/products/index.html?key='+key+'&category='+category+'&categoryIds='+categoryIds))
+        })
+
+        /*搜索框的enter事件*/
+        $('#repeat_search').on('keydown','#searchkey',function (e) {
+            var key = $(this).val() || '';
+            var category = $('#choosecateBtnSpan').text() || '';
+            var categoryIds = $('#choosecateBtnSpan').attr('cid') || '';
+            if(e.keyCode == 13){
+                e.preventDefault()
+                window.open(encodeURI('../../productModule/products/index.html?key='+key+'&category='+category+'&categoryIds='+categoryIds))
+            }
+
+        })
+
+      /*删除购物车（进货单）内某个商品*/
+      $('#grid_wrap').on('click','.product-delete',function () {
+          var _this = this
+          layer.confirm('确定删除这个进货单吗？', {
+              btn: ['确定','取消'], //按钮
+              title:'提示'
+          }, function(){
+                var skuId = $(_this).parent().attr('data-id')
+              woLianw.buyCartDelete(skuId,function (msg) {
+                  layer.msg(msg)
+                  woLianw.buyCartList(function (data) {
+                      renderTemplate(data,'myGoodsTable','grid_wrap')
+                      countTotalPrice()
+                  })
+              })
+          }, function(){
+              layer.close();
+          });
+      })
+            /*对购物车（进货单）中的某个商品添加关注*/
+       $('#grid_wrap').on('click','.product-addfollow',function () {
+          var _this = this
+          layer.confirm('确定关注这个商品吗？', {
+              btn: ['确定','取消'], //按钮
+              title:'提示'
+          }, function(){
+                var productId = $(_this).attr('data-id')
+              woLianw.followAdd({
+                  disFollowType:2,
+                  itemIds:productId
+              },function (msg) {
+                  woLianw.buyCartList(function (data) {
+                      renderTemplate(data,'myGoodsTable','grid_wrap')
+                      countTotalPrice()
+                  })
+                  layer.msg(msg)
+              })
+          }, function(){
+              layer.close();
+          });
+      })
+            /*对购物车（进货单）中的某个已关注商品取消关注*/
+       $('#grid_wrap').on('click','.product-cancelfollow',function () {
+          var _this = this
+          layer.confirm('确定移除对这个商品的关注吗？', {
+              btn: ['确定','取消'], //按钮
+              title:'提示'
+          }, function(){
+                var productId = $(_this).attr('data-id')
+              woLianw.followCancel({
+                  type:2,
+                  itemId:productId
+              },function (msg) {
+                  woLianw.buyCartList(function (data) {
+                      renderTemplate(data,'myGoodsTable','grid_wrap')
+                      countTotalPrice()
+                  })
+                  layer.msg(msg)
+              })
+          }, function(){
+              layer.close();
+          });
+      })
+
+
+      /*点击加号，对数量进行加运算，触发数量的change时间*/
+	   $("#grid_wrap").on ("click", "img.addPointImg", function(){
+	       if(!$(this).prev("input").val()){
+               $(this).prev("input").val(1);
+               $(this).parent().find('input').change()
+               countTotalPrice()
+	           return false
+           }
+	   	$(this).prev("input").val( parseInt($(this).prev("input").val())+1 );
+           $(this).parent().find('input').change()
+           countTotalPrice()
+	   });
+
+	   /*点击减号，对数量进行减运算，触发数量的change事件*/
+	   $("#grid_wrap").on ("click", "img.minusPointImg", function(){
+            var nums = parseInt($(this).next("input").val());
+            if(nums <= 1){
+                return false
+            }else if(nums > 1){
+                $(this).css("cursor", "pointer");
+                $(this).next("input").val( nums-1 );
+            }else if(!nums){
+                $(this).parent().find('input').change()
+                countTotalPrice()
+                return false
+            }
+           $(this).parent().find('input').change()
+           countTotalPrice()
+	   });
+
+	   /*某个商品数量的改变，引起'小计、总价的改变'*/
+        $('#grid_wrap').on('change','.goodsNum',function () {
+            var _this = this,
+                value = $(this).val() || 0,
+                unitPrice = parseFloat($(this).parent().parent().find('.unit-price').text().replace(',',''))
+            var skuId = $(_this).parent().parent().attr('data-skuid')
+            woLianw.buyCartUpdate({
+                skuId:skuId,
+                num:value
+            },function (res) {
+                if(res.data != undefined){
+                    $(_this).parent().parent().find('.unit-price').text(res.data)
+                    $(_this).parent().parent().find('.product-totalprice').text(woLianw.formatCurrency(value*res.data))
+                }else{
+                    $(_this).parent().parent().find('.product-totalprice').text(woLianw.formatCurrency(value*unitPrice))
+                }
+            })
+            countTotalPrice()
+        })
+
+       /*批量删除选中的商品*/
+       $('#grid_wrap').on('click','#deleteBatch',function () {
+           var _this = this
+           var skuIdArr = getCheckedInfo().skuIds
+           if(skuIdArr.length == 0){
+               layer.open({
+                   title:'提示',
+                   content:'请先选择进货单'
+               })
+               return false
+           }
+           layer.confirm('确定删除所选的进货单吗？', {
+               btn: ['确定','取消'], //按钮
+               title:'提示'
+           }, function(){
+               var skuIds = skuIdArr.join(',')
+               woLianw.buyCartDelete(skuIds,function (msg) {
+                   woLianw.buyCartList(function (data) {
+                       renderTemplate(data,'myGoodsTable','grid_wrap')
+                       countTotalPrice()
+                   })
+                   layer.msg(msg)
+               })
+           }, function(){
+               layer.close();
+           });
+       })
+
+        /*批量清除进货单内下架商品*/
+        $('#grid_wrap').on('click','#clearBatch',function () {
+            var _this = this
+            var skuIdArr = getCheckedInfo().skuIds
+            layer.confirm('确定清除进货单内下架商品吗？', {
+                btn: ['确定','取消'], //按钮
+                title:'提示'
+            }, function(){
+                var skuIds = skuIdArr.join(',')
+                woLianw.buyCartClearOffline(skuIds,function (msg) {
+                    woLianw.buyCartList(function (data) {
+                        renderTemplate(data,'myGoodsTable','grid_wrap')
+                        countTotalPrice()
+                    })
+                    layer.msg(msg)
+                })
+            }, function(){
+                layer.close();
+            });
+        })
+
+        /*全选进货单*/
+        $('#grid_wrap').on('click','#goodsAllCheckt,#goodsAllCheckb',function () {
+            if($(this)[0].checked){
+                $.each($('#grid_wrap').find('input[type=checkbox]'),function (index,item) {
+                    $(this)[0].checked=true
+                })
+            }else{
+                $.each($('#grid_wrap').find('input[type=checkbox]'),function (index,item) {
+                    $(this)[0].checked=false
+                })
+            }
+            countTotalPrice()
+        })
+
+        /*全选所属某个工厂下的所有进货单*/
+        $('#grid_wrap').on('click','.checkBelongAll',function () {
+            var _this = this
+            var length1 = $(_this).parent().parent().parent().parent().find('tr.product-item').find('input[type=checkbox]').length
+            var count1 = 0
+            if($(_this)[0].checked){
+                $.each($(_this).parent().parent().siblings('tr.product-item').find('input[type=checkbox]'),function (index,item) {
+                    $(this)[0].checked=true
+                })
+            }else{
+                $.each($(_this).parent().parent().siblings('tr.product-item').find('input[type=checkbox]'),function (index,item) {
+                    $(this)[0].checked=false
+                })
+            }
+            $.each($(_this).parent().parent().parent().parent().find('tr.product-item').find('input[type=checkbox]'),function (index,item) {
+                if($(this)[0].checked){
+                    count1 ++
+                }else{
+
+                }
+            })
+            if(count1 == length1){
+                $("#grid_wrap").find('#goodsAllCheckb')[0].checked=true
+                $("#grid_wrap").find('#goodsAllCheckt')[0].checked=true
+            }else{
+                $("#grid_wrap").find('#goodsAllCheckt')[0].checked=false
+                $("#grid_wrap").find('#goodsAllCheckb')[0].checked=false
+            }
+            countTotalPrice()
+            })
+        /*选中某个进货单*/
+        $('#grid_wrap').on('click','.check-this',function () {
+            var _this = this
+            var length = $(_this).parent().parent().parent().find('tr.product-item').find('input[type=checkbox]').length
+            var length1 = $(_this).parent().parent().parent().parent().find('tr.product-item').find('input[type=checkbox]').length
+            var count = 0
+            var count1 = 0
+            $.each($(_this).parent().parent().parent().find('tr.product-item').find('input[type=checkbox]'),function (index,item) {
+                if($(this)[0].checked){
+                    count ++
+                }else{
+
+                }
+            })
+            if(count == length){
+                $(_this).parent().parent().siblings('tr.whiteClearance').find('input[type=checkbox]')[0].checked=true
+            }else{
+                $(_this).parent().parent().siblings('tr.whiteClearance').find('input[type=checkbox]')[0].checked=false
+            }
+            $.each($(_this).parent().parent().parent().parent().find('tr.product-item').find('input[type=checkbox]'),function (index,item) {
+                if($(this)[0].checked){
+                    count1 ++
+                }else{
+
+                }
+            })
+            if(count1 == length1){
+                $("#grid_wrap").find('#goodsAllCheckb')[0].checked=true
+                $("#grid_wrap").find('#goodsAllCheckt')[0].checked=true
+            }else{
+                $("#grid_wrap").find('#goodsAllCheckt')[0].checked=false
+                $("#grid_wrap").find('#goodsAllCheckb')[0].checked=false
+            }
+            countTotalPrice()
+        })
+
+        /*买家勾选购物车(进货单)中的多个商品后点击结算*/
+        $('#grid_wrap').on('click','#buy',function () {
+            var skuIdArr = getCheckedInfo().skuIds
+            if (skuIdArr.length == 0){
+                layer.open({
+                    title:'提示',
+                    content:'请先选中商品'
+                })
+                return false
+            }
+            layer.confirm('确定下单吗？', {
+                btn: ['确定','取消'], //按钮
+                title:'提示'
+            }, function(index){
+                var skuIds = skuIdArr.join(',')
+                console.log(skuIds)
+                woLianw.buyOrderCartbuy(skuIds,function (data) {
+                    console.log(data)
+                    window.sessionStorage.setItem('buyCartInfo',JSON.stringify(data.data))
+                    layer.close(index)
+                    window.location.href='./settlement.html?cart=1'
+                })
+            }, function(){
+                layer.close();
+            });
+        })
+
+        /*买家勾选一个或者多个商品,移到我的关注*/
+        $('#grid_wrap').on('click','#followBatch',function () {
+            var skuIdArr = getCheckedInfo().productIds
+            if (skuIdArr.length == 0){
+                layer.open({
+                    title:'提示',
+                    content:'请先选中商品'
+                })
+                return false
+            }
+            layer.confirm('确定关注勾选的全部商品吗？', {
+                btn: ['确定','取消'], //按钮
+                title:'提示'
+            }, function(index){
+                var skuIds = skuIdArr.join(',')
+                woLianw.followAdd({
+                    disFollowType:2,
+                    itemIds:JSON.stringify(skuIds)
+                },function (msg) {
+                    woLianw.buyCartList(function (data) {
+                        renderTemplate(data,'myGoodsTable','grid_wrap')
+                        countTotalPrice()
+                    })
+                    layer.msg(msg)
+                })
+            }, function(){
+                layer.close();
+            });
+        })
+
+        /*关注商品*/
+        $('ul#productBox').on('click','.guanzhu-btn',function () {
+            var _this = this
+            layer.confirm('确定关注该商品吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                var productId = $(_this).parent().attr('data-productId')
+                console.log(productId)
+                woLianw.followAdd({
+                    disFollowType:2,
+                    itemIds:productId
+                },function (msg) {
+                    layer.msg(msg)
+                    $(_this).removeClass('guanzhu-btn').addClass('remove-btn')
+                })
+            }, function(){
+
+            });
+        })
+        /*取消关注商品*/
+        $('ul#productBox').on('click','.remove-btn',function () {
+            var _this = this
+            layer.confirm('确定取消关注该商品吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                var productId = $(_this).parent().attr('data-productId')
+                console.log(productId)
+                woLianw.followCancel({
+                    type:2,
+                    itemId:productId
+                },function (msg) {
+                    layer.msg(msg)
+                    $(_this).removeClass('remove-btn').addClass('guanzhu-btn')
+                })
+            }, function(){
+
+            });
+        })
+
+
+
+
+        /*数据渲染模板*/
+        function renderTemplate(data,templateId,targetId) {
+            var template=document.getElementById(templateId).innerHTML
+            var target=document.getElementById(targetId)
+            laytpl(template).render(data,function (html) {
+                target.innerHTML=html
+            })
+        }
+
+
+            /*重新计算所选商品个数，进货单总价*/
+            function countTotalPrice() {
+                var productArr = $('#grid_wrap').find('.product-item')
+                var length = productArr.length
+                var totalPrice = 0
+                var totalNum = 0
+                if(length){
+                    $.each(productArr,function (index,item) {
+                        console.log($(item).find('input[type=checkbox]'))
+                        if($(item).find('input[type=checkbox]').length >0){
+                            if(($(item).find('input[type=checkbox]') && (($(item).find('input[type=checkbox]')[0].checked)))){
+                                totalPrice+=parseFloat($(item).find('.product-totalprice').text().replace(',',''))
+                                totalNum++
+                            }
+
+                        }
+
+                    })
+                    $('#totalPrice').text('￥'+woLianw.formatCurrency(totalPrice))
+                    $('#totalNum').text(totalNum)
+                }
+            }
+            /*获取被选中的所有商品的id和skuId*/
+            function getCheckedInfo() {
+                var productArr = $('#grid_wrap').find('.product-item')
+                var length = productArr.length
+                var productIds = []
+                var skuIds = []
+                if(length){
+                    $.each(productArr,function (index,item) {
+                        if($(item).find('input[type=checkbox]').length >0) {
+                            if (($(item).find('input[type=checkbox]') && ($(item).find('input[type=checkbox]')[0].checked) && $(item).find('.product-totalprice').text())) {
+                                productIds.push($(item).attr('data-productid'))
+                                skuIds.push($(item).attr('data-skuid'))
+                            }
+                        }
+                    })
+                    return {
+                        productIds:productIds,
+                        skuIds:skuIds
+                    }
+                }
+            }
+
+
+
+
+    })
+</script>
+</body>
+</html>

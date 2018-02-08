@@ -1,0 +1,303 @@
+
+.main-content .order-progress{
+    height: 200px;
+    border: 1px solid #e4e4e4;
+}
+.main-content .order-progress p.order-title{
+    height: 30px;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 30px;
+    color: #323232;
+    text-align: left;
+    padding-left: 15px;
+    background-color: #dfe1e9;
+}
+.main-content .order-info{
+    height: 170px;
+    background-color: #FFFFFF;
+}
+.main-content .order-info .number-status{
+    height: 36px;
+    padding-left: 25px;
+}
+.main-content .order-info p.order-number,
+.main-content .order-info p.order-status{
+    padding: 10px 30px 10px 0;
+    float: left;
+    font-size: 12px;
+}
+.main-content .order-info p.order-number{
+    color: #323232;
+}
+.main-content .order-info p.order-status{
+    font-weight: bold;
+    color: #fe5228;
+}
+.main-content .order-info .real-order-progress ,
+.main-content .order-info .real-order-progress ul{
+    height: 134px;
+}
+.main-content .order-info .real-order-progress ul {
+    padding: 0 25px;
+}
+.main-content .order-info .real-order-progress ul li{
+    width: 209px;
+    height: 134px;
+    float: left;
+    text-align: center;
+    position: relative;
+}
+.main-content .order-info .real-order-progress ul li:before{
+    content: "";
+    position: absolute;
+    width: 60px;
+    border: 1px dashed #e4e4e4;
+    left: 0;
+    top: 40px;
+}
+
+.main-content .order-info .real-order-progress ul li:after{
+    content: "";
+    position: absolute;
+    width: 60px;
+    border: 1px dashed #e4e4e4;
+    right: 0;
+    top: 40px;
+}
+.main-content .order-info .real-order-progress ul li:nth-of-type(1):before{
+    display: none;
+}
+.main-content .order-info .real-order-progress ul li:nth-of-type(5):after{
+    display: none;
+}
+.main-content .order-info .real-order-progress ul li .progress-image{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 20px auto;
+    text-align: center;
+    line-height: 40px;
+    background-color: #c2c1c1;
+}
+.main-content .order-info .real-order-progress ul li .progress-image.completed{
+    background-color: #ff3c29;
+}
+.main-content .order-info .real-order-progress ul li .progress-name{
+    font-size: 12px;
+    color: #323232;
+    margin: 10px 0;
+}
+.main-content .order-info .real-order-progress ul li .progress-time{
+    font-size: 12px;
+    color: #999999;
+}
+
+.main-content  .shipping-info{
+    height: 224px;
+    background-color: #FFFFFF;
+    border: 1px solid #e4e4e4;
+    margin: 25px 0;
+    position: relative;
+    padding: 20px 25px 0;
+}
+.main-content .shipping-info:after{
+    content: "";
+    width: 100%;
+    height: 10px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-image:-webkit-repeating-linear-gradient(-45deg,#dfe1e9 0px,#dfe1e9 5px,#fff 5px,#fff 10px);
+}
+.main-content .shipping-info p{
+    height: 40px;
+    font-size: 14px;
+    color: #323232;
+    line-height: 40px;
+}
+.main-content .shipping-info p.shipping-title{
+    font-size: 14px;
+    font-weight: bold;
+}
+.main-content .shipping-info p i{
+    text-align: right;
+    width: 10px;
+    margin-right: 20px;
+    color: #1cc8c6;
+    font-size: 16px;
+}
+.main-content .shipping-info p span{
+    margin-right: 20px;
+}
+.main-content .company-info{
+    padding-top: 15px;
+}
+.main-content .company-info .company-title{
+    height: 40px;
+}
+.main-content .company-info .company-title p{
+    max-width: 50%;
+    float: left;
+    font-size: 12px;
+    color: #323232;
+}
+.main-content .company-info .company-title button{
+    float: right;
+    padding: 0px 25px;
+    background-color: #ffffff;
+    border: 1px solid #e4e4e4;
+    color: #323232;
+}
+.main-content .company-info .company-title button i{
+    font-size: 14px;
+    color: #1CC8C6;
+}
+.main-content .company-info .products-list table{
+    width: 100%;
+    text-align: left;
+}
+.main-content .company-info .products-list table thead tr{
+    height: 40px;
+    background-color: #dfe1e9;
+}
+.main-content .company-info .products-list table thead tr th:nth-of-type(1){
+    padding-left: 20px;
+}
+.main-content .company-info .products-list table tbody tr{
+    height: 100px;
+    background-color: #ffffff;
+    border: 1px solid #e4e4e4;
+}
+.main-content .company-info .products-list table tbody tr td:nth-of-type(1){
+    padding-left: 20px;
+
+}
+.main-content .company-info .products-list tbody tr td img{
+    width: 80px;
+    height: 80px;
+    display: block;
+    float: left;
+    margin-right: 15px;
+    cursor: pointer;
+}
+.main-content .company-info .products-list tbody tr td p.product-dec{
+    height: 45px;
+    font-size: 16px;
+    color: #323232;
+    max-width: 380px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+.main-content .company-info .products-list tbody tr td p.product-dec:hover{
+    color: #ff3c29;
+}
+.main-content .company-info .products-list table tbody tr td p.product-instruction{
+    display: inline-block;
+    font-size: 12px;
+    padding: 4px 0;
+    max-width: 380px;
+    color: #999999;
+}
+.main-content .company-info .products-list table tbody tr td p.product-instruction span{
+    color: #323232;
+}
+.main-content .company-info .products-list table tbody tr td button{
+    background-color: #ffffff;
+    width: 100px;
+    padding: 0 0px;
+    display: block;
+    margin: 10px 0;
+    color: #323232;
+    border: 1px solid #e4e4e4;
+}
+.main-content .company-info .settlement-info{
+    height: 50px;
+    background-color: #fef4f0;
+    margin-top: 20px;
+    border: 1px solid #fe5228;
+}
+.main-content .company-info .settlement-info p{
+    width: 25%;
+    height: 50px;
+    line-height: 50px;
+    float: left;
+    padding-left: 20px;
+    text-align: left;
+}
+.main-content .company-info .settlement-info p span{
+    font-weight: bold;
+}
+.main-content .company-info .settlement-info p:nth-of-type(5) span{
+    color: #ff3c29;
+    font-size: 16px;
+}
+.main-content #round{
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #ff3c29;
+    position: relative;
+    margin: 0px auto;
+}
+.main-content #round::before{
+    position: absolute;
+    width: 2px;
+    height: 70px;
+    background-color: #ff3c29;
+    left: 50%;
+}
+.main-content #round::after{
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    position: absolute;
+    left: 50%;
+}
+
+
+.FareGetOrderTraces { position: relative; }
+.FareGetOrderTraces:hover { z-index: 1000; }
+.FareGetOrderTraces:hover .FareGetOrderTracesPOP { display: block; }
+.FareGetOrderTracesPOP {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  display: none;
+  background: #fff;
+  border: 1px solid #1cc8c6;
+  border-radius: 4px;
+  width: 260px;
+  color: #666;
+  margin-bottom: 40px;
+  font-size: 12px;
+}
+.FareGetOrderTracesPOP .lead {
+  padding: 10px 20px;
+}
+.FareGetOrderTracesPOP .list {
+  margin: 0 20px;
+  padding: 10px 0 10px 16px;
+  border-top: 1px solid #eee;
+}
+.FareGetOrderTracesPOP .list dt {
+  position: relative;
+  padding-bottom: 10px;
+}
+.FareGetOrderTracesPOP .list dt:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: -16px;
+  top: 5px;
+  background: #888;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+}
+

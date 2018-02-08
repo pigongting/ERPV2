@@ -1,0 +1,7 @@
+.special-column-title{
+    height: 100px;
+    margin-top: 10px;
+}
+.special-column-title .container{
+    height: 100px;
+}

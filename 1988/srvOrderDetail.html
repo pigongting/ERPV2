@@ -1,0 +1,181 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>售后详情</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="stylesheet" href="./plugins/layui255/css/layui.css">
+  <link rel="stylesheet" href="./build/css/srvOrderDetail.css">
+</head>
+<body>
+<div class="seller-header">
+  <span class="layui-breadcrumb">
+    <a href="javascript:;">你当前所在的位置</a>
+    <a href="javascript:;">退货管理</a>
+    <a><cite>售后详情</cite></a>
+  </span>
+</div>
+
+<div class="whiteBoard">
+  <!-- 右侧 - 订单信息 -->
+  <div class="rightPart" id="productParameter"></div>
+  <!-- 左侧 -->
+  <div class="leftPart">
+    <!-- 左侧 - 成功后显示 -->
+    <ul class="timeline" id="timeline"></ul>
+    <!-- 左侧 - 历史 -->
+    <ul class="timeline" id="srvOrderLog"></ul>
+    <!-- 左侧 - 返回按钮 -->
+    <div class="backButton">
+      <button class="layui-btn pi-TableButton pi-TableButtonBlue" onClick="history.back();">返回列表</button>
+    </div>
+  </div>
+</div>
+
+<!-- 右侧 - 订单信息 -->
+<script type="text/html" id="parameterTemplate">
+  <div class="pi-ImageWarp">
+    <div class="pi-ImageBox">
+      <img src="{{=layui.woLianw.getImgUrl(d.productImageUrl)}}" alt="商品图片">
+    </div>
+    <div class="pi-TextBox">
+      {{ d.productName ? d.productName : ''}} {{ d.skuDesc ? d.skuDesc : ''}}
+    </div>
+  </div>
+  <ul class="textList">
+    <li>买家名称：<span>{{ d.disCompanyName ? d.disCompanyName : ''}}</span></li>
+    <li>联系方式：<span>{{ d.disUserPhone ? d.disUserPhone : ''}}</span></li>
+    <li>源订单编号：<span>{{ d.orderItemNo ? d.orderItemNo : ''}}</span></li>
+    <li>源订单日期：<span>{{= d.purchaseTime ? layui.woLianw.transDateType(d.purchaseTime) : '无'}}</span></li>
+    <li>单价：<span>￥{{ d.venPrice ? layui.woLianw.thousandBit(d.venPrice) : '' }} x {{ d.quantity ? d.quantity : ''}}</span></li>
+    <li>运费：<span>￥{{=layui.woLianw.thousandBit(d.freight)}}</span></li>
+    <li>商品总价：<span>￥{{=layui.woLianw.thousandBit(d.price)}}</span></li>
+    <li>退货单编号：<span>{{ d.orderNo ? d.orderNo : '' }}</span></li>
+    <li>退款金额：<span>￥{{ d.refundPrice ? layui.woLianw.thousandBit(d.refundPrice) : '' }}</span></li>
+    <li>原因：<span>{{d.returnReasonStateText || ''}}</span></li>
+    <li>退货单状态：<span>{{d.backStateText || ''}}</span></li>
+  </ul>
+</script>
+
+<!-- 左侧 - 成功后显示 -->
+<script type="text/html" id="statusTemplate">
+  {{# if(d.backState == 22){ }}
+  <li>
+    <h3>{{d.backStateText || ''}}</h3>
+    {{# if(d.modifyTime){ }}
+    <p>退款时间：<span>{{= d.modifyTime ? layui.woLianw.transDateType(d.modifyTime) : '无'  }}</span> </p>
+    {{# } }}
+  </li>
+  <li>
+    <h3>退款金额：<span>{{ d.refundPrice ? '￥' + layui.woLianw.thousandBit(d.refundPrice) : ''}}</span></h3>
+    <p>退回账户余额</p>
+  </li>
+  {{# } }}
+</script>
+
+<!-- 左侧 - 历史 -->
+<script type="text/html" id="logTemplate">
+  <li><h3>协商历史</h3></li>
+  {{# layui.each(d.logInfo, function(index, item){ }}
+  <li>
+    <div class="historyItem">
+      <div class="pi-ImageWarp">
+        <div class="pi-ImageBox">
+          {{# if(item.createId == d.orderInfo.disUserId){ }}
+          <img src="{{=layui.woLianw.getImgUrl(d.orderInfo.disUserLogoImageUrl)}}" alt="">
+          {{# } else { }}
+          <img src="{{=layui.woLianw.getImgUrl(d.orderInfo.venUserLogoImageUrl)}}" alt="">
+          {{# } }}
+        </div>
+        <dl class="srv-image">
+          {{# if((item.createId === d.orderInfo.disUserId) && d.orderInfo.srvImageUrl){ }}
+            {{# layui.each(d.orderInfo.srvImageUrl.split(','), function(index3, item3){ }}
+            <dd>
+              <div class="pi-ImageListWarp">
+                <div class="pi-ImageBox">
+                  <img src="{{=layui.woLianw.getImgUrl(item3)}}" alt="">
+                </div>
+                <div class="pi-TextBox check-bigimg">点击查看大图</div>
+              </div>
+            </dd>
+            {{# }) }}
+          {{# } }}
+        </dl>
+        <div class="pi-TextBox">
+          <div class="lead">{{(item.createId == d.orderInfo.disUserId) ? '买家' : '卖家'}}</div>
+          <div class="vice">{{ item.backStateText ? item.backStateText : ''}}</div>
+          <div class="remark">{{ item.remark ? item.remark : ''}}</div>
+        </div>
+        <div class="clearfix"></div>
+      </div>
+      <div class="itemTime">{{= item.createTime ? layui.woLianw.transDateType(item.createTime) : '无'  }}</div>
+    </div>
+  </li>
+  {{# }) }}
+</script>
+
+<script src="./plugins/layui255/layui.js"></script>
+<script src="./build/js/wolianwComponent/config.js"></script>
+<script>
+  layui.use(['element','form','laydate','laytpl','jquery','layer','woLianw'],function () {
+    var element=layui.element;
+    var form=layui.form;
+    var laydate=layui.laydate;
+    var laytpl=layui.laytpl;
+    var $=layui.$;
+    var layer=layui.layer;
+    var woLianw = layui.woLianw;
+    
+    // 获取参数
+    var srvOrderId = woLianw.GetQueryString('id')
+    
+    // 发送请求 - 渲染页面
+    woLianw.getSrvOrderInfo(srvOrderId,function (orderInfo) {    
+      // 渲染 - 右侧 - 订单信息
+      var parameterTemplate = document.getElementById("parameterTemplate").innerHTML;
+      var productParameter = document.getElementById("productParameter");
+      laytpl(parameterTemplate).render(orderInfo, function (html) {
+        productParameter.innerHTML = html;
+      });
+      
+      // 左侧 - 成功后显示
+      var statusTemplate = document.getElementById("statusTemplate").innerHTML
+      var timeline = document.getElementById("timeline")
+      laytpl(statusTemplate).render(orderInfo, function (html) {
+        timeline.innerHTML = html;
+      });
+      
+      // 左侧 - 历史
+      woLianw.getSrvOrderLog(srvOrderId, function (logInfo) {
+        var logTemplate = document.getElementById("logTemplate").innerHTML
+        var srvOrderLog = document.getElementById("srvOrderLog")
+        laytpl(logTemplate).render({ orderInfo: orderInfo, logInfo: logInfo }, function (html) {
+          srvOrderLog.innerHTML = html;
+        });
+      });
+    });
+
+
+    // 监听点击 - 查看大图
+    $(document).on('click','.check-bigimg',function () {
+      var _this = this
+      layer.open({
+        type: 1,
+        title: false,
+        closeBtn: 0,
+        zIndex:100000,
+        area: ['500px','500px'],
+        skin: 'layui-layer-nobg', //没有背景色
+        shadeClose: true,
+        content: '<table class="popImageBox"><tr><td><img src="'+$(_this).parent().find("img").attr("src")+'" class="big-img"></td></tr></table>'
+      });
+    });
+
+  });
+</script>
+</body>
+</html>

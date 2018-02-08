@@ -1,0 +1,120 @@
+.layui-tool{
+    height: 70px;
+}
+.layui-tool .logo{
+    height: 70px;
+    width: 130px;
+    float: left;
+}
+.layui-tool .logo h1 {
+    text-indent: -1000em;
+}
+.layui-tool .logo h1 a{
+    display: block;
+    width: 137px;
+    height: 70px;
+    background-image: url("./../../img/center-logo.png");
+    background-repeat: no-repeat;
+}
+.layui-tool .shopping-cart{
+    height: 70px;
+    width: 250px;
+    float: right;
+    padding-top: 10px;
+}
+.layui-tool .shopping-cart a{
+    padding: 10px 35px 10px 20px;
+    font-size: 12px;
+    background-color: #fff;
+    border-radius: 3px;
+    float: right;
+    position: relative;
+}
+.layui-tool .shopping-cart a i{
+    color: #FF4129;
+    margin-right: 5px;
+}
+.layui-tool .shopping-cart a span.layui-badge{
+    position: absolute;
+    top: 3px;
+    left: 107px;
+
+}
+
+.search-content{
+    width: 450px;
+    height: 70px;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+.search-content form{
+    width: 450px;
+    border-radius: 4px;
+    border: 2px solid #FF4129;
+}
+.search-content form .layui-form-select{
+    width: 100px;
+    float: left;
+}
+.search-content form .layui-form-select .layui-select-title .layui-edge{
+    border-top-color: #FF4129;
+}
+.search-content form .layui-form-select .layui-select-title .layui-input{
+    text-align: center;
+    color: #FE3E29;
+    border:none;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 0;
+    background-color: #fdf4f2;
+    border-collapse: collapse;
+}
+.search-content form .layui-form-select dl dd{
+    text-align: center;
+    color: #FE3E29;
+}
+.search-content form input.search-content-word{
+    width: 360px;
+    float: left;
+    border: 0;
+    border-radius: 0;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+}
+.search-content form input.search-content-btn{
+    width: 86px;
+    background: -ms-linear-gradient(left, #FE6927,  #FF3C2A);        /* IE 10 */
+
+    background:-moz-linear-gradient(left,#FE6927,#FF3C2A);/*火狐*/
+
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#FE6927), to(#FF3C2A));/*谷歌*/
+
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FE6927), to(#FF3C2A));      /* Safari 4-5, Chrome 1-9*/
+
+    background: -webkit-linear-gradient(left, #FE6927, #FF3C2A);   /*Safari5.1 Chrome 10+*/
+
+    background: -o-linear-gradient(left, #FE6927, #FF3C2A);  /*Opera 11.10+*/
+}
+.search-content .hot-search{
+    width: 550px;
+    height: 20px;
+    padding-left: 10px;
+    line-height: 20px;
+}
+.search-content .hot-search span{
+    font-size: 12px;
+    color: #FFF;
+}
+.search-content .hot-search a{
+    font-size: 12px;
+    color: #FFF;
+    margin-right: 10px;
+}
+.search-content .hot-search a:hover{
+    color: #e4e4e4;
+}
+.search-content .layui-form-select dl dd.layui-this{
+    background-color: transparent;
+}
+.search-content

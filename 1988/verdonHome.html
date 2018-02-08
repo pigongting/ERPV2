@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>工厂简介</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="我连网卖家中心-工厂简介"/>
+    <link rel="stylesheet" href="./plugins/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="./plugins/font-awesome/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="build/css/contentPages.css">
+    <link rel="stylesheet" href="build/css/index.css"/>
+    <link rel="stylesheet" href="build/css/main.css"/>
+    <link rel="stylesheet" href="build/css/verdonHome/verdonhome.css">
+</head>
+<body bgcolor="#eff3f9">
+<form id="form1">
+    <div class="seller-header">
+      <span class="layui-breadcrumb">
+        <a href="javascript:;">你当前所在的位置</a>
+        <a><cite>工厂简介</cite></a>
+      </span>
+    </div>
+    <div class="layui-fluid pl0 pr0">
+        <h2>基本信息</h2>
+        <div class="verdon-info layui-row layui-clear">
+            <div class="verdon-img layui-col-xs4">
+                <img src="build/images/p1.png" id="logoUrl" alt="">
+            </div>
+            <div class="verdon-detail layui-col-xs4">
+                <p class="verdon-name" id="username"></p>
+                <p class="verdon-phone">
+                    <img src="build/images/dianhua_icon.png"  alt="">
+                    联系方式:<span id="phone"></span>
+                </p>
+            </div>
+            <div class="verdon-address layui-col-xs4">
+                <p>所在地: <span id="address"></span></p>
+            </div>
+        </div>
+        <div class="tips">
+            <p>温馨提示:<span> 工厂企业简介将展示你所发布的商品的【商品详情】中,帮助消费者更好的了解你的企业和产品</span></p>
+        </div>
+
+        <h2>公司简介</h2>
+        <div class="verdon-info layui-row layui-clear">
+            <div id="details" style="width:100%;height:400px;">
+              <textarea id="keditor_id" name="content" style="width:100%;height:400px;">
+            </textarea>
+        </div>
+
+        <div class="verdon-info layui-row layui-clear">
+            <!--<input type="button" value="预览" id="btnPreview">-->
+            <input type="button" class="layui-btn" value="保存" id="btnSave" style="cursor: pointer;padding: 0px 30px;background-color: #438bfd;color: #FFFFFF;outline-style: none;border: 0" >
+            <input type="button" class="layui-btn" value="返回" id="btnCancel" style="cursor: pointer;padding: 0px 30px;background-color: #FFFFFF;color: #323232;outline-style: none;border: 1px solid #e4e4e4">
+        </div>
+    </div>
+</form>
+
+<script src="./plugins/layui/layui.all.js"></script>
+<script src="./build/js/wolianwComponent/config.js"></script>
+<script type="text/javascript" src="./plugins/kindeditor/kindeditor-all-min.js"></script>
+<script type="text/javascript" src="./plugins/kindeditor/lang/zh-CN.js"></script>
+
+<!--<script src="build/js/main.js"></script>-->
+
+<script>
+    //JavaScript代码区域
+    layui.use(['element', 'form', 'laydate', 'laytpl', 'layer', "woLianw"], function () {
+        var element = layui.element;
+        var form = layui.form;
+        var layer = layui.layer;
+        var laytpl = layui.laytpl;
+        var $ = layui.jquery;
+        var woLianw = layui.woLianw;
+
+
+        //工厂企业基本信息
+        var user=JSON.parse(localStorage.getItem("1988login"));
+        console.log(user)
+        $('#logoUrl').attr("src",woLianw.src+user.logoUrl);
+        $('#phone').text(user.phone);
+        $('#address').text(user.fullAddress)
+        $('#username').text(user.companyName);
+
+        /*var ue;
+        ue = UE.getEditor('details');
+
+        ue.ready(function () {
+            $.ajaxSetup({crossDomain: true, xhrFields: {withCredentials: true}});
+            $.ajax({
+                type: 'post',
+                url: woLianw.url+'/user/getFactoryDesc',
+                success: function (data) {
+                    ue.setContent(data.msg);
+                }
+
+            })
+
+        });
+*/
+        //保存工厂企业信息
+        $('#btnSave').click(function () {
+            $.ajaxSetup({crossDomain: true, xhrFields: {withCredentials: true}});
+            $.ajax({
+                type: 'post',
+                url: woLianw.url+'/user/saveFactoryInfo',
+                data: {"editorValue":window.editor.html()},
+                success: function (data) {
+                    if (data.code == 1) {
+                        layer.msg(data.msg);
+                        window.location.href = '/main.html'
+                        //window.close();
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                }
+            })
+        })
+
+        $('#btnCancel').on('click',function () {
+            window.location.href = '/main.html'
+        })
+
+
+        KindEditor.ready(function(K) {
+            window.editor = K.create('#keditor_id',{
+
+                items:[
+                    'source', '|', 'undo', 'redo', '|', 'preview', 'print', 'template', 'code', 'cut', 'copy', 'paste',
+                    'plainpaste', 'wordpaste', '|', 'justifyleft', 'justifycenter', 'justifyright',
+                    'justifyfull', 'insertorderedlist', 'insertunorderedlist', 'indent', 'outdent', 'subscript',
+                    'superscript', 'clearhtml', 'quickformat', 'selectall', '|', 'fullscreen',
+                    'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold',
+                    'italic', 'underline', 'strikethrough', 'lineheight', 'removeformat', '|', 'image', 'multiimage',
+                    'flash', 'media', 'insertfile', 'table', 'hr', 'emoticons', 'baidumap', 'pagebreak',
+                    'anchor', 'link', 'unlink', '|', 'about'
+                ],
+                uploadJson : woLianw.url+'/sell/product/uploadFileForText',
+                allowFileManager : false,
+                filePostName: "file",
+                fillDescAfterUploadImage:false,
+                afterUpload : function(data) {
+                    if(data.code==1){
+                        var imageurl = woLianw.getImgUrl(data.data);
+                    }
+                }
+
+            });
+            $.ajaxSetup({crossDomain: true, xhrFields: {withCredentials: true}});
+            $.ajax({
+                type: 'post',
+                url: woLianw.url+'/user/getFactoryDesc',
+                success: function (data) {
+                    window.editor.html(data.msg);
+                }
+
+            })
+
+        });
+
+
+
+    });
+
+</script>
+</body>
+</html>

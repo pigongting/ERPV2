@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>首页</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="stylesheet" href="../../plugs/layui/css/layui.css">
+
+    <link rel="stylesheet" href="../../font/font_399822_dtv8v5xokcfvfgvi/iconfont.css">
+    <link rel="stylesheet" href="../../plugs/font-awesome/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../../css/swiper-3.4.2.min.css">
+    <link rel="stylesheet" href="../../css/myWorkSpace/header.css">
+    <link rel="stylesheet" href="../../css/agentIndex/main.css">
+    <link rel="stylesheet" href="../../css/agentIndex/tool.css">
+    <link rel="stylesheet" href="../../css/agentIndex/nav.css">
+    <link rel="stylesheet" href="../../css/agentIndex/carousel.css">
+    <link rel="stylesheet" href="../../css/agentIndex/buy-limit.css">
+    <link rel="stylesheet" href="../../css/agentIndex/list-carousel.css">
+    <link rel="stylesheet" href="../../css/agentIndex/special-recommend.css">
+    <link rel="stylesheet" href="../../css/agentIndex/special-column-title.css">
+    <link rel="stylesheet" href="../../css/agentIndex/special-show.css">
+    <link rel="stylesheet" href="../../css/agentIndex/special-counter.css">
+    <link rel="stylesheet" href="../../css/agentIndex/live-streamimg.css">
+    <link rel="stylesheet" href="../../css/agentIndex/footer.css">
+    <link rel="stylesheet" href="../../css/publicHead.css">
+    <link rel="stylesheet" href="../../css/agentIndex/search.css">
+
+
+</head>
+<body>
+    <div class="main">
+        <!--头部开始-->
+        <div class="layui-header container">
+            <div class="layui-header-left layui-col-lg2 layui-col-md3 layui-col-sm3">
+                <ul class="layui-nav" style="padding: 0;" id="userNav">
+                    <li class="layui-nav-item" id="userCenter">
+                    </li>
+                </ul>
+            </div>
+            <div class="layui-header-right  layui-col-lg10 layui-col-md9 layui-col-sm9" id="headerRight">
+                <ul class="layui-nav layui-layout-right">
+                    <li class="layui-nav-item">
+                        <a href="../../home.html" class="">
+                            <img src="../../img/icon_wodegongzuotai.png" alt="">
+                            <span>我的工作台</span>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="../../followModule/product/index.html" class="">
+                            <img src="../../img/icon_souchangjia.png" alt="">
+                            <span>收藏夹</span>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item">
+                        <a href="../../buyCartModule/cart/index.html" class="">
+                            <img src="../../img/icon_jinhuodan.png" alt="">
+                            <span>进货单</span>
+                        </a>
+                    </li>
+                    <li class="layui-nav-item kefu">
+                        <a href="javascript:;" class="">
+                            <img src="../../img/icon_kefu.png" alt="">
+                            <span>我连客服</span>
+                        </a>
+
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <!--头部结束-->
+        <!--logo、搜索栏、购物车开始-->
+        <!-- <div class="layui-tool container">
+            <div class="logo">
+            <h1>
+                <a href="javascript:;">
+                    我连网
+                </a>
+            </h1>
+            <h2></h2>
+        </div>
+            <div class="shopping-cart">
+                <a href="../../buyCartModule/cart/index.html">
+                    <i class="iconfont">&#xe600;</i>
+                    <span>我的进货单</span>
+                    <span class="layui-badge" id="cartSum">-</span>
+                </a>
+            </div>
+            <div class="search-content">
+                <form action="" class="layui-form">
+                    <input type="text" name="key" id="keyWord" class="layui-input search-content-word">
+                    <input type="button" value="搜索" lay-submit lay-filter="key" id="keySubmit" class="layui-btn search-content-btn">
+                </form>
+            </div>
+
+        </div> -->
+        <!-- logo + 搜索 +进货单 开始-->
+        <div class="grid_total" id="repeat_search"></div>
+        <!-- logo + 搜索 +进货单 结束-->
+        <!--导航栏开始-->
+        <div class="index-nav nav container">
+            <ul>
+                <li>
+                    <a href="javasript:;">全部商品</a>
+                    <div class="more-box layui-clear">
+                        <dl class="layui-clear">
+                            <dd>宠物及园艺</dd>
+                            <dt><a href="../products/index.html?key=狗狗及用品" target="_blank">狗狗及用品</a></dt>
+                            <dt><a href="../products/index.html?key=宠物环境清洁" target="">宠物环境清洁</a></dt>
+                            <dt><a href="../products/index.html?key=宠物医药" target="_blank">宠物医药</a></dt>
+                            <dt><a href="../products/index.html?key=宠物保健品" target="_blank">宠物保健品</a></dt>
+                            <dt><a href="../products/index.html?key=其他宠物用品" target="_blank">其他宠物用品</a></dt>
+                            <dt><a href="../products/index.html?key=水族世界" target="_blank">水族世界</a></dt>
+                            <dt><a href="../products/index.html?key=小宠及用品" target="_blank">小宠及用品</a></dt>
+                            <dt><a href="../products/index.html?key=猫猫及用品" target="_blank">猫猫及用品</a></dt>
+                            <dt><a href="../products/index.html?key=园林植物" target="_blank">园林植物</a></dt>
+                            <dt><a href="../products/index.html?key=园林资材" target="_blank">园林资材</a></dt>
+                            <dt><a href="../products/index.html?key=林业及园林业副产品" target="_blank">林业及园林业副产品</a></dt>
+                        </dl>
+                        <dl class="layui-clear">
+                            <dd>女装</dd>
+                            <dt><a href="../products/index.html?key=连衣裙" target="_blank">连衣裙</a></dt>
+                            <dt><a href="../products/index.html?key=女式毛衣" target="_blank">女式毛衣</a></dt>
+                            <dt><a href="../products/index.html?key=半身裙" target="_blank">半身裙</a></dt>
+                            <dt><a href="../products/index.html?key=小背心、吊带衫、裹胸" target="_blank">小背心、吊带衫、裹胸</a></dt>
+                            <dt><a href="../products/index.html?key=女式马甲背心" target="_blank">女式马甲背心</a></dt>
+                            <dt><a href="../products/index.html?key=女式T恤" target="_blank">女式T恤</a></dt>
+                            <dt><a href="../products/index.html?key=女式衬衫" target="_blank">女式衬衫</a></dt>
+                            <dt><a href="../products/index.html?key=蕾丝衫、雪纺衫" target="_blank">蕾丝衫、雪纺衫</a></dt>
+                            <dt><a href="../products/index.html?key=女式针织衫" target="_blank">女式针织衫</a></dt>
+                            <dt><a href="../products/index.html?key=女式休闲套装" target="_blank">女式休闲套装</a></dt>
+                            <dt><a href="../products/index.html?key=女式卫衣、绒衫" target="_blank">女式卫衣、绒衫</a></dt>
+                            <dt><a href="../products/index.html?key=小西装" target="_blank">小西装</a></dt>
+                            <dt><a href="../products/index.html?key=女式外套" target="_blank">女式外套</a></dt>
+                            <dt><a href="../products/index.html?key=女式风衣、大衣" target="_blank">女式风衣、大衣</a></dt>
+                            <dt><a href="../products/index.html?key=女式棉衣" target="_blank">女式棉衣</a></dt>
+                            <dt><a href="../products/index.html?key=女式羽绒服" target="_blank">女式羽绒服</a></dt>
+                            <dt><a href="../products/index.html?key=女式皮衣" target="_blank">女式皮衣</a></dt>
+                            <dt><a href="../products/index.html?key=皮草" target="_blank">皮草</a></dt>
+                            <dt><a href="../products/index.html?key=女式打底裤" target="_blank">女式打底裤</a></dt>
+                            <dt><a href="../products/index.html?key=女式牛仔裤" target="_blank">女式牛仔裤</a></dt>
+                            <dt><a href="../products/index.html?key=女式休闲裤" target="_blank">女式休闲裤</a></dt>
+                            <dt><a href="../products/index.html?key=大码女装" target="_blank">大码女装</a></dt>
+                            <dt><a href="../products/index.html?key=中老年女装" target="_blank">中老年女装</a></dt>
+                            <dt><a href="../products/index.html?key=职业女装" target="_blank">职业女装</a></dt>
+                            <dt><a href="../products/index.html?key=旗袍、唐装" target="_blank">旗袍、唐装</a></dt>
+                            <dt><a href="../products/index.html?key=婚纱、礼服" target="_blank">婚纱、礼服</a></dt>
+                            <dt><a href="../products/index.html?key=情侣装" target="_blank">情侣装</a></dt>
+                            <dt><a href="../products/index.html?key=制服工作服、校服、表演服" target="_blank">制服工作服、校服、表演服</a></dt>
+                            <dt><a href="../products/index.html?key=女装组合包" target="_blank">女装组合包</a></dt>
+                        </dl>
+                        <dl class="layui-clear">
+                            <dd>男装</dd>
+                            <dt><a href="../products/index.html?key=男式T恤" target="_blank">男式T恤</a></dt>
+                            <dt><a href="../products/index.html?key=男式Polo衫" target="_blank">男式Polo衫</a></dt>
+                            <dt><a href="../products/index.html?key=男式衬衫" target="_blank">男式衬衫</a></dt>
+                            <dt><a href="../products/index.html?key=男式毛衫" target="_blank">男式毛衫</a></dt>
+                            <dt><a href="../products/index.html?key=男式马甲" target="_blank">男式马甲</a></dt>
+                            <dt><a href="../products/index.html?key=男式休闲套装" target="_blank">男式休闲套装</a></dt>
+                            <dt><a href="../products/index.html?key=男式背心" target="_blank">男式背心</a></dt>
+                            <dt><a href="../products/index.html?key=男式夹克" target="_blank">男式夹克</a></dt>
+                            <dt><a href="../products/index.html?key=男式皮衣" target="_blank">男式皮衣</a></dt>
+                            <dt><a href="../products/index.html?key=男式西装" target="_blank">男式西装</a></dt>
+                            <dt><a href="../products/index.html?key=男式卫衣" target="_blank">男式卫衣</a></dt>
+                            <dt><a href="../products/index.html?key=男式西裤" target="_blank">男式西裤</a></dt>
+                            <dt><a href="../products/index.html?key=男式西服套装" target="_blank">男式西服套装</a></dt>
+                            <dt><a href="../products/index.html?key=男式风衣" target="_blank">男式风衣</a></dt>
+                            <dt><a href="../products/index.html?key=男式大衣" target="_blank">男式大衣</a></dt>
+                            <dt><a href="../products/index.html?key=男式羽绒服" target="_blank">男式羽绒服</a></dt>
+                            <dt><a href="../products/index.html?key=男式棉服" target="_blank">男式棉服</a></dt>
+                            <dt><a href="../products/index.html?key=中山装、唐装、民族服装" target="_blank">中山装、唐装、民族服装</a></dt>
+                            <dt><a href="../products/index.html?key=男式牛仔裤" target="_blank">男式牛仔裤</a></dt>
+                            <dt><a href="../products/index.html?key=男式休闲裤" target="_blank">男式休闲裤</a></dt>
+                            <dt><a href="../products/index.html?key=男式沙滩裤" target="_blank">男式沙滩裤</a></dt>
+                            <dt><a href="../products/index.html?key=男式棒球衫" target="_blank">男式棒球衫</a></dt>
+                            <dt><a href="../products/index.html?key=男式羽绒裤" target="_blank">男式羽绒裤</a></dt>
+                            <dt><a href="../products/index.html?key=男式制服、工作服" target="_blank">男式制服、工作服</a></dt>
+                        </dl>
+                        <dl class="layui-clear">
+                            <dd>内衣</dd>
+                            <dt><a href="../products/index.html?key=内裤" target="_blank">内裤</a></dt>
+                            <dt><a href="../products/index.html?key=文胸" target="_blank">文胸</a></dt>
+                            <dt><a href="../products/index.html?key=袜子" target="_blank">袜子</a></dt>
+                            <dt><a href="../products/index.html?key=睡衣、家居服、睡袍、浴袍" target="_blank">睡衣、家居服、睡袍、浴袍</a></dt>
+                            <dt><a href="../products/index.html?key=塑身内衣" target="_blank">塑身内衣</a></dt>
+                            <dt><a href="../products/index.html?key=情趣内衣" target="_blank">情趣内衣</a></dt>
+                            <dt><a href="../products/index.html?key=背心、裹胸、内穿t恤" target="_blank">背心、裹胸、内穿t恤</a></dt>
+                            <dt><a href="../products/index.html?key=胸垫、胸贴、肩带、吊袜带" target="_blank">胸垫、胸贴、肩带、吊袜带</a></dt>
+                            <dt><a href="../products/index.html?key=保暖内衣" target="_blank">保暖内衣</a></dt>
+                            <dt><a href="../products/index.html?key=其他内衣" target="_blank">其他内衣</a></dt>
+                        </dl>
+                        <dl class="layui-clear">
+                            <dd>食品、饮料</dd>
+                            <dt><a href="../products/index.html?key=其他休闲食品" target="_blank">其他休闲食品</a></dt>
+                            <dt><a href="../products/index.html?key=巧克力" target="_blank">巧克力</a></dt>
+                            <dt><a href="../products/index.html?key=冲调饮品" target="_blank">冲调饮品</a></dt>
+                            <dt><a href="../products/index.html?key=软饮料" target="_blank">软饮料</a></dt>
+                            <dt><a href="../products/index.html?key=酒类" target="_blank">酒类</a></dt>
+                            <dt><a href="../products/index.html?key=茶叶" target="_blank">茶叶</a></dt>
+                            <dt><a href="../products/index.html?key=液体乳" target="_blank">液体乳</a></dt>
+                            <dt><a href="../products/index.html?key=普通膳食营养补充剂" target="_blank">普通膳食营养补充剂</a></dt>
+                            <dt><a href="../products/index.html?key=冷饮" target="_blank">冷饮</a></dt>
+                            <dt><a href="../products/index.html?key=其他乳制品" target="_blank">其他乳制品</a></dt>
+                            <dt><a href="../products/index.html?key=成人奶粉" target="_blank">成人奶粉</a></dt>
+                            <dt><a href="../products/index.html?key=婴幼儿零食" target="_blank">婴幼儿零食</a></dt>
+                            <dt><a href="../products/index.html?key=婴幼儿辅食" target="_blank">婴幼儿辅食</a></dt>
+                            <dt><a href="../products/index.html?key=保健食品" target="_blank">保健食品</a></dt>
+                            <dt><a href="../products/index.html?key=婴幼儿配方粉" target="_blank">婴幼儿配方粉</a></dt>
+                            <dt><a href="../products/index.html?key=坚果炒货" target="_blank">坚果炒货</a></dt>
+                            <dt><a href="../products/index.html?key=糖果" target="_blank">糖果</a></dt>
+                            <dt><a href="../products/index.html?key=肉类零食" target="_blank">肉类零食</a></dt>
+                            <dt><a href="../products/index.html?key=水产零食" target="_blank">水产零食</a></dt>
+                            <dt><a href="../products/index.html?key=饼干膨化" target="_blank">饼干膨化</a></dt>
+                            <dt><a href="../products/index.html?key=糕点点心" target="_blank">糕点点心</a></dt>
+                            <dt><a href="../products/index.html?key=即食豆制品" target="_blank">即食豆制品</a></dt>
+                            <dt><a href="../products/index.html?key=果冻布丁" target="_blank">果冻布丁</a></dt>
+                            <dt><a href="../products/index.html?key=果干蜜饯" target="_blank">果干蜜饯</a></dt>
+                            <dt><a href="../products/index.html?key=传统滋补品" target="_blank">传统滋补品</a></dt>
+                        </dl>
+                    </div>
+                </li>
+                <li><a href="">首页</a></li>
+                <li><a href="../../readySaleModule/index.html" target="_blank">预售专场</a></li>
+                <li><a href="../../preSaleModule/index.html" target="_blank">特价专场</a></li>
+              <!--  <li><a href="javasript:;">我连推荐</a></li>-->
+            </ul>
+        </div>
+        <!--导航栏结束-->
+        <!--轮播图开始-->
+        <div class="big-container">
+        <div class="carousel container">
+            <div class="layui-carousel" id="test1">
+                <div carousel-item id="carouselBox">
+
+                </div>
+            </div>
+        </div>
+        <!--轮播图结束-->
+        <!--限时抢购开始-->
+        <!--<div class="buy-limit container">
+            <span class="buy-limit-type">限时抢购</span>
+            <span class="buy-limit-dec">距离本场结束还有</span>
+        </div>-->
+        <!--限时抢购结束-->
+        <!--列表轮播开始-->
+        <!--<div class="list-carousel container">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <a href="javascript:;">
+                            <div class="product-img">
+                                <img src="./img/5927e107Na3e9ecbf.png" alt="">
+                            </div>
+                            <p class="product-dec">nihade阿萨德撒的发顺丰的阿里将机就回来了</p>
+                            <div class="product-price">
+                                <span class="cur-price">￥288.00</span>
+                                <span class="original-price">￥399.00</span>
+                            </div>
+                        </a>
+                    </div>
+
+
+                </div>
+                &lt;!&ndash; Add Pagination &ndash;&gt;
+                <div class="swiper-button-prev swiper-button-white"></div>
+                <div class="swiper-button-next swiper-button-white"></div>
+            </div>
+        </div>-->
+        <!--列表轮播结束-->
+        </div>
+        <!--特别推荐开始-->
+        <div class="special-recommend container" id="OptColumnList">
+
+
+        </div>
+        <!--特别推荐结束-->
+        <!--我连优选开始-->
+        <div class="special-column-title wlw-recommend" id="youxuanwl">
+            <div class="wolian-recommend container"></div>
+        </div>
+        <!--我连优选结束-->
+        <ul class="show-list" id="showList">
+
+        </ul>
+
+
+        <!--预售专场开始-->
+        <div class="special-column-title advance-sale" id="ysHead">
+            <div class="container"></div>
+        </div>
+        <div class="special-counter yuShouBg" id="ysBox">
+            <div class="container" id="yuShouSpecial">
+            </div>
+        </div>
+        <!--预售专场结束-->
+        <!--特价专场开始-->
+        <div class="special-column-title special-offer" id="tjHead">
+            <div class="container"></div>
+        </div>
+        <div class="special-counter offerBg" id="tjBox">
+            <div class="container" id="specialOffer"></div>
+        </div>
+        <!--特价专场结束-->
+        <!--我连推荐开始-->
+        <div class="special-column-title  woliantj">
+            <div class="container"></div>
+        </div>
+        <div class="special-counter  woliantj">
+            <div class="container" id="wolianTuiJian"></div>
+        </div>
+        <!--我连推荐结束-->
+        <!--底部开始-->
+        <div class="footer">
+            <div class="wolian-server container">
+                <ul class="wolian-server-list">
+                    <li>
+                        <h5></h5>
+                        <p class="server-title">正品保证</p>
+                    </li>
+                    <li>
+                        <h5></h5>
+                        <p class="server-title">配送保证</p>
+                    </li>
+                    <li>
+                        <h5></h5>
+                        <p class="server-title">安全保证</p>
+                    </li>
+                    <li>
+                        <h5></h5>
+                        <p class="server-title">服务保证</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="container" style="padding: 10px 0px;">
+                <p style="font-size: 12px;color: #666666;text-align: center">2016-2019&copy;深圳我和网科技有限公司</p>
+            </div>
+        </div>
+        <!--底部结束-->
+    </div>
+
+    <script src="../../plugs/layui/layui.all.js"></script>
+    <script src="../../js/wolianwComponent/config.js"></script>
+    <script src="../../plugs/swiper-3.4.2.jquery.min.js"></script>
+    <script src="../../js/plugins.js"></script>
+    <script src="../../js/main.js"></script>
+    <script type="text/html" id="headerNav">
+        <ul class="layui-nav layui-layout-right">
+            {{# layui.each(d, function(index,item){ }}
+            <li class="layui-nav-item">
+                <i class="iconfont"> {{  item.icon }} </i>
+                <a href="javascript:;" class="">
+                    {{ item.title }}
+                </a>
+                {{# if(item.child){ }}
+                <dl class="layui-nav-child">
+                    {{# layui.each(item.child, function(index1,item1){ }}
+                    <dd>
+                        <a href="javascript:;"> {{ item1.title }} </a>
+                    </dd>
+                    {{# }) }}
+                </dl>
+                {{# } }}
+            </li>
+            {{# }); }}
+        </ul>
+    </script>
+    <script type="text/html" id="specialShow">
+        <li>
+            <!--专场开始-->
+            <div class="special-show">
+                <div class="container">
+                    <div class="special-show-left">
+                        <a href="/productModule/category/index.html?id={{ d.id }}&category={{ d.name }}" target="_blank">
+                            <img src="{{=layui.woLianw.getImgUrl(d.figureUrl) }}" alt="">
+                        </a>
+                    </div>
+                    <div class="special-show-right">
+                        <ul>
+                            {{# layui.each(d.list,function(index,item){ }}
+                            <li>
+                                <a href="/productModule/goodsdetail.html?productId={{ item.id }}" target="_blank">
+                                    <div class="product-img">
+                                        <img src="{{=layui.woLianw.getImgUrl(item.pictureUrl)}}" alt="">
+                                    </div>
+                                    <p class="product-dec" title="{{ item.name }}"> {{ item.name }} </p>
+                                    <div class="product-price">
+                                        <span class="cur-price">￥{{ item.listPrice }}</span>
+                                        <span class="original-price">￥{{ item.marketPrice == null ? item.listPrice : item.marketPrice }}</span>
+                                    </div>
+                                    <div class="product-tag">
+                                        {{# if(item.freightType == 0){ }}
+                                        <span class="layui-badge firstToThree">包邮</span>
+                                        {{# } }}
+                                    </div>
+                                </a>
+                            </li>
+                            {{# }) }}
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <!--专场结束-->
+        </li>
+    </script>
+
+    <script type="text/html" id="specialRecommend">
+        <ul class="special-recommend-list">
+            {{# layui.each(d.list,function(index,item){ }}
+            <li>
+                <a href="/productModule/columns/index.html?id={{ item.id }}&column={{ item.name }}" target="_blank">
+                    <img src="{{=layui.woLianw.getImgUrl(item.figureUrl) }}" alt="{{ item.name }}">
+                </a>
+            </li>
+            {{# }) }}
+        </ul>
+    </script>
+
+    <script type="text/html" id="specialCounter">
+        <ul class="special-counter-list">
+            {{# layui.each(d,function(index,item){ }}
+            <li>
+                <a href="/productModule/goodsdetail.html?productId={{ item.productId }}" target="_blank">
+                    <div class="product-img">
+                        <img src="{{=layui.woLianw.getImgUrl(item.pictureUrl)}}" alt="">
+                    </div>
+                    <p class="product-dec" title="{{ item.name }}">
+                        {{# if(item.isPresale){ }}
+                        <span style="color: #ff3c29">【预售】</span>
+                        {{# } }}
+                        {{ item.name }}
+                    </p>
+                    <div class="product-price">
+                        <span class="cur-price">￥{{ item.maxPrice }}</span>
+                    </div>
+                    <div class="product-tag">
+                        {{# if(item.freePost){ }}
+                        <span class="layui-badge firstToThree">包邮</span>
+                        {{# } }}
+                        {{# if(item.isPromotion){ }}
+                        <span class="layui-badge firstToThree">特价</span>
+                        {{# } }}
+                    </div>
+                </a>
+            </li>
+            {{# }) }}
+        </ul>
+    </script>
+    <script type="text/html" id="wolianTemplate">
+        <ul class="special-counter-list">
+            {{# layui.each(d,function(index,item){ }}
+            <li>
+                <a href="/productModule/goodsdetail.html?productId={{ item.id }}" target="_blank">
+                    <div class="product-img">
+                        <img src="{{=layui.woLianw.getImgUrl(item.pictureUrl)}}" alt="">
+                    </div>
+                    <p class="product-dec" title="{{ item.name }}">
+                        {{# if(item.isPresale){ }}
+                        <span style="color: #ff3c29">【预售】</span>
+                        {{# } }}
+                        {{ item.name }}
+                    </p>
+                    <div class="product-price">
+                        <span class="cur-price">￥{{ item.listPrice }}</span>
+                        {{# if(item.marketPrice != null){ }}
+                        <span class="original-price" style="text-decoration: line-through;color: #666;float: right">￥{{ item.marketPrice }}</span>
+                        {{# } }}
+                    </div>
+                    <div class="product-tag">
+                        {{# if(item.freightType == 0){ }}
+                        <span class="layui-badge firstToThree">包邮</span>
+                        {{# } }}
+                        {{# if(item.isPromotion){ }}
+                        <span class="layui-badge firstToThree">特价</span>
+                        {{# } }}
+                    </div>
+                </a>
+            </li>
+            {{# }) }}
+        </ul>
+    </script>
+
+    <script src="../../js/main.js"></script>
+    <script>
+        layui.use(['element','laytpl','jquery','form','carousel','woLianw'],function () {
+            var element=layui.element;
+            var laytpl=layui.laytpl;
+            var $=layui.$;
+            var form=layui.form;
+            var carousel=layui.carousel;
+            var woLianw = layui.woLianw
+
+            woLianw.search({
+                isCenter:1
+            });
+
+            woLianw.buyCartSum(function () {
+
+            })
+            /*搜索根据关键词打开商品列表页*/
+            $('#repeat_search').on('click','#searchBtn',function () {
+                var key = $('#searchkey').val() || '';
+                var category = $('#choosecateBtnSpan').text() || '';
+                var categoryIds = $('#choosecateBtnSpan').attr('cid') || '';
+                window.open(encodeURI('../products/index.html?key='+key+'&category='+category+'&categoryIds='+categoryIds))
+            })
+
+            /*搜索框的enter事件*/
+            $('#repeat_search').on('keydown','#searchkey',function (e) {
+                var key = $(this).val() || '';
+                var category = $('#choosecateBtnSpan').text() || '';
+                var categoryIds = $('#choosecateBtnSpan').attr('cid') || '';
+                if(e.keyCode == 13){
+                    e.preventDefault()
+                    window.open(encodeURI('../products/index.html?key='+key+'&category='+category+'&categoryIds='+categoryIds))
+                }
+
+            })
+
+            /*获取进货单内的商品总数量*/
+            woLianw.buyCartSum(function (res) {
+                $('#cartSum').text(res.data)
+            })
+            if(window.localStorage.getItem('1788login')){
+                var loginName = JSON.parse(window.localStorage.getItem('1788login')).loginName
+                $('#loginName').text(loginName)
+            }
+
+            /*获取轮播图的数据*/
+            woLianw.optCbList(function (data) {
+                var html = ''
+                $.each(data,function (index,item) {
+                    html += '<div><a href="'+item.link+'"><img src="'+woLianw.getImgUrl(item.figureUrl)+'" alt="" title="'+item.name+'"></a></div>'
+                })
+                $('#carouselBox').html(html)
+                carousel.render({
+                    elem:'#test1',
+                    width:"1200px",
+                    height:"350px"
+
+                })
+            })
+
+            /*预售专场商品(10个)*/
+            woLianw.buyProductList({
+                isPreSale:1,
+                limit:10
+            },function (data) {
+                if(data && (data.resultList.length < 10)){
+                    $('#ysHead,#ysBox').remove()
+                    return false
+                }
+                renderTemplate(data.resultList,'specialCounter','yuShouSpecial')
+            })
+            /*特价专场商品(10个)*/
+            woLianw.buyProductList({
+                isPromotion:1,
+                limit:10
+            },function (data) {
+                if(data && (data.resultList.length < 10)){
+                    $('#tjHead,#tjBox').remove()
+                    return false
+                }
+                renderTemplate(data.resultList,'specialCounter','specialOffer')
+            })
+
+
+            /*轮播图设置*/
+            var swiper = new Swiper('.swiper-container', {
+                slidesPerView: 6,
+                paginationClickable: true,
+                spaceBetween: 0,
+                loop:true,
+                autoplay:2000,
+                nextButton: '.swiper-button-next',
+                prevButton: '.swiper-button-prev'
+            });
+
+            /*特别推荐(专栏)*/
+            var getOptColumnList=function () {
+                var getTpl=specialRecommend.innerHTML;
+                woLianw.optColumnList(function (data) {
+                    var headerHtml=document.getElementById("OptColumnList")
+                    layui.use("laytpl",function () {
+                        layui.laytpl(getTpl).render(data, function (html) {
+                            headerHtml.innerHTML=html;
+
+                            element.init();
+                        });
+                    });
+                });
+            }
+            getOptColumnList();
+
+            /*我连优选的商品(运营分类)*/
+            var getSpecialShowList=function () {
+                var getTpl=specialShow.innerHTML;
+                var headerHtml=document.getElementById("showList");
+                woLianw.optCategoryList(function (data) {
+                    /*如果没有运营分类的数据，我连优选从页面上去掉*/
+                    if(!data.list || (data.list.length == 0)){
+                        $('#youxuanwl').remove()
+                        $('#showList').remove()
+                        return false
+                    }
+                    console.log(data)
+                    $.each(data.list, function(i, idata){
+                        woLianw.optCategoryProductList({
+                            id:idata.id,
+                            limit:10
+                        }, function (productList) {
+                            var pList = {};
+                            pList.id = idata.id;
+                            pList.figureUrl = idata.figureUrl;
+                            pList.list = productList;
+                            pList.name = idata.name
+                            layui.laytpl(getTpl).render(pList, function (html) {
+                                //headerHtml.innerHTML = html
+                                $(headerHtml).append(html)
+                            });
+                        });
+                    });
+                });
+            }
+
+            getSpecialShowList()
+
+            /*我连推荐的商品*/
+            woLianw.userCenterRecommend({
+                limit:10
+            },function (data) {
+                console.log(data)
+                renderTemplate(data.list,'wolianTemplate','wolianTuiJian')
+            })
+
+            /*数据渲染模板*/
+            function renderTemplate(data, templateId, targetId) {
+                var template = document.getElementById(templateId).innerHTML
+                var target = document.getElementById(targetId)
+                laytpl(template).render(data, function (html) {
+                    target.innerHTML = html
+                })
+            }
+
+        })
+    </script>
+</body>
+</html>

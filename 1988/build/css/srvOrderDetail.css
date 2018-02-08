@@ -1,0 +1,83 @@
+body { padding: 0px 30px; background-color: #f1f5fa; }
+/*面包屑导航  start*/
+.seller-header {
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  position: relative;
+  background-color: #f1f5fa;
+  z-index: 99;
+}
+.seller-header .layui-breadcrumb {}
+.seller-header .layui-breadcrumb a {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 30px;
+  letter-spacing: 0.3px;
+  color: #5d7aa1 !important;
+}
+.seller-header .layui-breadcrumb a cite,
+.seller-header .layui-breadcrumb a span {
+  color: #5d7aa1;
+}
+/*面包屑导航  end*/
+
+/* 按钮 */
+.pi-TableButton { min-width: 80px; height: 26px; line-height: 26px; font-size: 12px; padding-left: 10px; padding-right: 10px; }
+.pi-TableButtonGreen { background-color: #39cb88; color: #fff; }
+.pi-TableButtonBlue { background-color: #438bfd; color: #fff; }
+.pi-TableButtonRed { background-color: #ff4e3e; color: #fff; }
+.pi-TableButtonWhite { background-color: #fff; color: #000; border: 1px solid #d9d9d9; }
+.pi-TableButtonWhite:hover { color: #000; }
+.pi-TableButtonGray { background-color: #f7f7f7; color: #000; border: 1px solid #d9d9d9; }
+.pi-TableButtonGray:hover { color: #000; }
+
+.whiteBoard:after { content: ''; display: block; clear: both; }
+.whiteBoard { overflow: hidden; background: #fff; width: 1090px; }
+
+.whiteBoard .rightPart { float: right; width: 304px; padding-bottom: 9999px; margin-bottom: -9999px;  border-left: 1px solid #e5e5e5; }
+.whiteBoard .rightPart .textList { font-size: 12px; padding: 20px 10px 10px 10px; }
+.whiteBoard .rightPart .textList li { padding-bottom: 20px; color: #666; }
+
+.whiteBoard .rightPart .pi-ImageWarp:after { content: ''; display: block; clear: both; }
+.whiteBoard .rightPart .pi-ImageWarp { padding: 10px; border-bottom: 1px solid #eee; }
+.whiteBoard .rightPart .pi-ImageWarp .pi-ImageBox:before { content: ''; display: block; position: absolute; left: 0; top: 0; bottom: 0; right: 0; border: 1px solid #eee; }
+.whiteBoard .rightPart .pi-ImageWarp .pi-ImageBox { float: left; width: 80px; height: 80px; position: relative; background: #f7f7f7; }
+.whiteBoard .rightPart .pi-ImageWarp .pi-ImageBox img { width: 80px; height: 80px; }
+.whiteBoard .rightPart .pi-ImageWarp .pi-TextBox { margin-left: 100px; position: relative; }
+
+.whiteBoard .leftPart { margin-right: 304px; padding: 24px 0 30px 56px; }
+.whiteBoard .leftPart .timeline {  }
+.whiteBoard .leftPart .timeline li { position: relative; }
+.whiteBoard .leftPart .timeline h3:before { 
+  content: ''; display: block; background: #1ec6c6; width: 6px; height: 6px; position: absolute; left: -26px; top: 9px;
+}
+.whiteBoard .leftPart .timeline h3 { font-size: 14px; font-weight: bold; position: relative; height: 24px; line-height: 24px; }
+.whiteBoard .leftPart .timeline h3 span { font-size: 16px; color: #ff3f32; }
+.whiteBoard .leftPart .timeline p { font-size: 12px; color: #888; padding: 14px 0 24px 0; }
+
+.whiteBoard .historyItem { padding: 10px 0; margin-bottom: 10px; border-bottom: 1px solid #eee; font-size: 12px; }
+.whiteBoard .historyItem .pi-ImageWarp:after { content: ''; display: block; clear: left; }
+.whiteBoard .historyItem .pi-ImageWarp { padding: 0 0 10px 0; }
+.whiteBoard .historyItem .pi-ImageWarp .pi-ImageBox:before { content: ''; display: block; position: absolute; left: 0; top: 0; bottom: 0; right: 0; border: 1px solid #eee; }
+.whiteBoard .historyItem .pi-ImageWarp .pi-ImageBox { float: left; width: 50px; height: 50px; position: relative; background: #f7f7f7; }
+.whiteBoard .historyItem .pi-ImageWarp .pi-ImageBox img { width: 50px; height: 50px; }
+.whiteBoard .historyItem .pi-ImageWarp .pi-TextBox { margin-left: 60px; position: relative; }
+.whiteBoard .historyItem .lead { height: 30px; }
+.whiteBoard .historyItem .vice { color: #ff5f26; height: 20px; line-height: 20px; }
+.whiteBoard .historyItem .remark { color: #666; }
+.whiteBoard .historyItem .itemTime { color: #999; padding: 6px 0; }
+.whiteBoard .srv-image { float: right; padding-right: 60px; }
+.whiteBoard .srv-image dd { float: left; width: 80px; margin-left: 20px; }
+.whiteBoard .srv-image .pi-ImageListWarp .pi-ImageBox:before { content: ''; display: block; position: absolute; left: 0; top: 0; bottom: 0; right: 0; border: 1px solid #eee; }
+.whiteBoard .srv-image .pi-ImageListWarp .pi-ImageBox { float: none; width: 80px; height: 80px; position: relative; background: #f7f7f7; }
+.whiteBoard .srv-image .pi-ImageListWarp .pi-ImageBox img { width: 80px; height: 80px; }
+.whiteBoard .srv-image .pi-ImageListWarp .pi-TextBox { margin-left: 0; width: 80px; text-align: center; font-size: 12px; padding-top: 6px; padding-bottom: 10px; color: #3e78d5; cursor: pointer; }
+.whiteBoard .srv-image .pi-ImageListWarp .pi-TextBox:hover { text-decoration: underline; }
+
+.popImageBox td { background: #fff; width: 500px; height: 500px; text-align: center; }
+.big-img { max-width: 500px; max-height: 500px; }
+
+.backButton { text-align: right; padding-top: 30px; padding-right: 30px; }

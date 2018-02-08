@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>首页</title>
+<meta name="renderer" content="webkit">
+<meta type="description" content="首页">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./plugins/layui255/css/layui.css">
+<link rel="stylesheet" href="./build/css/login.css">
+</head>
+<body>
+<script src="./plugins/layui255/layui.all.js"></script>
+<script src="./build/js/wolianwComponent/config.js"></script>
+<script>
+  layui.use(['element', "woLianw"], function() {
+  	var $ = layui.$
+    var element = layui.element
+  	var woLianw = layui.woLianw;
+    
+    var login1788 = localStorage.getItem('1788login');
+    var login1988 = localStorage.getItem('1988login');
+
+    //if (!login1788 && !login1988) {
+      woLianw.goLoginPage();
+    //} else if (login1788 && login1988) {
+    //  localStorage.removeItem('1788login');
+    //  localStorage.removeItem('1988login');
+    //  woLianw.goLoginPage();
+    //} else if (login1788) {
+    //  woLianw.goto1788();
+   // } else if (login1988) {
+    ///  woLianw.goto1988();
+   // }
+  });
+</script>
+</body>
+</html>

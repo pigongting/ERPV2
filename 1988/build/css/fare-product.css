@@ -1,0 +1,210 @@
+.main .back-order-operate{
+    padding: 20px 30px;
+}
+.main .layui-form .layui-form-item{
+    float: left;
+    clear: none;
+    text-align: left;
+    padding-right: 15px;
+}
+.main .layui-form .layui-form-item input{
+    height: 24px;
+}
+.main .layui-form .layui-form-item dl dd{
+    text-align: left;
+}
+.main .layui-form .layui-form-item label{
+    padding: 0;
+    text-align: left;
+    width: auto;
+}
+.main .layui-form #templateBox{
+    display: none;
+}
+.main input[disabled], input[readonly], fieldset[disabled]{
+    background-color: #FFFFFF;
+}
+.main .layui-form #editAll{
+    height: 26px;
+    line-height: 26px;
+    padding: 0px 20px;
+    background-color: #3dd08c;
+    color: #ffffff;
+    outline-style: none;
+    border: 0px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.main .layui-form button.search-btn{
+    width: 72px;
+    height: 26px;
+    line-height: 26px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+.main .back-order-operate .layui-form .layui-input-block{
+    margin-left: 66px;
+}
+.main .back-order-list .head-info{
+    height: 50px;
+    background-color: #e4e9f2;
+}
+.main .back-order-list .head-info p{
+    float: left;
+    line-height: 50px;
+    font-size: 14px;
+    color: #323232;
+}
+.main .back-order-list .head-info input[type=checkbox]{
+    vertical-align: middle;
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+}
+.main .back-order-list .head-info p:nth-of-type(1){
+    padding-left: 20px;
+}
+/*.main #productBox li{
+    height: 100px;
+    border-bottom: 1px solid #e5e5e5;
+    border-left: 1px solid #e5e5e5;
+    border-right: 1px solid #e5e5e5;
+}
+.main #productBox li>div{
+    height: 100px;
+    line-height: 100px;
+}
+.main #productBox li>div:nth-of-type(1){
+    padding-left: 20px;
+}
+.main #productBox li>div:nth-of-type(1) input[type=checkbox]{
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+
+}
+.main #productBox li .product-img img{
+    width: 80px;
+    height: 80px;
+}
+.main #productBox li .product-name a{
+    padding: 10px 20px 2px 0;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 5;
+    line-height: 16px;
+}
+.main #productBox li .product-weight input{
+    width: 40%;
+}*/
+.back-order-list{
+    padding: 20px 30px;
+}
+.main table{
+    text-align: left;
+    border: 1px solid #e5e5e5;
+    min-width: 900px;
+}
+.main table img{
+    width: 80px;
+    height: 80px;
+}
+.main .back-order-list table tr input[type=checkbox]{
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+    margin-right: 2%;
+    margin-left: 0;
+}
+.main table thead tr th:nth-of-type(1){
+    padding-left: 2%;
+}
+.main table tbody tr{
+    padding: 10px 0;
+    height: 100px;
+    border-bottom: 1px solid #e5e5e5;
+}
+.main table tbody tr td:nth-of-type(1){
+    padding-left: 2%;
+}
+.main table tbody tr td:nth-of-type(3){
+    white-space: inherit;
+}
+.main table tbody tr td p{
+    mix-width: 150px;
+    max-width: 250px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+}
+.main table tbody tr td a.product-link{
+
+
+}
+.main table input[type=text]{
+    width: 20%;
+    max-width: 35%;
+    border: 0;
+    padding-left: 2%;
+    outline-style: none;
+}
+.main table input[type=text]:focus{
+    border: 0 !important;
+}
+.main table input[type=text].editing{
+    border: 1px solid #e4e4e4 !important;
+}
+.main table tr td a.blue{
+    color: #468eff;
+}
+.main table span.cut-line{
+    color: #e5e5e5;
+    margin: 0 3px;
+}
+.main table tr td button:hover{
+    color: #323232;
+}
+.main table tr td button{
+    background-color: #FFFFFF;
+    color: #323232;
+    border: 1px solid #e4e4e4;
+}
+.main table .no-block{
+    display: none;
+}
+#pageBox{
+    float: right;
+    padding: 10px 30px;
+}
+#fareBox{
+    width: 460px;
+    height: 300px;
+}
+#fareBox form{
+    padding: 20px 40px;
+}
+
+#fareBox button{
+    width: 100px;
+    height: 30px;
+    background-color: #438bfd;
+    text-align: center;
+    line-height: 30px;
+}
+#fareBox button#cancleBtn{
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    border: 1px solid #438bfd;
+    color: #438bfd;
+    background-color: #FFFFFF;
+    text-align: center;
+}
+#fareBox .layui-form-item{
+    padding: 20px 0;
+}
+#fareBox .button-list{
+    padding: 50px;
+}

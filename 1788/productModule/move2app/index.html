@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta type="description" content="行业代理-一键搬家">
+    <title>一键搬家</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="../../plugs/layui/css/layui.css">
+    <link rel="stylesheet" href="../../font/font_399822_dtv8v5xokcfvfgvi/iconfont.css">
+    <link rel="stylesheet" href="../../plugs/font-awesome/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="../../css/allGoods/allGoods.css">
+    <link rel="stylesheet" href="../../css/publicHead.css">
+    <link rel="stylesheet" href="../../css/buy/product/move2app/index.css">
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+    <!--顶部导航开始-->
+    <div class="layui-header">
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <nav class="navbox">
+            <ul class="layui-nav layui-layout-left">
+                <li class="layui-nav-item" id="userCenter">
+                </li>
+            </ul>
+            <ul class="layui-nav layui-layout-right" id="commonHeader">
+
+            </ul>
+        </nav>
+    </div>
+    <!--顶部导航结束-->
+
+    <!-- logo + 搜索 +进货单 开始-->
+    <div class="grid_total" id="repeat_search"></div>
+    <!-- logo + 搜索 +进货单 结束-->
+    <div class="container">
+        <div class="filter-box">
+            <input type="button" class="layui-btn layui-btn-mini type" id="allType" value="全部">
+            <input type="button" class="layui-btn layui-btn-mini type" id="isMoved" value="已搬家">
+            <input type="button" class="layui-btn layui-btn-mini type" id="unMoved" value="未搬家">
+            <input type="button" id="moveAllBtn" class="layui-btn-mini layui-btn" lay-submit lay-filter="searchFilter" value="一键搬家">
+            <div class="checkAll">
+                <input type="checkbox" id="checkAll">
+                <span>全选</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-list container">
+        <ul class="list_goods_ul layui-form" id="productListBox">
+
+        </ul>
+    </div>
+    <div class="container layui-clear" >
+        <div id="page" style="float: right;padding: 10px;"></div>
+    </div>
+    <div class="container" style="padding: 10px 0px;">
+        <p style="font-size: 12px;color: #666666;text-align: center">2016-2019&copy;深圳我和网科技有限公司</p>
+    </div>
+</div>
+<script type="text/html" id="app">
+
+    <ul id="storeShipping">
+        {{# layui.each(d,function(index,item){ }}
+        <li>
+            <form action=""  class="layui-form formShipping" lay-ignore>
+                <div class="check-box">
+                    <input type="checkbox">{{ item.shipping }}
+                </div>
+                <div class="shipping-info">
+                    <div class="shipping-item">
+                        {{# if(item.ship_template_list.length != 0){ }}
+                        <input type="radio" name="ship_template_id" title="运费模板" class="layui-input-inline ship_template_id" value=" ">
+                        <select name="" id="" lay-filter="template" class="layui-input-inline">
+                            <option value=""> 请选择 </option>
+                            {{# layui.each(item.ship_template_list,function(index1,item2){ }}
+                            <option value="{{ item2.ship_template_id }}"> {{ item2.template_name }} </option>
+                            {{# }) }}
+                        </select>
+                        {{# } }}
+                    </div>
+                    <div class="shipping-item">
+                        <input name="ship_template_id" type="radio" title="统一运费" value="0" class="layui-input-inline ship_fare"><input class="layui-input-inline ship_fare_number" type="text">元
+                    </div>
+                    <input type="hidden" name="swayid" value="{{ item.swayid }}" class="swayid">
+                </div>
+            </form>
+        </li>
+        {{# }) }}
+    </ul>
+    <div class="btn-box">
+
+    </div>
+
+</script>
+<script src="../../plugs/layui/layui.all.js"></script>
+<script src="../../js/wolianwComponent/config.js"></script>
+<script src="../../js/main.js"></script>
+<script type="text/html" id="productTemplate">
+    {{# layui.each(d,function(index,item){ }}
+    <li style="height: 350px;">
+        <div class="imgBox">
+            <a href="/productModule/goodsdetail.html?productId={{ item.productId }}" target="_blank"  title="{{ item.name ? item.name : '' }}">
+                <img src="{{=layui.woLianw.getImgUrl(item.pictureUrl)}}" width="225px" height="224px"/>
+            </a>
+            <label>
+                <span class="left_span">{{ item.vendorName ? item.vendorName : '' }}</span>
+                <!--<span class="right_span">湖北武汉</span>-->
+            </label>
+        </div>
+        <div class="bottom_content">
+            <label>
+                <span class="goods_price">￥{{ item.minPrice }}</span>
+                <span class="mark-price">￥{{ item.maxPrice }}</span>
+            </label>
+            <p>
+                <a href="/productModule/goodsdetail.html?productId={{ item.productId }}" target="_blank" title="{{ item.name ? item.name : '' }}">
+                    {{# if(item.isPresale){ }}
+                    <span style="color: #ff3c29">【预售】</span>
+                    {{# } }}
+                    {{ item.name ? item.name : '' }}
+                </a>
+            </p>
+            <div class="products-tag" style="height: 20px;padding: 6px 10px;">
+                {{# if(item.isMove2App){ }}
+                <span class="layui-badge firstToThree">已搬家</span>
+                {{# } }}
+                {{# if(item.isPromotion){ }}
+                <span class="layui-badge firstToThree">特价</span>
+                {{# } }}
+                {{# if(item.freePost){ }}
+                <span class="layui-badge firstToThree">包邮</span>
+                {{# } }}
+
+            </div>
+            <article data-productid="{{ item.productId }}">
+                <div class="banjia-btn" style="float: left;">
+                    <input type="checkbox" lay-skin="primary" lay-filter="check11" title="搬家">
+                </div>
+                <label class="guanzhu-btn">
+                    <i class="fa fa-heart-o focus"></i>
+                    <span>关注</span>
+                </label>
+                <!--<label>
+                    <i class="fa fa-shopping-cart addToCart"></i>
+                    <span>加入购物车</span>
+                </label>-->
+            </article>
+        </div>
+
+        <div class="border-left"></div>
+        <div class="border-bottom"></div>
+        <div class="border-top"></div>
+        <div class="border-right"></div>
+    </li>
+
+    {{# }) }}
+</script>
+<script>
+    layui.use(['element','jquery', "woLianw", "laypage",'laytpl','form'], function () {
+        var element = layui.element;
+        var $ = layui.jquery;
+        var form = layui.form
+        var woLianw = layui.woLianw;
+        var laypage = layui.laypage;
+        var laytpl = layui.laytpl
+        var productIdArr = []
+
+        var keyword = $.trim($('#keyWord').val()).length>0 ? $.trim($('#keyWord').val()) : ( woLianw.GetQueryString('key') ? decodeURI(woLianw.GetQueryString('key')) : "" );
+        var currentPage = woLianw.GetQueryString('p') ?  woLianw.GetQueryString('p') : 1  ;
+        var totalRows=0;
+        var pageSize = 20;
+        var isfirst = true;
+        var isMove2App = 2;
+        var category = woLianw.GetQueryString('category') || '';
+        var categoryIds = woLianw.GetQueryString('categoryIds') || '';
+
+        woLianw.search({
+            category:category,
+            key:keyword
+        });
+
+        function renderProductList(){
+            woLianw.buyProductMove2app({
+                "key":keyword,
+                "page":currentPage,
+                "limit":pageSize,
+                "isMove2AppRequest":isMove2App,
+                "categoryIds":categoryIds
+            },function (data) {
+                console.log(data)
+                totalRows= data.totalRows;
+                if(isfirst) {
+                    laypage.render({
+                        elem: 'page'
+                        , count: totalRows
+                        , limit:pageSize
+                        ,theme:'#ff3c29'
+                        , layout: ['count', 'prev', 'page', 'next',  'skip']
+                        , jump: function (obj,first) {
+                            if(!first){
+                                currentPage = obj.curr
+                                renderProductList();
+                            }
+                        }
+                    });
+                    isfirst=false;
+                }
+                renderTemplate(data,'productTemplate','productListBox');
+                form.render();
+            });
+        }
+        renderProductList();
+
+        woLianw.buyCartSum(function () {
+
+        })
+
+
+
+
+        /*运费模板下拉，选中的值，赋给单选框*/
+        form.on('select(template)', function(data){
+            var _this = this
+            $(_this).parent().parent().parent().find('.ship_template_id').val(data.value)
+            form.render()
+        });
+        /*填完统一运费，复制给运费前面的单选框*/
+        $('body').on('blur','.ship_fare_number',function () {
+            var value = $(this).val()
+            if(!value){
+                value = 0
+            }
+            $(this).parent().find('.ship_fare').val(value)
+            form.render()
+        })
+        /*对商品进行搬家*/
+      /*  $('ul.list_goods_ul').on('click','.banjia-btn',function () {
+
+            var _this = this
+            var erp_goods_id = [$(_this).parent().attr('data-productid')]
+            var productIds = $(_this).parent().attr('data-productid')
+            woLianw.getStoreShipping(function (data) {
+                var template = document.getElementById('app').innerHTML
+                var html = laytpl(template)
+                var str = ''
+                html.render(data, function (ht) {
+                    str = ht
+                })
+
+                layer.open({
+                    title: '设置配送方式',
+                    area: '450px',
+                    btn:['确定','取消'],
+                    content: str,
+                    success: function(layero, index){
+                        form.render()
+                    },
+                    yes:function (index) {
+
+                        var erp_goods_json = getErpGoodsJson(erp_goods_id)
+                        woLianw.movingDomoving({
+                            productIds:productIds,
+                            erp_goods_json:JSON.stringify(erp_goods_json)
+                        },function (data) {
+                            layer.msg(data.msg)
+                        })
+                    },
+                    btn2:function (index) {
+                        layer.close(index)
+                    }
+
+                })
+
+            })
+        })*/
+
+
+        /*关注商品*/
+        $('ul.list_goods_ul').on('click','.guanzhu-btn',function () {
+            var _this = this
+            layer.confirm('确定关注商品吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                var productId = $(_this).parent().attr('data-productid')
+                woLianw.followAdd({
+                    disFollowType:2,
+                    itemIds:productId
+                },function (msg) {
+                    layer.msg(msg)
+                    $(_this).find('i,span').css('color','#ff3c29')
+                })
+            }, function(){
+
+            });
+        })
+
+        /*搬家设置运费模板后的数据JSON串*/
+        function getErpGoodsJson(productIds) {
+            var erp_goods_json = []
+            var goods_ship = []
+            $.each($('#storeShipping li form'),function (index,item) {
+                if($(item).find('.layui-form-checkbox').hasClass('layui-form-checked')){
+                    if($(item).find('.ship_template_id').parent().find('.layui-form-radio').hasClass('layui-form-radioed')){
+                        goods_ship.push({
+                            swayid:$(item).find('.swayid').val(),
+                            ship_template_id:$(item).find('.ship_template_id').val()
+                        })
+                    }
+                    if($(item).find('.ship_fare').parent().find('.layui-form-radio').hasClass('layui-form-radioed')){
+                        goods_ship.push({
+                            swayid:$(item).find('.swayid').val(),
+                            ship_fare:$(item).find('.ship_fare').val()
+                        })
+                    }
+                }
+            })
+            $.each(productIds,function (index,item) {
+                erp_goods_json.push({
+                    erp_goods_id:item,
+                    goods_ship:goods_ship
+                })
+            })
+            return erp_goods_json
+        }
+
+
+        /*点击搜索，搜索商品*/
+        $('#repeat_search').on('click','#searchBtn',function () {
+            categoryIds = $('#choosecateBtnSpan').attr('cid')
+            keyword = $('#searchkey').val()
+            isfirst = true;
+            renderProductList()
+        })
+
+        /*搜索框enter事件*/
+        $('#repeat_search').on('keydown','#searchkey',function (e) {
+            keyword = $(this).val()
+            categoryIds = $('#choosecateBtnSpan').attr('cid')
+            if(e.keyCode == 13){
+                e.preventDefault()
+                isfirst = true;
+                renderProductList()
+            }
+        })
+
+        /*选择综合*/
+        $('#allType').on('click',function () {
+            isMove2App = 2;
+            currentPage = 1;
+            pageSize = 20;
+            isfirst = true;
+            renderProductList();
+        })
+
+        /*已搬家*/
+        $('#isMoved').on('click',function () {
+            isMove2App = 1;
+            currentPage = 1;
+            pageSize = 20;
+            isfirst = true;
+            renderProductList();
+        })
+
+        /*未搬家*/
+        $('#unMoved').on('click',function () {
+            isMove2App = 0;
+            currentPage = 1;
+            pageSize = 20;
+            isfirst = true;
+            renderProductList();
+        })
+
+
+
+        /*数据渲染模板*/
+        function renderTemplate(data, templateId, targetId) {
+            var template = document.getElementById(templateId).innerHTML
+            var target = document.getElementById(targetId)
+            if(data.totalRows == 0) {
+                //输出没有符合要求的搜索结果
+                var html = '<li class="nothing">  没有搜索到符合要求的商品</li>';
+                target.innerHTML = html;
+                //重新向服务器提交搜索按照销量排序得到的结果，前面20条显示在该提示下
+            }else{
+                laytpl(template).render(data.resultList, function (html) {
+                    target.innerHTML = html
+                });
+            }
+            form.render();
+        }
+        function getCheckData() {
+            var inputArr = $('ul.list_goods_ul input')
+            var checkedCount = 0
+            productIdArr = []
+            $.each($('ul.list_goods_ul input'),function (index,item) {
+                if($(item)[0].checked){
+                    checkedCount ++
+                    productIdArr.push($(item).parent().parent().attr('data-productid'))
+                }
+            })
+
+            if(checkedCount == inputArr.length){
+                return {
+                    isAllCheck:true
+                }
+            }else{
+                return {
+                    isAllCheck:false
+                }
+            }
+            form.render()
+        }
+        /*选择单个商品*/
+        form.on('checkbox(check11)', function(data){
+
+
+            if(getCheckData().isAllCheck){
+                $('#checkAll')[0].checked = true
+            }else{
+                $('#checkAll')[0].checked = false
+            }
+            form.render()
+        });
+        /*全选与反选*/
+        $('#checkAll').on('click',function () {
+            if($(this)[0].checked){
+                $.each($('ul.list_goods_ul input'),function (index,item) {
+                    $(this)[0].checked = true
+                })
+
+            }else{
+                $.each($('ul.list_goods_ul input'),function (index,item) {
+                    $(this)[0].checked = false
+                })
+
+            }
+
+            getCheckData()
+            form.render()
+        })
+
+        /*一键搬家*/
+        $('#moveAllBtn').on('click',function () {
+            if(productIdArr.length == 0){
+                layer.alert('请先选择商品!')
+            }else if(productIdArr.length > 0){
+
+                woLianw.getStoreShipping(function (data) {
+                    if(!data){
+                        layer.alert('当前暂未设置配送方式！')
+                        return false
+                    }
+                    var template = document.getElementById('app').innerHTML
+                    var html = laytpl(template)
+                    var str = ''
+                    html.render(data, function (ht) {
+                        str = ht
+                    })
+
+                    layer.open({
+                        title: '设置配送方式',
+                        area: '450px',
+                        btn:['确定','取消'],
+                        content: str,
+                        success: function(layero, index){
+                            form.render()
+                        },
+                        yes:function (index) {
+
+                            var erp_goods_json = getErpGoodsJson(productIdArr)
+                            woLianw.movingDomoving({
+                                productIds:productIdArr.join(','),
+                                erp_goods_json:JSON.stringify(erp_goods_json)
+                            },function (data) {
+                                layer.msg(data.msg)
+                            })
+                        },
+                        btn2:function (index) {
+                            layer.close(index)
+                        }
+
+                    })
+
+                })
+            }
+        })
+
+
+    });
+
+</script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+.layui-header{
+    height: auto;
+    background-color: #fff;
+    height: 61px;
+    z-index: 900;
+}
+.layui-header ul.layui-nav{
+    background-color: #fff;
+}
+.layui-header .layui-nav .layui-nav-item a{
+    display: inline-block;
+    color: #909090;
+    padding: 0 5px;
+    font-size: 12px;
+}
+.layui-header .layui-nav .layui-nav-item  a span.layui-nav-more{}
+.layui-header .layui-nav .layui-nav-item  .layui-nav-child dl {
+    z-index: 60;
+}
+.layui-header .layui-nav .layui-nav-item  .layui-nav-child dd {
+    text-align: center;
+}
+.layui-header .layui-nav .layui-nav-item  i{
+
+}
+.layui-header .layui-nav .layui-nav-item  i,
+.layui-header .layui-nav .layui-nav-item a span{
+    color:#909090 ;
+    font-size: 12px;
+}
+.layui-header  .layui-nav .layui-nav-item a span.layui-nav-more{
+    border-color: #909090 transparent transparent;
+    right: -15px;
+    font-size: 12px;
+}
+.layui-header  .layui-nav .layui-nav-item a span.layui-nav-more{
+    border-color: #909090 transparent transparent;
+    right: -13px;
+}
+.layui-header  .layui-nav .layui-nav-item a span.layui-nav-mored ,
+.layui-header  .layui-nav .layui-nav-item a span.layui-nav-mored {
+    border-color:#fff #fff #909090 #fff ;
+}
+
+.layui-header .layui-header-right .layui-nav .layui-nav-item{
+    margin-right: 35px;
+    margin-left: 5px;
+}
+.layui-header .layui-nav .layui-nav-more{
+    display: none !important;
+}
+.layui-header ul.layui-nav li.layui-nav-item dl{
+    top: 35px;
+}

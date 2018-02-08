@@ -1,0 +1,1021 @@
+/*面包屑导航  start*/
+
+.seller-header {
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	position: relative;
+	background-color: #f1f5fa;
+	z-index: 99;
+}
+
+
+
+.seller-header .layui-breadcrumb a {
+	font-size: 14px;
+	font-weight: bold;
+	font-style: normal;
+	font-stretch: normal;
+	line-height: 30px;
+	letter-spacing: 0.3px;
+	color: #5d7aa1 !important;
+}
+
+.seller-header .layui-breadcrumb a cite,
+.seller-header .layui-breadcrumb a span {
+	color: #5d7aa1;
+}
+
+
+/*面包屑导航  end*/
+
+.user-box {
+	width: 105px;
+	height: 105px;
+	position: absolute;
+	top: 27px;
+	left: 10px;
+}
+
+.user-img {
+	width: 105px;
+	height: 105px;
+	border-radius: 50%;
+	border: 1px solid #e2e2e2;
+}
+
+.ibox-text {
+	position: absolute;
+	height: 130px;
+	top: 27px;
+	left: 135px;
+	right: 30px;
+}
+
+.line-text {
+	display: block;
+	height: 35px;
+	line-height: 35px;
+}
+
+.line-flex {
+	display: flex;
+}
+
+.line-flex>* {
+	flex: 1;
+}
+
+.icon-i {
+	display: inline-block;
+	font-size: 24px;
+}
+
+.icon-i>input {
+	display: none;
+}
+
+.marker {
+	font-size: 22px;
+	color: #ff4e3d;
+}
+
+.weixin {
+	font-size: 20px;
+	color: #39cb88;
+}
+
+.mobile {
+	font-size: 26px;
+	color: #3280f4;
+}
+
+.home {
+	font-size: 22px;
+	color: #3280f4;
+}
+
+.lineBox {
+	width: 95%;
+	border-bottom: 1px dashed #e2e2e2;
+	margin: 0 auto;
+	line-height: 0px;
+}
+
+.lineBox:last-child {
+	border-bottom: none;
+}
+
+.labelText {
+	display: inline-block;
+	line-height: 55px;
+	width: 100%;
+}
+
+.listLine {
+	display: inline-block;
+	width: 90px;
+	text-align: center;
+	line-height: 55px;
+}
+.ibox-title .lineBox label.listLine{
+	width: auto;
+	width: 17%;
+	flex: inherit;
+}
+.listLine span.listIcon,
+.listLine span.listText {
+	display: block;
+	line-height: 25px;
+	height: 25px;
+}
+
+.listLine span.listText {
+	font-size: 12px;
+	height: 30px;
+	line-height: 30px;
+}
+
+.listIcon i {
+	font-size: 20px;
+	line-height: 25px;
+	margin-top: 5px;
+}
+
+.listIcon b {
+	margin-top: 5px;
+	display: inline-block;
+}
+
+.layui-layer {
+	box-shadow: none!important;
+}
+
+.text-right {
+	text-align: right;
+}
+
+.countBox {
+	height: 150px;
+	background: #f4f8fb;
+	border-right: 10px solid #fff;
+}
+
+.countBox:last-child {
+	border-right: none;
+}
+
+.amount {
+	text-align: left;
+	margin-left: 20px;
+	color: #000;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.ulBox {
+	box-sizing: border-box;
+	display: flex;
+	height: 100%;
+}
+
+.ulBox>li {
+	flex: 1;
+	height: 50%;
+	margin-top: 45px;
+}
+
+.listNum {
+	font-size: 22px;
+	font-weight: bold;
+	color: #323232;
+	display: block;
+	width: 80%;
+	text-align: center;
+	margin: 0 auto;
+	height: 50%;
+	line-height: 45px;
+}
+
+.listTitle {
+	font-size: 14px;
+	color: #666;
+	display: block;
+	width: 80%;
+	text-align: center;
+	margin: 0 auto;
+	height: 50%;
+	line-height: 45px;
+}
+
+.echartsTools {
+	position: absolute;
+	right: 45px;
+	top: 20px;
+	width: 70px;
+	z-index: 999;
+}
+
+.echartsTools .ulBox li {
+	height: 21px;
+	width: 21px;
+	margin-top: 0;
+	text-align: center;
+	line-height: 21px;
+	font-size: 12px;
+	border: 1px solid #3280f4;
+	border-right: none;
+	cursor: pointer;
+}
+
+.echartsTools .ulBox li:last-child {
+	border-right: 1px solid #3280f4;
+}
+
+.liChecked {
+	background: #3280f4;
+	color: #fff;
+}
+
+body {
+	padding: 0px 30px;
+	background-color: #f1f5fa;
+	font: 14px microsoftYaHei, Helvetica, PingFang SC, \5FAE\8F6F\96C5\9ED1, Tahoma, Arial, sans-serif;
+}
+
+.main {
+	width: 100%;
+	background-color: #ffffff;
+	border-radius: 6px;
+	display: inline-block;
+}
+
+
+/*日期控件样式 start*/
+
+.dateInput {
+	width: 130px;
+	height: 24px;
+	background-image: url("./../images/datebg.png");
+	background-repeat: no-repeat;
+	background-position: 100px center;
+	outline-style: none;
+	outline: none;
+	padding-left: 10px;
+	border: 1px solid #e4e4e4;
+	border-radius: 2px;
+}
+
+
+/*日期控件样式 end*/
+
+
+/*搜索按钮 start*/
+
+.layui-btn.search-btn {
+	width: 70px;
+	height: 26px;
+	padding: 0;
+	font-size: 12px;
+	background-color: #438bfd;
+	line-height: 26px;
+}
+
+
+/*搜索按钮 end*/
+
+
+/*删除按钮 start*/
+
+.layui-btn.delete-btn {
+	width: 70px;
+	height: 26px;
+	padding: 0;
+	font-size: 12px;
+	background-color: #ff4e3d;
+	line-height: 26px;
+}
+
+
+/*删除按钮 end*/
+
+
+/*导出按钮 start*/
+
+.layui-btn.export-btn {
+	width: 70px;
+	height: 26px;
+	padding: 0;
+	font-size: 12px;
+	background-color: #438bfd;
+	line-height: 26px;
+}
+
+
+/*导出按钮 end*/
+
+.search-btn i,
+.delete-btn i,
+.export-btn i {
+	font-size: 12px !important;
+}
+
+.call-buyer-btn,
+.aftermarket-details,
+.agree-btn,
+.refuse-btn {
+	padding: 0px 10px;
+	border-radius: 3px;
+	border: 1px solid #e4e4e4;
+	cursor: pointer;
+	background-color: #f9fafb;
+	text-align: center;
+	line-height: 26px;
+}
+
+.edit-order-info {
+	padding: 5px 10px;
+	background-color: #438bfd;
+	color: #ffffff;
+	cursor: pointer;
+	border: 0;
+	border-radius: 3px;
+}
+
+.accept-order {
+	padding: 5px 20px;
+	color: #ffffff;
+	cursor: pointer;
+	border-radius: 2px;
+	background-color: #438bfd;
+	border: 0;
+}
+
+.refuse-order {
+	padding: 5px 20px;
+	color: #ffffff;
+	cursor: pointer;
+	border-radius: 2px;
+	background-color: #ff4e3d;
+	border: 0;
+}
+
+.add-groups-btn {
+	height: 26px;
+	background-color: #39cb88;
+	line-height: 26px;
+}
+
+@media screen and (min-width: 992px) and (max-width:1200px) {
+	.layui-col-lg4.layui-col-md12.layui-col-sm12.layui-col-xs12.border-right-dashed {
+		border-right: none;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width:992px) {
+	.border-right-dashed {
+		border-right: none;
+	}
+}
+
+.layui-form-select .layui-edge {
+	border-width: 4px;
+}
+
+.page {
+	height: 50px;
+	text-align: right;
+}
+
+
+/*商品发布 操作步骤 start */
+
+.operateSteps {
+	margin: 20px auto 10px;
+	height: 40px;
+	line-height: 40px;
+	margin-left: 30px;
+}
+
+.stepsList {
+	width: 300px;
+	height: 100%;
+	display: inline-block;
+	text-align: center;
+	background: #eff3f9;
+	margin-left: 10px;
+	cursor: not-allowed;
+}
+
+.operateSteps>span:first-child {
+	margin-left: 0;
+}
+
+.stepsList.activeStep {
+	background: #c6e0ff;
+	cursor: pointer;
+}
+
+.stepsList>i {
+	font-style: initial;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background-color: #94a9c6;
+	color: #fff;
+	vertical-align: middle;
+	line-height: 20px;
+	font-size: 12px;
+}
+
+.stepsList.activeStep>i {
+	background-color: #438bfd;
+}
+
+.stepsList>em {
+	font-style: initial;
+	vertical-align: middle;
+	margin-left: 10px;
+	font-size: 16px;
+}
+
+.rightPoint1:after,
+.rightPoint2:before,
+.rightPoint2:after,
+.rightPoint3:before,
+.rightPoint3:after {
+	content: "";
+	width: 0;
+	height: 0;
+	display: inline-block;
+	vertical-align: middle;
+	top: -2px;
+	position: relative;
+}
+
+.rightPoint1:after,
+.rightPoint2:after,
+.rightPoint3:after {
+	border-top: 20px solid #fff;
+	border-bottom: 20px solid #fff;
+	border-left: 20px solid #eff3f9;
+}
+
+.rightPoint2:before,
+.rightPoint3:before {
+	border-top: 20px solid #eff3f9;
+	border-bottom: 20px solid #eff3f9;
+	border-left: 20px solid transparent;
+}
+
+.rightPoint1:after {
+	right: -82px;
+}
+
+.rightPoint2:after {
+	right: -64px;
+}
+
+.rightPoint3:after {
+	right: -80px;
+}
+
+.rightPoint1.activeStep:after,
+.rightPoint2.activeStep:after,
+.rightPoint3.activeStep:after {
+	border-left: 20px solid #c6e0ff;
+}
+
+.rightPoint2.activeStep:before,
+.rightPoint3.activeStep:before {
+	border-top: 20px solid #c6e0ff;
+	border-bottom: 20px solid #c6e0ff;
+}
+
+.rightPoint2:before {
+	left: -64px;
+}
+
+.rightPoint3:before {
+	left: -96px;
+}
+
+span.rightPoint3 {
+	margin-left: 20px;
+}
+
+.content {
+	margin-left: 30px;
+	margin-right: 30px;
+}
+
+.content>h1 {
+	width: 201px;
+	height: 40px;
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 40px;
+	letter-spacing: 0px;
+	color: #323232;
+}
+
+.serach-input {
+	width: 200px;
+	width: 220px;
+	height: 30px;
+	padding-left: 12px;
+	border: solid 1px #e4e4e4;
+}
+
+/* .layui-btn.search-btn {
+	width: 96px;
+	height: 32px;
+	line-height: 32px;
+	vertical-align: top;
+} */
+
+.myselfcheck {
+	display: inline-block;
+	margin-left: 5px;
+	color: #323232;
+	cursor: pointer;
+}
+
+.ibox {
+	clear: both;
+	margin-bottom: 25px;
+	margin-top: 0;
+	padding: 0;
+}
+
+.ibox-border {
+	border: 1px solid #ccc;
+	padding-bottom: 10px;
+}
+
+.ibox-noBorder {
+	border: none;
+}
+
+.ibox.collapsed .ibox-content {
+	display: none
+}
+
+.ibox:after,
+.ibox:before {
+	display: table
+}
+
+.ibox-title {
+	-moz-border-bottom-colors: none;
+	-moz-border-left-colors: none;
+	-moz-border-right-colors: none;
+	-moz-border-top-colors: none;
+	background-color: #fff;
+	border-color: #e7eaec;
+	-webkit-border-image: none;
+	-o-border-image: none;
+	border-image: none;
+	/*border-style: solid solid none;*/
+	border-width: 4px 0 0;
+	color: inherit;
+	margin-bottom: 0;
+	padding: 14px 15px 14px;
+	min-height: 30px
+}
+
+.ibox-tools {
+	float: right;
+	margin-top: 0;
+	position: relative;
+	padding: 0;
+	top: -25px;
+}
+
+.ibox-tools a {
+	cursor: pointer;
+	margin-left: 5px;
+	color: #c4c4c4;
+}
+
+.ibox-content {
+	background-color: #fff;
+	color: inherit;
+	padding: 15px 20px 20px;
+	border-color: #e7eaec;
+	-webkit-border-image: none;
+	-o-border-image: none;
+	border-image: none;
+	border-style: solid solid none;
+	border-width: 1px 0
+}
+
+.layui-col-sm4 {
+	position: relative;
+	min-height: 1px;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+#category-body>div.layui-col-sm4:first-child {
+	padding-left: 0;
+}
+
+.selfCategory {
+	max-width: 800px;
+	min-width: 320px;
+}
+
+.treeview {
+	height: 280px;
+	overflow: auto;
+}
+
+.list-group {
+	padding-left: 0;
+	margin-bottom: 20px;
+}
+
+.list-group-item {
+	background-color: inherit;
+	border: 1px solid #e7eaec;
+	display: block;
+	margin-bottom: -1px;
+	padding: 10px 15px;
+	position: relative;
+	cursor: pointer;
+}
+
+.noitem {
+	padding: 10px 15px;
+	background-color: inherit;
+	text-align: center;
+	position: relative;
+}
+
+.categoryActive {
+	background-color: #f5f7fb;
+}
+
+.left {
+	float: left;
+}
+
+.text-center {
+	clear: both;
+	text-align: center;
+}
+
+.alert-info {
+	color: #438bfd;
+	background-color: rgba(71, 145, 253, 0.2);
+	border-color: rgba(71, 145, 253, 0.2);
+}
+
+.alert {
+	padding: 15px;
+	margin-bottom: 20px;
+	border: 1px solid transparent;
+	border-radius: 4px;
+}
+
+.categoryHidden {
+	display: none;
+}
+
+.disabled {
+	cursor: not-allowed;
+	opacity: 0.3;
+}
+
+.disabled:hover {
+	opacity: 0.3;
+}
+
+.blue-bg {
+	background-color: #438bfd;
+}
+
+.blue-bg {
+	color: #fff;
+}
+
+.blue-bg>h5 {
+	font-weight: 900;
+	font-size: 14px;
+}
+
+.blue-bg a {
+	margin-bottom: 5px;
+}
+
+.ibox-title.blue-bg {
+	border: none;
+}
+
+.blue-bg a.layui-btn {
+	color: #fff;
+}
+
+.layui-form .ibox-content {
+	border-color: #f1f1f1;
+}
+
+.ibox-content .layui-form-item {
+	margin-bottom: 0;
+}
+
+.ibox-title>h5 {
+	font-weight: bolder;
+	font-size: 15px;
+}
+
+.ibox-content .layui-form-item .layui-form-label {
+	width: auto;
+	min-width: 110px;
+}
+
+.ibox-content .layui-form-item .layui-input-inline {
+	width: 20%;
+}
+
+.ibox-content .layui-form-item .layui-input-inline.w80 {
+	width: 80%;
+}
+.ibox-content .layui-form-item .layui-input-inline.w100 {
+	width: 100%;
+}
+
+.layui-form-pane .layui-input-block.afterAddAttrBox {
+	margin-left: 0;
+	margin: 10px 0;
+}
+
+.afterAddAttr {
+	display: inline-block;
+	width: auto;
+}
+
+.addProAttrLab {
+	padding-left: 10px;
+	font-size: 15px;
+	color: darkgray;
+}
+
+.deleteAttrBtn {
+	margin-left: 10px;
+	vertical-align: top;
+}
+
+.red {
+	color: red!important;
+}
+
+.ibox-content .layui-form-item .layui-form-item {
+	margin-left: 20px;
+	padding-top: 15px;
+}
+
+.ibox-content .layui-form-item .layui-form-label.afterUnitName {
+	min-width: 10px;
+	padding: 8px 0;
+	border: none;
+}
+
+.priceRangeTab, .specificationsTab {
+	margin-left: 10px;
+	line-height: 38px;
+	width: 50%;
+	text-align: left;
+}
+#skuSetTab.specificationsTab{
+	width: 100%;
+}
+
+.priceRangeTab td, .priceRangeTab th, .specificationsTab td, .specificationsTab th {
+	border-bottom: 1px solid #ddd;
+}
+
+.priceRangeTab tr:last-child td, .specificationsTab tr:last-child td {
+	border-bottom: none;
+}
+
+.editorTr {
+	height: 45px;
+	line-height: 45px;
+}
+
+.myselfInput {
+	width: 100px;
+	height: 25px;
+	line-height: 25px;
+	border: 1px solid #ddd;
+	padding: 0 10px;
+}
+
+a.layui-btn.ml10 {
+	margin-left: 10px;
+}
+
+a.layui-btn.mt10 {
+	margin-top: 10px;
+}
+oductReleaseSuccess td, #productReleaseSuccess th{
+	font-size: 15px;
+	vertical-align: middle;
+}
+#productReleaseSuccess h2{
+	font-size: 40px;
+	font-weight: bolder;
+}
+#productReleaseSuccess{
+	height: 300px;
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+}
+a.setSame{
+	color: #438bfd;
+}
+.myselfitem{
+	width: 150px;
+	height: auto;
+	padding-right: 125px;
+	position: relative;
+	display: inline-block;
+	margin-left: 10px;
+    top: 5px;
+}
+
+.myselfitem a.addMySelfItem{
+	position: absolute;
+	top: 0;
+  right: 0;
+}
+.listColorPicter{
+	width: 100px;
+	margin-left: 10px;
+	display: inline-block;
+	position: relative;
+}
+.listColorPicter-upload{
+	cursor: pointer;
+	text-align: center;
+	border: 1px solid #ddd;
+	width: 100%;
+	height: 100px;
+	line-height: 100px;
+	box-sizing: border-box;
+	padding: 2px;
+	position: relative;
+}
+.listColorPicter p.thecolor{
+	text-align: left;
+}
+.listColorPicter p.thedele{
+	text-align: left;
+	cursor: pointer;
+}
+.listColorPicter-upload  > i{
+	line-height: 100px;
+	font-size: 50px;
+}
+.uploadPreviewImg{
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 999;
+}
+#goodsCategory .AppCategoryBox{
+	position: relative;
+}
+#goodsCategory .dropdown-toggle{
+	position: absolute;
+  right: 0;
+  top: 0px;
+}
+#divCatsShow{
+	margin-left: 10px;
+}
+.spanCatshow{
+	display: inline-block;
+}
+.spanCatshow > a.layui-btn{
+	float: left;
+  border-radius: 0;
+}
+#divCatsShow .layui-btn+.layui-btn{
+	margin-left: 0;
+}
+.labelCatsShow{
+	display: inline-block;
+	margin-left: 10px;
+}
+.AppCategoryBox #ulAppCategoryResults{
+	position: absolute;
+	height: 400px;
+	width: 100%;
+	overflow: auto;
+	border: 1px solid #ddd;
+	background-color: #fff;
+	z-index: 999;
+}
+#picterWrapper .layui-upload-list{
+	height: auto;
+	border: 1px solid #ddd;
+	padding-top: 20px;
+}
+.picterViewList{
+	height: 100px;
+	margin-bottom: 15px;
+}
+.picterViewList li{
+	width: 100px;
+	height: 100px;
+	border: 1px solid #ddd;
+	box-sizing: border-box;
+	float: left;
+	margin-left: 20px;
+	position: relative;
+}
+.picterViewList li > img{
+	width: 100%;
+	height: 100%;
+}
+.uploadBtnBox{
+	border-top: 1px solid #ccc;
+	height: 65px;
+	line-height: 65px;
+	text-align: right;
+}
+.isUpload span{
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	color: #009688;
+  font-size: 30px;
+}
+.isPreview span{
+	position: absolute;
+	right: -8px;
+	top: -8px;
+	color: #009688;
+  font-size: 20px;
+  cursor: pointer;
+}
+.deleCheckbox{
+	vertical-align: -webkit-baseline-middle;
+	color: #009688;
+	margin-right: 10px;
+}
+/*商品发布 操作步骤 end */
+
+.freightA{
+	position: absolute;
+	display: inline-block;
+	top: 2px;
+	right: -120px;
+    min-width: 100px;
+    height: 30px;
+	line-height: 30px;
+	color: #438bfd;
+	font-size: 14px;
+	font-weight: bolder;
+}
+.layui-input-inline a.freightA:last-child{
+	right: -250px;
+}
+
+
+input:focus {
+	border: 1px solid #1ab394!important;
+}
+
+input[disabled],
+input[readonly],
+fieldset[disabled] {
+	background-color: #eee;
+	opacity: 1;
+}
+
+
+/*滚动条 start*/
+
+
+/*::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+Pseudo ::scrollbar-thumb element
+::-webkit-scrollbar-thumb {
+    background-color: #999;
+}
+Pseudo ::scrollbar-track element
+
+::-webkit-scrollbar-track {
+    background-color: #F5F5F5;
+}*/
+
+
+/*滚动条  end*/

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div class="middle-box text-center animated fadeindown" style="text-align: center">
+        <h3 class="font-bold">恭喜您,订单支付操作完成</h3>
+        <div class="error-desc">
+            订单支付操作完成,页面在<a id="time_show">5</a>秒后将自动关闭...
+            <br /><a href="javascript:;"  id="close">关闭</a>
+        </div>
+    </div>
+</body>
+<script src="./plugs/layui/layui.all.js"></script>
+<script type="text/javascript">
+
+        var userAgent = navigator.userAgent,
+            rMsie = /(msie\s|trident.*rv:)([\w.]+)/,
+            rFirefox = /(firefox)\/([\w.]+)/,
+            rOpera = /(opera).+version\/([\w.]+)/,
+            rChrome = /(chrome)\/([\w.]+)/,
+            rSafari = / version\/([\w.]+).*(safari)/;
+        var browser;
+        var version;
+        var ua = userAgent.toLowerCase();
+        function uaMatch(ua) {
+            var match = rMsie.exec(ua);
+            if (match != null) {
+                return { browser: "IE", version: match[2] || "0" };
+            }
+            var match = rFirefox.exec(ua);
+            if (match != null) {
+                return { browser: match[1] || "", version: match[2] || "0" };
+            }
+            var match = rOpera.exec(ua);
+            if (match != null) {
+                return { browser: match[1] || "", version: match[2] || "0" };
+            }
+            var match = rChrome.exec(ua);
+            if (match != null) {
+                return { browser: match[1] || "", version: match[2] || "0" };
+            }
+            var match = rSafari.exec(ua);
+            if (match != null) {
+                return { browser: match[2] || "", version: match[1] || "0" };
+            }
+            if (match != null) {
+                return { browser: "", version: "0" };
+            }
+        }
+        var browserMatch = uaMatch(userAgent.toLowerCase());
+        if (browserMatch.browser) {
+            browser = browserMatch.browser;
+            version = browserMatch.version;
+        }
+
+
+
+</script>
+
+<script>
+    layui.use(['jquery'],function () {
+        var $ = layui.$
+        var intDiff = parseInt(5);
+        $(function () {
+            timer(intDiff); //倒计时总秒数量
+        });
+        $('#close').on('click',function () {
+            closepage()
+        })
+        function timer(intDiff) {
+
+            //var intDiff = parseInt(10); //倒计时总秒数量
+            var second = 0;//时间默认值
+
+            window.setInterval(function () {
+
+                if (intDiff > 0) {
+                    second = intDiff;
+                }
+                else {
+                    closepage();
+                }
+                $('#time_show').html(second);
+                intDiff--;
+            }, 1000);
+        }
+
+        function closepage() {
+            window.close();
+            //IE浏览器关闭方法
+            if (browser == "IE" || browser == "chrome") {
+                window.opener = null;
+                window.open("", "_self");
+                window.close();
+                //parent.closeTab();
+            }
+            //其他浏览器关闭方法
+            else {
+                self.opener = null;
+                self.close();
+            }
+        }
+    })
+</script>
+</html>

@@ -1,0 +1,616 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>商品列表</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="stylesheet" href="./plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="./plugins/font-awesome/font_399839_u0h8dbd9lu4pwrk9/iconfont.css">
+    <link rel="stylesheet" href="./build/css/main.css">
+    <link rel="stylesheet" href="./build/css/order-tobe-accept.css">
+    <link rel="stylesheet" href="./build/css/popup.css">
+    <link rel="stylesheet" href="./build/css/product-list.css">
+
+</head>
+<body>
+<div class="seller-header">
+            <span class="layui-breadcrumb">
+              <a href="javascript:;">你当前所在的位置</a>
+              <a href="javascript:;">商品管理</a>
+              <a><cite>商品草稿</cite></a>
+            </span>
+</div>
+<div class="main ">
+    <div class="back-order-operate layui-row">
+        <form action="" class="layui-form">
+            <div class="layui-form-item layui-col-lg3 layui-col-md4">
+                <label class="layui-form-label ">商品名称</label>
+                <div class="layui-input-block">
+                    <input type="text" name="name" id="name"  placeholder="请输入标题" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="button-list layui-col-lg4 layui-col-md6 layui-col-sm5 layui-col-xs12">
+                <button type="button" lay-filter="search" class="layui-btn search-btn" lay-submit>
+                    <i class="layui-icon iconfont">&#xe620;</i>查询
+                </button>
+                <button class="layui-btn delete-btn" type="reset">
+                    <i class="layui-icon iconfont">&#xe626;</i>清空
+                </button>
+            </div>
+        </form>
+    </div>
+    <div class="product-list">
+        <div class="head-info">
+            <p class="layui-col-sm5">商品信息</p>
+            <p class="layui-col-sm1">可售数量</p>
+            <p class="layui-col-sm1">单价</p>
+            <p class="layui-col-sm1">累计销量</p>
+            <p class="layui-col-sm2">发布时间</p>
+            <p class="layui-col-sm1">商品状态</p>
+            <p class="layui-col-sm1">操作</p>
+        </div>
+        <div class="batch">
+            <input type="checkbox" id="checkAll"><span>全选</span>
+            <input type="button" id="editAll" value="批量修改商品分组">
+        </div>
+        <ul id="productBox">
+
+        </ul>
+    </div>
+    <div id="pageBox"></div>
+
+</div>
+
+<script src="./plugins/layui/layui.js"></script>
+<script src="./build/js/wolianwComponent/config.js"></script>
+
+<script type="text/html" id="productTemplate">
+    {{# if(d.data.list.length == 0){ }}
+    <li class="no-data">暂无匹配的数据记录</li>
+    {{# } }}
+    {{# if(d.data.list.length != 0){ }}
+    {{# layui.each(d.data.list,function(index,item){ }}
+    <li data-id="{{ item.id ? item.id : '' }}">
+        <div class="product-status">
+            <p>商品分组:{{ item.groupName ? item.groupName : '(无)' }}</p>
+            <p>审核状态:
+                {{# for(var k in d.productVerifyStatus){ }}
+                {{ (item.verifyState == k) ? d.productVerifyStatus[k] : '' }}
+                {{# } }}
+            </p>
+            <p>审核备注:{{ item.reason ? item.reason : '' }}</p>
+        </div>
+        <div class="product-info">
+            <div class="layui-col-sm5 layui-col-xs5">
+                <div class="checkbox-box">
+                    <input type="checkbox" class="check-this" data-id="{{ item.id ? item.id : '' }}">
+                </div>
+                <div class="img-box">
+                    <img src="{{=layui.woLianw.getImgUrl(item.pictureUrl)}}" alt="商品图片" title="{{ item.name ? item.name : '' }}">
+                </div>
+                <div class="pro-name">
+                    <p class="product-name"><a href="">{{ item.name ? item.name : '' }}</a></p>
+                    <p class="buy-number">购买限制:
+                        {{# if((1 == item.minBuyNum) && (!item.maxBuyNum)){ }}
+                        无
+                        {{# } }}
+                        {{# if((1 !== item.minBuyNum) && (!item.maxBuyNum) ){ }}
+                        最小采购量{{ item.minBuyNum ? item.minBuyNum : '' }}件
+                        {{# } }}
+                        {{# if((1 == item.minBuyNum) && (item.maxBuyNum)){ }}
+                        每个用户限购{{ item.maxBuyNum ? item.maxBuyNum : '' }}件
+                        {{# } }}
+                        {{# if((item.minBuyNum) && (1 !== item.minBuyNum) && (item.maxBuyNum)){ }}
+                        最小采购量{{ item.minBuyNum ? item.minBuyNum : '' }}件，每个用户限购{{ item.maxBuyNum ? item.maxBuyNum : '' }}件
+                        {{# } }}
+                    </p>
+                    <p class="buy-area" title="{{ item.limitArea ? item.limitArea : '无' }}">限售区域:{{ item.limitArea ? item.limitArea : '无' }}</p>
+                    <p class="shipping">配送方式:
+                        {{# if(item.freightType == 0){ }}
+                        卖家承担运费
+                        {{# } }}
+                        {{# if(item.freightType == 1){ }}
+                        使用运费模板
+                        {{# } }}
+                        {{# if(item.freightType == 2){ }}
+                        运费到付
+                        {{# } }}
+                    </p>
+                </div>
+            </div>
+            <div class="layui-col-sm1 layui-col-xs1 sp sale-amount">
+                <div class="salebox">
+                    <span class="salenum">{{ (item.saleAmount != null) ? item.saleAmount : '' }}</span>
+                    {{# if(item.skuList.length > 0){ }}
+                    <div class="skuBox">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>规格型号</th>
+                                <th>货号</th>
+                                <th>数量</th>
+                            </tr>
+                            </thead>
+                            {{# layui.each(item.skuList,function(index2,item2){ }}
+                            <tr>
+                                <td>{{ item2.properties ? item2.properties : '' }}</td>
+                                <td>{{ item2.skuNo ? item2.skuNo : '' }}</td>
+                                <td>{{ item2.saleAmount ? item2.saleAmount : '' }}</td>
+                            </tr>
+                            {{# }) }}
+                        </table>
+                    </div>
+                    {{# } }}
+                </div>
+            </div>
+            <div class="layui-col-sm1 layui-col-xs1 sp">
+                <span>￥{{ item.vendorPrice ? item.vendorPrice : '' }}</span>
+            </div>
+            <div class="layui-col-sm1 layui-col-xs1 sp"><span>{{ (item.saleCount != undefined) ? item.saleCount : '' }}</span></div>
+            <div class="layui-col-sm2 layui-col-xs2 sp"><span>{{= item.createTime ? layui.woLianw.transDateType(item.createTime) : ''  }}</span></div>
+            <div class="layui-col-sm1 layui-col-xs1 sp"><span>
+                {{# for(var k in d.productStatus){ }}
+                {{ (item.onOffState == k) ? d.productStatus[k] : '' }}
+                {{# } }}
+            </span></div>
+            <div class="layui-col-sm1 layui-col-xs1 product-operate" data-id="{{ item.id ?item.id : '' }}">
+                {{# if(item.onOffState == 3){ }}
+                <button class="layui-btn layui-btn-mini product-editor">编辑</button>
+                {{# } }}
+                {{# if(item.onOffState == 3){ }}
+                <button class="layui-btn layui-btn-mini delete-product">删除</button>
+                {{# } }}
+            </div>
+        </div>
+
+    </li>
+    {{# }) }}
+    {{# } }}
+</script>
+
+
+<script>
+    layui.use(['element','form','laydate','laytpl', 'layer','woLianw','laypage'],function () {
+        var element=layui.element;
+        var form = layui.form;
+        var laydate = layui.laydate;
+        var laytpl = layui.laytpl;
+        var $ = layui.$;
+        var layer = layui.layer;
+        var woLianw = layui.woLianw;
+        var laypage = layui.laypage;
+
+
+        var name = woLianw.GetQueryString('name')
+        var skuNo = woLianw.GetQueryString('skuNo')
+        var groupId = woLianw.GetQueryString('groupId')
+        var verifyState = woLianw.GetQueryString('verifyState')
+        var onOffState = woLianw.GetQueryString('onOffState')
+        var createTimeStart = woLianw.GetQueryString('createTimeStart')
+        var createTimeEnd = woLianw.GetQueryString('createTimeEnd')
+        var page = woLianw.GetQueryString('page')
+        var limit = woLianw.GetQueryString('limit')
+        var curScreen ={
+            name:name,
+            onOffState:3,
+            page:page,
+            limit:limit
+        }
+
+        /*日期控件渲染*/
+        var dtartDate=laydate.render({
+            elem:"#createTimeStart",
+            calendar: true,
+            /*设置结束时间不能早于开始时间*/
+            change:function (value, date, endDate) {
+                endDate1.config.min={
+                    year:date.year,
+                    month:date.month-1, //关键
+                    date: date.date
+                }
+            },
+            done: function(value, date, endDate){
+                endDate1.config.min={
+                    year:date.year,
+                    month:date.month-1, //关键
+                    date: date.date
+                }
+            }
+        })
+        var endDate1=laydate.render({
+            elem:"#createTimeEnd"
+        })
+
+
+        /*获取所有的商品状态信息*/
+        woLianw.getEnum('product-status',function (data) {
+            /*商品状态信息存sessionStorage*/
+            window.sessionStorage.setItem('productStatus',JSON.stringify(data));
+            /*动态生成商品状态下拉框*/
+            var html='<option value=""></option>'
+            for (var k in data ){
+                if(k != 3){
+                    html+='<option value="'+k+'">'+data[k]+'</option>'
+                }
+            }
+            $('#onOffState').html(html)
+            /*更新渲染*/
+            form.render()
+        })
+
+        /*获取所有审核状态的信息*/
+        woLianw.getEnum('product-verify-status',function (data) {
+            /*审核状态信息存sessionStorage*/
+            window.sessionStorage.setItem('productVerifyStatus',JSON.stringify(data));
+            /*动态生成审核状态下拉框*/
+            var html='<option value=""></option>'
+            for (var k in data ){
+                html+='<option value="'+k+'">'+data[k]+'</option>'
+            }
+            $('#verifyState').html(html)
+            /*更新渲染*/
+            form.render()
+        })
+
+        /*在用户上获取商品分组信息*/
+        woLianw.productGroupList({},function (data) {
+            window.sessionStorage.setItem('groupList',JSON.stringify(data))
+            var html='<option value=""></option><option value="">全部</option><option value="-1">(无)</option>'
+            var length = data.length
+            for(var i=0;i<length;i++){
+                html+='<option value="'+data[i].id+'">'+data[i].name+'</option>'
+            }
+            $('#groupId').html(html)
+            /*更新渲染*/
+            form.render()
+        })
+
+        /*进入页面第一次获取商品信息，默认无条件获取*/
+        woLianw.sellProductList(curScreen,function (data) {
+            renderPage(data)
+            renderTemplate({
+                data:data,
+                productStatus:JSON.parse(window.sessionStorage.getItem('productStatus')),
+                productVerifyStatus:JSON.parse(window.sessionStorage.getItem('productVerifyStatus'))
+            },'productTemplate','productBox')
+        })
+
+        /*全选与取消全选*/
+        $('#checkAll').on('click',function () {
+            var _this = this
+            if($(_this)[0].checked){
+                $(_this)[0].checked=true
+                $.each($('#productBox').find('.check-this'),function (index,item) {
+                    $(this)[0].checked = true;
+                })
+            }else {
+                $(_this)[0].checked = false
+                $.each($('#productBox').find('.check-this'),function (index,item) {
+                    $(this)[0].checked = false;
+                })
+            }
+        })
+
+        /*点击查询按钮，按条件进行查询*/
+        form.on('submit(search)', function(data){
+            for(var k in curScreen){
+                delete curScreen[k]
+            }
+            for(var k in data.field){
+                curScreen[k] = data.field[k]
+                console.log(data.field[k])
+            }
+            curScreen.onOffState = 3
+            woLianw.sellProductList(data.field,function (data) {
+                renderPage(data)
+                renderTemplate({
+                    data:data,
+                    productStatus:JSON.parse(window.sessionStorage.getItem('productStatus')),
+                    productVerifyStatus:JSON.parse(window.sessionStorage.getItem('productVerifyStatus'))
+                },'productTemplate','productBox')
+            })
+            return false; //阻止表单跳转。如果需要表单跳转，去掉这段即可。
+        });
+
+        /*删除某个商品*/
+        $('#productBox').on('click','.delete-product',function () {
+            var _this = this
+            layer.confirm('确定删除这个商品吗？', {
+                btn: ['确定','取消'] //按钮
+                ,title:'提示'
+            }, function(index){
+                /*删除成功后，将被删除的商品从dom中移除*/
+                var productId = $(_this).parent().attr('data-id')
+                woLianw.productDelete(productId,function (msg) {
+                    $(_this).parent().parent().parent().remove()
+                })
+                layer.close(index)
+            }, function(){
+
+            });
+
+        })
+
+        /*修改某个商品的可售数量*/
+        $('#productBox').on('click','.edit-salenum',function () {
+            var _this = this
+            var id = $(_this).parent().attr('data-id')
+            woLianw.productSku(id,function (data) {
+                /*查询商品sku信息，拼接弹框内容*/
+                var html=''
+                html+='<p class="sku-product-name">商品名称:'+data.name+'</p>' +
+                    '<table class="sku-list">' +
+                    '<thead>'+
+                    '<tr>' +
+                    '<th>规格型号</th>' +
+                    '<th>单位</th>' +
+                    '<th>可售数量</th>' +
+                    '</tr>' +
+                    '</thead>' +
+                    '<tbody>'
+                $.each(data.skuList,function (index,item) {
+                    html+='<tr><td>'+item.properties.slice(1,-1)+'</td><td>'+data.unitName+'</td><td><input name="'+item.id+'" type="text" value="'+item.saleAmount+'"></td></tr>'
+                })
+                html+='</tbody></table>'
+                layer.open({
+                    type: 1,
+                    title: '可售数量',
+                    btn: ['保存', '取消'],
+                    area: '450px', //宽高
+                    content: html,
+                    yes: function (index) {
+                        /*保存编辑的sku信息*/
+                        var skuInfo = {}
+                        $.each($('.sku-list').find('input'), function (index, item) {
+                            skuInfo[$('.sku-list').find('input').eq(index).attr('name')] = Number($('.sku-list').find('input').eq(index).val())
+                        })
+
+                        woLianw.productSkuSaleAmount({
+                            skuInfo:JSON.stringify(skuInfo)
+                        },function (msg) {
+                            layer.msg(msg)
+                            /*重新获取新的商品列表*/
+                            woLianw.sellProductList({},function (data) {
+                                renderTemplate({
+                                    data:data,
+                                    productStatus:JSON.parse(window.sessionStorage.getItem('productStatus')),
+                                    productVerifyStatus:JSON.parse(window.sessionStorage.getItem('productVerifyStatus'))
+                                },'productTemplate','productBox')
+                            })
+                        })
+                        layer.close(index)
+                    }
+                });
+            })
+        })
+
+        /*点击上架按钮，工厂将商品上架*/
+        $('#productBox').on('click','.online-btn',function () {
+            var _this = this
+            layer.confirm('确定将商品上架吗？', {
+                btn: ['确定','取消'] //按钮
+                ,title:'提示'
+            }, function(index){
+                /*上架成功后，重新获取商品列表*/
+                var productId = $(_this).parent().attr('data-id')
+                /*参数online:1表示将商品上架，否则表示将商品下架*/
+                woLianw.sellProductOnline({
+                    productId:productId,
+                    online:1
+                },function (msg) {
+                    layer.msg(msg)
+                    woLianw.sellProductList(curScreen,function (data) {
+                        renderTemplate({
+                            data:data,
+                            productStatus:JSON.parse(window.sessionStorage.getItem('productStatus')),
+                            productVerifyStatus:JSON.parse(window.sessionStorage.getItem('productVerifyStatus'))
+                        },'productTemplate','productBox')
+                    })
+                })
+                layer.close(index)
+
+            }, function(){
+
+            });
+        })
+
+        /*点击下架按钮，将相应商品下架*/
+        $('#productBox').on('click','.downline-btn',function () {
+            var _this = this
+            layer.confirm('确定将商品下架吗？', {
+                btn: ['确定','取消'] //按钮
+                ,title:'提示'
+            }, function(index){
+                /*下架成功后，重新获取商品列表*/
+                var productId = $(_this).parent().attr('data-id')
+                /*参数online:1表示将商品上架，否则表示将商品下架*/
+                woLianw.sellProductOnline({
+                    productId:productId,
+                    online:0
+                },function (msg) {
+                    layer.msg(msg)
+                    woLianw.sellProductList(curScreen,function (data) {
+                        renderTemplate({
+                            data:data,
+                            productStatus:JSON.parse(window.sessionStorage.getItem('productStatus')),
+                            productVerifyStatus:JSON.parse(window.sessionStorage.getItem('productVerifyStatus'))
+                        },'productTemplate','productBox')
+                    })
+                })
+                layer.close(index)
+
+            }, function(){
+
+            });
+        });
+
+        /*点击编辑按钮，跳转到商品编辑页面 并带上商品id*/
+        $("#productBox").on("click", "button.product-editor", function(){
+            var productId = $(this).parent().attr('data-id');
+            window.open('productEditor.html?productId='+productId+'',' _parent');
+            //window.location.href='productEditor.html?productId='+productId+'';
+        });
+
+        /*修改某个商品的分组信息*/
+        $('#productBox').on('click','.edit-group',function () {
+            var _this = this
+            var html='<form class="group-list layui-form" id="groupListBox"><div class="layui-form-item"><label class="layui-form-label">商品分组</label><div class="layui-input-block"><select>'
+            var groupList = JSON.parse(window.sessionStorage.getItem('groupList'))
+            $.each(groupList,function (index,item) {
+                html+='<option value="'+item.id+'">'+item.name+'</option>'
+            })
+            html+='</select></div></div></form>'
+            layer.open({
+                type: 1,
+                title: '修改商品分组信息',
+                btn: ['保存', '取消'],
+                area: '450px', //宽高
+                content: html,
+                success:function () {
+                    form.render()
+                },
+                yes: function (index) {
+                    var productId = $(_this).parent().attr('data-id')
+                    var groupId = $('#groupListBox').find('option:selected').val()
+                    woLianw.addSellProductGroup1({
+                        productIds:productId,
+                        groupId:groupId
+                    },function (msg) {
+                        layer.msg(msg)
+                        /*修改成功后，再次查询商品列表*/
+                        woLianw.sellProductList(curScreen,function (data) {
+                            renderTemplate({
+                                data:data,
+                                productStatus:JSON.parse(window.sessionStorage.getItem('productStatus')),
+                                productVerifyStatus:JSON.parse(window.sessionStorage.getItem('productVerifyStatus'))
+                            },'productTemplate','productBox')
+                        })
+                    })
+                    layer.close(index)
+                }
+            })
+        })
+
+        $('#editAll').on('click',function () {
+            var productArr = []
+            $.each($("#productBox>li").find('.check-this'),function (index,item) {
+                if($("#productBox>li").find('.check-this')[index].checked){
+                    productArr.push($("#productBox>li").find('.check-this').eq(index).attr('data-id'))
+                }
+            })
+            if(productArr.length==0){
+                layer.open({
+                    title:'提示',
+                    content:'请先勾选商品'
+                })
+                return false
+            }
+            var _this = this
+            var html='<form class="group-list layui-form" id="groupListBox"><div class="layui-form-item"><label class="layui-form-label">商品分组</label><div class="layui-input-block"><select>'
+            var groupList = JSON.parse(window.sessionStorage.getItem('groupList'))
+            $.each(groupList,function (index,item) {
+                html+='<option value="'+item.id+'">'+item.name+'</option>'
+            })
+            html+='</select></div></div></form>'
+            layer.open({
+                type: 1,
+                title: '修改商品分组信息',
+                btn: ['保存', '取消'],
+                area: '450px', //宽高
+                content: html,
+                success:function () {
+                    form.render()
+                },
+                yes: function (index) {
+                    var productArr = []
+                    $.each($("#productBox>li").find('.check-this'),function (index,item) {
+                        if($("#productBox>li").find('.check-this')[index].checked){
+                            productArr.push($("#productBox>li").find('.check-this').eq(index).attr('data-id'))
+                        }
+                    })
+                    var productId = productArr.join(',')
+                    console.log(productId)
+                    var groupId = $('#groupListBox').find('option:selected').val()
+                    woLianw.addSellProductGroup1({
+                        productIds:productId,
+                        groupId:groupId
+                    },function (msg) {
+                        layer.msg(msg)
+                        /*修改成功后，再次查询商品列表*/
+                        woLianw.sellProductList({},function (data) {
+                            renderTemplate({
+                                data:data,
+                                productStatus:JSON.parse(window.sessionStorage.getItem('productStatus')),
+                                productVerifyStatus:JSON.parse(window.sessionStorage.getItem('productVerifyStatus'))
+                            },'productTemplate','productBox')
+                        })
+                    })
+                    layer.close(index)
+                }
+            })
+        })
+
+
+        /*分页控件配置*/
+        function renderPage(data) {
+            laypage.render({
+                elem: 'pageBox'
+                ,count: data.total
+                ,layout: ['count', 'prev', 'page', 'next', 'limit', 'skip']
+                ,limits:[15,25,35]
+                ,limit:15
+                ,curr: location.hash.replace('#!page=', '') //获取起始页
+                ,hash: 'page' //自定义hash值
+                ,jump: function(obj,first){
+                    //obj包含了当前分页的所有参数，比如：obj.curr得到当前页，以便向服务端请求对应页的数据。obj.limit得到每页显示的条数
+
+                    //首次不执行
+                    if(!first){
+                        //搜集表单数据和分页信息
+                        var data={
+                            name: $('#name').val() || '',
+                            skuNo: $('#skuNo').val() || '',
+                            groupId: $('#groupId').val() || '',
+                            verifyState:$('#verifyState').val() || '',
+                            onOffState:$('#onOffState').val() || '',
+                            createTimeStart:$('#createTimeStart').val(),
+                            createTimeEnd:$('#createTimeEnd').val(),
+                            page:obj.curr,
+                            limit:obj.limit
+                        }
+                        curScreen.page = obj.curr
+                        curScreen.limit = obj.limit
+                        woLianw.sellProductList(curScreen,function (data) {
+                            renderTemplate({
+                                data:data,
+                                productStatus:JSON.parse(window.sessionStorage.getItem('productStatus')),
+                                productVerifyStatus:JSON.parse(window.sessionStorage.getItem('productVerifyStatus'))
+                            },'productTemplate','productBox')
+                        })
+                    }
+                }
+            });
+        }
+        /*数据渲染模板*/
+        function renderTemplate(data,templateId,targetId) {
+
+            var template=document.getElementById(templateId).innerHTML
+            var target=document.getElementById(targetId)
+            laytpl(template).render(data,function (html) {
+                target.innerHTML=html
+            })
+        }
+
+
+
+
+    })
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+</html>
+

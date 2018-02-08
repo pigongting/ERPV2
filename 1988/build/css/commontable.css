@@ -1,0 +1,84 @@
+.layui-layer { border-radius: 4px !important; }
+.layui-layer-title { border-radius: 4px 4px 0 0 !important; height: 40px !important; line-height: 40px !important; }
+
+.layui-form-label { padding: 2px 15px; }
+.layui-input-block { min-height: 24px; }
+.layui-form-mid { padding: 2px 0!important; }
+.layui-input { height: 24px; line-height: 22px\9; }
+.layui-form-select .layui-input { background: #fff; }
+.layui-form-item .layui-inline { margin-bottom: 10px; }
+
+.pi-FormFilter { padding: 30px 50px 5px 50px; border-bottom: 1px solid #e4e4e4; }
+.pi-FormFilter:after { content: ''; display: block; clear: both; }
+.pi-FilterItem { margin-right: 300px; }
+.pi-FilterItem .layui-form-item { clear: none; }
+.pi-FilterSubmit { float: right; width: 300px; }
+
+.pi-CommonTable { padding: 20px 50px; }
+.pi-CommonTable table { table-layout: fixed; }
+.pi-CommonTable table th,
+.pi-CommonTable table td { word-wrap: break-word; word-break: break-all; padding-right: 10px; }
+
+.pi-CommonTable table thead { background:  }
+
+.pi-Page { text-align: right; padding: 0 50px 20px 50px; }
+
+.pi-LinkColor { color: #3e78d5 !important; cursor: pointer; }
+.pi-LinkColor:hover { text-decoration: underline; }
+
+.pi-TableButton { width: initial !important; min-width: 80px !important; height: 26px !important; line-height: 26px !important; font-size: 12px; padding-left: 10px; padding-right: 10px; opacity: .9; filter: alpha(opacity=90); }
+.pi-TableButtonGreen { background-color: #39cb88; color: #fff; }
+.pi-TableButtonBlue { background-color: #438bfd; color: #fff; }
+.pi-TableButtonRed { background-color: #ff4e3e; color: #fff; }
+.pi-TableButtonTiffany { background-color: #1cc8c6; color: #fff; }
+.pi-TableButtonWhite { background-color: #fff; color: #000; border: 1px solid #d9d9d9; }
+.pi-TableButtonWhite:hover { color: #000; }
+.pi-TableButtonGray { background-color: #f7f7f7; color: #000; border: 1px solid #d9d9d9; }
+.pi-TableButtonGray:hover { color: #000; }
+
+.pi-CommonTable { padding: 20px 50px; }
+.pi-CommonTable table { table-layout: fixed; }
+.pi-CommonTable table th,
+.pi-CommonTable table td { word-wrap: break-word; word-break: break-all; padding-right: 10px; }
+
+.pi-TableHead { width: 100%; background: #e4e9f2; border: 1px solid #e4e9f2; margin-bottom: 20px; }
+.pi-TableHead th { height: 50px; text-align: left; word-wrap:  }
+
+.pi-TableBody { width: 100%; border: 1px solid #e4e4e4; }
+.pi-TableBody tr { border-bottom: 1px solid #e4e4e4; }
+.pi-TableBody td { padding-top: 10px; padding-bottom: 10px; position: relative; }
+
+.pi-FirstColumn { padding-left: 20px; }
+
+/* 员工列表 */
+.staff-list .cloumn-1 { width: 40px; }
+.staff-list .cloumn-2 { width: 150px; }
+.staff-list .cloumn-3 { width: 150px; }
+.staff-list .cloumn-4 { width: 150px; }
+.staff-list .cloumn-5 { width: 150px; }
+.staff-list .cloumn-6 { width: 150px; }
+.staff-list .cloumn-7 { }
+.staff-list .cloumn-8 { width: 400px; }
+
+/* 岗位列表 */
+.station-list .cloumn-1 { width: 40px; }
+.station-list .cloumn-2 { width: 150px; }
+.station-list .cloumn-3 { width: 150px; }
+.station-list .cloumn-4 { width: 150px; }
+.station-list .cloumn-5 { width: 150px; }
+.station-list .cloumn-6 { width: 150px; }
+.station-list .cloumn-7 { }
+.station-list .cloumn-8 { width: 400px; }
+
+/* 地址列表 */
+.userManage .cloumn-1 { width: 150px; }
+.userManage .cloumn-2 { width: 150px; }
+.userManage .cloumn-3 { width: 300px; }
+.userManage .cloumn-4 {}
+.userManage .cloumn-5 { width: 300px; }
+
+
+
+
+
+

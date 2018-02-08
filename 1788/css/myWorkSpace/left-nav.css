@@ -1,0 +1,88 @@
+
+.main .layui-left-nav .layui-nav-side{
+    position:fixed;
+    left: 50%;
+    margin-left: -600px;
+    background-color: #01A783;
+    width: 80px;
+    /*FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#01A48F,endColorStr=#38BD90); */ /*IE 6 7 8*/
+    background: -ms-linear-gradient(top, #01A48F,  #38BD90);        /* IE 10 */
+
+    background:-moz-linear-gradient(top,#01A48F,#38BD90);/*火狐*/
+
+    background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#01A48F), to(#38BD90));/*谷歌*/
+
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#01A48F), to(#38BD90));      /* Safari 4-5, Chrome 1-9*/
+
+    background: -webkit-linear-gradient(top, #01A48F, #38BD90);   /*Safari5.1 Chrome 10+*/
+
+    background: -o-linear-gradient(top, #01A48F, #38BD90);  /*Opera 11.10+*/
+    background-image: url("./../../img/left-side-nav.png");
+}
+.main .layui-left-nav .layui-nav {
+    overflow-x: visible;
+}
+.main .layui-left-nav .layui-nav .layui-nav-item a{
+    height: 70px;
+    font-size: 12px;
+    color: #fff;
+    padding: 17px 0;
+    box-sizing: border-box;
+}
+.main .layui-left-nav .layui-nav .layui-nav-bar{
+    display: none !important;
+}
+.main .layui-left-nav .layui-nav .layui-nav-item a:hover{
+    background-color: rgba(47,79,79,0.5);
+}
+.main .layui-left-nav .layui-nav .layui-nav-item a span{
+    font-size: 12px;
+    display: block;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    color: #fff;
+}
+.main .layui-left-nav .layui-nav .layui-nav-item a span.layui-nav-more{
+    display: none !important;
+}
+.main .layui-left-nav .layui-nav .layui-nav-item a i{
+    display: block;
+    font-size: 16px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+}
+.main .layui-left-nav .layui-nav .layui-nav-item dl{
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    left: 80px;
+    z-index: 1000;
+}
+.main .layui-left-nav .layui-nav .layui-nav-item:hover dl{
+    display: block;
+}
+.main .layui-left-nav .layui-nav .layui-nav-item dl dt,
+.main .layui-left-nav .layui-nav .layui-nav-item dl dd{
+    text-align: center;
+}
+.main .layui-left-nav .layui-nav .layui-nav-item dl dt {
+    color: #666666;
+}
+.main .layui-left-nav .layui-nav .layui-nav-item dl dd a{
+    height: 50px;
+    line-height: 50px;
+    padding: 0;
+    color: #666666;
+}
+.main .layui-left-nav .layui-nav .layui-nav-item dl dd:hover,
+.main .layui-left-nav .layui-nav .layui-nav-item dl dd:hover a{
+    background-color: #f6f5f5;
+}
+.main .layui-left-nav .layui-nav .layui-nav-item dl dd:hover a{
+    color: #08a09e;
+}
+.main .layui-left-nav .layui-nav .layui-nav-item dl a:visited {
+    background-color: #f6f5f5;
+}

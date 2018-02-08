@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta type="description" content="我的工作台">
+    <meta name="renderer" content="webkit">
+    <title>我的工作台</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="./plugs/layui/css/layui.css">
+    <link rel="stylesheet" href="./font/font_399822_dtv8v5xokcfvfgvi/iconfont.css">
+    <link rel="stylesheet" href="./plugs/font-awesome/css/font-awesome.min.css" media="all">
+    <link rel="stylesheet" href="./css/background-style/background-common.css">
+    <link rel="stylesheet" href="./css/background-style/background-option.css">
+    <link rel="stylesheet" href="./css/background-style/main.css">
+    <link rel="stylesheet" href="./css/background-style/aside.css">
+    <link rel="stylesheet" href="./css/home.css">
+    <link rel="stylesheet" href="./css/qrcode/qrcode.css">
+</head>
+<body>
+<!--顶部导航开始-->
+<header>
+    <ul class="layui-nav container" id="commonHeader">
+        <li class="layui-nav-item user-name" id="userCenter">
+        </li>
+    </ul>
+
+</header>
+<!--顶部导航结束-->
+<!--商品中心区域开始-->
+<div class="option-container">
+    <div class="option container">
+        <div class="logo layui-inline">
+            <a href="#">
+                <img src="img/work-logo.png" alt="">
+            </a>
+        </div>
+        <div class="products-center layui-inline">
+            <a href="/productModule/center/index.html">
+                <img src="./img/products-center.png" alt="">
+            </a>
+        </div>
+        <div class="supply-center" id="applyBox">
+
+        </div>
+    </div>
+</div>
+<!--商品中心区域结束-->
+
+<div class="main container">
+
+    <!--主体内容开始-->
+    <div class="bakground-content container">
+        <div class="main-content">
+            <div class="user-datas">
+                <div class="user-datas-item layui-clear">
+                    <div class="company-info shadow-box">
+                        <div class="user-img-box">
+                            <img src="./img/placeholder.jpg" alt="" id="logoUrl">
+                        </div>
+                        <p class="company-name" id="companyName">-</p>
+                        <p class="company-type">用户类型: <span id="identity">-</span></p>
+                        <p class="company-service">经营范围:全部</p>
+                    </div>
+                    <div class="order-datas shadow-box">
+                        <div class="order-datas-type">
+                            <img src="img/lALPBbCc1VlgWWgmMQ_49_38.png" alt="">
+                            <p class="order-type"><a href="/orderModule/buyerOrder/index.html?orderStates=10">待付款</a>
+                            </p>
+                            <p class="order-number" id="unPay">0</p>
+                        </div>
+                        <div class="order-datas-type">
+                            <img src="img/lALPBbCc1VlhomcpNA_52_41.png" alt="">
+                            <p class="order-type"><a href="/orderModule/buyerOrder/index.html?orderStates=25">待收货</a>
+                            </p>
+                            <p class="order-number" id="unReceive">0</p>
+                        </div>
+                        <div class="order-datas-type">
+                            <img src="img/lALPBbCc1VlgWWcpLA_44_41.png" alt="">
+                            <p class="order-type"><a href="/orderModule/srvOrder/index.html">售后(待处理)</a></p>
+                            <p class="order-number" id="srvOrderNum">0</p>
+                        </div>
+                        <div class="order-datas-type">
+                            <img src="img/lALPBbCc1Vlg-GEsKw_43_44.png" alt="">
+                            <p class="order-type"><a href="/orderModule/buyerOrder/index.html?orderStates=30">待评价</a>
+                            </p>
+                            <p class="order-number" id="unEvaluate">0</p>
+                        </div>
+                        <div class="order-datas-type">
+                            <img src="img/lALPBbCc1VlhomYqLA_44_42.png" alt="">
+                            <p class="order-type"><a href="/orderModule/buyerOrder/index.html?orderStates=55">已退回</a>
+                            </p>
+                            <p class="order-number" id="renturned">0</p>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="user-datas-item layui-clear">
+                    <div class="statistical-data shadow-box" id="purchBox">
+
+                    </div>
+                    <div class="bank-cart shadow-box">
+                       <div class="cart-number layui-clear">
+                           <div class="cart-info">
+                               <p>
+                                   <i class="iconfont layui-store-order-icon icon-yinhangqia"></i>个人钱包
+                               </p>
+                               <p class="cart-tips"><span style="color: #ff3c29">温馨提示:</span> 为保障用户资金安全,<span style="color: #ff3c29">请下载我连网App</span>,实现资金的安全管理!新版个人钱包只能实现资金展示,更多管理功能请使用我连App,原有资金请在老版个人钱包提现</p>
+                           </div>
+                           <div class="downlink-box">
+                               <p style="color: #1cc8c6;cursor: pointer;" id="downLink"></p>
+                           </div>
+                        </div>
+
+                        <div class="user-balance">
+                            <div class="layui-tab">
+                                <ul class="layui-tab-title">
+                                    <li class="layui-this">新版个人钱包</li>
+                                    <li>老版个人钱包</li>
+                                </ul>
+                                <div class="layui-tab-content">
+                                    <div class="layui-tab-item layui-show">
+                                        <div class="total-balance">
+                                            <p class="balance-number">￥ <span id="balance">0</span></p>
+                                            <p class="balance-name">全部余额</p>
+                                        </div>
+                                        <div class="total-balance">
+                                            <p class="balance-number">￥ <span id="freeze_balance">0</span></p>
+                                            <p class="balance-name">锁定余额</p>
+                                        </div>
+                                    </div>
+                                    <div class="layui-tab-item" id="oldVerWallet"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="user-datas-item layui-clear">
+                    <div class="statistical-data shadow-box" id="eChartBar">
+
+                    </div>
+                    <div class="bank-cart shadow-box" id="eChartPie">
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="recommend">
+                <div class="recommend-title">
+                    <h2>我连推荐</h2>
+                    <p>recommend</p>
+                </div>
+                <ul class="product-list layui-clear" id="productBox">
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--主体内容结束-->
+    <!--左侧导航开始-->
+    <aside id="leftNavList">
+
+    </aside>
+    <!--左侧导航结束-->
+</div>
+<script src="./plugs/layui/layui.all.js"></script>
+<script src="./plugs/echart/echarts.min.js"></script>
+<script src="./js/wolianwComponent/config.js"></script>
+<script src="./js/qrconde.js"></script>
+<script type="text/html" id="purchTemplate">
+    {{# if(d.length != 0){ }}
+    {{# layui.each(d,function(index,item){ }}
+    <div class="statistical-data-item">
+        <p class="statistical-data-type">{{ item.dt }}</p>
+        <p class="statistical-data-totalprice">{{= layui.woLianw.formatCurrency(item.purchaseMoney) }}</p>
+        <p class="statistical-data-name">采购金额</p>
+        <p class="statistical-data-totalprice">{{ item.orderCount }}</p>
+        <p class="statistical-data-name">订单数量</p>
+    </div>
+    {{# }) }}
+    {{# } }}
+    {{# if(d.length == 0){ }}
+    {{# layui.each(['上月','本月','本年','全部'],function(index,item){ }}
+    <div class="statistical-data-item">
+        <p class="statistical-data-type">{{ item }}</p>
+        <p class="statistical-data-totalprice">0</p>
+        <p class="statistical-data-name">采购金额</p>
+        <p class="statistical-data-totalprice">0</p>
+        <p class="statistical-data-name">订单数量</p>
+    </div>
+    {{# }) }}
+    {{# } }}
+</script>
+<script type="text/html" id="markTemplate">
+
+</script>
+<script type="text/html" id="productTemplate">
+    {{# if(d.length == 0){ }}
+    <li style="height: 50px;width: 100%;text-align: center;line-height: 50px;border: 1px solid #e4e4e4">暂无数据</li>
+    {{# } }}
+    {{# if(d.length != 0){ }}
+    {{# layui.each(d,function(index,item){ }}
+    <li>
+        <div class="imgBox">
+            <a href="/productModule/goodsdetail.html?productId={{ item.id }}" target="_blank"  title="{{ item.name ? item.name : '' }}">
+                <img src="{{=layui.woLianw.getImgUrl(item.pictureUrl)}}" width="225px" height="224px"/>
+            </a>
+            <label>
+                <span class="left_span" title="{{ item.vendorName ? item.vendorName : '' }}">{{ item.vendorName ? item.vendorName : '' }}</span>
+                <span class="right_span" title="{{ item.location ? item.location : '' }}">{{ item.location ? item.location : '' }}</span>
+            </label>
+        </div>
+        <div class="bottom_content">
+            <label>
+                <span class="goods_price">￥{{ item.listPrice }}</span>
+                {{# if((item.marketPrice != null) || (item.marketPrice != undefined)){ }}
+                <span class="mark-price">￥{{ item.marketPrice }}</span>
+                {{# } }}
+            </label>
+            <p>
+                <a href="/productModule/goodsdetail.html?productId={{ item.id }}" target="_blank" title="{{ item.name ? item.name : '' }}">
+                    {{# if(item.isPresale){ }}
+                    <span style="color: #ff3c29">【预售】</span>
+                    {{# } }}
+                    {{ item.name ? item.name : '' }}
+                </a>
+            </p>
+            <div class="product-tag" data-productid="{{ item.id }}">
+                {{# if(item.freightType == 0){ }}
+                <span class="layui-badge firstToThree">包邮</span>
+                {{# } }}
+                {{# if(item.isPromotion){ }}
+                <span class="layui-badge firstToThree">特价</span>
+                {{# } }}
+                <button class="layui-btn guanzhu-btn">
+                    <i class="fa fa-heart-o focus"></i>
+                    关注
+                </button>
+            </div>
+        </div>
+    </li>
+    {{# }) }}
+    {{# } }}
+
+</script>
+<script type="text/html" id="oldVerWalletTemplate">
+    <div class="total-balance">
+        <p class="balance-number">￥ <span id="balance1">{{=layui.woLianw.thousandBit(d.totalremain)}}</span></p>
+        <p class="balance-name">全部余额</p>
+    </div>
+    <div class="total-balance">
+        <p class="balance-number">￥ <span id="freeze_balance1">{{=layui.woLianw.thousandBit(d.frozeremain)}}</span></p>
+        <p class="balance-name">锁定余额</p>
+    </div>
+    <div id="oldLink">
+        <button class="layui-btn layui-btn-mini" id="enterGetCash">提现</button>
+    </div>
+</script>
+<script>
+    layui.use(['element', 'form', 'laydate', 'laytpl', 'jquery', 'layer', 'woLianw'], function () {
+        var element = layui.element
+        var form = layui.form
+        var laydate = layui.laydate
+        var laytpl = layui.laytpl
+        var $ = layui.$
+        var layer = layui.layer
+        var woLianw = layui.woLianw
+        var appUrl
+
+        woLianw.setHeight()
+
+        /*我要供货按钮的显示控制 start*/
+        var loginInfo = JSON.parse(window.localStorage.getItem('1788login'))
+        if(!loginInfo){
+            window.location.href = '/login.html'
+            return false
+        }
+        if(loginInfo.isSwitch){
+            var str = '<button class="layui-btni" id="wantApply">我要供货</button>'
+            $('#applyBox').append(str)
+        }
+        /*我要供货的登录切换*/
+        $('#applyBox').on('click','#wantApply',function () {
+            woLianw.switchLogin()
+        })
+        /*我要供货按钮的显示控制 end*/
+
+        $('#companyName').text(loginInfo.companyName)
+        $('#identity').text(loginInfo.identity)
+        $('#logoUrl').attr('src', woLianw.getImgUrl(loginInfo.logoUrl))
+
+        /*读取菜单*/
+        woLianw.renderModule()
+
+        /*获取1788首页采购数据记录*/
+        woLianw.purchaseNumForBuyer(function (data) {
+            renderTemplate(data, 'purchTemplate', 'purchBox')
+        })
+
+        /*退货单(售后)数据*/
+        woLianw.srvOrderStatistic(function (data) {
+            if (data.length != 0) {
+                var count = 0
+                $.each(data, function (index, item) {
+                    if ((item.backState == 18) || (item.backState == 19) || (item.backState == 20)) {
+                        count += parseFloat(item.totalNumber)
+                    }
+                })
+                $('#srvOrderNum').text(count)
+            } else {
+                $('#srvOrderNum').text(0)
+            }
+        })
+
+        /*订单统计*/
+        woLianw.orderNumForBuyer(function (data) {
+
+            if (data.length != 0) {
+                var count = 0
+                $.each(data, function (index, item) {
+                    /*代付款订单数*/
+                    if (item.orderState == 10) {
+                        $('#unPay').text(item.orderCount)
+                    }
+                    /*待收货订单数*/
+                    if (item.orderState == 15) {
+                        count += item.orderCount
+                    }/*待收货订单数*/
+                    if (item.orderState == 20) {
+                        count += item.orderCount
+                    }/*待收货订单数*/
+                    if (item.orderState == 25) {
+                        count += item.orderCount
+                    }
+                    /*待评价订单数*/
+                    if (item.orderState == 30) {
+                        $('#unEvaluate').text(item.orderCount)
+                    }
+                    /*已退回订单数*/
+                    if (item.orderState == 55) {
+                        $('#renturned').text(item.orderCount)
+                    }
+                })
+                $('#unReceive').text(count)
+            } else {
+                $('#unPay,#unEvaluate,#unReceive,#renturned').text('0')
+            }
+        })
+
+        /*商品分类汇总(饼形图)*/
+        woLianw.purchaseTypeForBuyer(function (data) {
+            if (data.length == 0) {
+                var arr = [{
+                    value: 0,
+                    name: '暂无数据'
+                }]
+            } else {
+                var arr = []
+                $.each(data, function (index, item) {
+                    arr.push({
+                        value: item.purchaseMoney,
+                        name: item.name
+                    })
+                })
+            }
+            /*开始配置插件*/
+            var myChart = echarts.init(document.getElementById('eChartPie'));
+            var option = {
+                title: {
+                    text: '商品一级分类',
+                    textStyle: {
+                        fontSize: '14',
+                        fontWeight: 'bold'
+                    },
+                    left: '15',
+                    top: '10'
+                },
+                backgroundColor: '#fff',
+                tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b} : {c} ({d}%)"
+                },
+                series: [
+                    {
+                        name: '当前数值',
+                        type: 'pie',
+                        radius: ['30%', '60%'],
+                        center: ['50%', '50%'],
+                        data: arr,
+                        itemStyle: {
+                            emphasis: {
+                                shadowBlur: 10,
+                                shadowOffsetX: 0,
+                                shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            }
+                        }
+                    }
+                ]
+            };
+            /*结束配置插件*/
+            /*插件渲染*/
+            myChart.setOption(option);
+        })
+
+        /*订单金额柱状图*/
+        woLianw.everyMonthOrderNumForBuyer(function (data) {
+            if (data.length == 0) {
+                var valueArr = [0]
+                var axioArr = []
+            } else {
+                var valueArr = []
+                var axioArr = []
+                $.each(data, function (index, item) {
+                    valueArr.push(item.purchaseMoney)
+                    axioArr.push(item.cmonth)
+                })
+            }
+            /*开始配置柱状图*/
+            var myChart = echarts.init(document.getElementById('eChartBar'));
+            var option = {
+                color: ['#3398DB'],
+                title: {
+                    text: '订单金额',
+                    textStyle: {
+                        fontSize: '14',
+                        fontWeight: 'bold'
+                    },
+                    left: '15',
+                    top: '10'
+                },
+                backgroundColor: '#fff'
+                ,
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {            // 坐标轴指示器，坐标轴触发有效
+                        type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+                    }
+                },
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: [
+                    {
+                        type: 'category',
+                        data: axioArr,
+                        axisTick: {
+                            alignWithLabel: true
+                        }
+                    }
+                ],
+                yAxis: [
+                    {
+                        type: 'value'
+                    }
+                ],
+                series: [
+                    {
+                        name: '当前数值:',
+                        type: 'bar',
+                        barWidth: '60%',
+                        data: valueArr,
+                        itemStyle: {
+                            normal: {
+                                color: new echarts.graphic.LinearGradient(
+                                    0, 0, 0, 1,
+                                    [
+                                        {offset: 0, color: '#2BB3A7'},
+                                        {offset: 0.5, color: '#83DEBB'},
+                                        {offset: 1, color: '#B8F6CD'}
+                                    ]
+                                )
+                            }
+                        }
+                    }
+                ]
+            };
+            /*结束配置柱状图*/
+            /*渲染插件*/
+            myChart.setOption(option);
+
+        })
+
+        /*余额查询*/
+        woLianw.payBalanceQuery(function (data) {
+            appUrl = data.appUrl
+            if (data.hasAccount) {
+                $("#downLink").text('查看钱包').attr('data-src', data.appUrl)
+                $('#balance').text(woLianw.formatCurrency(data.balance));
+                $('#freeze_balance').text(woLianw.formatCurrency(data.freeze_balance))
+                /*window.localStorage.removeItem('1788flag')*/
+            }
+            if (!data.hasAccount) {
+                $("#downLink").text('下载我连APP').attr('data-src', data.appUrl)
+            }
+                /*layer.open({
+                    type: 1,
+                    title: false,
+                    closeBtn: 0,
+                    area: ['530px', '500px'],
+                    shadeClose: true,
+                    content: '<div class="mark-bigBox">\n' +
+                    '            <div class="mark-top">\n' +
+                    '                <p>开通个人钱包</p>\n' +
+                    '            </div>\n' +
+                    '            <div class="mark-content">\n' +
+                    '                <p class="tip">提示:如果您已经下载我连网APP，扫描二维码可直接进入开通钱包</p>\n' +
+                    '            </div>\n' +
+                    '            <div class="mark-box">\n' +
+                    '                <div id="qrcode" style="width: 200px;height: 200px;"></div>' +
+                    '                <p>请扫描二维码下载我连网APP，并开通个人钱包，确保用户资金安全</p>\n' +
+                    '            </div>\n' +
+                    '        </div>',
+                    success:function () {
+                        /!*二维码*!/
+                        var qrcode = new QRCode(document.getElementById("qrcode"), {
+                            width : 96,//设置宽高
+                            height : 96
+                        });
+                        qrcode.makeCode("/qrcode/index.html?url="+appUrl);
+                        window.localStorage.removeItem('1788flag')
+                    }
+                });*/
+        })
+
+        /*点击下载我连app或者查看钱包链接*/
+        $('#downLink').on('click', function () {
+
+            var src = $(this).attr('data-src')
+            layer.open({
+                type: 1,
+                title: false,
+                closeBtn: 0,
+                area: ['530px', '500px'],
+                shadeClose: true,
+                content: '<div class="mark-bigBox">\n' +
+                '            <div class="mark-top">\n' +
+                '                <p>开通个人钱包</p>\n' +
+                '            </div>\n' +
+                '            <div class="mark-content">\n' +
+                '                <p class="tip">提示:如果您已经下载我连网APP，扫描二维码可直接进入开通钱包</p>\n' +
+                '            </div>\n' +
+                '            <div class="mark-box">\n' +
+                '                <div id="qrcode" style="width: 200px;height: 200px;"></div>' +
+                '                <p>请扫描二维码下载我连网APP，并开通个人钱包，确保用户资金安全</p>\n' +
+                '            </div>\n' +
+                '        </div>',
+                success:function () {
+                    /*二维码*/
+                    var qrcode = new QRCode(document.getElementById("qrcode"), {
+                        width : 96,//设置宽高
+                        height : 96
+                    });
+                    qrcode.makeCode("http://1788.wolianw.com/qrcode/index.html?url="+appUrl);
+                }
+            });
+        })
+
+        /*数据渲染模板*/
+        function renderTemplate(data, templateId, targetId) {
+            var template = document.getElementById(templateId).innerHTML
+            var target = document.getElementById(targetId)
+            laytpl(template).render(data, function (html) {
+                target.innerHTML = html
+            })
+        }
+
+        /*获取1788我的工作台中我连推荐部分的商品*/
+        woLianw.userCenterRecommend({
+            limit:12
+        },function (data) {
+            console.log(data)
+            renderTemplate(data.list,'productTemplate','productBox')
+        })
+
+        /*关注商品*/
+        $('#productBox').on('click','.guanzhu-btn',function () {
+            var _this = this
+            layer.confirm('确定关注该商品吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                var productId = $(_this).parent().attr('data-productId')
+                console.log(productId)
+                woLianw.followAdd({
+                    disFollowType:2,
+                    itemIds:productId
+                },function (msg) {
+                    layer.msg(msg)
+                    $(_this).removeClass('guanzhu-btn').addClass('remove-btn')
+                })
+            }, function(){
+
+            });
+        })
+        /*取消关注商品*/
+        $('#productBox').on('click','.remove-btn',function () {
+            var _this = this
+            layer.confirm('确定取消关注该商品吗？', {
+                btn: ['确定','取消'] //按钮
+            }, function(){
+                var productId = $(_this).parent().attr('data-productId')
+                console.log(productId)
+                woLianw.followCancel({
+                    type:2,
+                    itemId:productId
+                },function (msg) {
+                    layer.msg(msg)
+                    $(_this).removeClass('remove-btn').addClass('guanzhu-btn')
+                })
+            }, function(){
+
+            });
+        })
+
+
+        // 渲染表单
+        function renderOldVerWallet (data) {
+          var oldVerWalletTemplate = document.getElementById('oldVerWalletTemplate').innerHTML;
+          var oldVerWalletWrap = document.getElementById('oldVerWallet');
+          laytpl(oldVerWalletTemplate).render(data, function (html){
+            oldVerWalletWrap.innerHTML = html;
+            form.render();
+          });
+        }
+
+        // 数据加载
+        woLianw.ajaxPayOldBalance(null, function (data) {
+          renderOldVerWallet(data);
+        }, function (err) {
+          layer.msg(err);
+        });
+
+        $(document).on('click', '#enterGetCash', function () {
+            console.log(this);
+            window.location.href = './getCash.html';
+        });
+
+        /*物流公告*/
+        if(window.localStorage.getItem('1788flag')){
+            layer.open({
+                type: 1,
+                title: false,
+                closeBtn: 0,
+                area: ['900px', '600px'],
+                shadeClose: true,
+                content: '<div class="fareMask" style="width: 900px;height:550px;background-color: #ffffff;color: #323232;margin: 0 auto;padding: 0 0px 20px">\n' +
+                '    <h4 style="height: 50px;background-color: #f4f8fb;line-height: 50px;text-align: center;font-size: 16px;font-weight: bold; ">2018年春节期间暂停物流发货的通知</h4>\n' +
+                '    <div style="padding: 0 20px">\n' +
+                '        <p style="height: 80px;line-height: 20px;text-align: left;padding: 30px 5px;">尊敬的我连网用户：</p>\n' +
+                '        <p style="text-indent: 2em;margin-bottom: 10px;line-height: 36px;">您们好！因春节临近，各主干线快递、物流将在近期停止收件，现结合不同商品的发货周期与公司的放假安排，作出以下通知：</p>\n' +
+                '        <p style="text-indent: 2em;margin-bottom: 10px;line-height: 36px;padding: 0 0 0 28px;"> 1、关于商品截单时间：家具建材类商品截单时间为1月20号；家用电器类商品截单时间为2月2日；其他类目小件商品截单时间为2月3日；截单前所下订单商家在春节前安排发货，截单后订单在春节后安排。如有变动，客服人员将及时与您取得联系。</p>\n' +
+                '        <p style="text-indent: 2em;margin-bottom: 10px;line-height: 36px;padding: 0 10px 0 28px;">2、因春节假期期间订单申请退换货后商家/物流无法正常受理，为防止订单完结，故此期间（2月2日--2月24日）将对订单冻结不支持申请退换货。此期间可正常下单，订单将在年后陆续安排发货。</p>\n' +
+                '        <p style="text-indent: 2em;margin-bottom: 10px;line-height: 36px;padding: 0 10px 0 28px;">3、春节假期期间关于商品的任何问题将统一在假期结束后进行处理，给您带来不便敬请谅解。</p>\n' +
+                '        <p style="text-align:left;margin-bottom: 10px;line-height: 36px;padding: 0 10px 0 28px;">感谢您对我连网工作的支持，祝您新年快乐，阖家幸福！</p>\n' +
+                '        <p style="text-align: right;line-height: 36px;padding-right: 20px;">深圳我和网科技有限公司</p>\n' +
+                '        <p style="text-align: right;line-height: 36px;padding-right: 20px;">2018年2月5日</p>\n' +
+                '    </div>\n' +
+                '</div>',
+                success:function () {
+                    /*二维码*/
+                    window.localStorage.removeItem('1788flag')
+                }
+            });
+        }
+    })
+</script>
+</body>
+</html>

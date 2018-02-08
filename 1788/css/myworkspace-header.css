@@ -1,0 +1,52 @@
+.body{
+    background-color: #EEF3FA;
+}
+.main .layui-header{
+    background-color: #fff;
+    padding: 10px 0;
+    height: auto;
+}
+.main .layui-header .layui-nav{
+    background-color: #fff;
+}
+.main .layui-header .layui-nav span{
+    font-size: 12px;
+}
+
+.main .layui-header .layui-nav a{
+    font-size: 12px;
+}
+.main .layui-header .layui-header-right{
+    height: 61px;
+}
+.main .layui-header .layui-header-right .layui-nav .layui-nav-item dl dd a {
+    padding-left: 5px;
+}
+.main .layui-header .layui-header-left .layui-nav .layui-nav-item dl dd a {
+    padding-left: 15px;
+}
+
+.main .layui-header .layui-header-right .layui-nav .layui-nav-item a span.layui-nav-more{
+    border-color: #909090 transparent transparent;
+    right: -15px;
+}
+.main .layui-header .layui-header-left .layui-nav .layui-nav-item a span.layui-nav-more{
+    border-color: #909090 transparent transparent;
+    right: -20px;
+}
+.main .layui-header .layui-header-right .layui-nav .layui-nav-item a span.layui-nav-mored ,
+.main .layui-header .layui-header-left .layui-nav .layui-nav-item a span.layui-nav-mored {
+    border-color:#fff #fff #909090 #fff !important;
+}
+
+.main .layui-header .layui-header-right .layui-nav .layui-nav-item {
+    margin-right: 30px;
+}
+.main .layui-header .layui-header-right .layui-nav .layui-nav-item a,
+.main .layui-header .layui-header-left .layui-nav .layui-nav-item a,
+.main .layui-header .layui-header-right .layui-nav .layui-nav-item i,
+.main .layui-header .layui-header-left .layui-nav .layui-nav-item i{
+    display: inline-block;
+    color: #909090;
+    padding: 0;
+}

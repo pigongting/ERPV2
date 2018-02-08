@@ -1,0 +1,310 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>订单详情</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="stylesheet" href="./plugins/layui255/css/layui.css">
+  <link rel="stylesheet" href="./plugins/font-awesome/font_399839_u0h8dbd9lu4pwrk9/iconfont.css">
+  <link rel="stylesheet" href="./build/css/orderDetail.css">
+</head>
+<body>
+
+<div class="orderInfo">
+  <div id="orderInfoBox"></div>
+</div>
+<div class="tabInfo">
+  <div class="layui-tab layui-tab-brief" lay-filter="*" id="tabBox"></div>
+</div>
+<div class="buttonList">
+  <button type="button" class="layui-btn pi-TableButton pi-TableButtonGreen" id="commentReply" style="display: none;">评价回复</button>
+  <button type="button" class="layui-btn pi-TableButton pi-TableButtonBlue" id="backList">返回列表</button>
+</div>
+
+<!-- 订单信息 -->
+<script type="text/html" id="orderInfoTemplate">
+  <table>
+    <tr>
+      <th class="cloumn-1">订单日期</th>
+      <td class="cloumn-2">{{layui.woLianw.transDateType(d.createTime)}}<span style="color: transparent;">中</span></td>
+      <th class="cloumn-3">订单编号</th>
+      <td class="cloumn-4"><span>{{d.orderItemNo}}</span><span style="color: transparent;">中</span></td>
+    </tr>
+    <tr>
+      <th>交易状态</th>
+      <td>{{d.transactionStateText || ''}}</td>
+      <th>订单状态</th>
+      <td>{{d.orderStateText || ''}}</td>
+    </tr>
+    <tr>
+      {{# if(d.expectedDeliveryTime) {}}
+      <th>预计发货日期</th>
+      <td>{{d.expectedDeliveryTime ? layui.woLianw.transDateType(d.expectedDeliveryTime, 'date') : ''}}<span style="color: transparent;">中</span></td>
+      {{# } }}
+      <th>买家备注</th>
+      <td><p class="buyer-remark">{{d.remark || ''}}</p></td>
+    </tr>
+  </table>
+</script>
+
+<!-- tab -->
+<script type="text/html" id="tabTemplate">
+  <ul class="layui-tab-title">
+    <li class="layui-this">商品信息</li>
+    <li>客户信息</li>
+    {{# if (d.orderState !== 15) { }}
+    <li>订单操作信息</li>
+    {{# } }}
+    {{# if (d.orderState === 35 || d.orderState === 40) { }}
+    <li>评价信息</li>
+    {{# } }}
+  </ul>
+  <div class="layui-tab-content">
+    <div class="layui-tab-item layui-show" id="goodsInfoBox"></div>
+    <div class="layui-tab-item" id="customerInfoBox"></div>
+    <div class="layui-tab-item" id="orderActionInfoBox"></div>
+    {{# if (d.orderState === 35 || d.orderState === 40) { }}
+    <div class="layui-tab-item" id="commentInfoBox"><div style="text-align: center;">无评价信息</div></div>
+    {{# } }}
+  </div>
+</script>
+
+<!-- 商品信息 -->
+<script type="text/html" id="goodsInfoTemplate">
+  <table>
+    <tr>
+      <td class="cloumn-1" rowspan="5">
+        <div class="pi-ImageBox">
+          <img src="{{=layui.woLianw.getImgUrl(d.productImageUrl)}}" alt="">
+        </div>
+      </td>
+      <td class="cloumn-2" colspan="2">商品名称：<span>{{d.productName || ''}}</span></td>
+    </tr>
+    <tr>
+      <td class="cloumn-2">货号：<span>{{d.skuNo || ''}}</span><span style="color: transparent;">中</span></td>
+      <td class="cloumn-3">规格型号：<span>{{d.skuDesc || ''}}</span></td>
+    </tr>
+    <tr>
+      <td>数量：<span>{{d.number || ''}}</span><span style="color: transparent;">中</span></td>
+      <td>单位：<span>{{d.unit || ''}}</span></td>
+    </tr>
+    <tr>
+      <td>运费：<span class="money">{{=layui.woLianw.thousandBit(d.freight)}}</span><span style="color: transparent;">中</span></td>
+      <td>单价：<span class="money">{{=layui.woLianw.thousandBit(d.vendorPrice)}}</span><span style="color: transparent;">中</span></td>
+    </tr>
+    <tr>
+      <td>金额：<span class="money">{{=layui.woLianw.thousandBit(d.totalPrice)}}</span><span style="color: transparent;">中</span></td>
+      <td>结算金额：<span class="money">{{=layui.woLianw.thousandBit(d.vendorTotalPrice)}}</span><span style="color: transparent;">中</span></td>
+    </tr>
+  </table>
+</script>
+
+<!-- 客户信息 -->
+<script type="text/html" id="customerInfoTemplate">
+  <table>
+    <tr>
+      <th class="cloumn-1">买家姓名</th>
+      <td class="cloumn-2">{{d.buyerName || ''}}</td>
+      <th class="cloumn-3">省</th>
+      <td class="cloumn-4">{{d.province || ''}}</td>
+    </tr>
+    <tr>
+      <th>市</th>
+      <td>{{d.city || ''}}</td>
+      <th>区/县</th>
+      <td>{{d.area || ''}}</td>
+    </tr>
+    <tr>
+      <th>收货人</th>
+      <td>{{d.contact || ''}}</td>
+      <th>电话</th>
+      <td>{{d.phone || ''}}<span style="color: transparent;">中</span></td>
+    </tr>
+    <tr>
+      <th>快递公司</th>
+      <td>{{d.expressCompany || ''}}</td>
+      <th>快递单号</th>
+      <td>{{d.expressNo || ''}}<span style="color: transparent;">中</span></td>
+    </tr>
+    <tr>
+      <th>收货地址</th>
+      <td colspan="3"><p class="receive-address">{{d.address || ''}}</p></td>
+    </tr>
+  </table>
+</script>
+
+<!-- 订单操作信息 -->
+<script type="text/html" id="orderActionInfoTemplate">
+  <table>
+    {{# if(d.orderState < 45){ }}
+    <tr>
+      <th class="cloumn-1">接单人</th>
+      <td class="cloumn-2">{{d.sellerName || ''}}</td>
+      <th class="cloumn-3">接单日期</th>
+      <td class="cloumn-4">{{(d.confirmTime) ? layui.woLianw.transDateType(d.confirmTime) : ''}}<span style="color: transparent;">中</span></td>
+    </tr>
+    {{# } }}
+    {{# if(d.orderState > 20 && d.orderState < 45){ }}
+    <tr>
+      <th>发货人</th>
+      <td>{{d.sendName || ''}}</td>
+      <th>发货日期</th>
+      <td>{{(d.sendTime) ? layui.woLianw.transDateType(d.sendTime) : ''}}<span style="color: transparent;">中</span></td>
+    </tr>
+    {{# } }}
+    {{# if(d.orderState > 20 && d.orderState < 45){ }}
+    <tr>
+      <th>收货人</th>
+      <td>{{d.buyerName || ''}}</td>
+      <th>收货日期</th>
+      <td>{{(d.receiveTime) ? layui.woLianw.transDateType(d.receiveTime) : ''}}<span style="color: transparent;">中</span></td>
+    </tr>
+    {{# } }}
+    {{# if(d.orderState > 40){ }}
+    <tr>
+      <th>拒单人</th>
+      <td>{{d.refuseName || ''}}</td>
+      <th>拒单日期</th>
+      <td>{{(d.refuseTime) ? layui.woLianw.transDateType(d.refuseTime) : ''}}<span style="color: transparent;">中</span></td>
+    </tr>
+    <tr style="display: none;">
+      <th>拒单原因</th>
+      <td colspan="3"></td>
+    </tr>
+    {{# } }}
+  </table>
+</script>
+
+<!-- 评价信息 -->
+<script type="text/html" id="commentInfoTemplate">
+  <table>
+    <tr>
+      <th class="cloumn-1">评分</th>
+      <td class="cloumn-2">{{(d.complexSatisfaction) ? d.complexSatisfaction + '星' : ''}}</td>
+      <th class="cloumn-3">评价内容</th>
+      <td class="cloumn-4" rowspan="3">{{d.comments || ''}}</td>
+    </tr>
+    <tr>
+      <th>评价人</th>
+      <td>{{d.operateBy || ''}}</td>
+    </tr>
+    <tr>
+      <th>评价时间</th>
+      <td>{{(d.operateTime) ? layui.woLianw.transDateType(d.operateTime) : ''}}<span style="color: transparent;">中</span></td>
+    </tr>
+  </table>
+</script>
+
+<script src="./plugins/layui255/layui.js"></script>
+<script src="./build/js/wolianwComponent/config.js"></script>
+<script>
+  function transDateType (date, type) {
+    if (date === null) {
+        return '';
+      }
+      var date=new Date(date)
+      var y = date.getFullYear();
+      var m = date.getMonth() + 1;
+      m = m < 10 ? ('0' + m) : m;
+      var d = date.getDate();
+      d = d < 10 ? ('0' + d) : d;
+      var h = date.getHours();
+      var minute = date.getMinutes();
+      minute = minute < 10 ? ('0' + minute) : minute;
+      
+      if (type === 'date') {
+        return y + '-' + m + '-' + d;
+      } else {
+        return y + '-' + m + '-' + d+' '+h+':'+minute;
+      }
+  }
+
+  layui.use(['element','form','laydate','laytpl','jquery','layer','laypage', 'woLianw'],function () {
+    var element=layui.element;
+    var form=layui.form;
+    var laydate=layui.laydate;
+    var laytpl=layui.laytpl;
+    var $=layui.$;
+    var layer=layui.layer;
+    var laypage = layui.laypage;
+    var woLianw = layui.woLianw;
+    
+    woLianw.ajaxSellOrderVenOrderItemByNo({ orderItemNo: woLianw.GetQueryString('id') }, function(data) {
+      // 订单信息
+      var template = document.getElementById('orderInfoTemplate').innerHTML;
+      var target = document.getElementById('orderInfoBox');
+      laytpl(template).render(data, function (html) {
+        target.innerHTML = html;
+      });
+      
+      // tab
+      var template = document.getElementById('tabTemplate').innerHTML;
+      var target = document.getElementById('tabBox');
+      laytpl(template).render(data, function (html) {
+        target.innerHTML = html;
+      });
+
+      // 商品信息
+      var template = document.getElementById('goodsInfoTemplate').innerHTML;
+      var target = document.getElementById('goodsInfoBox');
+      laytpl(template).render(data, function (html) {
+        target.innerHTML = html;
+      });
+
+      // 客户信息
+      woLianw.ajaxOrderBuyerInfoById({ orderItemId: data.id }, function(buyerInfo) {
+        var template = document.getElementById('customerInfoTemplate').innerHTML;
+        var target = document.getElementById('customerInfoBox');
+        laytpl(template).render(buyerInfo, function (html) {
+          target.innerHTML = html;
+        });
+      })
+
+      //  订单操作信息
+      if (data.orderState !== 15) {
+        woLianw.ajaxOrderBuyerOperateInfoById({ orderItemId: data.id }, function(buyerOperateInfo) {
+          var template = document.getElementById('orderActionInfoTemplate').innerHTML;
+          var target = document.getElementById('orderActionInfoBox');
+          buyerOperateInfo.orderState = data.orderState;
+          laytpl(template).render(buyerOperateInfo, function (html) {
+            target.innerHTML = html;
+          });
+        })
+      }
+
+      //  评价信息
+      if (data.orderState === 35 || data.orderState === 40) {
+        woLianw.ajaxOrderBuyerAppraiseInfoById({ orderItemId: data.id }, function(buyerAppraiseInfoById) {
+          var template = document.getElementById('commentInfoTemplate').innerHTML;
+          var target = document.getElementById('commentInfoBox');
+          laytpl(template).render(buyerAppraiseInfoById, function (html) {
+            target.innerHTML = html;
+          });
+        })
+      }
+    });
+
+    /* 监听选项卡切换 */
+    element.on('tab(*)', function(data){
+      // console.log(this); //当前Tab标题所在的原始DOM元素
+      // console.log(data.index); //得到当前Tab的所在下标
+      // console.log(data.elem); //得到当前的Tab大容器
+      // if (data.index === 3) {
+      //   $('#commentReply').show();
+      // } else {
+      //   $('#commentReply').hide();
+      // }
+    });
+
+    $(document).on('click', '#backList', function () {
+      parent.layer.closeAll('iframe');
+    });
+
+  });
+</script>
+</body>
+</html>

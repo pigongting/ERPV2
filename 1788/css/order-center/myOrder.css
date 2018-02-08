@@ -1,0 +1,343 @@
+.search{
+    height: 103px;
+    background-color: #ffffff;
+    padding-left: 20px;
+}
+.search h2{
+    height: 56px;
+    font-size: 14px;
+    color: #323232;
+    text-align: left;
+    font-weight: bold;
+    line-height: 56px;
+}
+.search .search-option{
+
+}
+.search .search-option .search-option-item{
+    width: 33%;
+    float: left;
+}
+.search .search-option .search-option-item:last-of-type{
+    padding-left: 40px;
+}
+.search .search-option .search-option-item span{
+    padding-right: 10px;
+}
+.search .search-option .search-option-item input{
+    padding-left: 5px;
+    outline-style: none;
+    border: 1px solid #e4e4e4;
+    height: 24px;
+}
+.search .search-option .search-option-item button{
+    background-color: #1cc8c6;
+    padding: 1px 15px;
+    font-size: 12px;
+}
+.search .search-option .search-option-item button i{
+    font-size: 12px;
+    margin-right: 5px;
+}
+.search .search-option .search-option-item input.date{
+    width: 130px;
+}
+.tab-list{
+    height: 40px;
+    margin-top: 20px;
+}
+.tab-list ul{
+    background-color: #ffffff;
+    height: 40px;
+}
+.tab-list .layui-nav .layui-nav-item {
+    line-height: 40px;
+    text-align: left;
+    margin-right: 70px;
+}
+.tab-list .layui-nav .layui-nav-item a span{
+    top: 30%;
+
+}
+.tab-list .layui-nav .layui-this a span{
+    /*display: inline-flex; 解决订单列表tab角标ie bug注释的*/
+}
+.tab-list .layui-nav .layui-nav-item a{
+    color: #666666 ;
+    padding: 0;
+}
+.tab-list .layui-nav .layui-this a{
+    color: #323232;
+}
+.tab-list .layui-nav .layui-this:after,.tab-list .layui-nav-bar,.tab-list .layui-nav-tree .layui-nav-itemed:after{
+    background-color: #1cc8c6;
+}
+.list-box {
+    margin-top: 20px;
+}
+.list-box .ul-head{
+    height: 40px;
+    background-color: #ffffff;
+}
+.list-box .ul-head p{
+    float: left;
+    height: 40px;
+    font-size: 14px;
+    color: #000000;
+    line-height: 40px;
+    text-align: center;
+}
+.list-box .ul-head p:nth-of-type(1){
+    width: 525px;
+}
+.list-box .ul-head p:nth-of-type(2),
+.list-box .ul-head p:nth-of-type(3),
+.list-box .ul-head p:nth-of-type(4){
+    width: 135px;
+}
+.list-box .ul-head p:nth-of-type(5){
+    width: 155px;
+}
+.list-box ul.order-list>li {
+    margin-top: 10px;
+    border: 1px solid #e4e4e4;
+}
+.list-box ul.order-list li.no-data{
+    height: 40px;
+    border: 1px solid #e4e4e4;
+    text-align: center;
+    line-height: 40px;
+    background-color: #f8f8f9;
+}
+.list-box ul.order-list li .trans-info{
+    height: 40px;
+    background-color: #f8f8f9;
+}
+.list-box ul.order-list li .trans-info p{
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    padding-left: 20px;
+}
+.list-box ul.order-list li .trans-info p button{
+    background-color: #FFFFff;
+    border: 1px solid #e4e4e4;
+    padding: 0px 10px;
+    font-size: 12px;
+    color: #323232;
+}
+.list-box ul.order-list li .trans-info p:nth-of-type(1){
+    width: 210px;
+}
+.list-box ul.order-list li .trans-info p:nth-of-type(2){
+    width: 290px;
+}
+.list-box ul.order-list li .trans-info p:nth-of-type(3){
+    width: 470px;
+}
+.list-box ul.order-list li .trans-info p:nth-of-type(4){
+    width: 125px;
+}
+.list-box ul.order-list li .order-info .order-detail{
+    width: 930px;
+    float: left;
+}
+.list-box ul.order-list li .product-info-box{
+    width: 505px;
+    height: 100px;
+    float: left;
+    position: relative;
+
+    padding-top: 10px;
+}
+.list-box ul.order-list li .order-info{
+    background-color: #FFFFFF;
+    position: relative;
+}
+.list-box ul.order-list li .order-info .receive-name,
+.list-box ul.order-list li .order-info .price,
+.list-box ul.order-list li .order-info .order-status{
+    width: 135px;
+    float: left;
+}
+.list-box ul.order-list li .order-info .order-operate{
+    width: 155px;
+    float: left;
+}
+.list-box ul li .order-info .order-detail>li{
+    height: 100px;
+    border-top: 1px solid #e4e4e4;
+    border-collapse: collapse;
+    margin-top: 0;
+    padding:0px 0px 10px 20px;
+    position: relative;
+}
+.list-box ul li .order-info .order-detail>li:nth-of-type(1){
+    border-top: 0;
+}
+.list-box ul li .order-info ul.order-detail li .img-box{
+    width: 80px;
+    height: 80px;
+    float: left;
+}
+.list-box ul li .order-info ul.order-detail li .img-box img{
+    width: 80px;
+    height: 80px;
+}
+.list-box ul li .order-info ul.order-detail li p.product-name{
+    float: left;
+    width: 375px;
+    padding: 0px 50px 0px 20px;
+}
+
+.list-box ul li .order-info ul.order-detail li p.product-name a{
+    font-size: 14px;
+    color: #000000;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+.list-box ul li .order-info ul.order-detail li p.product-name a:hover {
+    text-decoration: solid;
+    color: #ff3c29;
+}
+.list-box ul li .order-info ul.order-detail li p.remark{
+    font-size: 12px;
+    color: #999999;
+    float: left;
+    width: 375px;
+    padding: 28px 50px 0px 20px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.list-box ul li .order-info ul.order-detail li p.remark span{
+    font-size: 12px;
+    margin-left: 5px;
+    color: #000000;
+}
+.list-box ul li .order-info ul.order-detail li .product-number{
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    font-size: 12px;
+    color: #000000;
+    margin-top: -9px;
+}
+.list-box ul li .order-info ul.order-detail li .product-number span{
+    font-size: 16px;
+    font-weight: bold;
+
+}
+.list-box ul li .receive-name,
+.list-box ul li .price,
+.list-box ul li .order-status{
+    height: 100px;
+    border-left: 1px solid #e4e4e4;
+    padding-top: 15px;
+    padding-left: 40px;
+}
+.list-box ul li .order-operate{
+    position: absolute;
+    height: 100%;
+    left: 525px;
+    top: 0;
+    font-size: 14px;
+    color: #000000;
+    padding-top: 25px;
+    border-left: 1px solid #e4e4e4;
+    text-align: left;
+    padding-left: 30px;
+}
+.list-box ul li .receive-name{
+    left: 525px;
+}
+.list-box ul li .price{
+    left: 660px;
+}
+.list-box ul li .price .pay-type{
+    font-size: 14px;
+    color: #999999;
+    padding: 10px 0px;
+}
+.list-box ul li .price .total-price{
+    font-size: 14px;
+    color: #323232;
+    font-weight: bold;
+}
+.list-box ul li .order-status{
+    left: 795px;
+}
+.list-box ul li .order-status .pay-way{
+    font-size: 14px;
+    color: #323232;
+    padding-bottom: 10px;
+}
+.list-box ul li .order-status .order-link{
+    color: #448bf6;
+    font-size: 14px;
+
+}
+.list-box ul li .order-operate{
+    left: 930px;
+    text-align: center;
+    padding-left: 0;
+    padding-top: 5px;
+}
+.list-box ul li .order-operate div {
+    padding-bottom: 10px;
+}
+.list-box ul li .order-operate div button{
+    background-color: #FFFFFF;
+    border: 1px solid #e4e4e4;
+    width: 100px;
+    height: 22px;
+    color: #323232;
+}
+#page{
+    float: right;
+}
+
+
+
+.FareGetOrderTraces { position: relative; color: #448bf6; }
+.FareGetOrderTraces:hover { z-index: 1000; }
+.FareGetOrderTraces:hover .FareGetOrderTracesPOP { display: block; }
+.FareGetOrderTracesPOP {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  display: none;
+  background: #fff;
+  border: 1px solid #1cc8c6;
+  border-radius: 4px;
+  width: 260px;
+  color: #666;
+  margin-bottom: 40px;
+  font-size: 12px;
+}
+.FareGetOrderTracesPOP .lead {
+  padding: 10px 20px;
+}
+.FareGetOrderTracesPOP .list {
+  margin: 0 20px;
+  padding: 10px 0 10px 16px;
+  border-top: 1px solid #eee;
+}
+.FareGetOrderTracesPOP .list dt {
+  position: relative;
+  padding-bottom: 10px;
+}
+.FareGetOrderTracesPOP .list dt:before {
+  content: '';
+  display: block;
+  position: absolute;
+  left: -16px;
+  top: 5px;
+  background: #888;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+}

@@ -1,0 +1,12 @@
+.grid_total > div.grid_wrap{
+    height: 90px;
+}
+.grid_logo{
+    top: 10px;
+}
+.grid_search{
+    margin-top: 22px;
+}
+.layui-header{
+    height: 50px;
+}

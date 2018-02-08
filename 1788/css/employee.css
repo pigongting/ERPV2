@@ -1,0 +1,15 @@
+#detailContent ul {
+    padding: 40px 50px;
+}
+
+#detailContent ul .item {
+    padding: 10px 0;
+}
+
+#addEditContent .layui-form {
+    padding: 0 50px;
+}
+
+#modifyPassword .layui-form {
+    padding: 0 50px;
+}

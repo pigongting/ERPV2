@@ -1,0 +1,13 @@
+[{
+    "orderType":"单据数",
+    "orderNumber":"1159",
+    "orderUnit":"单"
+},{
+    "orderType":"销售数量",
+    "orderNumber":"29941",
+    "orderUnit":"单"
+},{
+    "orderType":"销售金额",
+    "orderNumber":"110594600",
+    "orderUnit":"元"
+}]

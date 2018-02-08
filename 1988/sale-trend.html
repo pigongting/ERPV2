@@ -1,0 +1,77 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>区域销售趋势图</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    <link rel="stylesheet" href="./plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="./plugins/font-awesome/font_399839_u0h8dbd9lu4pwrk9/iconfont.css">
+    <link rel="stylesheet" href="./build/css/main.css">
+    <link rel="stylesheet" href="./build/css/search-order.css">
+    <link rel="stylesheet" href="./build/css/products-show-list.css">
+</head>
+<body>
+<div class="seller-header">
+            <span class="layui-breadcrumb">
+              <a href="javascript:;">你当前所在的位置</a>
+              <a href="javascript:;">报表分析</a>
+              <a><cite>区域销售趋势图</cite></a>
+            </span>
+</div>
+<div class="main ">
+    <div class="search-order layui-form">
+        <input type="checkbox" name="" title="今天" id="todayOrder">
+        <input type="checkbox" name="" title="昨天" id="tomorrowOrder">
+        <input type="checkbox" name="" title="过去7天" id="sevenDaysAgoOrder">
+        <input type="checkbox" name="" title="过去30天" id="thirtyDaysAgoOrder">
+        <input type="checkbox" name="" title="过去60天" id="sixtyDaysAgoOrder">
+        <span class="dateLabel">订单日期</span>
+        <input type="text" id="startDate" class="dateInput">
+        <span>--</span>
+        <input type="text" id="endDate" class="dateInput">
+        <button class="layui-btn search-btn">
+            <i class="layui-icon iconfont">&#xe620;</i>搜索
+        </button>
+        <button class="layui-btn delete-btn">
+            <i class="layui-icon iconfont">&#xe626;</i>删除
+        </button>
+        <button class="layui-btn export-btn">
+            <i class="layui-icon iconfont">&#xe638;</i>导出
+        </button>
+    </div>
+    <div class="products-show-list">
+
+    </div>
+</div>
+
+
+
+<script src="./plugins/layui/layui.js"></script>
+<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+
+<script>
+    layui.use(['element','form','laydate','laytpl','jquery'],function () {
+        var element=layui.element
+        var form=layui.form
+        var laydate=layui.laydate
+        var laytpl=layui.laytpl
+        var  $=layui.$
+
+        laydate.render({
+            elem:"#startDate"
+        })
+        laydate.render({
+            elem:"#endDate"
+        })
+
+
+
+    })
+</script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+.products-order-list{
+    padding: 0 50px 20px;
+}
+.products-order-list table{
+    border: 1px solid #e4e4e4;
+    width: 100%;
+    border-collapse: collapse;
+}
+.products-order-list table thead tr{
+    height: 50px;
+    width: 100%;
+    background-color: #e4e9f2;
+    text-align: left;
+}
+.products-order-list table thead tr th:nth-of-type(1){
+    padding-left: 20px;
+}
+.products-order-list table tbody tr{
+    border-top: 1px solid #e4e4e4;
+    height: 40px;
+}
+.products-order-list table tbody tr:hover{
+    background-color: #f5f7fb;
+}
+.products-order-list table tbody tr td:nth-of-type(1){
+    padding-left: 20px;
+}

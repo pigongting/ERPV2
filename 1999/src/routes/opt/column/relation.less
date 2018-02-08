@@ -1,0 +1,172 @@
+@import "../../../themes/default.less";
+
+.leftWarp {
+  margin-right: 10px;
+  border: 1px solid @border-color-base;
+
+  .optcolumnInfo {
+    padding: 20px 4%;
+    border-bottom: 1px solid @border-color-split;
+
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+    }
+
+    .imgBox {
+      float: left;
+      width: 220px;
+      height: 120px;
+      overflow: hidden;
+      background-color: #eee;
+      background-position: 50% 50%;
+      background-size: cover;
+    }
+
+    .textBox {
+      margin-left: 240px;
+
+      .lead {
+        font-size: 18px;
+        font-weight: bold;
+        height: 38px;
+      }
+      .vice {
+        padding: 6px 0 0 0;
+      }
+    }
+  }
+
+  .productChose {
+    padding: 20px 0;
+
+    dt {
+      font-size: @font-size-lg;
+      padding: 0 0 20px 4%;
+    }
+
+    dd {
+      &:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+    }
+
+    .productItem {
+      .icon {
+        color: @error-color;
+      }
+    }
+  }
+}
+
+.rightWarp {
+  margin-left: 10px;
+  border: 1px solid @border-color-base;
+
+  .productSearch {
+    border-bottom: 1px solid @border-color-split;
+
+    :global(.formGroup) {
+      padding-left: 4% !important;
+      padding-right: 4% !important;
+    }
+  }
+
+  .productHaveList {
+    .productList {
+      height: 1556px;
+      padding: 30px 0 0 0;
+
+      &:after {
+        content: '';
+        display: block;
+        clear: both;
+      }
+
+      .productItem {
+        .icon {
+          color: @success-color;
+        }
+
+        :global(.chose) {
+          opacity: 1;
+        }
+      }
+    }
+
+  }
+
+  .productNoneList {
+    height: 1556px;
+    text-align: center;
+    font-size: @font-size-lg;
+    padding: 100px 0 0 0;
+    color: @text-color-secondary;
+  }
+
+  .productPage {
+    border-top: 1px solid @border-color-split;
+    padding: 10px 0;
+    text-align: center;
+  }
+}
+
+.productItem {
+  float: left;
+  width: 28%;
+  margin-left: 4%;
+  margin-bottom: 30px;
+  border: 1px solid @border-color-split;
+  position: relative;
+
+  .imgBox {
+    height: 120px;
+    overflow: hidden;
+    background-color: #eee;
+    background-position: 50% 50%;
+    background-size: cover;
+  }
+
+  .lead {
+    color: @error-color;
+    padding: 10px;
+    height: 38px;
+  }
+
+  .vice {
+    padding: 0 10px 10px 10px;
+  }
+
+  .icon {
+    position: absolute;
+    font-size: 30px;
+    cursor: pointer;
+    opacity: 0;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(255,255,255,.65);
+    -webkit-transition: all .2s;
+    -o-transition: all .2s;
+    transition: all .2s;
+
+    :global(.anticon) {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -15px;
+      margin-left: -15px;
+    }
+  }
+
+  &:hover {
+    .icon {
+      opacity: 1;
+    }
+  }
+}

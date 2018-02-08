@@ -1,0 +1,78 @@
+.special-show{
+    height: 565px;
+    padding-bottom: 20px;
+    background-color: #f0f1f7;
+}
+.special-show .container .special-show-left{
+    width: 200px;
+    height: 520px;
+    float: left;
+}
+.special-show .container .special-show-left a,
+.special-show .container .special-show-left img{
+    display: block;
+    height: 520px;
+    width: 200px;
+}
+.special-show .container .special-show-right{
+    height: 520px;
+    float: right;
+    width: 1000px;
+}
+.special-show .container .special-show-right ul li{
+    float: left;
+    width: 200px;
+    height: 260px;
+    background-color: #fff;
+    border: 1px solid #F2F2F2;
+    border-collapse: collapse;
+}
+.special-show .container .special-show-right ul li a{
+    display: block;
+    height: 260px;
+}
+.special-show .container .special-show-right ul li a div.product-img{
+    height: 158px;
+    padding: 20px 20px 10px;
+}
+.special-show .container .special-show-right ul li a div.product-img img{
+    width: 128px;
+    height: 128px;
+}
+.special-show .container .special-show-right ul li a p.product-dec{
+    text-align: left;
+    font-size: 12px;
+    height: 30px;
+    color: #323232;
+    overflow: hidden;
+    display: block;
+    padding: 0 15px;
+}
+.special-show .container .special-show-right ul li a .product-price{
+    height: 30px;
+}
+.special-show .container .special-show-right ul li a .product-tag{
+    height: 42px;
+    padding: 10px 15px;
+}
+.special-show .container .special-show-right ul li a .product-tag span{
+    display: block;
+    float: left;
+    margin-right: 5px;
+}
+.special-show .container .special-show-right ul li a .product-tag span.free-shipping{
+    background-image: url("./../../img/free-shipping.png");
+    width: 40px;
+    height: 20px;
+}
+.special-show .container .special-show-right ul li a .product-tag span.wolian-self-support{
+    background-image: url("./../../img/self-support.png");
+    width: 60px;
+    height: 20px;
+}
+#headerRight li.kefu a{
+    padding-right: 0 !important;
+}
+#userNav li a{
+    padding-left: 0 !important;
+}
